@@ -2,6 +2,7 @@
 RewriteEngine On
 
 # this ensures that HTTPS is used except on localhost
+# localhost: XAMPP hat kein Zertifikat, daher HTTP
 RewriteCond %{HTTP_HOST} !=localhost
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
