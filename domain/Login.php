@@ -25,22 +25,6 @@ class Login {
 	 */
 	private $_nachname;
 	/**
-	 * @AttributeType String
-	 */
-	private $_benutzername;
-	/**
-	 * @AttributeType String
-	 */
-	private $_passwort;
-	/**
-	 * @AttributeType String
-	 */
-	private $_vorname;
-	/**
-	 * @AttributeType String
-	 */
-	private $_nachname;
-	/**
 	 * @AssociationType domain.Rolle
 	 * 
 	 * 
@@ -65,12 +49,12 @@ class Login {
 	 * @AssociationType domain.Rolle
 	 * @AssociationMultiplicity 1
 	 */
-	public $_rolle;
+	public $_rolle2;
 	/**
 	 * @AssociationType domain.Reise
 	 * @AssociationMultiplicity 0..*
 	 */
-	public $_reise1 = array();
+	public $_reise2 = array();
 
 	/**
 	 * @access public
