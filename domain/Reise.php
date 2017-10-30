@@ -155,7 +155,7 @@ class Reise {
 	 * @ParamType aDatum_start Date
 	 * @ReturnType void
 	 */
-	public function setDatum_start(&Date $aDatum_start) {
+	public function setDatum_start(&$aDatum_start) {
 		$this->_datum_start = $aDatum_start;
 	}
 
@@ -175,7 +175,7 @@ class Reise {
 	 * @ParamType aDatum_ende Date
 	 * @ReturnType void
 	 */
-	public function setDatum_ende(&Date $aDatum_ende) {
+	public function setDatum_ende(&$aDatum_ende) {
 		$this->_datum_ende = $aDatum_ende;
 	}
 

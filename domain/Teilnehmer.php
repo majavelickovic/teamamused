@@ -34,40 +34,7 @@ class Teilnehmer {
 	/**
 	 * @AttributeType int
 	 */
-	private $_teilnehmer_id;
-	/**
-	 * @AttributeType String
-	 */
-	private $_vorname;
-	/**
-	 * @AttributeType String
-	 */
-	private $_nachname;
-	/**
-	 * @AttributeType Integer
-	 */
-	private $_telefon;
-	/**
-	 * @AttributeType String
-	 */
-	private $_mail;
-	/**
-	 * @AttributeType Date
-	 */
-	private $_geburtsdatum;
-	/**
-	 * @AssociationType domain.Reise_teilnehmer
-	 * 
-	 * 
-	 * @AssociationMultiplicity 1..*
-	 */
 	private $_reise_teilnehmer = array();
-	/**
-	 * @AssociationType domain.Reise_teilnehmer
-	 * @AssociationMultiplicity 1..*
-	 */
-	public $_reise_teilnehmer = array();
-
 	/**
 	 * @access public
 	 * @return int
@@ -184,7 +151,7 @@ class Teilnehmer {
 	 * @ParamType aGeburtsdatum Date
 	 * @ReturnType void
 	 */
-	public function setGeburtsdatum(&Date $aGeburtsdatum) {
+	public function setGeburtsdatum(&$aGeburtsdatum) {
 		$this->_geburtsdatum = $aGeburtsdatum;
 	}
 }
