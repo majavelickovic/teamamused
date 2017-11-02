@@ -61,7 +61,7 @@ class Service {
                     $loginUser->setPassword(password_hash($password, PASSWORD_DEFAULT));
                     $loginDAO->update($loginUser);
                 }
-                $this->currentAgentId = $loginUser->getUserId();
+                $this->$currentUserId = $loginUser->getUserId();
                 return true;
             }
         }
@@ -76,7 +76,7 @@ class Service {
     public function readLogin() {
         if($this->verifyAuth()) {
             $loginDAO = new dao\LoginDAO();
-            return $loginDAO->read($this->currentAgentId);
+            return $loginDAO->read($this->$currentUserId);
         }
         return null;
     }
@@ -94,7 +94,7 @@ class Service {
         $loginUser->setPasswort(password_hash($passwort, PASSWORD_DEFAULT));
         $loginDAO = new dao\LoginDAO();
         if($this->verifyAuth()) {
-            $loginUser->setUserId($this->currentAgentId);
+            $loginUser->setUserId($this->$currentUserId);
             $loginDAO->update($loginUser);
             return true;
         }else{
@@ -167,7 +167,7 @@ class Service {
     public function findAllReisen() {
         if($this->verifyAuth()){
             $reiseDAO = new dao\ReiseDAO();
-            return $reiseDAO->findByAgent($this->currentAgentId); // Methode gibt es so nicht in ReiseDAO
+            return $reiseDAO->findByAgent($this->$currentUserId); // Methode gibt es so nicht in ReiseDAO
         }
         return null;
     }
@@ -232,7 +232,7 @@ class Service {
     public function findAllTeilnehmer() {
         if($this->verifyAuth()){
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
-            return $teilnehmerDAO->findByAgent($this->currentAgentId); // Methode gibt es so nicht in TeilnehmerDAO
+            return $teilnehmerDAO->findByAgent($this->$currentUserId); // Methode gibt es so nicht in TeilnehmerDAO
         }
         return null;
     }
@@ -259,7 +259,7 @@ class Service {
     /**
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
      */
-    public function readTechnung($rechnungId) {
+    public function readRechnung($rechnungId) {
         if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->read($rechnungId);
@@ -296,7 +296,7 @@ class Service {
     public function findAllRechnungen() {
         if($this->verifyAuth()){
             $rechnungDAO = new \dao\RechnungDAO();
-            return $rechnungDAO->findByAgent($this->currentAgentId); // Methode gibt es so nicht in RechnungDAO
+            return $rechnungDAO->findByAgent($this->$currentUserId); // Methode gibt es so nicht in RechnungDAO
         }
         return null;
     }

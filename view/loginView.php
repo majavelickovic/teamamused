@@ -20,6 +20,14 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                 if($userID == 1 && $password == "test") {
                     $_SESSION['login'] = true;
                 }
+                
+                // HIER: Versuch mit DB-Anbindung -> anstelle Zeile 20
+                $service = new Service();
+                if($service->verifyUser($userID, $password)){
+                    $_SESSION['login'] = true;
+                } else {
+                    $_SESSION['login'] = false;                    
+                }
             }
         }
         
