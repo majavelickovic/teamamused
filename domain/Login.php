@@ -8,7 +8,9 @@ require_once(realpath(dirname(__FILE__)) . '/../domain/Reise.php');
  * @package domain
  */
 class Login {
-	/**
+        private $userID;
+    
+        /**
 	 * @AttributeType String
 	 */
 	private $_benutzername;
@@ -56,7 +58,22 @@ class Login {
 	 */
 	public $_reise2 = array();
 
-	/**
+        /**
+         * 
+         * Getter für userId
+         */
+	public function getUserId() {
+            return $this->userID;
+        }
+        
+        /*
+         * Setter für userId
+         */
+        public function setUserId($userId) {
+            $this->userID = $userId;
+        }
+        
+        /**
 	 * @access public
 	 * @return String
 	 * @ReturnType String
