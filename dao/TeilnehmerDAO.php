@@ -10,7 +10,6 @@
 namespace dao;
 
 use domain\Teilnehmer;
-use database\Database;
 
 class TeilnehmerDAO {
 
