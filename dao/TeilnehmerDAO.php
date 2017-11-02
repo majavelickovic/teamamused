@@ -1,7 +1,7 @@
 <?php
 /**
  * @access public
- * @author Michelle Widmer
+ * @author Michelle Widmer (angelehnt an Andreas Martin)
  * 
  * Die Klasse stellt ein Data Access Object für die Klasse Teilnehmer dar und bietet alle CRUD-Operatoren als Prepared Statement an.
  * 
