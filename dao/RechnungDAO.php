@@ -32,7 +32,7 @@ class RechnungDAO {
 	}
 
 	/**
-	 * Liest ein Teilnehmer-Objekt aus der Tabelle "teilnehmer
+	 * Liest ein Rechnungs-Objekt aus der Tabelle "rechnung
 	 */
 	public function read($_rg_id) {
         $pdo = Database::connect();
@@ -44,7 +44,7 @@ class RechnungDAO {
 	}
 
 	/**
-	 * Aktualisiert ein Teilnehmer-Objekt in der Tabelle "teilnehmer"
+	 * Aktualisiert ein Rechnungs-Objekt in der Tabelle "rechnung"
 	 */
 	public function update(Rechnung $rechnung) {
         $pdo = Database::connect();
@@ -61,7 +61,7 @@ class RechnungDAO {
 	}
 
 	/**
-	 * Löscht ein Teilnehmer-Objekt aus der Tabelle "teilnehmer"
+	 * Löscht ein Rechnungs-Objekt aus der Tabelle "rechnung"
 	 */
 	public function delete(Rechnung $rechnung) {
         $pdo = Database::connect();
