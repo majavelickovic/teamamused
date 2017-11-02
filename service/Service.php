@@ -286,7 +286,7 @@ class Service {
             $rechnungDAO = new \dao\RechnungDAO();
             $rechnung = new Rechnung();
             $rechnung->setRg_id($rechnungId);
-            $rechnungDAO->delete($teilnehmer);
+            $rechnungDAO->delete($rechnung);
         }
     }
 
