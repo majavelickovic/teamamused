@@ -77,13 +77,13 @@ class LoginDAO {
 	/**
 	 * noch überarbeiten
 	 */
-	public function findByXY($xy) {
+	public function findByUserId($userid) {
         $pdo = Database::connect();
-        $statement = $pdo->prepare('
-            SELECT * FROM login WHERE xy = :xy ORDER BY id;');
-        $statement->bindValue(':xy', $xy);
+        $statement = $pdo->prepare(
+            "SELECT * FROM login WHERE userid = :userid");
+        $statement->bindValue(':userid', $userid);
         $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_CLASS, "Login");
+        return $statement->fetchAll(\PDO::FETCH_CLASS, "Login")[0];
         }
 }
 ?>
