@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
 	<head>
 		<title>Login</title>
-		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="design/styles.css">
 	</head>
 	<body>
 		<div id="block">
