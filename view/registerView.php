@@ -18,7 +18,7 @@ if(!isset($_SESSION['login']) || $_SESSION['login'] == false) {
 <html>
 	<head>
 		<title>Registrierung</title>
-		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="../design/styles.css">
 	</head>
 	<body>
 		<div id="block">
