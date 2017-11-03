@@ -22,7 +22,7 @@ and open the template in the editor.
 					<button type="button" name="login">einloggen</button>
 					<button type="button" name="reset">zurücksetzen</button>
 				</form>
-				<a href="registerView.php">zur Registrierung</a>
+				<a href="view/registerView.php">zur Registrierung</a>
 			</div>
 		</div>
 	</body>
