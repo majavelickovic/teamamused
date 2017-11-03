@@ -1,0 +1,32 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-image: url("road-asphalt-space-sky.jpeg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+	font-family: Arial;
+	font-size: 11pt;
+}
+
+#block {
+	background-color: white;
+	margin: 100px 0px 100px 0px;
+	height: 400px;
+}
+
+#part1 {
+	float: left;
+	width: 50%;
+	margin: 50px 100px 50px 100px;
+}
+
+#part2 {
+	float: right;
+	width: 50%;
+	margin: 50px 100px 50px 100px;
+}

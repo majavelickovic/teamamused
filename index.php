@@ -5,13 +5,25 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Verwaltungstool Reisen</title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
+	<head>
+		<title>Login</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<div id="block">
+			<div id="part1">
+				<h1>Reiseverwaltung</h1>
+				<p>Login</p>
+				<form>
+					<label>User-ID</label>
+					<input type="text" name="uname" required></br></br>
+					<label>Passwort</label>
+					<input type="password" name="pw" required></br></br>
+					<button type="button" name="login">einloggen</button>
+					<button type="button" name="reset">zurücksetzen</button>
+				</form>
+				<a href="register.html">zur Registrierung</a>
+			</div>
+		</div>
+	</body>
 </html>
