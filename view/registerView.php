@@ -6,15 +6,14 @@ and open the template in the editor.
 -->
 
 <?php
-echo "hallo";
+/*echo "hallo";
 session_start();
 
 if(!isset($_SESSION['login']) || $_SESSION['login'] == false) {
     echo "nicht eingeloggt";
     header("Location: http://localhost/TeamAmused/view/loginView.php");
-}
-?> 
-
+}*/
+?>
 
 <html>
 	<head>
