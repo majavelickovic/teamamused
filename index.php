@@ -20,7 +20,7 @@ $errorFunction = function () {
 echo "test3";
 Router::route("GET", "/register", function () {
     echo "found";
-    require_once("../view/registerview.php");
+    require_once("view/registerview.php");
     echo "found2";
 });
 
@@ -43,7 +43,7 @@ Router::route("GET", "/register", function () {
 					<button type="button" name="login">einloggen</button>
 					<button type="button" name="reset">zurücksetzen</button>
 				</form>
-				<a href="/register">zur Registrierung</a>
+				<a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/register">zur Registrierung</a>
 			</div>
 		</div>
 	</body>
