@@ -19,7 +19,7 @@ $errorFunction = function () {
 };
 
 Router::route("GET", "/register", function () {
-    require_once("view/registerView.php");
+    require_once("view/registerview.php");
 });
 
 ?>
