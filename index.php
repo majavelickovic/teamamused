@@ -2,7 +2,7 @@
 require_once("config/Autoloader.php");
 
 use router\Router;
-alert("test1");
+echo "test1";
 session_start();
 
 $authFunction = function () {
@@ -12,16 +12,16 @@ $authFunction = function () {
     Router::redirect("view/loginView.php");
     return false;
 };
-alert("test2");
+echo "test2";
 $errorFunction = function () {
     Router::errorHeader();
     require_once("view/404.php");
 };
-alert("test3");
+echo "test3";
 Router::route("GET", "/register", function () {
-    alert("found");
+    echo "found";
     require_once("../view/registerview.php");
-    alert("found2");
+    echo "found2";
 });
 
 ?>
