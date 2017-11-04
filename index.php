@@ -43,7 +43,7 @@ Router::route("GET", "/register", function () {
 					<button type="button" name="login">einloggen</button>
 					<button type="button" name="reset">zurücksetzen</button>
 				</form>
-				<a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/register">zur Registrierung</a>
+				<a href="/register">zur Registrierung</a>
 			</div>
 		</div>
 	</body>
