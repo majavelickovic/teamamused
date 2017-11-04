@@ -1,9 +1,28 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php
+require_once("config/Autoloader.php");
+
+use router\Router;
+
+session_start();
+
+/*$authFunction = function () {
+    if (isset($_SESSION["agentLogin"])) {
+        return true;
+    }
+    Router::redirect("view/loginView.php");
+    return false;
+};*/
+
+$errorFunction = function () {
+    Router::errorHeader();
+    require_once("view/404.php");
+};
+
+Router::route("GET", "view/registerView.php", function () {
+    require_once("view/registerView.php");
+});
+
+?>
 <html>
 	<head>
 		<title>Login</title>
