@@ -13,10 +13,10 @@ session_start();
     return false;
 };*/
 
-$errorFunction = function () {
+/*$errorFunction = function () {
     Router::errorHeader();
     require_once("view/404.php");
-};
+};*/
 
 Router::route("GET", "/register", function () {
     alert("found");
