@@ -5,6 +5,7 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="../design/styles.css">
         <title>Verwaltung der Reisen</title>
     </head>
     <body>
@@ -62,7 +63,7 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                 <br>
                 <td></td>
                 <td></td>
-                <td><a href='registerView.php'>zur Registrierung</a></td>
+                <td><a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/register">zur Registrierung</a></td>
                 </tr>
             </table>
         </form>
