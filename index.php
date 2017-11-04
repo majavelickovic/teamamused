@@ -18,7 +18,7 @@ $errorFunction = function () {
     require_once("view/404.php");
 };
 
-Router::route("GET", "view/registerView.php", function () {
+Router::route("GET", "/register", function () {
     require_once("view/registerView.php");
 });
 
@@ -41,7 +41,7 @@ Router::route("GET", "view/registerView.php", function () {
 					<button type="button" name="login">einloggen</button>
 					<button type="button" name="reset">zurücksetzen</button>
 				</form>
-				<a href="view/registerView.php">zur Registrierung</a>
+				<a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/register">zur Registrierung</a>
 			</div>
 		</div>
 	</body>
