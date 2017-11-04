@@ -19,9 +19,7 @@ $errorFunction = function () {
 };*/
 
 Router::route("GET", "/register", function () {
-    echo "found";
     require_once("view/registerview.php");
-    echo "found2";
 });
 
 ?>
