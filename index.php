@@ -11,12 +11,12 @@ session_start();
     }
     Router::redirect("view/loginView.php");
     return false;
-};*/
+};
 
 $errorFunction = function () {
     Router::errorHeader();
     require_once("view/404.php");
-};
+};*/
 
 Router::route("GET", "/register", function () {
     echo "found";
