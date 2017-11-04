@@ -50,6 +50,7 @@ class Router
 
     public static function errorHeader() {
         header("HTTP/1.0 404 Not Found");
+        echo "TEST MAJA";
     }
 
     public static function redirect($redirect_path) {
