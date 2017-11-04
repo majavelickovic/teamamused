@@ -2,22 +2,22 @@
 require_once("config/Autoloader.php");
 
 use router\Router;
-echo "test1";
+
 session_start();
 
-$authFunction = function () {
+/*$authFunction = function () {
     if (isset($_SESSION["agentLogin"])) {
         return true;
     }
     Router::redirect("view/loginView.php");
     return false;
-};
-echo "test2";
+};*/
+
 $errorFunction = function () {
     Router::errorHeader();
     require_once("view/404.php");
 };
-echo "test3";
+
 Router::route("GET", "/register", function () {
     echo "found";
     require_once("view/registerview.php");
