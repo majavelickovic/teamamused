@@ -1,6 +1,6 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/../domain/Rolle.php');
-require_once(realpath(dirname(__FILE__)) . '/../domain/Reise.php');
+
+namespace domain;
 
 /**
  * @access public
@@ -152,5 +152,9 @@ class Login {
 	public function setNachname(&$aNachname) {
 		$this->_nachname = $aNachname;
 	}
+        
+        public function getRolle() {
+            return $this->_rolle;
+        }
 }
 ?>
