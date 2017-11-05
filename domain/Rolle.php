@@ -1,4 +1,7 @@
 <?php
+
+namespace domain;
+
 require_once(realpath(dirname(__FILE__)) . '/../domain/Login.php');
 
 /**
@@ -15,21 +18,7 @@ class Rolle {
 	 * @AttributeType String
 	 */
 	private $_bezeichnung;
-	/**
-	 * @AttributeType int
-	 */
-	private $_rolle_id;
-	/**
-	 * @AttributeType String
-	 */
-	private $_bezeichnung;
-	/**
-	 * @AssociationType domain.Login
-	 * 
-	 * 
-	 * @AssociationMultiplicity 1..*
-	 */
-	private $_login = array();
+
 	/**
 	 * @AssociationType domain.Login
 	 * @AssociationMultiplicity 1..*
@@ -52,7 +41,7 @@ class Rolle {
 	 * @ParamType aRolle_id int
 	 * @ReturnType void
 	 */
-	public function setRolle_id(&$aRolle_id) {
+	public function setRolle_id($aRolle_id) {
 		$this->_rolle_id = $aRolle_id;
 	}
 
@@ -72,7 +61,7 @@ class Rolle {
 	 * @ParamType aBezeichnung String
 	 * @ReturnType void
 	 */
-	public function setBezeichnung(&$aBezeichnung) {
+	public function setBezeichnung($aBezeichnung) {
 		$this->_bezeichnung = $aBezeichnung;
 	}
 }
