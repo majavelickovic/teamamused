@@ -19,18 +19,17 @@ class LoginDAO {
 	 * Erstellt einen registrierten Mitarbeiter in der Tabelle "login"
 	 */
 	public function create(Login $login) {
-        $pdo = Database::connect();
-        $statement = $pdo->prepare(
-                "INSERT INTO login (userid, benutzername, passwort, vorname, nachname, rolle)
-                    VALUES (:userid, :benutzername, :passwort, :vorname, :nachname, :rolle)");
-        $statement->bindValue(':userid', $login->getUserId());
-        $statement->bindValue(':benutzername', $login->getBenutzername());
-        $statement->bindValue(':passwort', $login->getPasswort());
-        $statement->bindValue(':vorname', $login->getVorname());
-        $statement->bindValue(':nachname', $login->getNachname());
-        $statement->bindValue(':rolle', $this->getDummyRolle());
-        $statement->execute();
-        return $this->read($pdo->lastInsertId());
+            $pdo = Database::connect();
+            $statement = $pdo->prepare(
+                    "INSERT INTO login (userid, benutzername, passwort, vorname, nachname, rolle)
+                        VALUES (:userid, :benutzername, :passwort, :vorname, :nachname, 1)");
+            $statement->bindValue(':userid', $login->getUserId());
+            $statement->bindValue(':benutzername', $login->getBenutzername());
+            $statement->bindValue(':passwort', $login->getPasswort());
+            $statement->bindValue(':vorname', $login->getVorname());
+            $statement->bindValue(':nachname', $login->getNachname());
+            return $statement->execute();
+//        return $this->read($pdo->lastInsertId());
 	}
 
 	/**
@@ -51,14 +50,13 @@ class LoginDAO {
 	public function update(Login $login) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
-            "UPDATE login SET benutzername = :benutzername, passwort = :passwort, vorname = :vorname, nachname = :nachname, rolle = :rolle
+            "UPDATE login SET benutzername = :benutzername, passwort = :passwort, vorname = :vorname, nachname = :nachname, rolle = 1
             WHERE userid = :userid");
         $statement->bindValue(':userid', $login->getUserId());
         $statement->bindValue(':benutzername', $login->getBenutzername());
         $statement->bindValue(':passwort', $login->getPasswort());
         $statement->bindValue(':vorname', $login->getVorname());
         $statement->bindValue(':nachname', $login->getNachname());
-        $statement->bindValue(':rolle', $this->getDummyRolle());
         $statement->execute();
         return $this->read($login->getUserId());
 	}
@@ -84,14 +82,9 @@ class LoginDAO {
                 "SELECT * FROM login WHERE userid = :userid");
             $statement->bindValue(':userid', $userid);
             $statement->execute();
-            return $statement->fetchAll(\PDO::FETCH_CLASS, "domain\Login")[0];
+            return $statement->fetchAll()[0];
+//            return $statement->fetchAll(\PDO::FETCH_CLASS, "domain\Login")[0];
         }
-        
-        private function getDummyRolle() {
-            $rolle = new Rolle();
-            $rolle->setRolle_id('1');
-            $rolle->setBezeichnung("wtf");
-            return $rolle;
-        }
+
 }
 ?>

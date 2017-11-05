@@ -16,9 +16,9 @@ class LoginController
      * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen eines Mitarbeiters
      */
     public static function register(){
-        Service::getInstance()->editLogin(
+        return Service::getInstance()->editLogin(
                 $_POST["userId"],
-                "benutzername", // TODO: delete 
+                $_POST["userId"], // TODO: why userId and benutzername??? 
                 $_POST["passwort"],
                 $_POST["vorname"],
                 $_POST["nachname"],

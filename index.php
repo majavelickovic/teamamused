@@ -35,7 +35,9 @@ Router::route("GET", "/register", function () {
  */
 Router::route("POST", "/register", function () {
     if(controller\LoginController::register()){
-    \router\Router::redirect("/login");
+        Router::redirect("/login");
+    } else {
+        echo "FEHLER"; // TODO
     }
 });
 
