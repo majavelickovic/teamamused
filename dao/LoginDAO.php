@@ -9,8 +9,9 @@
 
 namespace dao;
 
-use Database;
-use Login;
+use database\Database;
+use domain\Login;
+use domain\Rolle;
 
 class LoginDAO {
 
@@ -27,7 +28,7 @@ class LoginDAO {
         $statement->bindValue(':passwort', $login->getPasswort());
         $statement->bindValue(':vorname', $login->getVorname());
         $statement->bindValue(':nachname', $login->getNachname());
-        //$statement->bindValue(':rolle', $login->get()); -> kein Getter vorhanden
+        $statement->bindValue(':rolle', $this->getDummyRolle());
         $statement->execute();
         return $this->read($pdo->lastInsertId());
 	}
@@ -57,7 +58,7 @@ class LoginDAO {
         $statement->bindValue(':passwort', $login->getPasswort());
         $statement->bindValue(':vorname', $login->getVorname());
         $statement->bindValue(':nachname', $login->getNachname());
-        //$statement->bindValue(':rolle', $login->get()); -> kein Getter vorhanden
+        $statement->bindValue(':rolle', $this->getDummyRolle());
         $statement->execute();
         return $this->read($login->getUserId());
 	}
@@ -78,12 +79,19 @@ class LoginDAO {
 	 * noch überarbeiten
 	 */
 	public function findByUserId($userid) {
-        $pdo = Database::connect();
-        $statement = $pdo->prepare(
-            "SELECT * FROM login WHERE userid = :userid");
-        $statement->bindValue(':userid', $userid);
-        $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_CLASS, "Login")[0];
+            $pdo = Database::connect();
+            $statement = $pdo->prepare(
+                "SELECT * FROM login WHERE userid = :userid");
+            $statement->bindValue(':userid', $userid);
+            $statement->execute();
+            return $statement->fetchAll(\PDO::FETCH_CLASS, "domain\Login")[0];
+        }
+        
+        private function getDummyRolle() {
+            $rolle = new Rolle();
+            $rolle->setRolle_id('1');
+            $rolle->setBezeichnung("wtf");
+            return $rolle;
         }
 }
 ?>
