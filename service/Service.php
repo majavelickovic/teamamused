@@ -1,5 +1,6 @@
 <?php
 
+namespace service;
 use dao;
 
 /**
@@ -42,11 +43,7 @@ class Service {
      * TODO
      */
     protected function verifyAuth() {
-        if(isset($this->$currentUserId)){
-        return true;
-        } else {
-        return false;
-        }
+        return isset($this->$currentUserId);
     }
 
     /**
