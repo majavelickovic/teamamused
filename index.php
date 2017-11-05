@@ -2,47 +2,37 @@
 require_once("config/Autoloader.php");
 
 use router\Router;
+use database\Database;
 
 session_start();
 
-/*$authFunction = function () {
-    if (isset($_SESSION["agentLogin"])) {
-        return true;
-    }
-    Router::redirect("view/loginView.php");
-    return false;
+$authFunction = function () {
+    // TODO
 };
 
 $errorFunction = function () {
-    Router::errorHeader();
-    require_once("view/404.php");
-};*/
+    // TODO als eigene Seite
+    echo "404 NOT FOUND";
+};
 
 Router::route("GET", "/register", function () {
-    require_once("view/registerview.php");
+    include_once './view/register.php';
 });
 
-?>
-<html>
-	<head>
-		<title>Login</title>
-		<link rel="stylesheet" href="design/styles.css">
-	</head>
-	<body>
-		<div id="block">
-			<div id="part1">
-				<h1>Reiseverwaltung</h1>
-				<p>Login</p>
-				<form>
-					<label>User-ID</label>
-					<input type="text" name="uname" required></br></br>
-					<label>Passwort</label>
-					<input type="password" name="pw" required></br></br>
-					<button type="button" name="login">einloggen</button>
-					<button type="button" name="reset">zurücksetzen</button>
-				</form>
-				<a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/register">zur Registrierung</a>
-			</div>
-		</div>
-	</body>
-</html>
+Router::route("POST", "/register", function () {
+    $pdo = Database::connect();
+    $statement = $pdo->prepare("INSERT INTO login (userid) VALUES (:userid)");
+    $statement->bindValue(":userid", $_POST['uname']);
+    if($statement->execute()) echo "successful";
+    else "failed";
+});
+
+Router::route("GET", "/login", function () {
+    include_once './view/loginView.php';
+});
+
+Router::route_auth("GET", "/agent/edit", $authFunction, function () {
+    CustomerController::readAll();
+});
+
+Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
