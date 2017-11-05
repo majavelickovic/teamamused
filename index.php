@@ -4,35 +4,50 @@ require_once("config/Autoloader.php");
 use router\Router;
 use database\Database;
 
+/*
+ * Startet eine neue Session - muss auf nachfolgenden Seiten nicht implementiert werden, da die Kommunikation über das Index-File läuft
+ */
 session_start();
 
+/*
+ * Wenn noch keine Session gestartet wurde, wird der User auf die Login-Seite umgeleitet
+ */
 $authFunction = function () {
-    // TODO
+    if (controller\AuthentifizController::authenticate()){
+        return true;
+    } else {
+        Router::redirect("/login");
+        return false;        
+    }
 };
 
 $errorFunction = function () {
-    // TODO als eigene Seite
+    // TODO als eigene Seite realisieren
     echo "404 NOT FOUND";
 };
 
 Router::route("GET", "/register", function () {
-    include_once './view/register.php';
+    controller\LoginController::registerView();
 });
 
+/*
+ * Wenn die Registrierung erfolgreich verlief, wird der User auf die Login-Seite weitergeleitet
+ */
 Router::route("POST", "/register", function () {
-    $pdo = Database::connect();
-    $statement = $pdo->prepare("INSERT INTO login (userid) VALUES (:userid)");
-    $statement->bindValue(":userid", $_POST['uname']);
-    if($statement->execute()) echo "successful";
-    else "failed";
+    if(controller\LoginController::register()){
+    \router\Router::redirect("/login");
+    }
 });
 
 Router::route("GET", "/login", function () {
-    include_once './view/loginView.php';
+    controller\LoginController::loginView();
 });
 
-Router::route_auth("GET", "/agent/edit", $authFunction, function () {
-    CustomerController::readAll();
+Router::route("POST", "/login", function () {
+    controller\AuthentifizController::login();
+    Router::redirect("/");
 });
+
+
 
 Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);

@@ -1,7 +1,9 @@
 <?php
 
 namespace service;
+
 use dao;
+use domain\Login;
 
 /**
  * @access public
@@ -43,7 +45,7 @@ class Service {
      * TODO
      */
     protected function verifyAuth() {
-        return isset($this->$currentUserId);
+        return isset($this->currentUserId);
     }
 
     /**

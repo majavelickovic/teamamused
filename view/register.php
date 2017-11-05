@@ -20,13 +20,13 @@ if(!isset($_SESSION['login']) || $_SESSION['login'] == false) {
 				<p>Registrierung</p>
                                 <form method="POST">
 					<label>User-ID</label>
-					<input type="text" name="uname" required></br></br>
+					<input type="text" name="userId" required></br></br>
 					<label>Vorname</label>
-					<input type="text" name="vname"></br></br>
+					<input type="text" name="vorname"></br></br>
 					<label>Nachname</label>
-					<input type="text" name="vname"></br></br>
+					<input type="text" name="nachname"></br></br>
 					<label>Passwort</label>
-					<input type="password" name="pw"></br></br>
+					<input type="password" name="passwort"></br></br>
 					<label>Passwort bestätigen</label>
 					<input type="password" name="pw"></br></br>
                                         <button type="submit" name="register">registrieren</button>
