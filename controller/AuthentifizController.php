@@ -10,9 +10,11 @@ namespace controller;
 
 use service\Service;
 
-class AuthController
+class AuthentifizController
 {
-
+    /*
+     * Überprüft, ob die Session-Variable gesetzt ist und validiert das Token
+     */
     public static function authenticate(){
         if (isset($_SESSION['login'])) {
             if(Service::getInstance()->validateToken($_SESSION['login']['token'])) {
