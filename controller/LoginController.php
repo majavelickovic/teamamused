@@ -6,23 +6,25 @@
 namespace controller;
 
 use view\View;
+use service\Service;
 
 class LoginController
 {
 
     /*
      * Übernimmt die Angaben aus dem Registrierungsformular und gibt diese an die Service-Klasse weiter
+     * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen eines Mitarbeiters
      */
     public static function register(){
-        \Service::getInstance()->editLogin(
+        Service::getInstance()->editLogin(
                 $_POST["userId"],
-                $_POST["benutzername"],
+                "benutzername", // TODO: delete 
                 $_POST["passwort"],
                 $_POST["vorname"],
                 $_POST["nachname"],
-                $_POST["rolle"]);
+                "rolle"); // TODO: delete
     }
-
+    
     public static function registerView(){
         echo (new View("register.php"))->render();
     }
