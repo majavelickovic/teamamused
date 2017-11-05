@@ -22,12 +22,12 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                 }
                 
                 // HIER: Versuch mit DB-Anbindung -> anstelle Zeile 20
-                $service = new Service();
-                if($service->verifyUser($userID, $password)){
-                    $_SESSION['login'] = true;
-                } else {
-                    $_SESSION['login'] = false;                    
-                }
+                #$service = new Service();
+                #if($service->verifyUser($userID, $password)){
+                #    $_SESSION['login'] = true;
+                #} else {
+                #    $_SESSION['login'] = false;                    
+                #}
             }
         }
         
@@ -67,9 +67,5 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
             </table>
         </form>
         <br/>
-<?php
-//wenn Inhalt, dann in DB schreiben, falls Validierung erfolgreich
-?>
-
     </body>
 </html>
