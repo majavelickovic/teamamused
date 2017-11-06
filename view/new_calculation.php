@@ -1,5 +1,9 @@
 <?php
 use database\Database;
+
+    // Create connection
+    $pdo = Database::connect();
+
 ?>
 <html>
     <head>
@@ -20,10 +24,13 @@ use database\Database;
                     <td>
                         <select name="owner">
                             <?php 
-                            $sql = mysqli_query(Database::connect(), "SELECT beschreibung FROM rechnungsart");
-                            while ($row = $sql->fetch_assoc()){
-                            echo "<option value=\"rgart\">" . $row['beschreibung'] . "</option>";
+                            $query = $pdo->query("SELECT beschreibung FROM rechnungsart"); // Run your query
+
+                            echo '<select name="rgart">'; // Open your drop down box
+                            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                 echo '<option value="'.$row['beschreibung'].'"></option>';
                             }
+                            
                             ?>
                         </select>
                     <br/></td>
@@ -50,3 +57,7 @@ use database\Database;
         <br/>
     </body>
 </html>
+
+<?php
+    Database::close();
+?>
