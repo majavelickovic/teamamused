@@ -55,7 +55,7 @@ Router::route_auth("GET", "/", $authFunction, function () {
     If($authFunction){
         Router::redirect("/reise");
     }else{
-        $authFunction; return;
+        $authFunction(); return;
     }
     
 });
