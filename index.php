@@ -13,6 +13,7 @@ session_start();
 /*
  * Wenn noch keine Session gestartet wurde, wird der User auf die Login-Seite umgeleitet
  */
+/*
 $authFunction = function () {
     if (AuthentifizController::authenticate()){
         return true;
@@ -29,12 +30,12 @@ $errorFunction = function () {
 
 Router::route("GET", "/register", function () {
     controller\LoginController::registerView();
-});
+});*/
 
 /*
  * Wenn die Registrierung erfolgreich verlief, wird der User auf die Login-Seite weitergeleitet
  */
-Router::route("POST", "/register", function () {
+/*Router::route("POST", "/register", function () {
     if(controller\LoginController::register()){
         Router::redirect("/login");
     } else {
@@ -49,15 +50,15 @@ Router::route_auth("GET", "/", $authFunction, function () {
         $authFunction();
     }
     
-});
+});*/
 
-Router::route("GET", "/login", function () {
+Router::route("GET", "/", function () {
     controller\LoginController::loginView();
 });
-
+/*
 Router::route("POST", "/login", function () {
     AuthentifizController::login();
     Router::redirect("/");
 });
 
-Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
+Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);*/
