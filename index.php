@@ -59,6 +59,6 @@ Router::route("GET", "/", function () {
 Router::route("POST", "/login", function () {
     AuthentifizController::login();
     Router::redirect("/");
-});
+});*/
 
-Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);*/
+Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
