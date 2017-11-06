@@ -2,16 +2,7 @@
 use database\Database;
 
     // Create connection
-echo "test1";
     $pdo = Database::connect();
-    echo "test2";
-                                $query = $pdo->query("SELECT beschreibung FROM rechnungsart"); // Run your query
-                            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                echo "test3";
-                                 echo $row['beschreibung'];
-                            }
-                            Database::close();
-                            echo "test4";
 
 ?>
 <html>
@@ -31,14 +22,14 @@ echo "test1";
                 <tr>
                     <td>Rechnungsart</td>
                     <td>
-                        <select name="owner"><option>test</option>
+                        <select name="owner">
                             <?php 
-                            /*$query = $pdo->query("SELECT beschreibung FROM rechnungsart"); // Run your query
+                            $query = $pdo->query("SELECT beschreibung FROM rechnungsart"); // Run your query
                             echo '<select name="rgart">'; // Open your drop down box
                             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                  echo '<option value="'.$row['beschreibung'].'"></option>';
                             }
-                            */
+                            
                             ?>
                         </select>
                     <br/></td>
@@ -65,3 +56,7 @@ echo "test1";
         <br/>
     </body>
 </html>
+
+<?php
+    Database::close();
+?>
