@@ -54,7 +54,7 @@ Router::route("POST", "/login", function () {
 });
 
 
-echo "var1 : " . $_SERVER['REQUEST_METHOD'];
+//echo "var1 : " . $_SERVER['REQUEST_METHOD'];
 echo "var2 : " . $_SERVER['PATH_INFO'];
-echo "var 3: " . $errorFunction;
+//echo "var 3: " . $errorFunction;
 //Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
