@@ -25,7 +25,7 @@ use database\Database;
                         <select name="owner">
                             <?php 
                             $query = $pdo->query("SELECT beschreibung FROM rechnungsart"); // Run your query
-
+                            echo "testmaja";
                             echo '<select name="rgart">'; // Open your drop down box
                             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                  echo '<option value="'.$row['beschreibung'].'"></option>';
