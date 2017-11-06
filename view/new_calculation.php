@@ -1,33 +1,52 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
 <?php
-
+use database\Database;
 ?>
-
 <html>
-	<head>
-		<title>neue Rechnung</title>
-		<link rel="stylesheet" href="../design/styles.css">
-	</head>
-	<body>
-		<div id="block">
-			<div id="part1">
-				<h1>Reiseverwaltung</h1>
-				<p>neue Rechnung</p>
-				<!--<form>
-					<label>User-ID</label>
-					<input type="text" name="uname" required></br></br>
-					<label>Passwort</label>
-					<input type="password" name="pw" required></br></br>
-					<button type="button" name="login">einloggen</button>
-					<button type="button" name="reset">zurücksetzen</button>
-				</form>-->
-			</div>
-		</div>
-	</body>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../design/styles.css">
+        <title>Verwaltung der Reisen</title>
+    </head>
+    <body>
+        <h3>neue Rechnung</h3>
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+            <table>
+                <tr>
+                    <td>Reise</td>
+                    <td><input type="text" name="reise" value="" /><br/></td>
+                </tr>
+                <tr>
+                    <td>Rechnungsart</td>
+                    <td>
+                        <select name="owner">
+                            <?php 
+                            $sql = mysqli_query(Database::connect(), "SELECT beschreibung FROM rechnungsart");
+                            while ($row = $sql->fetch_assoc()){
+                            echo "<option value=\"rgart\">" . $row['beschreibung'] . "</option>";
+                            }
+                            ?>
+                        </select>
+                    <br/></td>
+                </tr>
+                <tr>
+                    <td>Kosten</td>
+                    <td><input type="text" name="kosten" value="" /><br/></td>
+                </tr>
+                <tr>
+                    <td>Beschreibung</td>
+                    <td><input type="text" name="beschreibung" value="" /><br/></td>
+                </tr>
+                <tr>
+                    <td>Dokument</td>
+                    <td><input type="text" name="dokument" value="" /><br/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><input type="submit" value="hinzuf&uuml;gen" name="subneuerechnung" /> <input type="reset" value="zur&uuml;cksetzen" /></td>
+                </tr>
+            </table>
+        </form>
+        <br/>
+    </body>
 </html>
