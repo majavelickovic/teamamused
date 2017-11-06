@@ -79,4 +79,12 @@ Router::route("GET", "/rechnung", function () {
     require_once("view/calculation.php");
 });
 
+Router::route("GET", "/teilnehmer", function () {
+    require_once("view/participant.php");
+});
+
+Router::route("GET", "/teilnehmer/neu", function () {
+    require_once("view/new_participant.php");
+});
+
 Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
