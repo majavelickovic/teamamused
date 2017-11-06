@@ -3,6 +3,7 @@ require_once("config/Autoloader.php");
 
 use router\Router;
 use database\Database;
+use controller\AuthentifizController;
 
 /*
  * Startet eine neue Session - muss auf nachfolgenden Seiten nicht implementiert werden, da die Kommunikation über das Index-File läuft
@@ -13,7 +14,7 @@ session_start();
  * Wenn noch keine Session gestartet wurde, wird der User auf die Login-Seite umgeleitet
  */
 $authFunction = function () {
-    if (controller\AuthentifizController::authenticate()){
+    if (AuthentifizController::authenticate()){
         return true;
     } else {
         echo "test1maja";
@@ -48,7 +49,7 @@ Router::route("GET", "/login", function () {
 });
 
 Router::route("POST", "/login", function () {
-    controller\AuthentifizController::login();
+    AuthentifizController::login();
     Router::redirect("/");
 });
 
