@@ -17,7 +17,6 @@ $authFunction = function () {
     if (AuthentifizController::authenticate()){
         return true;
     } else {
-        echo "test1maja";
         Router::redirect("/login");
         return false;        
     }
@@ -44,8 +43,11 @@ Router::route("POST", "/register", function () {
 });
 
 Router::route("GET", "/login", function () {
-    echo "test maja";
-    //controller\LoginController::loginView();
+    controller\LoginController::loginView();
+});
+
+Router::route("GET", "/", function () {
+    controller\LoginController::loginView();
 });
 
 Router::route("POST", "/login", function () {
@@ -54,7 +56,4 @@ Router::route("POST", "/login", function () {
 });
 
 
-echo "var1 : " . $_SERVER['REQUEST_METHOD'];
-//echo "var2 : " . $_SERVER['PATH_INFO'];
-//echo "var 3: " . $errorFunction;
-//Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
+Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
