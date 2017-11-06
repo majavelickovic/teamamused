@@ -4,6 +4,7 @@ require_once("config/Autoloader.php");
 use router\Router;
 use database\Database;
 use controller\AuthentifizController;
+use controller\LoginController;
 
 /*
  * Startet eine neue Session - muss auf nachfolgenden Seiten nicht implementiert werden, da die Kommunikation über das Index-File läuft
@@ -53,7 +54,7 @@ Router::route_auth("GET", "/", $authFunction, function () {
 });*/
 
 Router::route("GET", "/", function () {
-    echo "test maja";//controller\LoginController::loginView();
+    LoginController::loginView();
 });
 /*
 Router::route("POST", "/login", function () {
