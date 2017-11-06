@@ -52,7 +52,7 @@ Router::route("POST", "/login", function () {
 });
 
 Router::route("GET", "/", function () {
-    require_once("login.php");
+    require_once("view/login.php");
 });
 
 Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
