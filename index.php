@@ -46,10 +46,6 @@ Router::route("GET", "/login", function () {
     controller\LoginController::loginView();
 });
 
-Router::route("GET", "/", function () {
-    controller\LoginController::loginView();
-});
-
 Router::route("POST", "/login", function () {
     AuthentifizController::login();
     Router::redirect("/");
