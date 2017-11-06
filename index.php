@@ -16,6 +16,7 @@ $authFunction = function () {
     if (controller\AuthentifizController::authenticate()){
         return true;
     } else {
+        echo "test1maja";
         Router::redirect("/login");
         return false;        
     }
