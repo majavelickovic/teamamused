@@ -53,7 +53,7 @@ Router::route_auth("GET", "/", $authFunction, function () {
 });*/
 
 Router::route("GET", "/", function () {
-    controller\LoginController::loginView();
+    echo "test maja";//controller\LoginController::loginView();
 });
 /*
 Router::route("POST", "/login", function () {
