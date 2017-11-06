@@ -51,5 +51,13 @@ Router::route("POST", "/login", function () {
     Router::redirect("/");
 });
 
+Router::route_auth("GET", "/", $authFunction, function () {
+    If($authFunction){
+        Router::redirect("/reise");
+    }else{
+        $authFunction; return;
+    }
+    
+});
 
 Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
