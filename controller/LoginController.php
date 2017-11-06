@@ -26,11 +26,11 @@ class LoginController
     }
     
     public static function registerView(){
-        echo (new View("../view/register.php"))->render();
+        echo (new View("register.php"))->render();
     }
 
     public static function loginView(){
-        echo (new View("../view/login.php"))->render();
+        echo (new View("login.php"))->render();
     }
 }
 ?>
