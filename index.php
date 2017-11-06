@@ -55,4 +55,28 @@ Router::route("GET", "/", function () {
     require_once("view/login.php");
 });
 
+Router::route("GET", "/reise/neu", function () {
+    require_once("view/new_journey.php");
+});
+
+Router::route("GET", "/reise", function () {
+    require_once("view/journey.php");
+});
+
+Router::route("GET", "/reise/bestehend", function () {
+    require_once("view/exist_journey.php");
+});
+
+Router::route("GET", "/rechnung/neu", function () {
+    require_once("view/new_calculation.php");
+});
+
+Router::route("GET", "/rechnung/bestehend", function () {
+    require_once("view/exist_calculation.php");
+});
+
+Router::route("GET", "/rechnung", function () {
+    require_once("view/calculation.php");
+});
+
 Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
