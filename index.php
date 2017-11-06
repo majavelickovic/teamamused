@@ -42,6 +42,15 @@ Router::route("POST", "/register", function () {
     }
 });
 
+Router::route_auth("GET", "/", $authFunction, function () {
+    If($authFunction){
+        Router::redirect("/reise");
+    }else{
+        $authFunction();
+    }
+    
+});
+
 Router::route("GET", "/login", function () {
     controller\LoginController::loginView();
 });
@@ -49,15 +58,6 @@ Router::route("GET", "/login", function () {
 Router::route("POST", "/login", function () {
     AuthentifizController::login();
     Router::redirect("/");
-});
-
-Router::route_auth("GET", "/", $authFunction, function () {
-    If($authFunction){
-        Router::redirect("/reise");
-    }else{
-        $authFunction(); return;
-    }
-    
 });
 
 Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
