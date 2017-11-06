@@ -54,7 +54,7 @@ Router::route_auth("GET", "/", $authFunction, function () {
 });*/
 
 Router::route("GET", "/", function () {
-    require_once('view/login.php');
+    require_once("view/login.php");
 //LoginController::loginView();
 });
 /*
