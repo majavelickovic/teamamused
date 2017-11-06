@@ -42,8 +42,8 @@ Router::route("POST", "/register", function () {
 });
 
 Router::route("GET", "/login", function () {
-    echo "test";
-    controller\LoginController::loginView();
+    echo "test maja";
+    //controller\LoginController::loginView();
 });
 
 Router::route("POST", "/login", function () {
