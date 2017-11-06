@@ -31,14 +31,14 @@ echo "test1";
                 <tr>
                     <td>Rechnungsart</td>
                     <td>
-                        <select name="owner">
+                        <select name="owner"><option>test</option>
                             <?php 
-                            $query = $pdo->query("SELECT beschreibung FROM rechnungsart"); // Run your query
+                            /*$query = $pdo->query("SELECT beschreibung FROM rechnungsart"); // Run your query
                             echo '<select name="rgart">'; // Open your drop down box
                             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                  echo '<option value="'.$row['beschreibung'].'"></option>';
                             }
-                            
+                            */
                             ?>
                         </select>
                     <br/></td>
@@ -65,7 +65,3 @@ echo "test1";
         <br/>
     </body>
 </html>
-
-<?php
-    Database::close();
-?>
