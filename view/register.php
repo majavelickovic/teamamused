@@ -41,7 +41,7 @@ Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User regi
                             </tr>
                             <tr></tr>
                             <tr>
-                                <td colspan="3"><input type="submit" name="sub" value="einloggen" /> <input type="reset" value="zur&uuml;cksetzen" /></td>
+                                <td colspan="3" align="left"><input type="submit" class="button" value="einloggen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                             </tr>
                         </table>
                     </form>
