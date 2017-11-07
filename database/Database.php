@@ -23,11 +23,6 @@ class Database
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }
-    
-    public static function close($pdo){
-        this.$pdo->close();
-    }
-
 }
 
 ?>

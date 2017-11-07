@@ -12,9 +12,9 @@
 
     $query = $pdo->query("SELECT beschreibung FROM rechnungsart"); // Run your query
     
+    echo "<select>";
     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-         echo "wert: ".$row['beschreibung']. "<br>";
+         echo "<option>".$row['beschreibung']. "</option>";
     }
-
-    Database::close($pdo);
+    echo "</select>";
 ?>
