@@ -5,7 +5,7 @@
 
 namespace controller;
 
-use view\View;
+use view\view as View;
 use service\Service;
 
 class LoginController
