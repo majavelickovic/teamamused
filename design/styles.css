@@ -4,7 +4,7 @@ body, html {
 }
 
 body {
-    background-image: url("pictures/road-asphalt-space-sky.jpeg");
+    background-image: url("../pictures/road-asphalt-space-sky.jpeg");
     height: 100%; 
     background-position: center;
     background-repeat: no-repeat;
@@ -13,19 +13,19 @@ body {
 	font-size: 11pt;
 }
 
-#block {
+#whiteblock {
 	background-color: white;
 	margin: 100px 0px 100px 0px;
 	height: 400px;
 }
 
-#part1 {
+#block1 {
 	float: left;
 	width: 50%;
 	margin: 50px 100px 50px 100px;
 }
 
-#part2 {
+#block2 {
 	float: right;
 	width: 50%;
 	margin: 50px 100px 50px 100px;
