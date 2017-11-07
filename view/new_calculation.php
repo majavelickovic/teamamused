@@ -24,7 +24,7 @@ use database\Database;
                                     <select name="rgart">
                                     <?php 
                                     $pdo = Database::connect();
-                                    $query = $pdo->query("SELECT beschreibung FROM rechnungsart asc"); // Run your query
+                                    $query = $pdo->query("SELECT beschreibung FROM rechnungsart order by beschreibung asc"); // Run your query
 
                                     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                          echo "<option value='".$row['beschreibung']."'>".$row['beschreibung']."</option>";
