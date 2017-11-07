@@ -35,7 +35,7 @@ use database\Database;
 
                                     ?>
                                     </select>
-                                <br/></td>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Kosten</td>
