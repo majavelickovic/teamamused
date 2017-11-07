@@ -25,15 +25,15 @@ use database\Database;
                             <tr>
                                 <td>Rechnungsart</td>
                                 <td>
-                                    <select name="owner">
-                                        <?php 
-                                        $query = $pdo->query("SELECT beschreibung FROM rechnungsart asc"); // Run your query
-                                        echo "<select name='rgart'>"; // Open your drop down box
-                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                             echo "<option>".$row['beschreibung']."</option>";
-                                        }
-                                        echo "</select>";
-                                        ?>
+                                    <select name="rgart">
+                                    <?php 
+                                    $query = $pdo->query("SELECT beschreibung FROM rechnungsart asc"); // Run your query
+
+                                    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                         echo "<option value='".$row['beschreibung']."'>".$row['beschreibung']."</option>";
+                                    }
+
+                                    ?>
                                     </select>
                                 <br/></td>
                             </tr>
