@@ -26,11 +26,11 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                             </tr>
                             <tr></tr>
                             <tr>
-                                <td colspan="3"><input type="submit" value="einloggen" name="sub" /> <input type="reset" value="zur&uuml;cksetzen" /></td>
+                                <td colspan="3" align="left"><input type="submit" class="button" value="einloggen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                             </tr>
                             <tr></tr>
                             <tr>
-                                <td colspan="3" align="right"><a href="<?php echo $GLOBALS["ROOT URL"] . "/register" ?>"> zur Registrierung</a></td>
+                                <td colspan="3" align="right"><a href=<?php echo $GLOBALS["ROOT URL"]; ?> zur Registrierung</a></td>
                             </tr>
                         </table>
                     </form>

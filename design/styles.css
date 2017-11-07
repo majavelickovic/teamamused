@@ -26,14 +26,52 @@ table {
     margin: 0px 100px 0px 100px;
 }
 
+#navblock {
+    width: 1024px;
+    border-style: solid;
+}
+
 #blockleft {
     float: left;
-    width: 50%;
+    width: 516px;
     margin: 20px 0px 20px 0px;
 }
 
 #blockright {
     float: right;
-    width: 50%;
+    width: 516px;
     margin: 20px 0px 20px 0px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 12pt;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #4286f4;
+    color: white;
+}
+
+.active {
+    background-color: #4286f4;
+}
+
+.button {
+    width: 120px;
 }
