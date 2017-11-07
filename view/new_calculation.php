@@ -1,9 +1,5 @@
 <?php
 use database\Database;
-
-    // Create connection
-    $pdo = Database::connect();
-
 ?>
 <html>
     <head>
@@ -27,7 +23,8 @@ use database\Database;
                                 <td>
                                     <select name="rgart">
                                     <?php 
-                                    $query = $pdo->query("SELECT beschreibung FROM rechnungsart asc"); // Run your query
+                                    $pdo = Database::connect();
+                                    $query = $pdo->query("SELECT beschreibung FROM rechnungsart order by beschreibung asc"); // Run your query
 
                                     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                          echo "<option value='".$row['beschreibung']."'>".$row['beschreibung']."</option>";
@@ -35,7 +32,7 @@ use database\Database;
 
                                     ?>
                                     </select>
-                                <br/></td>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Kosten</td>
@@ -51,12 +48,10 @@ use database\Database;
                             </tr>
                             <tr>
                                 <td></td>
-                                <td></td>
                                 <td><input type="submit" value="hinzuf&uuml;gen" name="subneuerechnung" /> <input type="reset" value="zur&uuml;cksetzen" /></td>
                             </tr>
                         </table>
                     </form>
-                    <br/>
                 </div>
             </div>
         </div>
