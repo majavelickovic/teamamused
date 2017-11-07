@@ -1,5 +1,11 @@
+<html>
+    <body>
+        <h1>test maja</h1>
+    </body>
+</html>
+
 <?php
-use database\Database;
+    /*use database\Database;
 
     // Create connection
     $pdo = Database::connect();
@@ -10,5 +16,5 @@ use database\Database;
          echo "wert: ".$row['beschreibung']. "<br>";
     }
 
-    Database::close();
+    Database::close();*/
 ?>
