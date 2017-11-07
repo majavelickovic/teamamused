@@ -16,7 +16,17 @@ use database\Database;
                         <table>
                             <tr>
                                 <td>Reise</td>
-                                <td><input type="text" name="reise" value="" /><br/></td>
+                                    <select name="reise">
+                                    <?php 
+                                    $pdo = Database::connect();
+                                    $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
+
+                                    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                         echo "<option value='".$row['reise_id']."'>".$row['beschreibung'].", ".$row['reise_id']."</option>";
+                                    }
+
+                                    ?>
+                                    </select>
                             </tr>
                             <tr>
                                 <td>Rechnungsart</td>
@@ -24,7 +34,7 @@ use database\Database;
                                     <select name="rgart">
                                     <?php 
                                     $pdo = Database::connect();
-                                    $query = $pdo->query("SELECT beschreibung FROM rechnungsart order by beschreibung asc"); // Run your query
+                                    $query = $pdo->query("SELECT beschreibung FROM rechnungsart order by beschreibung asc");
 
                                     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                          echo "<option value='".$row['beschreibung']."'>".$row['beschreibung']."</option>";
