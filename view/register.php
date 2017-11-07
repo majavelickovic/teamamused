@@ -1,38 +1,62 @@
-<?php
-/*echo "hallo";
-session_start();
-
-if(!isset($_SESSION['login']) || $_SESSION['login'] == false) {
-    echo "nicht eingeloggt";
-    header("Location: http://localhost/TeamAmused/view/loginView.php");
-}*/
-?>
-
+<!DOCTYPE html>
+<!--
+Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User registrieren können.
+-->
 <html>
-	<head>
-		<title>Registrierung</title>
-		<link rel="stylesheet" href="../design/styles.css">
-	</head>
-	<body>
-		<div id="block">
-			<div id="part1">
-				<h1>Reiseverwaltung</h1>
-				<p>Registrierung</p>
-                                <form method="POST">
-					<label>User-ID</label>
-					<input type="text" name="userId" required></br></br>
-					<label>Vorname</label>
-					<input type="text" name="vorname"></br></br>
-					<label>Nachname</label>
-					<input type="text" name="nachname"></br></br>
-					<label>Passwort</label>
-					<input type="password" name="passwort"></br></br>
-					<label>Passwort bestätigen</label>
-					<input type="password" name="pw"></br></br>
-                                        <button type="submit" name="register">registrieren</button>
-					<button type="reset" name="reset">zurücksetzen</button>
-				</form>
-			</div>
-		</div>
-	</body>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../design/styles.css">
+        <title>Registrierung</title>
+    </head>
+    <body>
+        <div id="whiteblock">
+            <div id="block">
+                <div id="blockleft">
+                    <h1>Verwaltung der Reisen</h1>
+                    Registrierung</br></br>
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                        <table>
+                            <tr>
+                                <td><img src="../design/pictures/user.png"></td><td>User-ID</td>
+                                <td><input type="text" name="userID" value="" /></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Vorname</td>
+                                <td><input type="text" name="vorname" value="" /></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Nachname</td>
+                                <td><input type="text" name="nachname" value="" /></td>
+                            </tr>
+                            <tr>
+                                <td><img src="../design/pictures/key.png"></td><td>Passwort</td>
+                                <td><input type="password" name="password" value="" /></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Passwort bestätigen</td>
+                                <td><input type="password" name="password" value="" /></td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td colspan="3"><input type="submit" name="sub" value="einloggen" /> <input type="reset" value="zur&uuml;cksetzen" /></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
+
+<?php
+/* echo "hallo";
+  session_start();
+
+  if(!isset($_SESSION['login']) || $_SESSION['login'] == false) {
+  echo "nicht eingeloggt";
+  header("Location: http://localhost/TeamAmused/view/loginView.php");
+  } */
+?>
