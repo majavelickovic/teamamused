@@ -95,4 +95,8 @@ Router::route("GET", "/teilnehmer/neu", function () {
     require_once("view/new_participant.php");
 });
 
+Router::route("GET", "/testDB", function () {
+    require_once("view/testDBConnect.php");
+});
+
 Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
