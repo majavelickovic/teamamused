@@ -24,8 +24,8 @@ class Database
         return $pdo;
     }
     
-    public static function close(){
-        $pdo->close();
+    public static function close($pdo){
+        this.$pdo->close();
     }
 
 }

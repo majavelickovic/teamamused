@@ -15,6 +15,6 @@
     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
          echo "wert: ".$row['beschreibung']. "<br>";
     }
-/*
-    Database::close();*/
+
+    Database::close($pdo);
 ?>
