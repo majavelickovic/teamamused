@@ -30,7 +30,7 @@ use database\Database;
                                     $query = $pdo->query("SELECT beschreibung FROM rechnungsart asc"); // Run your query
 
                                     while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                         echo "<option value='".$row['beschreibung']."'>".$row['beschreibung']."</option>";
+                                         echo "<option>".$row['beschreibung']."</option>";
                                     }
 
                                     ?>
