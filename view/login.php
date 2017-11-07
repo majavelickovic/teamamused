@@ -30,7 +30,7 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                             </tr>
                             <tr></tr>
                             <tr>
-                                <td colspan="3" align="right"><a href=<?php echo $GLOBALS["ROOT URL"]; ?> zur Registrierung</a></td>
+                                <td colspan="3" align="right"><a href="<?php echo $GLOBALS["ROOT URL"] . "/register" ?>"> zur Registrierung</a></td>
                             </tr>
                         </table>
                     </form>
