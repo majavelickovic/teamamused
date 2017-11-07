@@ -25,16 +25,13 @@ use database\Database;
                             <tr>
                                 <td>Rechnungsart</td>
                                 <td>
-                                    <select name="rgart">
                                     <?php 
-                                    $query = $pdo->query("SELECT beschreibung FROM rechnungsart asc"); // Run your query
-
-                                    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                         echo "<option>".$row['beschreibung']."</option>";
-                                    }
-
+                                        echo "<select>";
+                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                             echo "<option>".$row['beschreibung']. "</option>";
+                                        }
+                                        echo "</select>";
                                     ?>
-                                    </select>
                                 </td>
                             </tr>
                             <tr>
