@@ -80,7 +80,8 @@ Router::route("GET", "/rechnung/neu", function () {
 });
 
 Router::route("POST", "/rechnung/neu", function () {
-    controller\RechnungController::neueRechnung();
+    echo "maja test";
+//controller\RechnungController::neueRechnung();
 });
 
 Router::route("GET", "/rechnung/bestehend", function () {
