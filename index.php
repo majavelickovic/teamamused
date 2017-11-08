@@ -76,12 +76,15 @@ Router::route("GET", "/reise/bestehend", function () {
 });
 
 Router::route("GET", "/rechnung/neu", function () {
-    require_once("view/new_calculation.php");
+    controller\RechnungController::rechnungHinzufView();
 });
 
 Router::route("POST", "/rechnung/neu", function () {
-    echo "maja test";
-//controller\RechnungController::neueRechnung();
+    if(controller\RechnungController::neueRechnung()){
+        Router::redirect("/rechnung/neu");
+    } else {
+        echo "FEHLER"; // TODO
+    }
 });
 
 Router::route("GET", "/rechnung/bestehend", function () {
