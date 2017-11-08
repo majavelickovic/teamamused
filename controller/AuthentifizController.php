@@ -25,7 +25,7 @@ class AuthentifizController
     }
 
     public static function login(){
-        if(Service::getInstance()->verifyUser($_POST['userId'],$_POST['password']))
+        if(Service::getInstance()->verifyUser($_POST['benutzername'],$_POST['password']))
         {
             $_SESSION['user']['token'] = Service::getInstance()->issueToken();
         }
