@@ -13,7 +13,7 @@ class RechnungController
 
     /*
      * Übernimmt die Angaben aus dem Rechnungsformular und gibt diese an die Service-Klasse weiter
-     * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen eines Mitarbeiters
+     * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen einer Rechnung
      */
     public static function neueRechnung(){
         return Service::getInstance()->createRechnung(
