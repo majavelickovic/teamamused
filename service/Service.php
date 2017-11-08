@@ -19,7 +19,7 @@ class Service {
     /**
      * TODO
      */
-    private $currentUserId;
+    private $currentBenutzername;
 
     /**
      * TODO
@@ -45,22 +45,22 @@ class Service {
      * TODO
      */
     protected function verifyAuth() {
-        return isset($this->currentUserId);
+        return isset($this->currentBenutzername);
     }
 
     /**
      * TODO
      */
-    public function verifyUser($userId, $password) {
+    public function verifyUser($benutzername, $password) {
         $loginDAO = new dao\LoginDAO();
-        $loginUser = $loginDAO->findByUserId($userId);
+        $loginUser = $loginDAO->findByBenutzername($benutzername);
         if (isset($loginUser)) {
-            if (password_verify($password, $loginUser->getPassword())) {
-                if (password_needs_rehash($loginUser->getPassword(), PASSWORD_DEFAULT)) {
+            if (password_verify($password, $loginUser->getPasswort())) {
+                if (password_needs_rehash($loginUser->getPasswort(), PASSWORD_DEFAULT)) {
                     $loginUser->setPassword(password_hash($password, PASSWORD_DEFAULT));
                     $loginDAO->update($loginUser);
                 }
-                $this->$currentUserId = $loginUser->getUserId();
+                $this->currentBenutzername = $loginUser->getBenutzername();
                 return true;
             }
         }
@@ -75,7 +75,7 @@ class Service {
     public function readLogin() {
         if($this->verifyAuth()) {
             $loginDAO = new dao\LoginDAO();
-            return $loginDAO->read($this->$currentUserId);
+            return $loginDAO->read($this->currentBenutzername);
         }
         return null;
     }
@@ -83,21 +83,21 @@ class Service {
     /**
      * Bearbeitet den eingeloggten Mitarbeiter in der Datenbank, falls es diesen bereits gibt, oder erstellt einen neuen Eintrag
      */
-    public function editLogin($userid, $benutzername, $passwort, $vorname, $nachname, $rolle) {
+    public function editLogin($benutzername, $passwort, $vorname, $nachname, $rolle) {
         $loginUser = new Login();
-        $loginUser->setUserId($userid);
         $loginUser->setBenutzername($benutzername);
         $loginUser->setVorname($vorname);
         $loginUser->setNachname($nachname);        
         //$loginUser->set($rolle); -> kein Setter vorhanden
-        $loginUser->setPasswort(password_hash($passwort, PASSWORD_DEFAULT));
+        $passwordHash = password_hash($passwort, PASSWORD_DEFAULT);
+        $loginUser->setPasswort($passwordHash);
         $loginDAO = new dao\LoginDAO();
         if($this->verifyAuth()) {
-            $loginUser->setUserId($this->$currentUserId);
+            $loginUser->setBenutzername($this->currentBenutzername);
             $loginDAO->update($loginUser);
             return true;
         }else{
-            if(!is_null($loginDAO->findByUserId($userid))){
+            if(!is_null($loginDAO->findByBenutzername($benutzername))){
                 return false;
             }
             $loginDAO->create($loginUser);
@@ -166,7 +166,7 @@ class Service {
     public function findAllReisen() {
         if($this->verifyAuth()){
             $reiseDAO = new dao\ReiseDAO();
-            return $reiseDAO->findByAgent($this->$currentUserId); // Methode gibt es so nicht in ReiseDAO
+            return $reiseDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in ReiseDAO
         }
         return null;
     }
@@ -231,7 +231,7 @@ class Service {
     public function findAllTeilnehmer() {
         if($this->verifyAuth()){
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
-            return $teilnehmerDAO->findByAgent($this->$currentUserId); // Methode gibt es so nicht in TeilnehmerDAO
+            return $teilnehmerDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in TeilnehmerDAO
         }
         return null;
     }
@@ -298,7 +298,7 @@ class Service {
     public function findAllRechnungen() {
         if($this->verifyAuth()){
             $rechnungDAO = new \dao\RechnungDAO();
-            return $rechnungDAO->findByAgent($this->$currentUserId); // Methode gibt es so nicht in RechnungDAO
+            return $rechnungDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in RechnungDAO
         }
         return null;
     }
@@ -306,35 +306,35 @@ class Service {
     /**
      * ????
      */
-    public function validateToken($token, $type = self::AGENT_TOKEN) {
-        switch ($type){
-            case self::AGENT_TOKEN :
-                $tokenArray = explode(":", $token);
-                if(count($tokenArray)>1) {
-                    $this->currentAgentId = $tokenArray[0];
-                    return true;
-                }
-                break;
-            case self::RESET_TOKEN :
-                break;
-            case self::JWT_TOKEN :
-                break;
-        }
-        return false;
-    }
+//    public function validateToken($token, $type = self::AGENT_TOKEN) {
+//        switch ($type){
+//            case self::AGENT_TOKEN :
+//                $tokenArray = explode(":", $token);
+//                if(count($tokenArray)>1) {
+//                    $this->currentAgentId = $tokenArray[0];
+//                    return true;
+//                }
+//                break;
+//            case self::RESET_TOKEN :
+//                break;
+//            case self::JWT_TOKEN :
+//                break;
+//        }
+//        return false;
+//    }
 
     /**
      * ???
      */
-    public function issueToken($type = self::AGENT_TOKEN) {
-        switch ($type){
-            case self::AGENT_TOKEN :
-                return $this->currentAgentId .":". bin2hex(random_bytes(20));
-            case self::RESET_TOKEN :
-                break;
-            case self::JWT_TOKEN :
-                break;
-        }
-        return null;
-    }
+//    public function issueToken($type = self::AGENT_TOKEN) {
+//        switch ($type){
+//            case self::AGENT_TOKEN :
+//                return $this->currentAgentId .":". bin2hex(random_bytes(20));
+//            case self::RESET_TOKEN :
+//                break;
+//            case self::JWT_TOKEN :
+//                break;
+//        }
+//        return null;
+//    }
 }
