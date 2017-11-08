@@ -56,11 +56,19 @@ Router::route("GET", "/login", function () {
 
 Router::route("POST", "/login", function () {
     AuthentifizController::login();
-    Router::redirect("/");
+    Router::redirect("/welcome");
 });
 
 Router::route("GET", "/", function () {
-    require_once("view/login.php");
+    Router::redirect("/login");
+});
+
+Router::route("GET", "/welcome", function() {
+    if(AuthentifizController::authenticate()) {
+        controller\LoginController::welcomeView();
+    } else {
+        echo "403 Access Denied";
+    }
 });
 
 Router::route("GET", "/reise/neu", function () {
