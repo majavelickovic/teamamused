@@ -15,7 +15,7 @@ use Database;
 class RechnungDAO {
 
 	/**
-	 * Erstellt einen neues Rechnungs-Objekt in der Tabelle "rechnung"
+	 * Erstellt einen neues Rechnungs-Objekt in der Tabelle "rechnung" und "reise_rechnung"
 	 */
 	public function create(Rechnung $rechnung) {
         $pdo = Database::connect();
@@ -23,12 +23,18 @@ class RechnungDAO {
                 "INSERT INTO rechnung (rg_id, rechnungsart, kosten, beschreibung, dokument)
                     VALUES (:rg_id, :rechnungsart, :kosten, :beschreibung, :dokument)");
         $statement->bindValue(':rg_id', $rechnung->getRg_id());
-        //$statement->bindValue(':rechnungsart', $rechnung->get()); -> Kein Getter vorhanden
+        $statement->bindValue(':rechnungsart', $rechnung->getRechnungsart());
         $statement->bindValue(':kosten', $rechnung->getKosten());
         $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
         $statement->bindValue(':dokument', $rechnung->getDokument());
         $statement->execute();
-        return $this->read($pdo->lastInsertId());
+        
+        $statement2 = $pdo->prepare(
+                "INSERT INTO reise_rechnung (reise_id, rg_id)
+                    VALUES (:reise, :rg_id)");
+        $statement2->bindValue(':reise', $rechnung->getReise());
+        $statement2->bindValue(':rg_id', $rechnung->getRg_id());
+        $statement2->execute();
 	}
 
 	/**
@@ -71,17 +77,32 @@ class RechnungDAO {
         $statement->bindValue(':rg_id', $rechnung->getRg_id());
         $statement->execute();
 	}
+        
+       /**
+	 * Lese die letzte Rechnungsnummer und gib +1 zurück für neue ID einer Rechnung
+	 */
+	public function getNewRgID() {
+            $pdo = Database::connect();
+            $result = $pdo->query(
+                "SELECT rg_id FROM rechnung
+                ORDER BY rg_id DESC LIMIT 1");
+            while($row = $result->fetch_assoc()) {
+                $returnvalue = $row["rg_id"];
+            }
+            return $returnvalue+1;
+	}
+
 
 	/**
 	 * noch überarbeiten
 	 */
 	public function findByXY($xy) {
-        $pdo = Database::connect();
-        $statement = $pdo->prepare('
-            SELECT * FROM rechnung WHERE xy = :xy ORDER BY id;');
-        $statement->bindValue(':xy', $xy);
-        $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_CLASS, "Rechnung");
+            $pdo = Database::connect();
+            $statement = $pdo->prepare('
+                SELECT * FROM rechnung WHERE xy = :xy ORDER BY id;');
+            $statement->bindValue(':xy', $xy);
+            $statement->execute();
+            return $statement->fetchAll(\PDO::FETCH_CLASS, "Rechnung");
         }
 }
 ?>

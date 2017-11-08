@@ -1,5 +1,9 @@
 <?php
 use database\Database;
+
+/*
+ * View, um eine neue Rechnung zu erfassen
+ */
 ?>
 <html>
     <head>
@@ -67,7 +71,3 @@ use database\Database;
         </div>
     </body>
 </html>
-
-<?php
-    Database::close();
-?>

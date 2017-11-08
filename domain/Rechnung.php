@@ -27,43 +27,14 @@ class Rechnung {
 	/**
 	 * @AttributeType int
 	 */
-	private $_rg_id;
-	/**
-	 * @AttributeType double
-	 */
-	private $_kosten;
-	/**
-	 * @AttributeType String
-	 */
-	private $_beschreibung;
-	/**
-	 * @AttributeType String
-	 */
-	private $_dokument;
-	/**
-	 * @AssociationType domain.Rechnungsart
-	 * 
-	 * 
-	 * @AssociationMultiplicity 1
-	 */
 	private $_rechnungsart;
 	/**
-	 * @AssociationType domain.Reise_rechnung
-	 * 
-	 * 
-	 * @AssociationMultiplicity 1..*
+	 * @AttributeType int
 	 */
-	private $_reise_rechnung = array();
+	private $_reise;
 	/**
 	 * @AssociationType domain.Rechnungsart
 	 * @AssociationMultiplicity 1
-	 */
-	public $_rechnungsart;
-
-	/**
-	 * @access public
-	 * @return double
-	 * @ReturnType double
 	 */
 	public function getKosten() {
 		return $this->_kosten;
@@ -138,6 +109,46 @@ class Rechnung {
 	 */
 	public function setRg_id(&$aRg_id) {
 		$this->_rg_id = $aRg_id;
+	}
+        
+        /**
+	 * @access public
+	 * @return int
+	 * @ReturnType int
+	 */
+	public function getReise() {
+		return $this->_reise;
+	}
+
+	/**
+	 * @access public
+	 * @param int aReise
+	 * @return void
+	 * @ParamType aReise int
+	 * @ReturnType void
+	 */
+	public function setReise(&$aReise) {
+		$this->_reise = $aReise;
+	}
+        
+        /**
+	 * @access public
+	 * @return int
+	 * @ReturnType int
+	 */
+	public function getRechnungsart() {
+		return $this->_rechnungsart;
+	}
+
+	/**
+	 * @access public
+	 * @param int $aRechnungsart
+	 * @return void
+	 * @ParamType $aRechnungsart int
+	 * @ReturnType void
+	 */
+	public function setRechnungsart(&$aRechnungsart) {
+		$this->_rechnungsart = $aRechnungsart;
 	}
 }
 ?>

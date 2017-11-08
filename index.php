@@ -79,6 +79,10 @@ Router::route("GET", "/rechnung/neu", function () {
     require_once("view/new_calculation.php");
 });
 
+Router::route("POST", "/rechnung/neu", function () {
+    controller\RechnungController::neueRechnung();
+});
+
 Router::route("GET", "/rechnung/bestehend", function () {
     require_once("view/exist_calculation.php");
 });
