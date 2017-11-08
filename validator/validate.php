@@ -5,8 +5,8 @@
  */
 
 function validateLogin() {
-    $complete = isset($_POST['userID']) AND isset($_POST['password']);
-    $type = $complete AND is_int(intval($_POST['userID']));
+    $complete = isset($_POST['benutzername']) AND isset($_POST['password']);
+    $type = $complete AND is_int(intval($_POST['benutzername']));
 
     if ($type) {
         return true;
@@ -18,8 +18,8 @@ function validateLogin() {
 }
 
 function validateRegister() {
-    $complete = isset($_POST['name']) AND isset($_POST['userID']) AND isset($_POST['password']);
-    $type = $complete AND is_int(intval($_POST['userID']));
+    $complete = isset($_POST['name']) AND isset($_POST['benutzername']) AND isset($_POST['password']);
+    $type = $complete AND is_int(intval($_POST['benutzername']));
 
     if ($type) {
         echo "Eingabe ist korrekt";
