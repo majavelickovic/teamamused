@@ -17,9 +17,8 @@ class LoginController
      */
     public static function register(){
         return Service::getInstance()->editLogin(
-                $_POST["userId"],
-                $_POST["userId"], // TODO: why userId and benutzername??? 
-                $_POST["passwort"],
+                $_POST["benutzername"],
+                $_POST["password1"],
                 $_POST["vorname"],
                 $_POST["nachname"],
                 "rolle"); // TODO: delete
@@ -31,6 +30,10 @@ class LoginController
 
     public static function loginView(){
         echo (new View("login.php"))->render();
+    }
+    
+    public static function welcomeView() {
+        echo (new View("welcome.php"))->render();
     }
 }
 ?>
