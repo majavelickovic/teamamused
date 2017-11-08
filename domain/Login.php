@@ -8,7 +8,6 @@ namespace domain;
  * @package domain
  */
 class Login {
-        private $userID;
     
         /**
 	 * @AttributeType String
@@ -58,20 +57,6 @@ class Login {
 	 */
 	public $_reise2 = array();
 
-        /**
-         * 
-         * Getter für userId
-         */
-	public function getUserId() {
-            return $this->userID;
-        }
-        
-        /*
-         * Setter für userId
-         */
-        public function setUserId($userId) {
-            $this->userID = $userId;
-        }
         
         /**
 	 * @access public
