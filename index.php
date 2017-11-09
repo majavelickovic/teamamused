@@ -88,7 +88,9 @@ Router::route("GET", "/rechnung/neu", function () {
 });
 
 Router::route("POST", "/rechnung/neu", function () {
-            echo "rgid:".$rechnungDAO->getNewRgID();
+    $rechnungDAO = new \dao\RechnungDAO();
+    $neu_id = $rechnungDAO->getNewRgID();
+    echo "rgid:".$neu_id;
             echo "reise:".$_POST["reise"];
             echo "rgart:".$_POST["rgart"];       
             echo "beschreibung:".$_POST["beschreibung"];
