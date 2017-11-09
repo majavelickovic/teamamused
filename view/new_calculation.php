@@ -57,7 +57,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                     <select id="dropdown" name="rgart" style="width:300px;">
                                         <?php
                                         $pdo = Database::connect();
-                                        $query = $pdo->query("SELECT beschreibung FROM rechnungsart order by beschreibung asc");
+                                        $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
 
                                         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                             echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
