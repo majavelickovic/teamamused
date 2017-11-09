@@ -20,18 +20,18 @@ Diese Seite stellt die Rechnungs-Seite dar.
                     </ul>
                 </div>
                 <div id="blockleft">
-					<table>
+                    <table>
                         <tr>
                             <td><img src="../design/pictures/plus.png"></td><td>neue Rechnung hinzufügen</td>
                         </tr>
-					</table>
+                    </table>
                 </div>
-				<div id="blockright">
-					<table>
+                <div id="blockright">
+                    <table>
                         <tr>
                             <td><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
                         </tr>
-					</table>
+                    </table>
 
 
                 </div>

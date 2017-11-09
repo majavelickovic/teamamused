@@ -34,7 +34,7 @@ Diese Seite stellt die Reise-Seite dar.
                             <td>Reisetitel</td>
                             <td><input type="text" name="journey" value="" size="40px" /></td>
                         </tr>
-						<tr>
+                        <tr>
                             <td>Reiseleiter</td>
                             <td>
                                 <select id="dropdown" name="guide">
@@ -56,7 +56,7 @@ Diese Seite stellt die Reise-Seite dar.
                             <td>Standort</td>
                             <td><input type="text" name="place" value="" size="40px" /></td>
                         </tr>
-						<tr>
+                        <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                         </tr>
                     </table>

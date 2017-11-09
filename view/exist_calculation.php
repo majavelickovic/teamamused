@@ -28,29 +28,29 @@ Diese Seite stellt die Rechnungs-Seite dar.
                     <table>
                         <tr>
                             <td>Reise</td>
-							<td>
-								<select id="dropdown" name="journey">
-									<option value="">X</option>
-									<option value="">Y</option>
-									<option value="">Z</option>
-								</select>
-							</td>
+                            <td>
+                                <select id="dropdown" name="journey">
+                                    <option value="">X</option>
+                                    <option value="">Y</option>
+                                    <option value="">Z</option>
+                                </select>
+                            </td>
                         </tr>
-						<tr>
+                        <tr>
                             <td>Rechnung-ID</td>
                             <td><input type="text" name="calculationID" value="" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Rechnungsart</td>
-							<td>
-								<select id="dropdown" name="calculation">
-									<option value="">X</option>
-									<option value="">Y</option>
-									<option value="">Z</option>
-								</select>
-							</td>
+                            <td>
+                                <select id="dropdown" name="calculation">
+                                    <option value="">X</option>
+                                    <option value="">Y</option>
+                                    <option value="">Z</option>
+                                </select>
+                            </td>
                         </tr>
-						<tr>
+                        <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                         </tr>
                     </table>
