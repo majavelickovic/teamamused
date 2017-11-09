@@ -16,14 +16,6 @@ class Ort {
 	 */
 	private $_ort_name;
 	/**
-	 * @AttributeType int
-	 */
-	private $_ort_id;
-	/**
-	 * @AttributeType String
-	 */
-	private $_ort_name;
-	/**
 	 * @AssociationType domain.Reise
 	 * 
 	 * 

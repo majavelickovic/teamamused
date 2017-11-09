@@ -35,30 +35,6 @@ class Reise {
 	 */
 	private $_max_teilnehmer;
 	/**
-	 * @AttributeType int
-	 */
-	private $_reise_id;
-	/**
-	 * @AttributeType String
-	 */
-	private $_beschreibung;
-	/**
-	 * @AttributeType Date
-	 */
-	private $_datum_start;
-	/**
-	 * @AttributeType Date
-	 */
-	private $_datum_ende;
-	/**
-	 * @AttributeType Double
-	 */
-	private $_preis;
-	/**
-	 * @AttributeType Integer
-	 */
-	private $_max_teilnehmer;
-	/**
 	 * @AssociationType domain.Ort
 	 * 
 	 * 
@@ -93,11 +69,6 @@ class Reise {
 	 * @AssociationMultiplicity 1..*
 	 */
 	private $_reise_teilnehmer = array();
-	/**
-	 * @AssociationType domain.Login
-	 * @AssociationMultiplicity 1
-	 */
-	public $_fahrer;
 
 	/**
 	 * @access public
