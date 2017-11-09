@@ -246,8 +246,9 @@ class Service {
         if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             // Rechnungsinhalte bestimmen
+            $neu_id = $rechnungDAO->getNewRgID(); 
             $rechnung = new Rechnung();
-            $rechnung->setRg_id($rechnungDAO->getNewRgID()); // hole neue Rechnungs-ID
+            $rechnung->setRg_id($neu_id); // hole neue Rechnungs-ID
             $rechnung->setReise($reise);
             $rechnung->setRechnungsart($rgart);       
             $rechnung->setBeschreibung($beschreibung);
