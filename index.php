@@ -88,12 +88,7 @@ Router::route("GET", "/rechnung/neu", function () {
 });
 
 Router::route("POST", "/rechnung/neu", function () {
-    $rechnung = controller\RechnungController::neueRechnung();
-    if($rechnung != false){
-        Router::redirect("/rechnung/neu");
-    } else {
-        echo "FEHLER bei Rechnung erstellen"; // TODO
-    }
+    controller\RechnungController::neueRechnung();
 });
 
 Router::route("GET", "/rechnung/bestehend", function () {
