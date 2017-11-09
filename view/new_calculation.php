@@ -68,15 +68,15 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Kosten</td>
-                            <td><input type="text" name="preis" value="" size="40" /></td>
+                            <td><input type="text" name="preis" size="40" /></td>
                         </tr>
                         <tr>
                             <td>Beschreibung</td>
-                            <td><textarea name="beschreibung" value="" rows="5" cols="40"></textarea></td>
+                            <td><textarea name="beschreibung" rows="5" cols="40"></textarea></td>
                         </tr>
                         <tr>
                             <td>Dokument</td>
-                            <td><input type="file" name="rgdatei" value="" size="40" /></td>
+                            <td><input type="file" name="rgdatei" size="40" /></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="hinzuf&uuml;gen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
