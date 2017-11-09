@@ -254,8 +254,9 @@ class Service {
             $rechnung->setDokument($dokument);
             $rechnungDAO->create($rechnung);
             return $rechnung;
+        }else{
+            return false;
         }
-        return null;
     }
 
     /**
