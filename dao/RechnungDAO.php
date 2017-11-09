@@ -11,6 +11,7 @@ namespace dao;
 
 use domain\Rechnung;
 use database\Database;
+use PDO;
 
 class RechnungDAO {
 
@@ -46,7 +47,7 @@ class RechnungDAO {
             "SELECT * FROM rechnung WHERE rg_id = :rg_id;");
         $statement->bindValue(':rg_id', $_rg_id);
         $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_CLASS, "Rechnung")[0];
+        return $statement->fetchAll(PDO::FETCH_CLASS, "Rechnung")[0];
 	}
 
 	/**
