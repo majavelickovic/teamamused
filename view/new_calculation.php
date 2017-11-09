@@ -39,7 +39,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <tr>
                                 <td>Reise</td>
 				<td>
-                                    <select id="dropdown" name="reise" size="40">
+                                    <select id="dropdown" name="reise" style="width:40px;">
                                         <?php
                                         $pdo = Database::connect();
                                         $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
@@ -54,7 +54,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <tr>
                                 <td>Rechnungsart</td>
                                 <td>
-                                    <select id="dropdown" name="rgart" size="40">
+                                    <select id="dropdown" name="rgart" style="width:40px;">
                                         <?php
                                         $pdo = Database::connect();
                                         $query = $pdo->query("SELECT beschreibung FROM rechnungsart order by beschreibung asc");
@@ -68,7 +68,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Kosten</td>
-                            <td><input type="text" name="preis" size="40" /></td>
+                            <td><input type="text" name="preis" style="width:40px;"/></td>
                         </tr>
                         <tr>
                             <td>Beschreibung</td>
@@ -76,7 +76,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Dokument</td>
-                            <td><input type="file" name="rgdatei" size="40" /></td>
+                            <td><input type="file" name="rgdatei" style="width:40px;"/></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="hinzuf&uuml;gen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
