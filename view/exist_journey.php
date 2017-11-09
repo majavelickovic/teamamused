@@ -1,33 +1,67 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Diese Seite stellt die Reise-Seite dar.
 -->
-
-<?php
-
-?>
-
 <html>
-	<head>
-		<title>bestehende Reise</title>
-		<link rel="stylesheet" href="../design/styles.css">
-	</head>
-	<body>
-		<div id="block">
-			<div id="part1">
-				<h1>Reiseverwaltung</h1>
-				<p>bestehende Reise</p>
-				<!--<form>
-					<label>User-ID</label>
-					<input type="text" name="uname" required></br></br>
-					<label>Passwort</label>
-					<input type="password" name="pw" required></br></br>
-					<button type="button" name="login">einloggen</button>
-					<button type="button" name="reset">zurücksetzen</button>
-				</form>-->
-			</div>
-		</div>
-	</body>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../design/styles.css">
+        <title>Reise</title>
+    </head>
+    <body>		
+        <div id="whiteblock">
+            <div id="block">
+                <div id="navblock">
+                    <ul>
+                        <li><a href="#reise">Reise</a></li>
+                        <li><a href="#rechnung">Rechnung</a></li>
+                        <li><a href="#teilnehmer">Teilnehmer</a></li>
+                        <li><a href="#profil">Profil</a></li>
+                    </ul>
+                </div>
+                <div id="blockleft">
+                    <table>
+                        <tr>
+                            <td><img src="../design/pictures/search.png"></td><td>bestehende Reise anzeigen</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>Reise-ID</td>
+                            <td><input type="text" name="journeyID" value="" size="40px" /></td>
+                        </tr>
+                        <tr>
+                            <td>Reisetitel</td>
+                            <td><input type="text" name="journey" value="" size="40px" /></td>
+                        </tr>
+						<tr>
+                            <td>Reiseleiter</td>
+                            <td>
+                                <select id="dropdown" name="guide">
+                                    <option value="">Maja</option>
+                                    <option value="">Sandra</option>
+                                    <option value="">Michelle</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Dauer</td>
+                            <td><input type="text" name="duration" value="" size="40px" /></td>
+                        </tr>
+                        <tr>
+                            <td>Preis</td>
+                            <td><input type="range" id="pricerange" min="0" max="1000" value="0" /></td>
+                        </tr>
+                        <tr>
+                            <td>Standort</td>
+                            <td><input type="text" name="place" value="" size="40px" /></td>
+                        </tr>
+						<tr>
+                            <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

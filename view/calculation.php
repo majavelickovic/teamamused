@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Diese Seite stellt die Rechnungs-Seite dar.
 -->
-
-<?php
-
-?>
-
 <html>
-	<head>
-		<title>Rechnung</title>
-		<link rel="stylesheet" href="../design/styles.css">
-	</head>
-	<body>
-		<div id="block">
-			<div id="part1">
-				<h1>Reiseverwaltung</h1>
-				<p>Rechnung</p>
-				<!--<form>
-					<label>User-ID</label>
-					<input type="text" name="uname" required></br></br>
-					<label>Passwort</label>
-					<input type="password" name="pw" required></br></br>
-					<button type="button" name="login">einloggen</button>
-					<button type="button" name="reset">zurücksetzen</button>
-				</form>-->
-			</div>
-		</div>
-	</body>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../design/styles.css">
+        <title>Rechnung</title>
+    </head>
+    <body>		
+        <div id="whiteblock">
+            <div id="block">
+                <div id="navblock">
+                    <ul>
+                        <li><a href="#reise">Reise</a></li>
+                        <li><a href="#rechnung">Rechnung</a></li>
+                        <li><a href="#teilnehmer">Teilnehmer</a></li>
+                        <li><a href="#profil">Profil</a></li>
+                    </ul>
+                </div>
+                <div id="blockleft">
+					<table>
+                        <tr>
+                            <td><img src="../design/pictures/plus.png"></td><td>neue Rechnung hinzufügen</td>
+                        </tr>
+					</table>
+                </div>
+				<div id="blockright">
+					<table>
+                        <tr>
+                            <td><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
+                        </tr>
+					</table>
+
+
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
