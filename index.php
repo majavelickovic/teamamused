@@ -88,6 +88,7 @@ Router::route("GET", "/rechnung/neu", function () {
 });
 
 Router::route("POST", "/rechnung/neu", function () {
+    controller\RechnungController::neueRechnung();
     if(controller\RechnungController::neueRechnung()){
         Router::redirect("/rechnung/neu");
     } else {

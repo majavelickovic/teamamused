@@ -68,7 +68,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Kosten</td>
-                            <td><input type="text" name="preis" style="width:296px;"/></td>
+                            <td><input type="text" name="kosten" style="width:296px;"/></td>
                         </tr>
                         <tr>
                             <td>Beschreibung</td>
@@ -77,7 +77,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         <tr>
                             <td>Dokument</td>
                             <td>
-                                <input id="FileInput" type="file" name="rgdatei" style="width:300px;"/>
+                                <input id="FileInput" type="file" name="dokument" style="width:300px;"/>
                             </td>
                         </tr>
                         <tr>
