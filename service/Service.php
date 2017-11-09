@@ -243,22 +243,18 @@ class Service {
      * TODO -> Rechnung mit Werten aus Formular befüllen
      */
     public function createRechnung($reise, $rgart, $beschreibung, $kosten, $dokument) {
-        if($this->verifyAuth()) {
-            $rechnungDAO = new \dao\RechnungDAO();
-            // Rechnungsinhalte bestimmen
-            $neu_id = $rechnungDAO->getNewRgID(); 
-            $rechnung = new Rechnung();
-            $rechnung->setRg_id($neu_id); // hole neue Rechnungs-ID
-            $rechnung->setReise($reise);
-            $rechnung->setRechnungsart($rgart);       
-            $rechnung->setBeschreibung($beschreibung);
-            $rechnung->setKosten($kosten);
-            $rechnung->setDokument($dokument);
-            $rechnungDAO->create($rechnung);
-            return $rechnung;
-        }else{
-            return false;
-        }
+        $rechnungDAO = new \dao\RechnungDAO();
+        // Rechnungsinhalte bestimmen
+        $neu_id = $rechnungDAO->getNewRgID(); 
+        $rechnung = new Rechnung();
+        $rechnung->setRg_id($neu_id); // hole neue Rechnungs-ID
+        $rechnung->setReise($reise);
+        $rechnung->setRechnungsart($rgart);       
+        $rechnung->setBeschreibung($beschreibung);
+        $rechnung->setKosten($kosten);
+        $rechnung->setDokument($dokument);
+        $rechnungDAO->create($rechnung);
+        return $rechnung;
     }
 
     /**

@@ -88,12 +88,6 @@ Router::route("GET", "/rechnung/neu", function () {
 });
 
 Router::route("POST", "/rechnung/neu", function () {
-    service\Service::getInstance()->createRechnung(
-                $_POST["reise"],
-                $_POST["rgart"],
-                $_POST["kosten"],
-                $_POST["beschreibung"],
-                $_POST["dokument"]);
     if(controller\RechnungController::neueRechnung() != false){
         Router::redirect("/rechnung/neu");
     } else {
