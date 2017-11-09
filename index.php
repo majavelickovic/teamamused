@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="design/styles.css">
         <title>Verwaltungstool Reisen</title>
     </head>
-</html>
+    <body>
 
 <?php
 require_once("config/Autoloader.php");
@@ -88,7 +88,13 @@ Router::route("GET", "/rechnung/neu", function () {
 });
 
 Router::route("POST", "/rechnung/neu", function () {
-    if(controller\RechnungController::neueRechnung() != false){
+    $returnrg = controller\RechnungController::neueRechnung();
+    if($returnrg != false){
+        ?>
+        <script type="text/javascript">
+            alert("Rechnung <?php echo $returnrg->getRg_id()?> wurde erstellt.");
+        </script>
+        <?php
         Router::redirect("/rechnung/neu");
     } else {
         echo "FEHLER bei Rechnung erstellen"; // TODO
@@ -116,3 +122,6 @@ Router::route("GET", "/testDB", function () {
 });
 
 Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
+?>
+</body>
+</html>
