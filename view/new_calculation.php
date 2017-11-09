@@ -39,7 +39,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <tr>
                                 <td>Reise</td>
 				<td>
-                                    <select id="dropdown" name="reise" style="width:40px;">
+                                    <select id="dropdown" name="reise" style="width:300px;">
                                         <?php
                                         $pdo = Database::connect();
                                         $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
@@ -54,7 +54,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <tr>
                                 <td>Rechnungsart</td>
                                 <td>
-                                    <select id="dropdown" name="rgart" style="width:40px;">
+                                    <select id="dropdown" name="rgart" style="width:300px;">
                                         <?php
                                         $pdo = Database::connect();
                                         $query = $pdo->query("SELECT beschreibung FROM rechnungsart order by beschreibung asc");
@@ -68,15 +68,18 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Kosten</td>
-                            <td><input type="text" name="preis" style="width:40px;"/></td>
+                            <td><input type="text" name="preis" style="width:296px;"/></td>
                         </tr>
                         <tr>
                             <td>Beschreibung</td>
-                            <td><textarea name="beschreibung" rows="5" cols="40"></textarea></td>
+                            <td><textarea name="beschreibung" rows="5" cols="35"></textarea></td>
                         </tr>
                         <tr>
                             <td>Dokument</td>
-                            <td><input type="file" name="rgdatei" style="width:40px;"/></td>
+                            <label for="FileInput">
+                                <img src="../design/pictures/search.png" style="float:right;margin:7px" />
+                            </label>
+                            <td><input id="FileInput" type="file" name="rgdatei" style="width:300px;"/></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="hinzuf&uuml;gen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
