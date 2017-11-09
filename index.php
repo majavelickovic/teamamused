@@ -88,10 +88,20 @@ Router::route("GET", "/rechnung/neu", function () {
 });
 
 Router::route("POST", "/rechnung/neu", function () {
+                $rechnungDAO = new \dao\RechnungDAO();
+            // Rechnungsinhalte bestimmen
+            $rechnung = new Rechnung();
+            $rechnung->setRg_id(dao\RechnungDAO::getNewRgID()); // hole neue Rechnungs-ID
+            $rechnung->setReise($_POST["reise"]);
+            $rechnung->setRgart($_POST["rgart"]);       
+            $rechnung->setBeschreibung($_POST["beschreibung"]);
+            $rechnung->setKosten($_POST["kosten"]);
+            $rechnung->setDokument($_POST["dokument"]);
+            $rechnungDAO->create($rechnung);
     if(controller\RechnungController::neueRechnung() != false){
         Router::redirect("/rechnung/neu");
     } else {
-        echo "FEHLER"; // TODO
+        echo "FEHLER bei Rechnung erstellen"; // TODO
     }
 });
 
