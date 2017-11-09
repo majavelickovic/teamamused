@@ -16,25 +16,12 @@ class Rechnungsart {
 	 */
 	private $_beschreibung;
 	/**
-	 * @AttributeType int
-	 */
-	private $_rgart_id;
-	/**
-	 * @AttributeType String
-	 */
-	private $_beschreibung;
-	/**
 	 * @AssociationType domain.Rechnung
 	 * 
 	 * 
 	 * @AssociationMultiplicity 0..*
 	 */
 	private $_rechnung = array();
-	/**
-	 * @AssociationType domain.Rechnung
-	 * @AssociationMultiplicity 0..*
-	 */
-	public $_rechnung = array();
 
 	/**
 	 * @access public
