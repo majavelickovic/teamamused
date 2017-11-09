@@ -60,7 +60,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                         $query = $pdo->query("SELECT beschreibung FROM rechnungsart order by beschreibung asc");
 
                                         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['beschreibung'] . "'>" . $row['beschreibung'] . "</option>";
+                                            echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
                                         }
                                         ?>
                                     </select>
