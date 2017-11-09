@@ -91,10 +91,10 @@ Router::route("POST", "/rechnung/neu", function () {
                 $rechnungDAO = new \dao\RechnungDAO();
             // Rechnungsinhalte bestimmen
             $rechnung = new \domain\Rechnung();
-            $neu_id = dao\RechnungDAO::getNewRgID();
+            $neu_id = $rechnungDAO->getNewRgID();
             $rechnung->setRg_id($neu_id); // hole neue Rechnungs-ID
             $rechnung->setReise($_POST["reise"]);
-            $rechnung->setRgart($_POST["rgart"]);       
+            $rechnung->setRechnungsart($_POST["rgart"]);       
             $rechnung->setBeschreibung($_POST["beschreibung"]);
             $rechnung->setKosten($_POST["kosten"]);
             $rechnung->setDokument($_POST["dokument"]);

@@ -247,9 +247,9 @@ class Service {
             $rechnungDAO = new \dao\RechnungDAO();
             // Rechnungsinhalte bestimmen
             $rechnung = new Rechnung();
-            $rechnung->setRg_id(dao\RechnungDAO::getNewRgID()); // hole neue Rechnungs-ID
+            $rechnung->setRg_id($rechnungDAO->getNewRgID()); // hole neue Rechnungs-ID
             $rechnung->setReise($reise);
-            $rechnung->setRgart($rgart);       
+            $rechnung->setRechnungsart($rgart);       
             $rechnung->setBeschreibung($beschreibung);
             $rechnung->setKosten($kosten);
             $rechnung->setDokument($dokument);
