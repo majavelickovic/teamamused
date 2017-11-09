@@ -1,3 +1,12 @@
+<?php
+
+use database\Database;
+
+/*
+ * View, um eine neue Rechnung zu erfassen
+ */
+?>
+
 <!DOCTYPE html>
 <!--
 Diese Seite stellt die Rechnungs-Seite dar.
@@ -20,52 +29,62 @@ Diese Seite stellt die Rechnungs-Seite dar.
                     </ul>
                 </div>
                 <div id="blockleft">
-					<table>
+                    <table>
                         <tr>
                             <td><img src="../design/pictures/plus.png"></td><td>neue Rechnung hinzufügen</td>
                         </tr>
-					</table>
-					<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
-					<table>
-						<tr>
-                            <td>Reise</td>
-							<td>
-								<select id="dropdown" name="reise">
-									<option value="">X</option>
-									<option value="">Y</option>
-									<option value="">Z</option>
-								</select>
-							</td>
+                    </table>
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+			<table>
+                            <tr>
+                                <td>Reise</td>
+				<td>
+                                    <select id="dropdown" name="reise">
+                                        <?php
+                                        $pdo = Database::connect();
+                                        $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
+
+                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                            echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rechnungsart</td>
+                                <td>
+                                    <select id="dropdown" name="rgart">
+                                        <?php
+                                        $pdo = Database::connect();
+                                        $query = $pdo->query("SELECT beschreibung FROM rechnungsart order by beschreibung asc");
+
+                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                            echo "<option value='" . $row['beschreibung'] . "'>" . $row['beschreibung'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
                         </tr>
-						<tr>
-                            <td>Rechnungsart</td>
-							<td>
-								<select id="dropdown" name="rgart">
-									<option value="">X</option>
-									<option value="">Y</option>
-									<option value="">Z</option>
-								</select>
-							</td>
-                        </tr>
-						<tr>
+                        <tr>
                             <td>Kosten</td>
-							<td><input type="text" name="price" value="" size="40px" /></td>
+                            <td><input type="text" name="price" value="" size="40px" /></td>
                         </tr>
-						<tr>
+                        <tr>
                             <td>Beschreibung</td>
-							<td><input type="text" name="discription" value="" size="40px" /></td>
+                            <td><input type="text" name="discription" value="" size="40px" /></td>
                         </tr>
-						<tr>
+                        <tr>
                             <td>Dokument</td>
-							<td><input type="text" name="document" value="" size="40px" /></td>
+                            <td><input type="text" name="document" value="" size="40px" /></td>
                         </tr>
-						<tr>
+                        <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="hinzuf&uuml;gen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                         </tr>
-					</form>
-					</table>
-                </div>
+                    </table>
+                </form>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>
