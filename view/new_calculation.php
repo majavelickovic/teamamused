@@ -76,10 +76,12 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Dokument</td>
-                            <label for="FileInput">
-                                <img src="../design/pictures/search.png" style="float:right;margin:7px" />
-                            </label>
-                            <td><input id="FileInput" type="file" name="rgdatei" style="width:300px;"/></td>
+                            <td>
+                                <label for="FileInput">
+                                    <img src="../design/pictures/search.png" alt="Datei hinzuf&uuml;gen" style="float:right;margin:7px" />
+                                </label>
+                                <input id="FileInput" type="file" name="rgdatei" style="width:300px; visibility:hidden;"/>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="hinzuf&uuml;gen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
