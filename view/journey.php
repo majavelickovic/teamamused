@@ -32,8 +32,6 @@ Diese Seite stellt die Reise-Seite dar.
                             <td><img src="../design/pictures/search.png"></td><td>bestehende Reise anzeigen</td>
                         </tr>
                     </table>
-
-
                 </div>
             </div>
         </div>

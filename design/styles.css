@@ -4,7 +4,6 @@ body, html {
 
 body {
     background-image: url("pictures/road-asphalt-space-sky.jpeg");
-    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     font-family: Arial;
@@ -18,7 +17,7 @@ table {
 
 #whiteblock {
     background-color: white;
-    margin: 100px 0px 100px 0px;
+    margin: 80px 0px 80px 0px;
     height: 400px;
 }
 
@@ -28,19 +27,19 @@ table {
 
 #navblock {
     width: 1024px;
-    border-style: solid;
+    border: 2px solid black;
 }
 
 #blockleft {
     float: left;
     width: 516px;
-    margin: 20px 0px 20px 0px;
+    margin: 15px 0px 15px 0px;
 }
 
 #blockright {
     float: right;
     width: 516px;
-    margin: 20px 0px 20px 0px;
+    margin: 15px 0px 15px 0px;
 }
 
 ul {
@@ -68,10 +67,33 @@ li a:hover {
     color: white;
 }
 
-.active {
-    background-color: #4286f4;
+input {
+    border: 2px solid black;
+    border-radius: 2px;
+}
+
+#dropdown {
+    width: 100%;
+    border: 2px solid black;
+}
+
+#pricerange {
+    width: 100%;
+
 }
 
 .button {
-    width: 120px;
+    width: 150px;
+    background-color: white;
+    border: 2px solid black;
+    padding: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

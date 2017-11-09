@@ -45,7 +45,7 @@ Diese Seite stellt die Reise-Seite dar.
                         <tr>
                             <td>Reiseleiter</td>
                             <td>
-                                <select name="guide">
+                                <select id="dropdown" name="guide">
                                     <option value="">Maja</option>
                                     <option value="">Sandra</option>
                                     <option value="">Michelle</option>
@@ -65,10 +65,9 @@ Diese Seite stellt die Reise-Seite dar.
                             <td>Karte</td>
                         </tr>
                         <tr>
-                            <td colspan="2" align="left"><input type="submit" class="button" value="erstellen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                            <td colspan="2" align="center"><input type="submit" class="button" value="erstellen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                         </tr>
                     </table>
-
                 </div>
             </div>
         </div>

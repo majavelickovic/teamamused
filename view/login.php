@@ -13,12 +13,12 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
             <div id="block">
                 <div id="blockleft">
                     <h1>Verwaltung der Reisen</h1>
-                    Login<br><br>
+                    Login</br></br>
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                         <table>
                             <tr>
-                                <td><img src="../design/pictures/user.png"></td><td>Benutzername</td>
-                                <td><input type="text" name="benutzername" value="" /></td>
+                                <td><img src="../design/pictures/user.png"></td><td>User-ID</td>
+                                <td><input type="text" name="userID" value="" /></td>
                             </tr>
                             <tr>
                                 <td><img src="../design/pictures/key.png"></td><td>Passwort</td>
@@ -26,21 +26,21 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                             </tr>
                             <tr></tr>
                             <tr>
-                                <td colspan="3" align="left"><input type="submit" class="button" value="einloggen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                                <td colspan="3" align="center"><input type="submit" class="button" value="einloggen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                             </tr>
                             <tr></tr>
                             <tr>
-                                <td colspan="3" align="right"><a href="<?php echo $GLOBALS["ROOT_URL"] . "/register" ?>"> zur Registrierung</a></td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+                                <td colspan="3" align="right"><a href=<?php echo $GLOBALS["ROOT_URL"] . "/register" ?>"> zur Registrierung</a></td>
+                                                                 </tr>
+                                                                 </table>
+                                                                 </form>
+                                                                 </div>
+                                                                 </div>
+                                                                 </div>
+                                                                 </body>
+                                                                 </html>
 
-<?php
+                                                                 <?php
 // Session starten oder vorhandene übernehmen
 //        session_start();
 //
@@ -70,4 +70,4 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
 //            setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
 //            );
 //        }
-?>
+                                                                 ?>

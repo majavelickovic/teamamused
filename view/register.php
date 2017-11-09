@@ -17,8 +17,8 @@ Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User regi
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
                         <table>
                             <tr>
-                                <td><img src="../design/pictures/user.png"></td><td>Benutzername</td>
-                                <td><input type="text" name="benutzername" value="" /></td>
+                                <td><img src="../design/pictures/user.png"></td><td>User-ID</td>
+                                <td><input type="text" name="userID" value="" /></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -32,16 +32,16 @@ Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User regi
                             </tr>
                             <tr>
                                 <td><img src="../design/pictures/key.png"></td><td>Passwort</td>
-                                <td><input type="password" name="password1" value="" /></td>
+                                <td><input type="password" name="password" value="" /></td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td>Passwort bestätigen</td>
-                                <td><input type="password" name="password2" value="" /></td>
+                                <td><input type="password" name="password" value="" /></td>
                             </tr>
                             <tr></tr>
                             <tr>
-                                <td colspan="3" align="left"><input type="submit" class="button" value="registrieren" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                                <td colspan="3" align="center"><input type="submit" class="button" value="einloggen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                             </tr>
                         </table>
                     </form>
