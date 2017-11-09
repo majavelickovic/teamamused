@@ -1,6 +1,5 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/../domain/Rechnungsart.php');
-require_once(realpath(dirname(__FILE__)) . '/../domain/Reise_rechnung.php');
+namespace domain;
 
 /**
  * @access public
