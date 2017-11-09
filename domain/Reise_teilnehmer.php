@@ -22,10 +22,5 @@ class Reise_teilnehmer {
 	 * @AssociationMultiplicity 1
 	 */
 	private $_teilnehmer;
-	/**
-	 * @AssociationType domain.Teilnehmer
-	 * @AssociationMultiplicity 1
-	 */
-	public $_teilnehmer;
 }
 ?>
