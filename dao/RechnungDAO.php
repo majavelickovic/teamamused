@@ -83,13 +83,11 @@ class RechnungDAO {
 	 */
 	public function getNewRgID() {
             $pdo = Database::connect();
-            $result = $pdo->query(
+            $statement = $pdo->prepare(
                 "SELECT rg_id FROM rechnung
                 ORDER BY rg_id DESC LIMIT 1");
-            while($row = $result->fetch_assoc()) {
-                $returnvalue = $row["rg_id"];
-            }
-            return $returnvalue+1;
+            $statement->execute();
+            return $statement->fetchAll(\PDO::FETCH_UNIQUE, "Rechnung");
 	}
 
 
