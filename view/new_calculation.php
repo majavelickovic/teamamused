@@ -68,7 +68,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Kosten</td>
-                            <td><textarea name="price" value="" rows="5" cols="40" /></td>
+                            <td><textarea name="price" value="" rows="5" cols="40"></textarea></td>
                         </tr>
                         <tr>
                             <td>Beschreibung</td>
