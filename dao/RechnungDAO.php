@@ -9,8 +9,8 @@
 
 namespace dao;
 
-use Rechnung;
-use Database;
+use domain\Rechnung;
+use database\Database;
 
 class RechnungDAO {
 
