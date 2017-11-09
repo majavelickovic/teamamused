@@ -30,17 +30,17 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                             </tr>
                             <tr></tr>
                             <tr>
-                                <td colspan="3" align="right"><a href=<?php echo $GLOBALS["ROOT_URL"] . "/register" ?>"> zur Registrierung</a></td>
-                                                                 </tr>
-                                                                 </table>
-                                                                 </form>
-                                                                 </div>
-                                                                 </div>
-                                                                 </div>
-                                                                 </body>
-                                                                 </html>
+                                <td colspan="3" align="center"><a href="<?php echo $GLOBALS["ROOT URL"] . "/register" ?>"> zur Registrierung</a></td></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
 
-                                                                 <?php
+<?php
 // Session starten oder vorhandene übernehmen
 //        session_start();
 //
@@ -70,4 +70,4 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
 //            setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
 //            );
 //        }
-                                                                 ?>
+?>
