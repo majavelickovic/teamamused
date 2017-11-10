@@ -1,3 +1,11 @@
+<?php
+
+use database\Database;
+
+/*
+ * View, um eine besthende Rechnung zu suchen
+ */
+?>
 <!DOCTYPE html>
 <!--
 Diese Seite stellt die Rechnungs-Seite dar.
