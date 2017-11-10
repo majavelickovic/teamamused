@@ -21,10 +21,10 @@ Diese Seite stellt die Rechnungs-Seite dar.
             <div id="block">
                 <div id="navblock">
                     <ul>
-                        <li><a href="#reise">Reise</a></li>
-                        <li><a href="#rechnung">Rechnung</a></li>
-                        <li><a href="#teilnehmer">Teilnehmer</a></li>
-                        <li><a href="#profil">Profil</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/reise" ?>">Reise</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung" ?>">Rechnung</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer" ?>">Teilnehmer</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/profil" ?>">Profil</a></li>
                     </ul>
                 </div>
                 <div id="blockleft">
@@ -45,13 +45,13 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                             echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
                                         }
-                                        ?>
+                                    ?>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td>Rechnung-ID</td>
-                            <td><input type="text" name="rg_id" value="" style="width:396px;" /></td>
+                            <td><input type="text" name="rg_id" value="" style="width:296px;" /></td>
                         </tr>
                         <tr>
                             <td>Rechnungsart</td>
@@ -64,13 +64,28 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                                             echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
                                         }
-                                        ?>
+                                    ?>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                         </tr>
+                    </table>
+                </div>
+                <div id="blockright">
+                    <table>
+                        <tr>
+                            <th>Rechnungs-ID</th>
+                            <th>Reise-ID</th>
+                            <th>Rechnungsart</th>
+                            <th>Kosten</th>
+                        </tr>
+                        <?php
+                            if($rgtablecontent != null){
+                                echo $rgtablecontent;
+                            }
+                        ?>
                     </table>
                 </div>
             </div>

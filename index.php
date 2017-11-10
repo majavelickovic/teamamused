@@ -90,19 +90,24 @@ Router::route("GET", "/rechnung/neu", function () {
 Router::route("POST", "/rechnung/neu", function () {
     $returnrg = controller\RechnungController::neueRechnung();
     if($returnrg != false){
+        Router::redirect("/rechnung/neu");
         ?>
         <script type="text/javascript">
             alert("Rechnung erstellt");
             alert("Rechnung <?php echo $returnrg->getRg_id()?> wurde erstellt.");
         </script>
         <?php
-        Router::redirect("/rechnung/neu");
     } else {
         echo "FEHLER bei Rechnung erstellen"; // TODO
     }
 });
 
 Router::route("GET", "/rechnung/bestehend", function () {
+    $rgtablecontent = controller\RechnungController::leseRechnung();
+    Router::redirect("/rechnung/bestehend");
+});
+
+Router::route("POST", "/rechnung/bestehend", function () {
     require_once("view/exist_calculation.php");
 });
 

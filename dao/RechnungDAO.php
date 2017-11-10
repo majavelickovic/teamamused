@@ -42,26 +42,28 @@ class RechnungDAO {
 	 * Liest ein Rechnungs-Objekt aus der Tabelle "rechnung"
 	 */
 	public function read($_reise, $_rg_id, $_rgart) {
-        $pdo = Database::connect();
-        if($_reise != null && $_rg_id == null && $_rgart == null){
-            $statement = $pdo->prepare(
-            "SELECT * FROM rechnung WHERE reise = :reise;");
-        }elseif($_reise != null && $_rg_id == !null && $_rgart == null){
-             $statement = $pdo->prepare(
-            "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id;");
-        }elseif($_reise != null && $_rg_id == !null && $_rgart == !null){
-            $statement = $pdo->prepare(
-            "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id, rgart = :rgart;");
-        }elseif($_reise != null && $_rg_id == null && $_rgart == !null){
-            $statement = $pdo->prepare(
-            "SELECT * FROM rechnung WHERE reise = :reise, rgart = :rgart;");
+            $pdo = Database::connect();
+            if($_reise != null && $_rg_id == null && $_rgart == null){
+                $statement = $pdo->prepare(
+                "SELECT * FROM rechnung WHERE reise = :reise;");
+            }elseif($_reise != null && $_rg_id == !null && $_rgart == null){
+                 $statement = $pdo->prepare(
+                "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id;");
+            }elseif($_reise != null && $_rg_id == !null && $_rgart == !null){
+                $statement = $pdo->prepare(
+                "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id, rgart = :rgart;");
+            }elseif($_reise != null && $_rg_id == null && $_rgart == !null){
+                $statement = $pdo->prepare(
+                "SELECT * FROM rechnung WHERE reise = :reise, rgart = :rgart;");
+            }
+            $statement->bindValue(':reise', $_reise);
+            $statement->bindValue(':rg_id', $_rg_id);
+            $statement->bindValue(':rgart', $_rgart);
+            $statement->execute();
+            while ($row = $statement->fetch()){
+               echo "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["rgart"] . "</td><td>" . $row["kosten"] . "</td></tr>";
+            }
         }
-        $statement->bindValue(':reise', $_reise);
-        $statement->bindValue(':rg_id', $_rg_id);
-        $statement->bindValue(':rgart', $_rgart);
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_CLASS, "Rechnung");
-	}
 
 	/**
 	 * Aktualisiert ein Rechnungs-Objekt in der Tabelle "rechnung"
