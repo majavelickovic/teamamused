@@ -39,15 +39,28 @@ class RechnungDAO {
 	}
 
 	/**
-	 * Liest ein Rechnungs-Objekt aus der Tabelle "rechnung
+	 * Liest ein Rechnungs-Objekt aus der Tabelle "rechnung"
 	 */
-	public function read($_rg_id) {
+	public function read($_reise, $_rg_id, $_rgart) {
         $pdo = Database::connect();
-        $statement = $pdo->prepare(
-            "SELECT * FROM rechnung WHERE rg_id = :rg_id;");
+        if($_reise != null && $_rg_id == null && $_rgart == null){
+            $statement = $pdo->prepare(
+            "SELECT * FROM rechnung WHERE reise = :reise;");
+        }elseif($_reise != null && $_rg_id == !null && $_rgart == null){
+             $statement = $pdo->prepare(
+            "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id;");
+        }elseif($_reise != null && $_rg_id == !null && $_rgart == !null){
+            $statement = $pdo->prepare(
+            "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id, rgart = :rgart;");
+        }elseif($_reise != null && $_rg_id == null && $_rgart == !null){
+            $statement = $pdo->prepare(
+            "SELECT * FROM rechnung WHERE reise = :reise, rgart = :rgart;");
+        }
+        $statement->bindValue(':reise', $_reise);
         $statement->bindValue(':rg_id', $_rg_id);
+        $statement->bindValue(':rgart', $_rgart);
         $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_CLASS, "Rechnung")[0];
+        return $statement->fetchAll(PDO::FETCH_CLASS, "Rechnung");
 	}
 
 	/**
@@ -68,7 +81,7 @@ class RechnungDAO {
 	}
 
 	/**
-	 * Löscht ein Rechnungs-Objekt aus der Tabelle "rechnung"
+	 * Löscht ein Rechnungs-Objekt aus der Tabelle "rechnung" und "reise_rechnung"
 	 */
 	public function delete(Rechnung $rechnung) {
         $pdo = Database::connect();
@@ -77,6 +90,12 @@ class RechnungDAO {
             WHERE rg_id = :rg_id");
         $statement->bindValue(':rg_id', $rechnung->getRg_id());
         $statement->execute();
+        
+        $statement2 = $pdo->prepare(
+            "DELETE FROM reise_rechnung
+            WHERE rg_id = :rg_id");
+        $statement2->bindValue(':rg_id', $rechnung->getRg_id());
+        $statement2->execute();
 	}
         
        /**

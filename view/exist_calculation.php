@@ -29,24 +29,34 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         <tr>
                             <td>Reise</td>
                             <td>
-                                <select id="dropdown" name="journey">
-                                    <option value="">X</option>
-                                    <option value="">Y</option>
-                                    <option value="">Z</option>
+                                <select id="dropdown" name="reise" style="width:300px;">
+                                    <?php
+                                        $pdo = Database::connect();
+                                        $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
+
+                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                            echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                        }
+                                        ?>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td>Rechnung-ID</td>
-                            <td><input type="text" name="calculationID" value="" size="40px" /></td>
+                            <td><input type="text" name="rg_id" value="" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Rechnungsart</td>
                             <td>
-                                <select id="dropdown" name="calculation">
-                                    <option value="">X</option>
-                                    <option value="">Y</option>
-                                    <option value="">Z</option>
+                                <select id="dropdown" name="rgart" style="width:300px;">
+                                    <?php
+                                        $pdo = Database::connect();
+                                        $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
+
+                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                            echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                        }
+                                        ?>
                                 </select>
                             </td>
                         </tr>

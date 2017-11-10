@@ -260,10 +260,10 @@ class Service {
     /**
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
      */
-    public function readRechnung($rechnungId) {
+    public function readRechnung($reise, $rg_id, $rgart) {
         if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
-            return $rechnungDAO->read($rechnungId);
+            return $rechnungDAO->read($reise, $rg_id, $rgart);
         }
         return null;
     }

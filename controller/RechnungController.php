@@ -26,32 +26,24 @@ class RechnungController
     
         public static function leseRechnung(){
         return Service::getInstance()->readRechnung(
-                $_POST["userId"],
-                $_POST["userId"], // TODO: why userId and benutzername??? 
-                $_POST["passwort"],
-                $_POST["vorname"],
-                $_POST["nachname"],
-                "rolle"); // TODO: delete
+                $_POST["reise"],
+                $_POST["rg_id"],
+                $_POST["rgart"]);
     }
     
         public static function aktualisiereRechnung(){
         return Service::getInstance()->updateRechnung(
-                $_POST["userId"],
-                $_POST["userId"], // TODO: why userId and benutzername??? 
-                $_POST["passwort"],
-                $_POST["vorname"],
-                $_POST["nachname"],
-                "rolle"); // TODO: delete
+                $_POST["reise"],
+                $_POST["rgart"],
+                $_POST["kosten"],
+                $_POST["beschreibung"],
+                $_POST["dokument"]);
     }
     
         public static function loescheRechnung(){
         return Service::getInstance()->deleteRechnung(
-                $_POST["userId"],
-                $_POST["userId"], // TODO: why userId and benutzername??? 
-                $_POST["passwort"],
-                $_POST["vorname"],
-                $_POST["nachname"],
-                "rolle"); // TODO: delete
+                $_POST["rg_id"],
+                $_POST["reise"]);
     }
     
     public static function rechnungAnzeigeView(){

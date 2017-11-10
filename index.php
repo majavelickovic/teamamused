@@ -92,6 +92,7 @@ Router::route("POST", "/rechnung/neu", function () {
     if($returnrg != false){
         ?>
         <script type="text/javascript">
+            alert("Rechnung erstellt");
             alert("Rechnung <?php echo $returnrg->getRg_id()?> wurde erstellt.");
         </script>
         <?php
