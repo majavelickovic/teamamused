@@ -43,7 +43,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Rechnung-ID</td>
-                            <td><input type="text" name="rg_id" value="" size="40px" /></td>
+                            <td><input type="text" name="rg_id" value="" style="width:396px;" /></td>
                         </tr>
                         <tr>
                             <td>Rechnungsart</td>
