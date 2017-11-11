@@ -42,32 +42,42 @@ class RechnungDAO {
 	 * Liest ein Rechnungs-Objekt aus der Tabelle "rechnung"
 	 */
 	public function read($_reise, $_rg_id, $_rgart) {
+            $texttotest = "";
             $pdo = Database::connect();
             if($_reise != null && $_rg_id == null && $_rgart == null){
+                $texttotest .= "if 1 hat gegriffen";
                 $statement = $pdo->prepare(
-                "SELECT * FROM rechnung WHERE reise = :reise;");
-                $statement->bindValue(':reise', $_reise);
+                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise;");
+                $statement->bindValue(':reise_id', $_reise);
                 $statement->execute();
-            }elseif($_reise != null && $_rg_id == !null && $_rgart == null){
+            }elseif($_reise != null && $_rg_id != null && $_rgart == null){
+                $texttotest .= "if 2 hat gegriffen";
                  $statement = $pdo->prepare(
-                "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id;");
-                 $statement->bindValue(':reise', $_reise);
+                 "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise, rg_id = :rg_id;");
+                 $statement->bindValue(':reise_od', $_reise);
                  $statement->bindValue(':rg_id', $_rg_id);
                  $statement->execute();
-            }elseif($_reise != null && $_rg_id == !null && $_rgart == !null){
+            }elseif($_reise != null && $_rg_id != null && $_rgart != null){
+                $texttotest .= "if 3 hat gegriffen";
                 $statement = $pdo->prepare(
-                "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id, rgart = :rgart;");
-                $statement->bindValue(':reise', $_reise);
+                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise, rg_id = :rg_id, rgart = :rgart;");
+                $statement->bindValue(':reise_id', $_reise);
                 $statement->bindValue(':rg_id', $_rg_id);
                 $statement->bindValue(':rgart', $_rgart);
                 $statement->execute();
-            }elseif($_reise != null && $_rg_id == null && $_rgart == !null){
+            }elseif($_reise != null && $_rg_id == null && $_rgart != null){
+                $texttotest .= "if 4 hat gegriffen";
                 $statement = $pdo->prepare(
-                "SELECT * FROM rechnung WHERE reise = :reise, rgart = :rgart;");
-                $statement->bindValue(':reise', $_reise);
+                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise, rgart = :rgart;");
+                $statement->bindValue(':reise_id', $_reise);
                 $statement->bindValue(':rgart', $_rgart);
                 $statement->execute();
             }else{
+                $texttotest .= "else hat gegriffen";
             }
             
             if($statement != null){
@@ -75,7 +85,7 @@ class RechnungDAO {
                     echo "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["rgart"] . "</td><td>" . $row["kosten"] . "</td></tr>";
                 }
             }else{
-                return "kein IF-Statement trifft zu";
+                return $texttotest;
             }
 
         }
