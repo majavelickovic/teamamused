@@ -63,12 +63,13 @@ Router::route("GET", "/", function () {
     Router::redirect("/login");
 });
 
+// Kommentare löschen, wenn Session funktioniert
 Router::route("GET", "/welcome", function() {
-    if(AuthentifizController::authenticate()) {
+//    if(AuthentifizController::authenticate()) {
         controller\LoginController::welcomeView();
-    } else {
-        echo "403 Access Denied";
-    }
+//    } else {
+//        echo "403 Access Denied";
+//    }
 });
 
 Router::route("GET", "/reise/neu", function () {
