@@ -41,9 +41,7 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
 </html>
 
 <?php
-// Session starten oder vorhandene übernehmen
-//        session_start();
-//
+
 //        if (isset($_POST['sub'])) {
 //            include_once './../validator/validate.php';
 //            if (validateLogin()) {
@@ -61,13 +59,5 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
 #}
 //            }
 //        }
-// Session beenden -> session_destroy() reicht nicht
-//session_destroy();
-// If it's desired to kill the session, also delete the session cookie.
-// Note: This will destroy the session, and not just the session data!
-//        if (ini_get("session.use_cookies")) {
-//            $params = session_get_cookie_params();
-//            setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
-//            );
-//        }
+
 ?>

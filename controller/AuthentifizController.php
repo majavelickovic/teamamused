@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: andreas.martin
- * Date: 09.10.2017
- * Time: 08:30
+ * TODO
  */
 
 namespace controller;
@@ -27,7 +24,18 @@ class AuthentifizController
     public static function login(){
         if(Service::getInstance()->verifyUser($_POST['benutzername'],$_POST['password']))
         {
-            $session['logn'] = true;
+            $session['logn'] = "true";
+        }
+    }
+    
+    public static function logout(){
+        
+        // Session wird zerstört
+        session_destroy();
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
+            );
         }
     }
 
