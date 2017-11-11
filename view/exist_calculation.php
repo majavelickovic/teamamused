@@ -35,7 +35,7 @@ use database\Database;
                             <td><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
                         </tr>
                     </table>
-                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <form>
                         <table>
                             <tr>
                                 <td>Reise</td>
