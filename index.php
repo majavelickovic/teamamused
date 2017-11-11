@@ -114,6 +114,10 @@ Router::route("POST", "/rechnung/bestehend", function () {
     controller\RechnungController::rechnungAnzeigeView();
 });
 
+Router::route("GET", "/rechnung/bestehend/anzeige", function () {
+    controller\RechnungController::rechnungAnzeigeEinzelView();
+});
+
 Router::route("GET", "/rechnung", function () {
     require_once("view/calculation.php");
 });

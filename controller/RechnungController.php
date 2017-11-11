@@ -53,5 +53,9 @@ class RechnungController
     public static function rechnungHinzufView(){
         echo (new View("new_calculation.php"))->render();
     }
+    
+        public static function rechnungAnzeigeEinzelView(){
+        echo (new View("single_calculation.php"))->render();
+    }
 }
 ?>
