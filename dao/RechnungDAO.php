@@ -45,25 +45,29 @@ class RechnungDAO {
             $pdo = Database::connect();
             if($_reise != null && $_rg_id == null && $_rgart == null){
                 $statement = $pdo->prepare(
-                "SELECT * FROM rechnung WHERE reise = :reise;");
+                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise;");
                 $statement->bindValue(':reise', $_reise);
                 $statement->execute();
-            }elseif($_reise != null && $_rg_id == !null && $_rgart == null){
+            }elseif($_reise != null && $_rg_id != null && $_rgart == null){
                  $statement = $pdo->prepare(
-                "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id;");
+                 "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise, rg_id = :rg_id;");
                  $statement->bindValue(':reise', $_reise);
                  $statement->bindValue(':rg_id', $_rg_id);
                  $statement->execute();
-            }elseif($_reise != null && $_rg_id == !null && $_rgart == !null){
+            }elseif($_reise != null && $_rg_id != null && $_rgart != null){
                 $statement = $pdo->prepare(
-                "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id, rgart = :rgart;");
+                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise, rg_id = :rg_id, rgart = :rgart;");
                 $statement->bindValue(':reise', $_reise);
                 $statement->bindValue(':rg_id', $_rg_id);
                 $statement->bindValue(':rgart', $_rgart);
                 $statement->execute();
-            }elseif($_reise != null && $_rg_id == null && $_rgart == !null){
+            }elseif($_reise != null && $_rg_id == null && $_rgart != null){
                 $statement = $pdo->prepare(
-                "SELECT * FROM rechnung WHERE reise = :reise, rgart = :rgart;");
+                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise, rgart = :rgart;");
                 $statement->bindValue(':reise', $_reise);
                 $statement->bindValue(':rgart', $_rgart);
                 $statement->execute();
