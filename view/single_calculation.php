@@ -3,7 +3,9 @@
 use database\Database;
 
 $rg_id = $rg_id;
-
+print_r("maja test");
+print_r($rg_id);
+print_r($_GET['id']);
 $pdo = Database::connect();           
 $query = $pdo->query("SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten, rechnung.beschreibung, rechnung.dokument
                    FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE rechnung.rg_id = :rg_id;");
