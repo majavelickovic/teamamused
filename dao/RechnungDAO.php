@@ -75,6 +75,8 @@ class RechnungDAO {
                 while ($row = $statement->fetch()){
                     echo "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["rgart"] . "</td><td>" . $row["kosten"] . "</td></tr>";
                 }
+            }else{
+                return "";
             }
 
         }
