@@ -54,8 +54,8 @@ class RechnungController
         echo (new View("new_calculation.php"))->render();
     }
     
-        public static function rechnungAnzeigeEinzelView(){
-        echo (new View("single_calculation.php"))->render();
+        public static function rechnungAnzeigeEinzelView($rg_id){
+        echo (new View("single_calculation.php?id=".$rg_id))->render();
     }
 }
 ?>
