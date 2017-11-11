@@ -103,7 +103,11 @@ Router::route("POST", "/rechnung/neu", function () {
 });
 
 Router::route("GET", "/rechnung/bestehend", function () {
-    require_once("view/exist_calculation.php");
+    controller\RechnungController::rechnungAnzeigeView();
+});
+
+Router::route("POST", "/rechnung/bestehend", function () {
+    controller\RechnungController::rechnungAnzeigeView();
 });
 
 Router::route("GET", "/rechnung", function () {
