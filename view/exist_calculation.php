@@ -87,10 +87,10 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <th>Kosten</th>
                         </tr>
                         <?php
-                            $rgtablecontent = controller\RechnungController::leseRechnung();
+                           /* $rgtablecontent = controller\RechnungController::leseRechnung();
                             if($rgtablecontent != null){
                                 echo $rgtablecontent;
-                            }
+                            }*/
                         ?>
                     </table>
                 </div>
