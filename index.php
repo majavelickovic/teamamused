@@ -115,6 +115,7 @@ Router::route("POST", "/rechnung/bestehend", function () {
 });
 
 Router::route("GET", "/rechnung/anzeige", function () {
+    $rg_id = $_GET['id'];
     controller\RechnungController::rechnungAnzeigeEinzelView($_GET['id']);
 });
 
