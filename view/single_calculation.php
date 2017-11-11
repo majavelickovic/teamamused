@@ -6,7 +6,7 @@ use database\Database;
 
 $pdo = Database::connect();           
 $query = $pdo->query("SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten, rechnung.beschreibung, rechnung.dokument
-                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE rg_id = :rg_id;");
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE rechnung.rg_id = :rg_id;");
 $query->bindValue(':rg_id', $rg_id);
 $rg = $query->fetchAll(PDO::FETCH_CLASS, "Rechnung");
 
