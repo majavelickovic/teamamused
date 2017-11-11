@@ -104,8 +104,8 @@ Router::route("POST", "/rechnung/neu", function () {
 
 Router::route("GET", "/rechnung/bestehend", function () {
     //$rgtablecontent =
-    //controller\RechnungController::leseRechnung();
-    Router::redirect("/rechnung/bestehend");
+    controller\RechnungController::leseRechnung();
+    require_once("view/exist_calculation.php");
 });
 
 Router::route("POST", "/rechnung/bestehend", function () {
