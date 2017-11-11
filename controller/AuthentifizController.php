@@ -24,7 +24,7 @@ class AuthentifizController
     public static function login(){
         if(Service::getInstance()->verifyUser($_POST['benutzername'],$_POST['password']))
         {
-            $session['logn'] = "true";
+            $_SESSION['logn'] = "eingeloggt";
         }
     }
     
