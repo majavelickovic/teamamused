@@ -55,8 +55,8 @@ class RechnungController
     }
     
     public static function rechnungAnzeigeEinzelView($rg_id){
-        $_SESSION['rg_id_current'] = $rg_id;
         echo (new View("single_calculation.php"))->render();
+        $rg_id = $rg_id;
     }
 }
 ?>

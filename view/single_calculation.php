@@ -2,7 +2,7 @@
 
 use database\Database;
 
-$rg_id = $_GET['id'];
+$rg_id = $rg_id;
 
 $pdo = Database::connect();           
 $query = $pdo->query("SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten, rechnung.beschreibung, rechnung.dokument
