@@ -11,7 +11,7 @@ use database\Database;
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
-        <title>Reise</title>
+        <title>Rechnung</title>
         <script type="text/javascript">
             function refreshTable() {
                 document.getElementById("rgTable").refresh();
