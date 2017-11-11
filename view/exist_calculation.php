@@ -14,7 +14,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
-        <title>Reise</title>
+        <title>Rechnung</title>
         <script type="text/javascript">
             function refreshTable() {
                 document.getElementById("rgTable").refresh();
@@ -44,12 +44,12 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <td>
                                 <select id="dropdown" name="reise" style="width:300px;">
                                     <?php
-                                        $pdo = Database::connect();
-                                        $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
+                                    $pdo = Database::connect();
+                                    $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
 
-                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
-                                        }
+                                    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                        echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                    }
                                     ?>
                                 </select>
                             </td>
@@ -63,12 +63,12 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <td>
                                 <select id="dropdown" name="rgart" style="width:300px;">
                                     <?php
-                                        $pdo = Database::connect();
-                                        $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
+                                    $pdo = Database::connect();
+                                    $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
 
-                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
-                                        }
+                                    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                        echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                    }
                                     ?>
                                 </select>
                             </td>
@@ -87,10 +87,10 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <th>Kosten</th>
                         </tr>
                         <?php
-                           /* $rgtablecontent = controller\RechnungController::leseRechnung();
-                            if($rgtablecontent != null){
-                                echo $rgtablecontent;
-                            }*/
+                        /* $rgtablecontent = controller\RechnungController::leseRechnung();
+                          if($rgtablecontent != null){
+                          echo $rgtablecontent;
+                          } */
                         ?>
                         <tr>
                             <td>1</td>

@@ -7,6 +7,11 @@ Diese Seite stellt die Reise-Seite dar.
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
         <title>Reise</title>
+        <script type="text/javascript">
+            function refreshTable() {
+                document.getElementById("Table").refresh();
+            }
+        </script>
     </head>
     <body>		
         <div id="whiteblock">
