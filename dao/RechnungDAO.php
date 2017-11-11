@@ -68,7 +68,6 @@ class RechnungDAO {
                 $statement->bindValue(':rgart', $_rgart);
                 $statement->execute();
             }else{
-                //nichts machen
             }
             
             if($statement != null){
@@ -76,7 +75,7 @@ class RechnungDAO {
                     echo "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["rgart"] . "</td><td>" . $row["kosten"] . "</td></tr>";
                 }
             }else{
-                return "";
+                return "kein IF-Statement trifft zu";
             }
 
         }
