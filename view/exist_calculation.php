@@ -56,7 +56,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Rechnung-ID</td>
-                            <td><input type="text" name="rg_id" value="" style="width:296px;" /></td>
+                            <td><input type="text" name="rg_id" style="width:296px;" /></td>
                         </tr>
                         <tr>
                             <td>Rechnungsart</td>
@@ -92,6 +92,12 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                 echo $rgtablecontent;
                             }*/
                         ?>
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                        </tr>
                     </table>
                 </div>
             </div>
