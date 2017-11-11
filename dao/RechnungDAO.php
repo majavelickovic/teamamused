@@ -70,9 +70,13 @@ class RechnungDAO {
             }else{
                 //nichts machen
             }
-            while ($row = $statement->fetch()){
-               echo "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["rgart"] . "</td><td>" . $row["kosten"] . "</td></tr>";
+            
+            if($statement != null){
+                while ($row = $statement->fetch()){
+                    echo "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["rgart"] . "</td><td>" . $row["kosten"] . "</td></tr>";
+                }
             }
+
         }
 
 	/**
