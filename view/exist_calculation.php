@@ -15,6 +15,11 @@ Diese Seite stellt die Rechnungs-Seite dar.
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
         <title>Reise</title>
+        <script type="text/javascript">
+            function refreshTable() {
+                document.getElementById("rgTable").refresh();
+            }
+        </script>
     </head>
     <body>		
         <div id="whiteblock">
@@ -69,12 +74,12 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                            <td colspan="2" align="center"><input type="submit" class="button" value="suchen" onclick="refreshTable()"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                         </tr>
                     </table>
                 </div>
                 <div id="blockright">
-                    <table>
+                    <table id="rgTable">
                         <tr>
                             <th>Rechnungs-ID</th>
                             <th>Reise-ID</th>
@@ -93,3 +98,4 @@ Diese Seite stellt die Rechnungs-Seite dar.
         </div>
     </body>
 </html>
+
