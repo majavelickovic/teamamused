@@ -86,17 +86,11 @@ use database\Database;
                             <th>Kosten</th>
                         </tr>
                         <?php
-                           /* $rgtablecontent = controller\RechnungController::leseRechnung();
+                            $rgtablecontent = controller\RechnungController::leseRechnung();
                             if($rgtablecontent != null){
                                 echo $rgtablecontent;
-                            }*/
+                            }
                         ?>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                        </tr>
                     </table>
                 </div>
             </div>
