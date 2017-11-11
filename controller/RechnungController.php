@@ -25,11 +25,10 @@ class RechnungController
     }
     
         public static function leseRechnung(){
-        /*return Service::getInstance()->readRechnung(
+        return Service::getInstance()->readRechnung(
                 $_POST["reise"],
                 $_POST["rg_id"],
-                $_POST["rgart"]);*/
-            return "var:" . $_POST["reise"] . $_POST["rg_id"] . $_POST["rgart"];
+                $_POST["rgart"]);
     }
     
         public static function aktualisiereRechnung(){
