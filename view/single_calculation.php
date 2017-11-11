@@ -1,8 +1,5 @@
 <?php
 
-$rg_id = $_GET['id'];
-print_r($rg_id);
-
 use database\Database;
 
 $pdo = Database::connect();           
