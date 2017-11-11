@@ -40,13 +40,13 @@ Router::route("GET", "/register", function () {
 });
 
 /*
- * Wenn die Registrierung erfolgreich verlief, wird der User auf die Login-Seite weitergeleitet
+ * Wenn die Registrierung erfolgreich verlief (boolean), wird der User auf die Login-Seite weitergeleitet
  */
 Router::route("POST", "/register", function () {
     if(controller\LoginController::register()){
         Router::redirect("/login");
     } else {
-        echo "FEHLER"; // TODO
+        echo "403 Access Denied"; // TODO
     }
 });
 
