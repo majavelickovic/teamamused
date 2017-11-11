@@ -77,17 +77,17 @@ class RechnungDAO {
                 $statement->bindValue(':rgart', $_rgart);
                 $statement->execute();
             }else{
-                $texttotest .= "else hat gegriffen";
+                //nichts tun
             }
             
             if($statement != null){
                 $texttotest = "";
                 while ($row = $statement->fetch()){
-                    $texttotest .= "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["beschreibung"] . "</td><td>" . $row["kosten"] . "</td></tr>";
+                    $texttotest .= "<tr><td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . "</a>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "</td><td>" . $row["beschreibung"] . "</td><td>" . $row["kosten"] . "</td></tr>";
                 }
                 return $texttotest;
             }else{
-                return $texttotest;
+                return " ";
             }
 
         }

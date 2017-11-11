@@ -54,7 +54,7 @@ use database\Database;
                             </tr>
                             <tr>
                                 <td>Rechnung-ID</td>
-                                <td><input type="text" name="rg_id" style="width:296px;" /></td>
+                                <td><input type="text" name="rg_id" style="width:296px;" value="<?php echo $_POST['rgart']?>"/></td>
                             </tr>
                             <tr>
                                 <td>Rechnungsart</td>
@@ -90,7 +90,7 @@ use database\Database;
                             if($rgtablecontent != null){
                                 echo $rgtablecontent;
                             }else{
-                                echo "keine daten";
+                                echo "";
                             }
                         ?>
                     </table>
