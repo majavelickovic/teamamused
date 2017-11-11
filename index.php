@@ -103,7 +103,8 @@ Router::route("POST", "/rechnung/neu", function () {
 });
 
 Router::route("GET", "/rechnung/bestehend", function () {
-    $rgtablecontent = controller\RechnungController::leseRechnung();
+    //$rgtablecontent =
+    controller\RechnungController::leseRechnung();
     Router::redirect("/rechnung/bestehend");
 });
 
