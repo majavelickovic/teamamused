@@ -89,6 +89,8 @@ use database\Database;
                             $rgtablecontent = controller\RechnungController::leseRechnung();
                             if($rgtablecontent != null){
                                 echo $rgtablecontent;
+                            }else{
+                                echo "keine daten";
                             }
                         ?>
                     </table>
