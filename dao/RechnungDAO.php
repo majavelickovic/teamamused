@@ -47,23 +47,23 @@ class RechnungDAO {
             if($_reise != null && $_rg_id == null && $_rgart == null){
                 $texttotest .= "if 1 hat gegriffen";
                 $statement = $pdo->prepare(
-                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
-                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise_id;");
+                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id WHERE reise_id = :reise_id;");
                 $statement->bindValue(':reise_id', $_reise);
                 $statement->execute();
             }elseif($_reise != null && $_rg_id != null && $_rgart == null){
                 $texttotest .= "if 2 hat gegriffen";
                  $statement = $pdo->prepare(
-                 "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
-                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise_id and rg_id = :rg_id;");
+                 "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id WHERE reise_id = :reise_id and rg_id = :rg_id;");
                  $statement->bindValue(':reise_od', $_reise);
                  $statement->bindValue(':rg_id', $_rg_id);
                  $statement->execute();
             }elseif($_reise != null && $_rg_id != null && $_rgart != null){
                 $texttotest .= "if 3 hat gegriffen";
                 $statement = $pdo->prepare(
-                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
-                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise_id and rg_id = :rg_id and rechnungsart = :rgart;");
+                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id WHERE reise_id = :reise_id and rg_id = :rg_id and rechnungsart = :rgart;");
                 $statement->bindValue(':reise_id', $_reise);
                 $statement->bindValue(':rg_id', $_rg_id);
                 $statement->bindValue(':rgart', $_rgart);
@@ -71,8 +71,8 @@ class RechnungDAO {
             }elseif($_reise != null && $_rg_id == null && $_rgart != null){
                 $texttotest .= "if 4 hat gegriffen";
                 $statement = $pdo->prepare(
-                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten
-                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE reise_id = :reise_id and rechnungsart = :rgart;");
+                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id WHERE reise_id = :reise_id and rechnungsart = :rgart;");
                 $statement->bindValue(':reise_id', $_reise);
                 $statement->bindValue(':rgart', $_rgart);
                 $statement->execute();
@@ -83,7 +83,7 @@ class RechnungDAO {
             if($statement != null){
                 $texttotest = "";
                 while ($row = $statement->fetch()){
-                    $texttotest .= "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["rgart"] . "</td><td>" . $row["kosten"] . "</td></tr>";
+                    $texttotest .= "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["beschreibung"] . "</td><td>" . $row["kosten"] . "</td></tr>";
                 }
                 return $texttotest;
             }else{
