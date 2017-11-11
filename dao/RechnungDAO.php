@@ -46,20 +46,30 @@ class RechnungDAO {
             if($_reise != null && $_rg_id == null && $_rgart == null){
                 $statement = $pdo->prepare(
                 "SELECT * FROM rechnung WHERE reise = :reise;");
+                $statement->bindValue(':reise', $_reise);
+                $statement->execute();
             }elseif($_reise != null && $_rg_id == !null && $_rgart == null){
                  $statement = $pdo->prepare(
                 "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id;");
+                 $statement->bindValue(':reise', $_reise);
+                 $statement->bindValue(':rg_id', $_rg_id);
+                 $statement->execute();
             }elseif($_reise != null && $_rg_id == !null && $_rgart == !null){
                 $statement = $pdo->prepare(
                 "SELECT * FROM rechnung WHERE reise = :reise, rg_id = :rg_id, rgart = :rgart;");
+                $statement->bindValue(':reise', $_reise);
+                $statement->bindValue(':rg_id', $_rg_id);
+                $statement->bindValue(':rgart', $_rgart);
+                $statement->execute();
             }elseif($_reise != null && $_rg_id == null && $_rgart == !null){
                 $statement = $pdo->prepare(
                 "SELECT * FROM rechnung WHERE reise = :reise, rgart = :rgart;");
+                $statement->bindValue(':reise', $_reise);
+                $statement->bindValue(':rgart', $_rgart);
+                $statement->execute();
+            }else{
+                //nichts machen
             }
-            $statement->bindValue(':reise', $_reise);
-            $statement->bindValue(':rg_id', $_rg_id);
-            $statement->bindValue(':rgart', $_rgart);
-            $statement->execute();
             while ($row = $statement->fetch()){
                echo "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["rgart"] . "</td><td>" . $row["kosten"] . "</td></tr>";
             }
