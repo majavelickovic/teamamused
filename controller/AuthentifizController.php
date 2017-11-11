@@ -17,9 +17,9 @@ class AuthentifizController
      */
     public static function authenticate(){
         if (isset($_SESSION['login'])) {
-            if(Service::getInstance()->validateToken($_SESSION['login']['token'])) {
+//            if(Service::getInstance()->validateToken($_SESSION['login']['token'])) {
                 return true;
-            }
+//            }
         }
         return false;
     }
@@ -27,7 +27,7 @@ class AuthentifizController
     public static function login(){
         if(Service::getInstance()->verifyUser($_POST['benutzername'],$_POST['password']))
         {
-            $_SESSION['user']['token'] = Service::getInstance()->issueToken();
+            $session['logn'] = true;
         }
     }
 
