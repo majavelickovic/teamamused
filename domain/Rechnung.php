@@ -30,7 +30,7 @@ class Rechnung {
 	/**
 	 * @AttributeType int
 	 */
-	private $_reise;
+	private $_reise_id;
 	/**
 	 * @AssociationType domain.Rechnungsart
 	 * @AssociationMultiplicity 1
@@ -46,8 +46,8 @@ class Rechnung {
 	 * @ParamType aKosten double
 	 * @ReturnType void
 	 */
-	public function setKosten(&$aKosten) {
-		$this->_kosten = $aKosten;
+	public function setKosten($kosten) {
+		$this->_kosten = $kosten;
 	}
 
 	/**
@@ -66,8 +66,8 @@ class Rechnung {
 	 * @ParamType aBeschreibung String
 	 * @ReturnType void
 	 */
-	public function setBeschreibung(&$aBeschreibung) {
-		$this->_beschreibung = $aBeschreibung;
+	public function setBeschreibung($beschreibung) {
+		$this->_beschreibung = $beschreibung;
 	}
 
 	/**
@@ -86,8 +86,8 @@ class Rechnung {
 	 * @ParamType aDokument String
 	 * @ReturnType void
 	 */
-	public function setDokument(&$aDokument) {
-		$this->_dokument = $aDokument;
+	public function setDokument($dokument) {
+		$this->_dokument = $dokument;
 	}
 
 	/**
@@ -106,8 +106,8 @@ class Rechnung {
 	 * @ParamType aRg_id int
 	 * @ReturnType void
 	 */
-	public function setRg_id(&$aRg_id) {
-		$this->_rg_id = $aRg_id;
+	public function setRg_id($rg_id) {
+		$this->_rg_id = $rg_id;
 	}
         
         /**
@@ -116,7 +116,7 @@ class Rechnung {
 	 * @ReturnType int
 	 */
 	public function getReise() {
-		return $this->_reise;
+		return $this->_reise_id;
 	}
 
 	/**
@@ -126,8 +126,8 @@ class Rechnung {
 	 * @ParamType aReise int
 	 * @ReturnType void
 	 */
-	public function setReise(&$aReise) {
-		$this->_reise = $aReise;
+	public function setReise($reise_id) {
+		$this->_reise = $reise_id;
 	}
         
         /**
@@ -146,8 +146,8 @@ class Rechnung {
 	 * @ParamType $aRechnungsart int
 	 * @ReturnType void
 	 */
-	public function setRechnungsart(&$aRechnungsart) {
-		$this->_rechnungsart = $aRechnungsart;
+	public function setRechnungsart($rechnungsart) {
+		$this->_rechnungsart = $rechnungsart;
 	}
 }
 ?>
