@@ -35,45 +35,47 @@ use database\Database;
                             <td><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
                         </tr>
                     </table>
-                    <table>
-                        <tr>
-                            <td>Reise</td>
-                            <td>
-                                <select id="dropdown" name="reise" style="width:300px;">
-                                    <?php
-                                        $pdo = Database::connect();
-                                        $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                        <table>
+                            <tr>
+                                <td>Reise</td>
+                                <td>
+                                    <select id="dropdown" name="reise" style="width:300px;">
+                                        <?php
+                                            $pdo = Database::connect();
+                                            $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
 
-                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Rechnung-ID</td>
-                            <td><input type="text" name="rg_id" style="width:296px;" /></td>
-                        </tr>
-                        <tr>
-                            <td>Rechnungsart</td>
-                            <td>
-                                <select id="dropdown" name="rgart" style="width:300px;">
-                                    <?php
-                                        $pdo = Database::connect();
-                                        $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
+                                            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                                echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rechnung-ID</td>
+                                <td><input type="text" name="rg_id" style="width:296px;" /></td>
+                            </tr>
+                            <tr>
+                                <td>Rechnungsart</td>
+                                <td>
+                                    <select id="dropdown" name="rgart" style="width:300px;">
+                                        <?php
+                                            $pdo = Database::connect();
+                                            $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
 
-                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
-                                        }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="center"><input type="submit" class="button" value="suchen" onclick="refreshTable()"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
-                        </tr>
-                    </table>
+                                            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                                                echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center"><input type="submit" class="button" value="suchen" onclick="refreshTable()"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
                 <div id="blockright">
                     <table id="rgTable">
