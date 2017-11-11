@@ -81,9 +81,11 @@ class RechnungDAO {
             }
             
             if($statement != null){
+                $texttotest = "";
                 while ($row = $statement->fetch()){
-                    echo "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["rgart"] . "</td><td>" . $row["kosten"] . "</td></tr>";
+                    $texttotest .= "<tr><td>" . $row["rg_id"] . "</td><td>" . $row['reise_id'] . "<td><td>" . $row["rgart"] . "</td><td>" . $row["kosten"] . "</td></tr>";
                 }
+                return $texttotest;
             }else{
                 return $texttotest;
             }
