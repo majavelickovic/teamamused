@@ -88,7 +88,7 @@ class LoginDAO {
                 $login->setNachname($row['nachname']);
                 return $login;
             } else {
-                echo('Unbekannter Benutzername.');
+                echo("Unbekannter Benutzername.");
             }
             
             //return $statement->fetchAll()[0];
