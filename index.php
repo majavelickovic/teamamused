@@ -56,7 +56,11 @@ Router::route("GET", "/login", function () {
 
 Router::route("POST", "/login", function () {
     AuthentifizController::login();
-    Router::redirect("/welcome");
+    if(AuthentifizController::authenticate()) {
+        controller\LoginController::welcomeView();
+    } else {
+        echo "403 Access Denied";
+    }
 });
 
 Router::route("GET", "/", function () {
