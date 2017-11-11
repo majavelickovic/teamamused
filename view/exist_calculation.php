@@ -6,10 +6,7 @@ use database\Database;
  * View, um eine besthende Rechnung zu suchen
  */
 ?>
-<!DOCTYPE html>
-<!--
-Diese Seite stellt die Rechnungs-Seite dar.
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
