@@ -21,7 +21,8 @@ Diese Seite stellt die Willkommens-Seite dar.
                 </div>
                 <div id="blockleft">
                     <h1>Herzlich Willkommen</h1>
-
+                    <!-- TODO wieder löschen -->
+                    <?php echo session_id()?>
                 </div>
             </div>
         </div>

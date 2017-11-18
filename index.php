@@ -19,7 +19,7 @@ use controller\AuthentifizController;
 session_start();
 
 /*
- * Wenn keine gültige Session vorhanden ist, wird der User auf die Login-Seite umgeleitet
+ * Wenn die Session-Variable login noch nicht gesetzt wurde, wird der User auf die Login-Seite umgeleitet
  */
 $authFunction = function () {
     if (AuthentifizController::authenticate()){
