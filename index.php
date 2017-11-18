@@ -31,8 +31,7 @@ $authFunction = function () {
 };
 
 $errorFunction = function () {
-    // TODO als eigene Seite realisieren
-    echo "404 NOT FOUND";
+    controller\ErrorController::error404View();
 };
 
 Router::route("GET", "/error404", function () {
@@ -54,7 +53,7 @@ Router::route("POST", "/register", function () {
     if(controller\LoginController::register()){
         Router::redirect("/login");
     } else {
-        echo "403 Access Denied"; // TODO
+        controller\ErrorController::error403View();
     }
 });
 
@@ -67,7 +66,7 @@ Router::route("POST", "/login", function () {
     if(AuthentifizController::authenticate()) {
         controller\LoginController::welcomeView();
     } else {
-        echo "403 Access Denied";
+        controller\ErrorController::error403View();
     }
 });
 
@@ -80,7 +79,7 @@ Router::route("GET", "/welcome", function() {
     if(AuthentifizController::authenticate()) {
         controller\LoginController::welcomeView();
     } else {
-        echo "403 Access Denied";
+        controller\ErrorController::error403View();
     }
 });
 
