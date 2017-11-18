@@ -19,7 +19,7 @@ use controller\AuthentifizController;
 session_start();
 
 /*
- * Wenn noch keine Session gestartet wurde, wird der User auf die Login-Seite umgeleitet
+ * Wenn keine gültige Session vorhanden ist, wird der User auf die Login-Seite umgeleitet
  */
 $authFunction = function () {
     if (AuthentifizController::authenticate()){
@@ -34,6 +34,14 @@ $errorFunction = function () {
     // TODO als eigene Seite realisieren
     echo "404 NOT FOUND";
 };
+
+Router::route("GET", "/error404", function () {
+    controller\ErrorController::error404View();
+});
+
+Router::route("GET", "/error403", function () {
+    controller\ErrorController::error403View();
+});
 
 Router::route("GET", "/register", function () {
     controller\LoginController::registerView();
