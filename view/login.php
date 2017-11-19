@@ -2,6 +2,9 @@
 <!--
 Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte User einloggen können.
 -->
+
+<?php include_once 'validator/validate.php'; ?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -14,15 +17,17 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                 <div id="blockleft">
                     <h1>Verwaltung der Reisen</h1>
                     <h2>Login</h2>
-                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <form method="POST" action="<?php echo $GLOBALS["ROOT_URL"]; ?>/login">
                         <table>
                             <tr>
                                 <td><img src="../design/pictures/user.png"></td><td>Benutzername</td>
                                 <td><input type="text" name="benutzername" value="" /></td>
+                                <td><span class="error"> <?php echo $benutzernameLoginError;?></span><td>
                             </tr>
                             <tr>
                                 <td><img src="../design/pictures/key.png"></td><td>Passwort</td>
                                 <td><input type="password" name="password" value="" /></td>
+                                <span class="error">* <?php echo $passwordLoginError;?></span>
                             </tr>
                             <tr></tr>
                             <tr>
@@ -44,20 +49,7 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
 
 //        if (isset($_POST['sub'])) {
 //            include_once './../validator/validate.php';
-//            if (validateLogin()) {
-//                $userID = intval($_POST['userID']);
-//                $password = $_POST['password'];
-//                if ($userID == 1 && $password == "test") {
-//                    $_SESSION['login'] = true;
-//                }
-// HIER: Versuch mit DB-Anbindung -> anstelle Zeile 20
-#$service = new Service();
-#if($service->verifyUser($userID, $password)){
-#    $_SESSION['login'] = true;
-#} else {
-#    $_SESSION['login'] = false;                    
-#}
-//            }
-//        }
+
+
 
 ?>

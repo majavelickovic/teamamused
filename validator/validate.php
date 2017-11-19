@@ -1,12 +1,12 @@
 <?php
 
-namespace validator;
-
-use service\Service;
-
 /*
  * Serverseitige Validierung von Formulareingaben
  */
+
+namespace validator;
+
+use service\Service;
 
 // Validierung der Login-Seite bezüglich Vollständigkeit der Inputfelder
 $benutzernameLoginError = "";
@@ -28,6 +28,11 @@ $vornameRegisterError = "";
 $nachnameRegisterError = "";
 $password1RegisterError = "";
 $password2RegisterError = "";
+$benutzernameUniqueError = "";
+$vornameCharError = "";
+$nachnameCharError = "";
+$password1CharError = "";
+$password1ConfirmError = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["benutzername"])) {
@@ -61,12 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }  
   
 }
-
-$benutzernameUniqueError = "";
-$vornameCharError = "";
-$nachnameCharError = "";
-$password1CharError = "";
-$password1ConfirmError = "";
 
 // Prüft, ob der Benutzername eindeutig ist
 function validateBenutzername($benutzername){

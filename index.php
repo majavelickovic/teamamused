@@ -52,7 +52,7 @@ Router::route("POST", "/register", function () {
     if(controller\LoginController::register()){
         Router::redirect("/login");
     } else {
-        controller\ErrorController::error403View();
+        controller\LoginController::registerView();
     }
 });
 

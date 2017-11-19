@@ -2,6 +2,8 @@
 <!--
 Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User registrieren können.
 -->
+<?php include_once 'validator/validate.php'; ?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -14,30 +16,35 @@ Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User regi
                 <div id="blockleft">
                     <h1>Verwaltung der Reisen</h1>
                     <h2>Registrierung</h2>
-                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <form method="POST" action="<?php echo $GLOBALS["ROOT_URL"]; ?>/register">
                         <table>
                             <tr>
                                 <td><img src="../design/pictures/user.png"></td><td>Benutzername</td>
                                 <td><input type="text" name="benutzername" value="" /></td>
+                                <td><span class="error"> <?php echo $benutzernameRegisterError;?></span><td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td>Vorname</td>
                                 <td><input type="text" name="vorname" value="" /></td>
+                                <td><span class="error"> <?php echo $vornameRegisterError;?></span><td>                                
                             </tr>
                             <tr>
                                 <td></td>
                                 <td>Nachname</td>
                                 <td><input type="text" name="nachname" value="" /></td>
+                                <td><span class="error"> <?php echo $nachnameRegisterError;?></span><td> 
                             </tr>
                             <tr>
                                 <td><img src="../design/pictures/key.png"></td><td>Passwort</td>
                                 <td><input type="password" name="password1" value="" /></td>
+                                <td><span class="error"> <?php echo $password1RegisterError;?></span><td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td>Passwort bestätigen</td>
                                 <td><input type="password" name="password2" value="" /></td>
+                                <td><span class="error"> <?php echo $password2RegisterError;?></span><td>
                             </tr>
                             <tr></tr>
                             <tr>
@@ -51,12 +58,3 @@ Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User regi
     </body>
 </html>
 
-<?php
-/* echo "hallo";
-  session_start();
-
-  if(!isset($_SESSION['login']) || $_SESSION['login'] == false) {
-  echo "nicht eingeloggt";
-  header("Location: http://localhost/TeamAmused/view/loginView.php");
-  } */
-?>
