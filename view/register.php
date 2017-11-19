@@ -13,7 +13,7 @@ Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User regi
             <div id="block">
                 <div id="blockleft">
                     <h1>Verwaltung der Reisen</h1>
-                    Registrierung</br></br>
+                    <h2>Registrierung</h2>
                     <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                         <table>
                             <tr>

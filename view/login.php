@@ -13,7 +13,7 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
             <div id="block">
                 <div id="blockleft">
                     <h1>Verwaltung der Reisen</h1>
-                    Login<br><br>
+                    <h2>Login</h2>
                     <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                         <table>
                             <tr>
