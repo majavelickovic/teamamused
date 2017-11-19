@@ -105,7 +105,18 @@ class Service {
             return true;
         }
     }
-
+    
+    // Überprüft, ob es den übergebenen Benutzernamen bereits gibt
+    public function uniqueBenutzername($benutzername){
+        $loginDAO = new dao\LoginDAO();
+        if ($loginDAO->findBenutzername($benutzername)){
+            return true; // Benutzername bereits vorhanden
+        }
+        else {
+            return false; // Benutzername noch nicht vorhanden
+        }
+            
+    }
     
     // CRUD-Methoden für Reisen
     

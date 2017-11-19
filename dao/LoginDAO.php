@@ -90,9 +90,20 @@ class LoginDAO {
             } else {
                 echo("Unbekannter Benutzername.");
             }
-            
-            //return $statement->fetchAll()[0];
-//            return $statement->fetchAll(\PDO::FETCH_CLASS, "domain\Login")[0];
+        }
+        
+        public function findBenutzername($benutzername){
+            $pdo = Database::connect();
+            $statement = $pdo->prepare(
+                "SELECT * FROM login WHERE benutzername = :benutzername");
+            $statement->bindValue(':benutzername', $benutzername);
+            $statement->execute();
+            $row = $statement->fetchAll()[0];
+            if(isset($row)) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
 }

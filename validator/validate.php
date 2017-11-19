@@ -1,5 +1,9 @@
 <?php
 
+namespace validator;
+
+use service\Service;
+
 /*
  * Serverseitige Validierung von Formulareingaben
  */
@@ -63,12 +67,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
 }
 
-function validateBenutzername($benutzername){
-    // Eindeutigkeit prüfen
-    // Formale Vorgaben prüfen
-    
-}
+$benutzernameUniqueError = "";
 
+function validateBenutzername($benutzername){
+    // Formale Prüfung
+    // TODO
+    
+    // Gibt true zurück, falls es den Benutzernamen bereits gibt
+    if (Service::getInstance()->uniqueBenutzername($benutzername)){
+        $benutzernameUniqueError = "";
+    } //TODO: und dann?
+}
 function validateVorname($vorname){
     // Formale Vorgaben prüfen
     
