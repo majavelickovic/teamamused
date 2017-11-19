@@ -14,7 +14,7 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                 <div id="blockleft">
                     <h1>Verwaltung der Reisen</h1>
                     Login<br><br>
-                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                         <table>
                             <tr>
                                 <td><img src="../design/pictures/user.png"></td><td>Benutzername</td>
