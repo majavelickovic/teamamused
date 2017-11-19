@@ -20,7 +20,7 @@ table {
 #whiteblock {
     background-color: rgba(255, 255, 255, 0.7);
     margin: 80px 0px 80px 0px;
-    height: 400px;
+    height: 500px;
 }
 
 #block {
@@ -34,7 +34,7 @@ table {
 
 #blockleft {
     float: left;
-    width: 516px;
+    width: 1000px;
     margin: 15px 0px 15px 0px;
 }
 
@@ -103,4 +103,5 @@ input {
 
 .error {
     color: #cc0000;
+    font-size: 9pt;
 }
