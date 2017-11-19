@@ -10,7 +10,6 @@
 require_once("config/Autoloader.php");
 
 use router\Router;
-use database\Database;
 use controller\AuthentifizController;
 
 /*
