@@ -44,7 +44,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <td><img src="../design/pictures/plus.png"></td><td>neue Rechnung hinzufügen</td>
                         </tr>
                     </table>
-                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
 			<table>
                             <tr>
                                 <td>Rechnungs-ID</td>

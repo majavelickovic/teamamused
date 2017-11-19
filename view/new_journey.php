@@ -34,7 +34,7 @@ Diese Seite stellt die Reise-Seite dar.
                             <td><img src="../design/pictures/plus.png"></td><td>neue Reise erstellen</td>
                         </tr>
                     </table>
-                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
                         <table>
                             <tr>
                                 <td>Reisetitel</td>
@@ -66,7 +66,7 @@ Diese Seite stellt die Reise-Seite dar.
                     </form>
                 </div>
                 <div id="blockright">
-                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <form action=""<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                         <table> 
                             <tr>
                                 <td>Standort</td>
