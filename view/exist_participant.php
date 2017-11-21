@@ -13,10 +13,10 @@ Diese Seite stellt die Teilnehmer-Seite dar.
             <div id="block">
                 <div id="navblock">
                     <ul>
-                        <li><a href="#reise">Reise</a></li>
-                        <li><a href="#rechnung">Rechnung</a></li>
-                        <li><a href="#teilnehmer">Teilnehmer</a></li>
-                        <li><a href="#profil">Profil</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/reise" ?>">Reise</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung" ?>">Rechnung</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer" ?>">Teilnehmer</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/profil" ?>">Profil</a></li>
                     </ul>
                 </div>
                 <div id="blockleft">
