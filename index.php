@@ -95,11 +95,11 @@ Router::route("GET", "/reise/bestehend", function () {
 });
 
 Router::route("GET", "/rechnung/neu", function () {
-    controller\RechnungController::rechnungHinzufView();
+    controller\RechnungController::invoiceAddView();
 });
 
 Router::route("POST", "/rechnung/neu", function () {
-    $returnrg = controller\RechnungController::neueRechnung();
+    $returnrg = controller\RechnungController::newInvoice();
     if($returnrg != false){
         ?>
         <script type="text/javascript">
@@ -113,15 +113,15 @@ Router::route("POST", "/rechnung/neu", function () {
 });
 
 Router::route("GET", "/rechnung/bestehend", function () {
-    controller\RechnungController::rechnungAnzeigeView();
+    controller\RechnungController::invoiceShowView();
 });
 
 Router::route("POST", "/rechnung/bestehend", function () {
-    controller\RechnungController::rechnungAnzeigeView();
+    controller\RechnungController::invoiceShowView();
 });
 
 Router::route("GET", "/rechnung/anzeige", function () {
-    controller\RechnungController::rechnungAnzeigeEinzelView($_GET['id']);
+    controller\RechnungController::invoiceShowSingleView($_GET['id']);
 });
 
 Router::route("GET", "/rechnung", function () {

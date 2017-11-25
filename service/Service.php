@@ -253,7 +253,7 @@ class Service {
     /**
      * TODO -> Rechnung mit Werten aus Formular befüllen
      */
-    public function createRechnung($reise, $rgart, $kosten, $beschreibung, $dokument) {
+    public function createInvoice($reise, $rgart, $kosten, $beschreibung, $dokument) {
         $rechnungDAO = new \dao\RechnungDAO();
         // Rechnungsinhalte bestimmen
         $neu_id = $rechnungDAO->getNewRgID(); 
@@ -271,7 +271,7 @@ class Service {
     /**
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
      */
-    public function readRechnung($reise, $rg_id, $rgart) {
+    public function readInvoice($reise, $rg_id, $rgart) {
         //if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->read($reise, $rg_id, $rgart);
@@ -282,7 +282,7 @@ class Service {
     /**
      * TODO
      */
-    public function updateRechnung(Rechnung $rechnung) {
+    public function updateInvoice(Rechnung $rechnung) {
         if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->update($rechnung);
@@ -293,7 +293,7 @@ class Service {
     /**
      * Löscht anhand der Rechnungs-ID die entsprechende Rechnung aus der Datenbank
      */
-    public function deleteRechnung($rechnungId) {
+    public function deleteInvoice($rechnungId) {
         if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             $rechnung = new Rechnung();
@@ -305,7 +305,7 @@ class Service {
     /**
      * TODO -> auch in RechnungDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
      */
-    public function findAllRechnungen() {
+    public function findAllInvoice() {
         if($this->verifyAuth()){
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in RechnungDAO
