@@ -146,9 +146,10 @@ class RechnungDAO {
          */
         public function uploadInvoiceDocument(){
             $upload_dir = "uploads/invoice/";
+            print_r("Versuche Rechnung raufzuladen...");
             $upload_file = $upload_dir . basename($_FILES["dokument"]["name"]);
             move_uploaded_file($_FILES["dokument"]["tmp_name"], $upload_file);
-            echo "File Upload fehlgeschlagen: ";
+            print_r("Rechnungs-Upload abgeschlossen:");
             print_r($_FILES);
         }
 
