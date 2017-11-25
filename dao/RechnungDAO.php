@@ -140,6 +140,15 @@ class RechnungDAO {
             }
             return $returnvalue+1;
 	}
+        
+        /**
+         * Datei für Rechnung raufladen
+         */
+        public function uploadInvoiceDocument(){
+            $upload_dir = "uploads/invoice/";
+            $upload_file = $upload_dir . basename($_FILES["dokument"]["name"]);
+            move_uploaded_file($_FILES["dokument"]["tmp_name"], $upload_file);
+        }
 
 
 	/**
