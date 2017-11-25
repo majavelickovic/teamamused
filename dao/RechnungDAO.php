@@ -146,8 +146,8 @@ class RechnungDAO {
          */
         public function uploadInvoiceDocument(){
             $upload_dir = "uploads/invoice/";
-            $upload_file = $upload_dir . basename($_FILES["dokument"]["name"]);
-            move_uploaded_file($_FILES["dokument"]["tmp_name"], $upload_file);
+            $upload_file = $upload_dir . basename($_FILES["FileInput"]["name"]);
+            move_uploaded_file($_FILES["FileInput"]["tmp_name"], $upload_file);
         }
 
 
