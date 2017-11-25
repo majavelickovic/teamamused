@@ -113,6 +113,7 @@ Router::route("POST", "/rechnung/neu", function () {
         </script>
         <?php
     }
+    controller\RechnungController::invoiceAddView();
 });
 
 Router::route("GET", "/rechnung/bestehend", function () {
