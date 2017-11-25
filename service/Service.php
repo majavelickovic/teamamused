@@ -265,7 +265,7 @@ class Service {
         $rechnung->setKosten($kosten);
         $rechnung->setDokument($dokument);
         $rechnungDAO->create($rechnung);
-        $rechnungDAO->uploadInvoiceDocument();
+        $rechnungDAO->uploadInvoiceDocument($dokument);
         return $rechnung;
     }
 

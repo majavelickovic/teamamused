@@ -144,13 +144,10 @@ class RechnungDAO {
         /**
          * Datei für Rechnung raufladen
          */
-        public function uploadInvoiceDocument(){
+        public function uploadInvoiceDocument($dokument){
             $upload_dir = "../uploads/invoice/";
-            error_log("Versuche Rechnung raufzuladen...");
-            $upload_file = $upload_dir . basename($_FILES["dokument"]["name"]);
-            move_uploaded_file($_FILES["dokument"]["tmp_name"], $upload_file);
-            error_log("Rechnungs-Upload abgeschlossen:");
-            error_log($_FILES);
+            $upload_file = $upload_dir . basename($_FILES[$dokument]["name"]);
+            move_uploaded_file($_FILES[$dokument]["tmp_name"], $upload_file);
         }
 
 
