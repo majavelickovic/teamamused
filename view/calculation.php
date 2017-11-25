@@ -22,14 +22,14 @@ Diese Seite stellt die Rechnungs-Seite dar.
                 <div id="blockleft">
                     <table>
                         <tr>
-                            <td><img src="../design/pictures/plus.png"></td><td>neue Rechnung hinzufügen</td>
+                            <td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/neu" ?>"><img src="../design/pictures/plus.png"></a></td><td>neue Rechnung hinzufügen</td>
                         </tr>
                     </table>
                 </div>
                 <div id="blockright">
                     <table>
                         <tr>
-                            <td><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
+                            <td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/bestehend" ?>"><img src="../design/pictures/search.png"></a></td><td>bestehende Rechnung anzeigen</td>
                         </tr>
                     </table>
 
