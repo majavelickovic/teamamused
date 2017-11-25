@@ -86,7 +86,7 @@ use database\Database;
                             <th>Kosten</th>
                         </tr>
                         <?php
-                            $rgtablecontent = controller\RechnungController::leseRechnung();
+                            $rgtablecontent = controller\RechnungController::readInvoice();
                             if($rgtablecontent != null){
                                 echo $rgtablecontent;
                             }else{
