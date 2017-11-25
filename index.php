@@ -103,12 +103,15 @@ Router::route("POST", "/rechnung/neu", function () {
     if($returnrg != false){
         ?>
         <script type="text/javascript">
-            alert("Rechnung erstellt");
-            //alert("Rechnung <?php echo $returnrg->getRg_id()?> wurde erstellt.");
+            alert("Rechnung <?php echo $returnrg->getRg_id()?> wurde erstellt.");
         </script>
         <?php
     } else {
-        echo "FEHLER bei Rechnung erstellen"; // TODO
+        ?>
+        <script type="text/javascript">
+            alert("FEHLER - Rechnung konnte nicht erstellt werden. Bitte versuchen Sie es erneut.");
+        </script>
+        <?php
     }
 });
 
