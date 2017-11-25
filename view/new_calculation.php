@@ -77,7 +77,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         <tr>
                             <td>Dokument</td>
                             <td>
-                                <input id="FileInput" type="file" name="dokument" style="width:300px;"/>
+                                <input id="dokument" type="file" name="dokument" accept="application/pdf" style="width:300px;"/>
                             </td>
                         </tr>
                         <tr>
