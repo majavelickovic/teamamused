@@ -12,6 +12,7 @@ namespace dao;
 use domain\Rechnung;
 use database\Database;
 use PDO;
+use Exception;
 
 class RechnungDAO {
 
