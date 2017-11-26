@@ -166,7 +166,7 @@ class RechnungDAO {
              move_uploaded_file($_FILES['dokument']["tmp_name"], "../uploads/invoice/" . $fileToUpload); 
             }
             else{
-                throw new Exception('Bitte ein PDF raufladen, andere Typen nicht erlaubt.');
+                throw new Exception('Bitte ein PDF raufladen, andere Typen nicht erlaubt.' . $_FILES['dokument']["type"]);
             }
          }
 
