@@ -265,7 +265,11 @@ class Service {
         $rechnung->setKosten($kosten);
         $rechnung->setDokument($dokument);
         $rechnungDAO->create($rechnung);
-        $rechnungDAO->uploadInvoiceDocument($dokument);
+        try{
+            $rechnungDAO->uploadInvoiceDocument($dokument);
+        }catch(Exception $e){
+            //mache nichts
+        }
         return $rechnung;
     }
 

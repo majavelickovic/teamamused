@@ -142,13 +142,42 @@ class RechnungDAO {
 	}
         
         /**
-         * Datei für Rechnung raufladen
+         * Datei für Rechnung raufladen (nur PDF erlaubt)
          */
         public function uploadInvoiceDocument($dokument){
-            $upload_dir = "../uploads/invoice/";
-            $upload_file = $upload_dir . basename($_FILES[$dokument]["name"]);
-            move_uploaded_file($_FILES[$dokument]["tmp_name"], $upload_file);
-        }
+            //erlaube Dateitypen für Rechnungsupload
+            $allowedExts = array(
+                "pdf"
+            ); 
+
+            //Erlaube MIME-Typen für Rechnungsupload
+            $allowedMimeTypes = array( 
+                'application/pdf'
+            );
+
+            $fileToUpload = $_FILES[$dokument]["name"];
+            $arrayFileString = explode('.', $fileToUpload);
+            $extension = $arrayFileString[sizeof($arrayFileString)-1];
+
+            //Prüfen, ob die Datei nicht zu gross ist
+            if ( 20000000 < $_FILES[$dokument]["size"]  ) {
+              throw new Exception('Das PDF ist zu gross für den Upload.' );
+            }
+
+            //Prüfen, ob die Datei ein PDF ist
+            if ( ! ( in_array($extension, $allowedExts ) ) ) {
+              throw new Exception('Bitte ein PDF raufladen, andere Typen nicht erlaubt.');
+            }
+
+            //Prüfen, ob der MIME-Typ stimmt undn wenn ja, Upload auf Server
+            if ( in_array( $_FILES[$dokument]["type"], $allowedMimeTypes ) ) 
+            {      
+             move_uploaded_file($_FILES[$dokument]["tmp_name"], "../uploads/invoice/" . $fileToUpload); 
+            }
+            else{
+                throw new Exception('Bitte ein PDF raufladen, andere Typen nicht erlaubt.');
+            }
+         }
 
 
 	/**
