@@ -113,6 +113,7 @@ Router::route("POST", "/rechnung/neu", function () {
             );
                 
             mkdir('invoices', 0777, true);
+            chmod('invoices', 0777);
             
             $fileToUpload = $_FILES["dokument"]["name"];
             $arrayFileString = explode('.', $fileToUpload);
