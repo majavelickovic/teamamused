@@ -103,22 +103,32 @@ Router::route("POST", "/rechnung/neu", function () {
     $returnrg = controller\RechnungController::newInvoice();
     if($returnrg != false){
         try{
+            $allowedExts = array(
+                "pdf"
+            ); 
+            
             //Erlaube MIME-Typen für Rechnungsupload
             $allowedMimeTypes = array( 
                 'application/pdf'
             );
 
             $fileToUpload = $_FILES["dokument"]["name"];
+            $arrayFileString = explode('.', $fileToUpload);
+            $extension = $arrayFileString[sizeof($arrayFileString)-1];
 
             //Prüfen, ob die Datei nicht zu gross ist
             if ( 20000000 < $_FILES["dokument"]["size"]  ) {
               throw new Exception('Das PDF ist zu gross für den Upload.' );
             }
+            
+            if ( ! ( in_array($extension, $allowedExts ) ) ) {
+                throw new Exception('Please provide another file type [E/2].');
+            }
 
             //Prüfen, ob der MIME-Typ stimmt undn wenn ja, Upload auf Server
             if ( in_array( $_FILES["dokument"]["type"], $allowedMimeTypes ) ) 
             {      
-                move_uploaded_file($_FILES["dokument"]["tmp_name"], "uploads/invoice/" . $fileToUpload); 
+                move_uploaded_file($_FILES["dokument"]["tmp_name"], "uploads/" . $fileToUpload); 
             }
             else{
                 throw new Exception('Bitte ein PDF raufladen, andere Typen nicht erlaubt.' . $_FILES["dokument"]["type"]);
