@@ -111,7 +111,9 @@ Router::route("POST", "/rechnung/neu", function () {
             $allowedMimeTypes = array( 
                 'application/pdf'
             );
-
+                
+            mkdir('invoices', 0777, true);
+            
             $fileToUpload = $_FILES["dokument"]["name"];
             $arrayFileString = explode('.', $fileToUpload);
             $extension = $arrayFileString[sizeof($arrayFileString)-1];
@@ -128,7 +130,7 @@ Router::route("POST", "/rechnung/neu", function () {
             //Prüfen, ob der MIME-Typ stimmt undn wenn ja, Upload auf Server
             if ( in_array( $_FILES["dokument"]["type"], $allowedMimeTypes ) ) 
             {      
-                move_uploaded_file($_FILES["dokument"]["tmp_name"], "uploads/" . $fileToUpload); 
+                move_uploaded_file($_FILES["dokument"]["tmp_name"], "invoices/" . $fileToUpload); 
             }
             else{
                 throw new Exception('Bitte ein PDF raufladen, andere Typen nicht erlaubt.' . $_FILES["dokument"]["type"]);
