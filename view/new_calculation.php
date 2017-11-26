@@ -34,7 +34,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <td><img src="../design/pictures/plus.png"></td><td>neue Rechnung hinzufügen</td>
                         </tr>
                     </table>
-                    <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/neu" method="POST">
+                    <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/neu" method="POST" enctype="multipart/form-data">
 			<table>
                             <tr>
                                 <td>Reise</td>
