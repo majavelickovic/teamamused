@@ -103,7 +103,8 @@ Router::route("POST", "/rechnung/neu", function () {
     $returnrg = controller\RechnungController::newInvoice();
     if($returnrg != false){
         try{
-            \dao\RechnungDAO::uploadInvoiceDoc();
+            $rechnungDAO = new \dao\RechnungDAO();
+            $rechnungDAO->uploadInvoiceDoc();
         }catch(Exception $e){
             //mache nichts
         }
