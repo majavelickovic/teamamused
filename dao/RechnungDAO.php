@@ -152,8 +152,6 @@ class RechnungDAO {
             );
 
             $fileToUpload = $_FILES['dokument']["name"];
-            $arrayFileString = explode('.', $fileToUpload);
-            $extension = $arrayFileString[\sizeof($arrayFileString)-1];
 
             //Prüfen, ob die Datei nicht zu gross ist
             if ( 20000000 < $_FILES['dokument']["size"]  ) {
@@ -163,7 +161,7 @@ class RechnungDAO {
             //Prüfen, ob der MIME-Typ stimmt undn wenn ja, Upload auf Server
             if ( in_array( $_FILES['dokument']["type"], $allowedMimeTypes ) ) 
             {      
-             move_uploaded_file($_FILES['dokument']["tmp_name"], "../uploads/invoice/" . $fileToUpload); 
+             move_uploaded_file($_FILES['dokument']["tmp_name"], "uploads/invoice/" . $fileToUpload); 
             }
             else{
                 throw new Exception('Bitte ein PDF raufladen, andere Typen nicht erlaubt.' . $_FILES['dokument']["type"]);
