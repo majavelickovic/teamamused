@@ -102,6 +102,11 @@ Router::route("POST", "/rechnung/neu", function () {
     controller\RechnungController::invoiceAddView();
     $returnrg = controller\RechnungController::newInvoice();
     if($returnrg != false){
+        try{
+            \dao\RechnungDAO::uploadInvoiceDoc();
+        }catch(Exception $e){
+            //mache nichts
+        }
         ?>
         <script type="text/javascript">
             alert("Rechnung <?php echo $returnrg->getRg_id()?> wurde erstellt.");
