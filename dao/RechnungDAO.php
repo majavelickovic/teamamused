@@ -146,11 +146,6 @@ class RechnungDAO {
          * Datei für Rechnung raufladen (nur PDF erlaubt)
          */
         public function uploadInvoiceDoc(){
-            //erlaube Dateitypen für Rechnungsupload
-            $allowedExts = array(
-                "pdf"
-            ); 
-
             //Erlaube MIME-Typen für Rechnungsupload
             $allowedMimeTypes = array( 
                 'application/pdf'
@@ -163,11 +158,6 @@ class RechnungDAO {
             //Prüfen, ob die Datei nicht zu gross ist
             if ( 20000000 < $_FILES['dokument']["size"]  ) {
               throw new Exception('Das PDF ist zu gross für den Upload.' );
-            }
-
-            //Prüfen, ob die Datei ein PDF ist
-            if ( ! ( in_array($extension, $allowedExts ) ) ) {
-              throw new Exception('Bitte ein PDF raufladen, andere Typen nicht erlaubt.');
             }
 
             //Prüfen, ob der MIME-Typ stimmt undn wenn ja, Upload auf Server
