@@ -17,7 +17,7 @@ use database\Database;
                 document.getElementById("rgTable").refresh();
             }
             function deleteInvoice(rg_id){
-                
+                alert('Wollen Sie die Rechnung wirklich löschen?');
             }
         </script>
     </head>
@@ -87,6 +87,8 @@ use database\Database;
                             <th>Reise-ID</th>
                             <th>Rechnungsart</th>
                             <th>Kosten</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         <?php
                             $rgtablecontent = controller\RechnungController::readInvoice();
