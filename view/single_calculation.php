@@ -9,8 +9,7 @@ $statement = $pdo->prepare("SELECT rechnung.rg_id, reise_rechnung.reise_id, rech
                    FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE rechnung.rg_id = :rg_id;");
 $statement->bindValue(':rg_id', $rg_id);
 $statement->execute();
-$rg = new Rechnung();
-$rg = $statement->fetchAll(PDO::FETCH_CLASS, "Rechnung");
+$rg = $statement->fetchAll(PDO::FETCH_CLASS, "domain\Rechnung");
 
 /*
  * View, um eine einzelne Rechnung anzusehen / zu bearbeiten
