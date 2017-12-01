@@ -34,14 +34,14 @@ table {
 
 #blockleft {
     float: left;
-    width: 516px;
+    width: 500px;
     margin: 15px 0px 15px 0px;
 }
 
 #blockright {
-    float: right;
-    width: 516px;
-    margin: 15px 0px 15px 0px;
+    float: left;
+    width: 500px;
+    margin: 525px 0px 15px 0px;
 }
 
 ul {
