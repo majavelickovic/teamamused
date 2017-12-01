@@ -48,7 +48,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
 			<table>
                             <tr>
                                 <td>Rechnungs-ID</td>
-                                <td><input type="text" name="rg_id" style="width:296px;" value="<?php $rg->getRg_id();?>"/></td>
+                                <td><input type="text" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>"/></td>
                             </tr>
                             <tr>
                                 <td>Reise</td>
