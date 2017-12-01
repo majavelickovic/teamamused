@@ -16,6 +16,9 @@ use database\Database;
             function refreshTable() {
                 document.getElementById("rgTable").refresh();
             }
+            function deleteInvoice(rg_id){
+                
+            }
         </script>
     </head>
     <body>		

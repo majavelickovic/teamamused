@@ -84,7 +84,13 @@ class RechnungDAO {
             if($statement != null){
                 $texttotest = "";
                 while ($row = $statement->fetch()){
-                    $texttotest .= "<tr><td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . ">" . $row["rg_id"] . "</a></td><td>" . $row['reise_id'] . "</td><td>" . $row["beschreibung"] . "</td><td>" . $row["kosten"] . "</td></tr>";
+                    $texttotest .= "<tr>"
+                            . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . ">" . $row["rg_id"] . "</a></td>"
+                            . "<td>" . $row['reise_id'] . "</td>"
+                            . "<td>" . $row["beschreibung"] . "</td>"
+                            . "<td>" . $row["kosten"] . "</td></tr>"
+                            . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . ">" . $row["rg_id"] . "<img src='../design/pictures/plus.png'></a></td>"
+                            . "<td><a><img src='../design/pictures/delete.png' onclick='deleteInvoice(" . $row['rg_id'] . ")'></a></td>";;
                 }
                 return $texttotest;
             }else{
