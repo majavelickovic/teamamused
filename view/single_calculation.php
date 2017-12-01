@@ -10,7 +10,14 @@ $statement = $pdo->prepare("SELECT rechnung.rg_id, reise_rechnung.reise_id, rech
 $statement->bindValue(':rg_id', $rg_id);
 $statement->execute();
 $rg = new Rechnung();
-$rg = $statement->fetchAll(PDO::FETCH_CLASS, "domain\Rechnung");
+
+while ($row = $statement->fetch()){
+    $rg->setReise($row['reise_id']);
+    $rg->setRechnungsart($row['rechnungsart']);
+    $rg->setKosten($row['kosten']);
+    $rg->setBeschreibung($row['beschreibung']);
+    $rg->setDokument($row['dokument']);
+}
 
 /*
  * View, um eine einzelne Rechnung anzusehen / zu bearbeiten
