@@ -89,7 +89,7 @@ class RechnungDAO {
                             . "<td>" . $row['reise_id'] . "</td>"
                             . "<td>" . $row["beschreibung"] . "</td>"
                             . "<td>" . $row["kosten"] . "</td></tr>"
-                            . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . ">" . $row["rg_id"] . "<img src='../design/pictures/plus.png'></a></td>"
+                            . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . ">" . $row["rg_id"] . "<img src='../design/pictures/search.png'></a></td>"
                             . "<td><a><img src='../design/pictures/delete.png' onclick='deleteInvoice(" . $row['rg_id'] . ")'></a></td>";;
                 }
                 return $texttotest;
