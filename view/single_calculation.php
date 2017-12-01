@@ -35,7 +35,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
 
 $rg_id = $rg_id;
 echo("maja test");
-echo($rg_id);
+//echo($rg_id);
 echo($_GET['id']);
 /*$pdo = Database::connect();           
 $query = $pdo->query("SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten, rechnung.beschreibung, rechnung.dokument
