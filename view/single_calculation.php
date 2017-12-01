@@ -5,11 +5,11 @@ use domain\Rechnung;
 
 $rg_id = $_GET['id'];
 $pdo = Database::connect();           
-$query = $pdo->query("SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten, rechnung.beschreibung, rechnung.dokument
+/*$query = $pdo->query("SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten, rechnung.beschreibung, rechnung.dokument
                    FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE rechnung.rg_id = :rg_id;");
 $query->bindValue(':rg_id', $rg_id);
 $rg = new Rechnung();
-$rg = $query->fetchAll(PDO::FETCH_CLASS, "Rechnung");
+$rg = $query->fetchAll(PDO::FETCH_CLASS, "Rechnung");*/
 
 /*
  * View, um eine einzelne Rechnung anzusehen / zu bearbeiten
@@ -28,6 +28,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
     </head>
     <body>		
         <div id="whiteblock">
+            <?php "maja test says:" . $rg_id?>
             <div id="block">
                 <div id="navblock">
                     <ul>
@@ -85,7 +86,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Beschreibung</td>
-                            <td><textarea name="beschreibung" rows="5" cols="35"><?php echo $rg->getBeschreibung();?></textarea></td>
+                            <td><textarea name="beschreibung" rows="5" cols="35"><?php/* echo $rg->getBeschreibung();*/?></textarea></td>
                         </tr>
                         <tr>
                             <td>Dokument</td>
