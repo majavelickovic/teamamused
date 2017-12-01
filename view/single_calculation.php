@@ -29,6 +29,24 @@ Diese Seite stellt die Rechnungs-Seite dar.
     </head>
     <body>		
         <div id="whiteblock">
+            <?php
+
+
+
+$rg_id = $rg_id;
+echo("maja test");
+echo($rg_id);
+echo($_GET['id']);
+/*$pdo = Database::connect();           
+$query = $pdo->query("SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten, rechnung.beschreibung, rechnung.dokument
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE rechnung.rg_id = :rg_id;");
+$query->bindValue(':rg_id', $rg_id);
+$rg = $query->fetchAll(PDO::FETCH_CLASS, "Rechnung");*/
+
+/*
+ * View, um eine einzelne Rechnung anzusehen / zu bearbeiten
+ */
+?>
             <div id="block">
                 <div id="navblock">
                     <ul>
@@ -41,10 +59,10 @@ Diese Seite stellt die Rechnungs-Seite dar.
                 <div id="blockleft">
                     <table>
                         <tr>
-                            <td><img src="../design/pictures/plus.png"></td><td>neue Rechnung hinzufügen</td>
+                            <td><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
                         </tr>
                     </table>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                     <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/anzeige?id="<?php echo"$rg_id"?> method="POST">
 			<table>
                             <tr>
                                 <td>Rechnungs-ID</td>
@@ -99,6 +117,14 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                     </table>
                 </form>
+            </div>
+            <div id="blockright">
+                <table>
+                    <tr>
+                        <td colspan="2" align="center"><input type="submit" class="button" value="drucken" /></td>
+                        <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                    </tr>   
+                </table>
             </div>
         </div>
     </div>
