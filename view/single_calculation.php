@@ -85,7 +85,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                         $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
 
                                         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            if($row['rgard_id'] == $rg->getRechnungsart()){
+                                            if($row['rgart_id'] == $rg->getRechnungsart()){
                                                 echo "<option selected='selected' value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
                                             }else{
                                                 echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
@@ -110,16 +110,22 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                 <input id="FileInput" type="text" name="dokument" value="<?php echo $rg->getDokument();?>" style="width:300px;" disabled/>
                             </td>
                         </tr>
-                        <tr>
-                            <td colspan="2" align="center"><input type="submit" class="button" value="hinzuf&uuml;gen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
-                        </tr>
                     </table>
                 </form>
             </div>
             <div id="blockright">
                 <table>
+                    <tr><td colspan="2"></td></tr>
+                    <tr><td colspan="2"></td></tr>
+                    <tr><td colspan="2"></td></tr>
+                    <tr><td colspan="2"></td></tr>
+                    <tr><td colspan="2"></td></tr>
+                    <tr><td colspan="2"></td></tr>
+                    <tr><td colspan="2"></td></tr>
                     <tr>
                         <td colspan="2" align="center"><input type="submit" class="button" value="drucken" /></td>
+                    </tr>
+                    <tr>
                         <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                     </tr>   
                 </table>
