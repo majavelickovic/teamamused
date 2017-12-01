@@ -55,18 +55,22 @@ Diese Seite stellt die Rechnungs-Seite dar.
 			<table>
                             <tr>
                                 <td>Rechnungs-ID</td>
-                                <td><input type="text" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>"/></td>
+                                <td><input type="text" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>" disabled/></td>
                             </tr>
                             <tr>
                                 <td>Reise</td>
 				<td>
-                                    <select id="dropdown" name="reise" style="width:300px;">
+                                    <select id="dropdown" name="reise" style="width:300px;" disabled>
                                         <?php
                                         $pdo = Database::connect();
                                         $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
 
                                         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                            if($row['reise_id'] == $rg->getReise()){
+                                                echo "<option selected='selected' value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                            }else{
+                                                echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                            }   
                                         }
                                         ?>
                                     </select>
@@ -75,13 +79,18 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <tr>
                                 <td>Rechnungsart</td>
                                 <td>
-                                    <select id="dropdown" name="rgart" style="width:300px;">
+                                    <select id="dropdown" name="rgart" style="width:300px;" disabled>
                                         <?php
                                         $pdo = Database::connect();
                                         $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
 
                                         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                            if($row['rgard_id'] == $rg->getRechnungsart()){
+                                                echo "<option selected='selected' value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                            }else{
+                                                echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                            }
+
                                         }
                                         ?>
                                     </select>
@@ -89,16 +98,16 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Kosten</td>
-                            <td><input type="text" name="kosten" style="width:296px;"/></td>
+                            <td><input type="text" name="kosten" style="width:296px;" value="<?php echo $rg->getKosten();?>" disabled/></td>
                         </tr>
                         <tr>
                             <td>Beschreibung</td>
-                            <td><textarea name="beschreibung" rows="5" cols="35"><?php echo $rg->getBeschreibung();?></textarea></td>
+                            <td><textarea name="beschreibung" rows="5" cols="35" disabled><?php echo $rg->getBeschreibung();?></textarea></td>
                         </tr>
                         <tr>
                             <td>Dokument</td>
                             <td>
-                                <input id="FileInput" type="file" name="dokument" style="width:300px;"/>
+                                <input id="FileInput" type="text" name="dokument" value="<?php echo $rg->getDokument();?>" style="width:300px;" disabled/>
                             </td>
                         </tr>
                         <tr>
