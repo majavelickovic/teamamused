@@ -10,7 +10,7 @@ $statement = $pdo->prepare("SELECT rechnung.rg_id, reise_rechnung.reise_id, rech
 $statement->bindValue(':rg_id', $rg_id);
 $statement->execute();
 $rg = new Rechnung();
-$rg = $query->fetchAll(PDO::FETCH_CLASS, "Rechnung");
+$rg = $statement->fetchAll(PDO::FETCH_CLASS, "Rechnung");
 
 /*
  * View, um eine einzelne Rechnung anzusehen / zu bearbeiten
@@ -86,7 +86,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>
                         <tr>
                             <td>Beschreibung</td>
-                            <td><textarea name="beschreibung" rows="5" cols="35"><?php/* echo $rg->getBeschreibung();*/?></textarea></td>
+                            <td><textarea name="beschreibung" rows="5" cols="35"><?php echo $rg->getBeschreibung();?></textarea></td>
                         </tr>
                         <tr>
                             <td>Dokument</td>
