@@ -10,8 +10,7 @@ use service\Service;
 
 $del_rg_id = $_GET['del_rg_id'];
 if($del_rg_id > 0){
-    $rgCon = new RechnungController();
-    $rgCon->deleteInvoice($del_rg_id);
+    RechnungController::deleteInvoice($del_rg_id);
 }
 
 class RechnungController
@@ -48,7 +47,7 @@ class RechnungController
     
     public static function deleteInvoice($rg_id){
         return Service::getInstance()->deleteInvoice(
-                $rg_Id);
+                $rg_id);
     }
     
     public static function invoiceShowView(){
