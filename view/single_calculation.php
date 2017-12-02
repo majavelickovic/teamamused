@@ -26,6 +26,14 @@ Diese Seite stellt die Rechnungs-Seite dar.
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
         <title>Rechnung</title>
+        <script type="text/javascript">
+            function reloadOriginalInvoice(){
+                location.reload();
+            }
+            function printInvoice(){
+                //todo Rechnung drucken
+            }
+        </script>
     </head>
     <body>		
         <div id="whiteblock">
@@ -122,10 +130,10 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         <tr><td colspan="2"></td></tr>
                         <tr><td colspan="2"></td></tr>
                         <tr>
-                            <td colspan="2" align="center"><input type="submit" class="button" value="drucken" /></td>
+                            <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printInvoice()" /></td>
                         </tr>
                         <tr>
-                            <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                            <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalInvoice()"/></td>
                         </tr>   
                     </table>
                 </div>

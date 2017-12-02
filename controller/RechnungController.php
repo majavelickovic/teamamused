@@ -38,6 +38,7 @@ class RechnungController
     
     public static function updateInvoice(){
         return Service::getInstance()->updateInvoice(
+                $_POST["rg_id"],
                 $_POST["reise"],
                 $_POST["rgart"],
                 $_POST["kosten"],

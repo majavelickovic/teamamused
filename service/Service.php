@@ -282,11 +282,11 @@ class Service {
     /**
      * TODO
      */
-    public function updateInvoice(Rechnung $rechnung) {
-        if($this->verifyAuth()) {
+    public function updateInvoice($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument) {
+        //if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
-            return $rechnungDAO->update($rechnung);
-        }
+            return $rechnungDAO->update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument);
+        //}
         return null;
     }
 

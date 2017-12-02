@@ -169,6 +169,10 @@ Router::route("GET", "/rechnung/anzeige", function () {
     controller\RechnungController::invoiceShowSingleView();
 });
 
+Router::route("POST", "/rechnung/anzeige", function () {
+    controller\RechnungController::updateInvoice();
+});
+
 Router::route("GET", "/rechnung", function () {
     require_once("view/calculation.php");
 });

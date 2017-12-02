@@ -103,18 +103,17 @@ class RechnungDAO {
 	/**
 	 * Aktualisiert ein Rechnungs-Objekt in der Tabelle "rechnung"
 	 */
-	public function update(Rechnung $rechnung) {
+	public function update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument) {
             $pdo = Database::connect();
             $statement = $pdo->prepare(
                 "UPDATE rechnung SET rechnungsart = :rechnungsart, kosten = :kosten, beschreibung = :beschreibung, dokument = :dokument
                 WHERE rg_id = :rg_id");
-            $statement->bindValue(':rg_id', $rechnung->getRg_id());
-            //$statement->bindValue(':rechnungsart', $rechnung->get()); -> Kein Getter vorhanden
-            $statement->bindValue(':kosten', $rechnung->getKosten());
-            $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
-            $statement->bindValue(':dokument', $rechnung->getDokument());
+            $statement->bindValue(':rg_id', $rg_id);
+            $statement->bindValue(':rechnungsart', $rgart);
+            $statement->bindValue(':kosten', $kosten);
+            $statement->bindValue(':beschreibung', $beschreibung);
+            $statement->bindValue(':dokument', $dokument);
             $statement->execute();
-            return $this->read($rechnung->getRg_id());
 	}
 
 	/**
