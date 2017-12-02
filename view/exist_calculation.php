@@ -12,7 +12,7 @@ use database\Database;
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
         <title>Rechnung</title>
-        <script type="text/javascript">
+        <script>
             //Tabelleninhalt anzeigen, sobald nach Rechnungen gesucht wird
             function refreshTable() {
                 document.getElementById("rgTable").refresh();
@@ -20,9 +20,9 @@ use database\Database;
             //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
             function deleteInvoice(rg_id){
                 if(confirm("Wollen Sie die Rechnung wirklich löschen?")){
-                    $.get("dao\RechnungsDAO.php", delete(rg_id)){
+                    $.get("dao\RechnungsDAO.php::delete"+(rg_id){
                         alert("Rechnung " + rg_id + " wurde gel&ouml;scht.");
-                    };
+                    });
                     refreshTable();
                 }else{
                     //nichts tun, wenn der Benutzer die Rechnung nicht löschen möchte
