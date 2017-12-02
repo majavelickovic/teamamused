@@ -52,7 +52,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <td colspan="3"><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
                         </tr>
                     </table>
-                     <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/anzeige?id="<?php echo"$rg_id"?> method="POST">
+                     <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/anzeige" method="POST">
 			<table>
                             <tr>
                                 <td>Rechnungs-ID</td>
