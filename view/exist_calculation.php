@@ -20,25 +20,7 @@ use controller\RechnungController;
             }
             //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
             function deleteInvoice(rg_id){
-                <?php
-                    $rg_id = 3;
-                                        $pdo = Database::connect();
-                                        $statement2 = $pdo->prepare(
-                        "DELETE FROM reise_rechnung
-                        WHERE rg_id = :rg_id");
-                    $statement2->bindValue(':rg_id', $rg_id);
-                    $statement2->execute();
-                    
-
-                    $statement = $pdo->prepare(
-                        "DELETE FROM rechnung
-                        WHERE rg_id = :rg_id");
-                    $statement->bindValue(':rg_id', $rg_id);
-                    $statement->execute();
-
-
-                ?>
-                /*if(confirm("Wollen Sie die Rechnung wirklich löschen?")){
+                if(confirm("Wollen Sie die Rechnung wirklich löschen?")){
                     var req = new XMLHttpRequest();
                     req.open('GET', 'Rechnungscontroller.php?del_rg_id='+rg_id);
 
@@ -50,7 +32,7 @@ use controller\RechnungController;
                     req.send(null);
                 }else{
                     //nichts tun, wenn der Benutzer die Rechnung nicht löschen möchte
-                }*/
+                }
             }
         </script>
     </head>

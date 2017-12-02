@@ -122,17 +122,20 @@ class RechnungDAO {
 	 */
 	public function delete($rg_id) {
             $pdo = Database::connect();
-            $statement = $pdo->prepare(
-                "DELETE FROM rechnung
-                WHERE rg_id = :rg_id");
-            $statement->bindValue(':rg_id', $rg_id);
-            $statement->execute();
-
-            $statement2 = $pdo->prepare(
+            
+            $statement1 = $pdo->prepare(
                 "DELETE FROM reise_rechnung
+                WHERE rg_id = :rg_id");
+            $statement1->bindValue(':rg_id', $rg_id);
+            $statement1->execute();
+            
+            $statement2 = $pdo->prepare(
+                "DELETE FROM rechnung
                 WHERE rg_id = :rg_id");
             $statement2->bindValue(':rg_id', $rg_id);
             $statement2->execute();
+
+
 	}
         
        /**
