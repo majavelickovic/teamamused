@@ -11,7 +11,6 @@ require_once("config/Autoloader.php");
 
 use router\Router;
 use controller\AuthentifizController;
-use controller\ErrorController;
 
 /*
  * Startet eine neue Session - muss auf nachfolgenden Seiten nicht implementiert werden, da die Kommunikation über das Index-File läuft
@@ -163,14 +162,7 @@ Router::route("POST", "/rechnung/bestehend", function () {
 });
 
 Router::route("GET", "/rechnung/anzeige", function () {
-    $rg_id = $_GET['id'];
-    $rgDAO = new dao\RechnungDAO;
-    $rg = $rgDAO->readSingleInvoice($rg_id);
-    if($rg == ""){
-        ErrorController::error404View();
-    }else{
-        controller\RechnungController::invoiceShowSingleView();
-    }
+    controller\RechnungController::invoiceShowSingleView();
 });
 
 Router::route("GET", "/rechnung", function () {
