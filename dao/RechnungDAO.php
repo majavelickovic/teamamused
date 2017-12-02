@@ -120,18 +120,18 @@ class RechnungDAO {
 	/**
 	 * Löscht ein Rechnungs-Objekt aus der Tabelle "rechnung" und "reise_rechnung"
 	 */
-	public function delete(Rechnung $rechnung) {
+	public function delete(Rechnung $rg_id) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
             "DELETE FROM rechnung
             WHERE rg_id = :rg_id");
-        $statement->bindValue(':rg_id', $rechnung->getRg_id());
+        $statement->bindValue(':rg_id', $rg_id);
         $statement->execute();
         
         $statement2 = $pdo->prepare(
             "DELETE FROM reise_rechnung
             WHERE rg_id = :rg_id");
-        $statement2->bindValue(':rg_id', $rechnung->getRg_id());
+        $statement2->bindValue(':rg_id', $rg_id);
         $statement2->execute();
 	}
         
