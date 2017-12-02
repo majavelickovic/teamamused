@@ -294,12 +294,10 @@ class Service {
      * Löscht anhand der Rechnungs-ID die entsprechende Rechnung aus der Datenbank
      */
     public function deleteInvoice($rechnungId) {
-        if($this->verifyAuth()) {
+        //if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
-            $rechnung = new Rechnung();
-            $rechnung->setRg_id($rechnungId);
-            $rechnungDAO->delete($rechnung);
-        }
+            $rechnungDAO->delete($rechnungId);
+        //}
     }
 
     /**

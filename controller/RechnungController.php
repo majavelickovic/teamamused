@@ -42,8 +42,7 @@ class RechnungController
     
         public static function deleteInvoice(){
         return Service::getInstance()->deleteInvoice(
-                $_POST["rg_id"],
-                $_POST["reise"]);
+                $_POST["rg_id"]);
     }
     
     public static function invoiceShowView(){
