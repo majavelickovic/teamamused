@@ -83,7 +83,7 @@ Router::route("GET", "/welcome", function() {
 
 Router::route("GET", "/logout", function() {
     AuthentifizController::logout();
-    controller\LoginController::logoutView();
+    controller\LoginController::loginView();
 });
 
 Router::route("GET", "/reise/neu", function () {

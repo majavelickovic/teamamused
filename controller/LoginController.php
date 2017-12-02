@@ -36,8 +36,5 @@ class LoginController
         echo (new View("welcome.php"))->render();
     }
     
-    public static function logoutView() {
-        echo (new View("logout.php"))->render();
-    }
 }
 ?>
