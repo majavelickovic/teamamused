@@ -29,8 +29,7 @@ use controller\RechnungController;
                             alert("Die Rechnung " + rg_id + " wurde gelöscht.");
                         }
                     }
-                    req.send();
-                    refreshTable();
+                    req.send(null);
                 }else{
                     //nichts tun, wenn der Benutzer die Rechnung nicht löschen möchte
                 }

@@ -8,6 +8,12 @@ namespace controller;
 use view\view as View;
 use service\Service;
 
+$del_rg_id = $_GET['del_rg_id'];
+if($del_rg_id > 0){
+    $rgCon = new RechnungController();
+    $rgCon->deleteInvoice($del_rg_id);
+}
+
 class RechnungController
 {
 
@@ -40,9 +46,9 @@ class RechnungController
                 $_POST["dokument"]);
     }
     
-    public static function deleteInvoice(){
+    public static function deleteInvoice($rg_id){
         return Service::getInstance()->deleteInvoice(
-                $_POST["del_rg_id"]);
+                $rg_Id);
     }
     
     public static function invoiceShowView(){
@@ -56,11 +62,6 @@ class RechnungController
     public static function invoiceShowSingleView(){
         echo (new View("single_calculation.php"))->render();
     }
-}
-
-if($_POST['del_rg_id'] > 0){
-    $rgCon = new RechnungController();
-    $rgCon->deleteInvoice();
 }
 
 ?>
