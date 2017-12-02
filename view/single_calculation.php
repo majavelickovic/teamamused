@@ -26,12 +26,23 @@ Diese Seite stellt die Rechnungs-Seite dar.
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
         <title>Rechnung</title>
+        <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
         <script type="text/javascript">
             function reloadOriginalInvoice(){
                 location.reload();
             }
-            function printInvoice(){
-                window.print();
+            function printInvoice(){      
+                DocRaptor.createAndDownloadDoc("E9kUUIsh6PNW3HJPnB2", {
+                  test: true, // test documents are free, but watermarked
+                  type: "pdf",
+                  document_content: document.querySelector('html').innerHTML, // use this page's HTML
+                   document_content: "<h1>Hello world!</h1>",               // or supply HTML directly
+                   document_url: "http://example.com/your-page",            // or use a URL
+                   javascript: true,                                        // enable JavaScript processing
+                  // prince_options: {
+                  //   media: "screen",                                       // use screen styles instead of print styles
+                  // }
+                })
             }
         </script>
     </head>
