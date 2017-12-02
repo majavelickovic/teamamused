@@ -2,6 +2,7 @@
 
 use database\Database;
 use controller\RechnungController;
+use service\Service;
 
 /*
  * View, um eine besthende Rechnung zu suchen
@@ -20,7 +21,10 @@ use controller\RechnungController;
             }
             //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
             function deleteInvoice(rg_id){
-                if(confirm("Wollen Sie die Rechnung wirklich löschen?")){
+                <?php
+                Service::getInstance()->deleteInvoice(
+                4);?>
+                /*if(confirm("Wollen Sie die Rechnung wirklich löschen?")){
                     var req = new XMLHttpRequest();
                     req.open('GET', 'Rechnungscontroller.php?del_rg_id='+rg_id);
 
@@ -32,7 +36,7 @@ use controller\RechnungController;
                     req.send(null);
                 }else{
                     //nichts tun, wenn der Benutzer die Rechnung nicht löschen möchte
-                }
+                }*/
             }
         </script>
     </head>
