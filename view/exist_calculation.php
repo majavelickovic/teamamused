@@ -22,14 +22,14 @@ use controller\RechnungController;
             function deleteInvoice(rg_id){
                 <?php
                     $rg_id = 3;
-                    
+                                        $pdo = Database::connect();
                                         $statement2 = $pdo->prepare(
                         "DELETE FROM reise_rechnung
                         WHERE rg_id = :rg_id");
                     $statement2->bindValue(':rg_id', $rg_id);
                     $statement2->execute();
                     
-                    $pdo = Database::connect();
+
                     $statement = $pdo->prepare(
                         "DELETE FROM rechnung
                         WHERE rg_id = :rg_id");
