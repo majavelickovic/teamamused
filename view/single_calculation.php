@@ -49,12 +49,12 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <tr>
                                 <td>Rechnungs-ID</td>
                                 <td><input type="text" id="rg_id" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>" disabled/></td>
-                                <td><a href="#"><img src='../design/pictures/search.png' onclick='document.getElementById("rg_id").disabled=false'></a></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Reise</td>
 				<td>
-                                    <select id="dropdown" name="reise" style="width:300px;" disabled>
+                                    <select id="reise" name="reise" class="dropdown" style="width:300px;" disabled>
                                         <?php
                                         $pdo = Database::connect();
                                         $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
@@ -69,11 +69,12 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                         ?>
                                     </select>
                                 </td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Rechnungsart</td>
                                 <td>
-                                    <select id="dropdown" name="rgart" style="width:300px;" disabled>
+                                    <select id="rgart" name="rgart" class="dropdown" style="width:300px;" disabled>
                                         <?php
                                         $pdo = Database::connect();
                                         $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
@@ -89,20 +90,24 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                         ?>
                                     </select>
                                 </td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("rgart").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Kosten</td>
-                                <td><input type="text" name="kosten" style="width:296px;" value="<?php echo $rg->getKosten();?>" disabled/></td>
+                                <td><input type="text" id="kosten" name="kosten" style="width:296px;" value="<?php echo $rg->getKosten();?>" disabled/></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("kosten").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Beschreibung</td>
-                                <td><textarea name="beschreibung" rows="5" cols="35" disabled><?php echo $rg->getBeschreibung();?></textarea></td>
+                                <td><textarea id="beschreibung" name="beschreibung" rows="5" cols="35" disabled><?php echo $rg->getBeschreibung();?></textarea></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("beschreibung").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Dokument</td>
                                 <td>
                                     <input id="FileInput" type="text" name="dokument" value="<?php echo $rg->getDokument();?>" style="width:300px;" disabled/>
                                 </td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("FileInput").disabled=false'></a></td>
                             </tr>
                         </table>
                     </form>

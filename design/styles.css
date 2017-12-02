@@ -82,6 +82,11 @@ input {
     border: 2px solid #404040;
 }
 
+.dropdown {
+    width: 100%;
+    border: 2px solid #404040;
+}
+
 #pricerange {
     width: 100%;
 
