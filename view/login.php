@@ -20,12 +20,12 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                     <form method="POST" action="<?php echo $GLOBALS["ROOT_URL"]; ?>/login">
                         <table>
                             <tr>
-                                <td><img src="../design/pictures/user.png"></td><td>Benutzername</td>
+                                <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/user.png"></td><td>Benutzername</td>
                                 <td><input type="text" name="benutzername" value="" /></td>
                                 <td><span class="error"> <?php echo $benutzernameLoginError;?></span><td>
                             </tr>
                             <tr>
-                                <td><img src="../design/pictures/key.png"></td><td>Passwort</td>
+                                <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/key.png"></td><td>Passwort</td>
                                 <td><input type="password" name="password" value="" /></td>
                                 <span class="error">* <?php echo $passwordLoginError;?></span>
                             </tr>
