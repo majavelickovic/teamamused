@@ -13,6 +13,7 @@ use domain\Rechnung;
 use database\Database;
 use PDO;
 use Exception;
+use controller\ErrorController;
 
 class RechnungDAO {
 
@@ -196,7 +197,7 @@ class RechnungDAO {
             }
 
             if($rg->getReise() == ""){
-                controller\ErrorController::error404View();
+                ErrorController::error404View();
             }else{
                 return $rg;
             }
