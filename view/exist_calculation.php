@@ -13,7 +13,7 @@ use database\Database;
         <link rel="stylesheet" href="../design/styles.css">
         <title>Rechnung</title>
         <script type="text/javascript">
-            //Tabelleninhalt anzeigen, sobald nach Rechnungen gesucht wird
+            //Seite aktualisieren, damit die Tabelle aktualisiert angzeigt wird
             function refreshTable() {
                 document.getElementById("searchForm").submit();
             }
@@ -64,7 +64,7 @@ use database\Database;
                                             $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
 
                                             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                                if($_POST[reise_id] == $row['reise_id']){
+                                                if($_POST['reise_id'] == $row['reise_id']){
                                                     echo "<option selected='selected' value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
                                                 }else{
                                                     echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
@@ -87,7 +87,7 @@ use database\Database;
                                             $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
 
                                             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                                if($_POST['rgard_id'] == $row['rgart_id']){
+                                                if($_POST['rgart_id'] == $row['rgart_id']){
                                                     echo "<option selected='selected' value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
                                                 }else{
                                                     echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
