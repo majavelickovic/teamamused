@@ -73,13 +73,17 @@ Router::route("GET", "/", function () {
     Router::redirect("/login");
 });
 
-// Kommentare löschen, wenn Session funktioniert
 Router::route("GET", "/welcome", function() {
     if(AuthentifizController::authenticate()) {
         controller\LoginController::welcomeView();
     } else {
         controller\ErrorController::error403View();
     }
+});
+
+Router::route("GET", "/logout", function() {
+    AuthentifizController::logout();
+    controller\LoginController::logoutView();
 });
 
 Router::route("GET", "/reise/neu", function () {
