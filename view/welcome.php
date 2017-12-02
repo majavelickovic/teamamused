@@ -13,9 +13,9 @@ Diese Seite stellt die Willkommens-Seite dar.
             <div id="block">
                 <div id="navblock">
                     <ul>
-                        <li><a href="#reise">Reise</a></li>
-                        <li><a href="#rechnung">Rechnung</a></li>
-                        <li><a href="#teilnehmer">Teilnehmer</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/reise" ?>">Reise</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/rechnung" ?>">Rechnung</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/teilnehmer" ?>">Teilnehmer</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/logout" ?>">Logout</a></li>
                     </ul>
                 </div>
