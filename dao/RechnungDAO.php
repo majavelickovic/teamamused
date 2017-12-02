@@ -196,7 +196,7 @@ class RechnungDAO {
             }
 
             if($rg->getReise() == ""){
-                ErrorController::error404View();
+                controller\ErrorController::error404View();
             }else{
                 return $rg;
             }

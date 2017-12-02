@@ -5,7 +5,8 @@ use domain\Rechnung;
 use controller\ErrorController;
 
 $rg_id = $_GET['id'];
-$rg = dao\RechnungDAO::readSingleInvoice($rg_id);
+$rgDAO = new dao\RechnungDAO;
+$rg = $rgDAO->readSingleInvoice($rg_id);
 
 /*
  * View, um eine einzelne Rechnung anzusehen / zu bearbeiten
