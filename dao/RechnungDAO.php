@@ -90,7 +90,7 @@ class RechnungDAO {
                             . "<td>" . $row["beschreibung"] . "</td>"
                             . "<td>" . $row["kosten"] . "</td></tr>"
                             . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . "><img src='../design/pictures/search.png'></a></td>"
-                            . "<td><a href='#' ><img src='../design/pictures/delete.png' witdh='80%' onclick='deleteInvoice(" . $row['rg_id'] . ")'></a></td>"
+                            . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteInvoice(" . $row['rg_id'] . ")'></a></td>"
                             . "</tr>";
                 }
                 return $texttotest;
