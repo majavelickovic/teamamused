@@ -21,11 +21,12 @@ use database\Database;
             function deleteInvoice(rg_id){
                 if(confirm("Wollen Sie die Rechnung wirklich löschen?")){
                     var req = new XMLHttpRequest();
-                    req.open('GET', '../app/controller/RechnungController.php?del_rg_id='+rg_id);
+                    req.open('GET', '/deleteInvoice?del_rg_id='+rg_id);
 
                     req.onreadystatechange = function() {
                         if(req.readyState==4 && req.status==200) {
                             alert("Die Rechnung " + rg_id + " wurde gelöscht.");
+                            refreshTable();
                         }
                     }
                     req.send(null);
@@ -89,7 +90,7 @@ use database\Database;
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2" align="center"><input type="submit" class="button" value="suchen" onclick="refreshTable()"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                                <td colspan="2" align="center"><input type="button" class="button" value="suchen" onclick="refreshTable()"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                             </tr>
                         </table>
                     </form>
