@@ -182,7 +182,7 @@ Router::route("GET", "/testDB", function () {
 });
 
 Router::route("GET", "/rgcontroller", function () {
-    require_once("controller/Rechnungcontroller.php");
+    require_once("controller/RechnungController.php");
 });
 
 Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
