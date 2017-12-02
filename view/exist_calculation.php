@@ -1,7 +1,6 @@
 <?php
 
 use database\Database;
-use controller\RechnungController;
 
 /*
  * View, um eine besthende Rechnung zu suchen
@@ -22,7 +21,7 @@ use controller\RechnungController;
             function deleteInvoice(rg_id){
                 if(confirm("Wollen Sie die Rechnung wirklich löschen?")){
                     var req = new XMLHttpRequest();
-                    req.open('GET', 'Rechnungcontroller.php?del_rg_id='+rg_id);
+                    req.open('GET', '../controller/Rechnungcontroller.php?del_rg_id='+rg_id);
 
                     req.onreadystatechange = function() {
                         if(req.readyState==4 && req.status==200) {
