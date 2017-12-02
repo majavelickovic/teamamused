@@ -47,7 +47,7 @@ class RechnungController
     
     public static function deleteInvoice($rg_id){
         return Service::getInstance()->deleteInvoice(
-                $rg_Id);
+                $rg_id);
     }
     
     public static function invoiceShowView(){
