@@ -16,7 +16,7 @@ use database\Database;
             //Tabelleninhalt anzeigen, sobald nach Rechnungen gesucht wird
             function refreshTable() {
                 var req = new XMLHttpRequest();
-                req.open('POST', '/readInvoiceTable);
+                req.open('POST', '/readInvoiceTable');
 
                 req.onreadystatechange = function() {
                     if(req.readyState==4 && req.status==200) {
