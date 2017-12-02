@@ -41,14 +41,15 @@ Diese Seite stellt die Rechnungs-Seite dar.
                 <div id="blockleft">
                     <table>
                         <tr>
-                            <td><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
+                            <td colspan="3"><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
                         </tr>
                     </table>
                      <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/anzeige?id="<?php echo"$rg_id"?> method="POST">
 			<table>
                             <tr>
                                 <td>Rechnungs-ID</td>
-                                <td><input type="text" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>" disabled/></td>
+                                <td><input type="text" id="rg_id" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>" disabled/></td>
+                                <td><a href="#"><img src='../design/pictures/search.png' onclick='document.getElementById("rg_id").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Reise</td>
