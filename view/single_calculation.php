@@ -107,7 +107,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                 <td>
                                     <input id="FileInput" type="text" name="dokument" value="<?php echo $rg->getDokument();?>" style="width:300px;" disabled/>
                                 </td>
-                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementByID("FileInput").type="file";document.getElementById("FileInput").disabled=false'></a></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("FileInput").type="file";document.getElementById("FileInput").disabled=false'></a></td>
                             </tr>
                         </table>
                     </form>
