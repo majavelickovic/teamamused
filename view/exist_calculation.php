@@ -22,7 +22,7 @@ use controller\RechnungController;
             function deleteInvoice(rg_id){
                 if(confirm("Wollen Sie die Rechnung wirklich löschen?")){
                     var req = new XMLHttpRequest();
-                    req.open('POST', 'Rechnungscontroller.php?del_rg_id='+rg_id);
+                    req.open('GET', 'Rechnungscontroller.php?del_rg_id='+rg_id);
 
                     req.onreadystatechange = function() {
                         if(req.readyState==4 && req.status==200) {
