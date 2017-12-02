@@ -15,7 +15,19 @@ use database\Database;
         <script type="text/javascript">
             //Tabelleninhalt anzeigen, sobald nach Rechnungen gesucht wird
             function refreshTable() {
-                document.getElementById("rgTable").refresh();
+                var req = new XMLHttpRequest();
+                req.open('POST', '/readInvoiceTable);
+
+                req.onreadystatechange = function() {
+                    if(req.readyState==4 && req.status==200) {
+                        document.getElementById("editableContentTable").innerHTML = tablecontent;
+                    }
+                }
+                req.send(null);
+                                        <?php
+                            
+                        ?>
+                
             }
             //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
             function deleteInvoice(rg_id){
@@ -104,15 +116,7 @@ use database\Database;
                             <th>Kosten</th>
                             <th></th>
                             <th></th>
-                        </tr>
-                        <?php
-                            $rgtablecontent = controller\RechnungController::readInvoice();
-                            if($rgtablecontent != null){
-                                echo $rgtablecontent;
-                            }else{
-                                echo "";
-                            }
-                        ?>
+                        </tr><div id="editableContentTable"></div>
                     </table>
                 </div>
             </div>
