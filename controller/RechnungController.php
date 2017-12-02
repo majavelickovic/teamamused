@@ -11,8 +11,10 @@ use service\Service;
 $del_rg_id = $_GET['del_rg_id'];
 echo "Das ist die Nummer: " . $del_rg_id;
 if($del_rg_id > 0){
+    echo "Ziel 1 erreicht";
     $rgCon = new RechnungController();
     $rgCon->deleteInvoice($del_rg_id);
+    echo "Ziel 2 erreicht";
 }
 
 class RechnungController
