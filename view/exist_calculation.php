@@ -13,11 +13,18 @@ use database\Database;
         <link rel="stylesheet" href="../design/styles.css">
         <title>Rechnung</title>
         <script type="text/javascript">
+            //Tabelleninhalt anzeigen, sobald nach Rechnungen gesucht wird
             function refreshTable() {
                 document.getElementById("rgTable").refresh();
             }
+            //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
             function deleteInvoice(rg_id){
-                alert('Wollen Sie die Rechnung wirklich löschen?');
+                If(confirm('Wollen Sie die Rechnung wirklich löschen?')){
+                    //todo
+                    
+                }else{
+                    //nichts tun, wenn der Benutzer die Rechnung nicht löschen möchte
+                }
             }
         </script>
     </head>

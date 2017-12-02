@@ -40,7 +40,7 @@ class RechnungDAO {
 	}
 
 	/**
-	 * Liest ein Rechnungs-Objekt aus der Tabelle "rechnung"
+	 * Liest alle Rechnungen gemäss Filterkriterien und gibt diese als eine Liste zurück, welche als Tabelle dargestellt wird
 	 */
 	public function read($_reise, $_rg_id, $_rgart) {
             $texttotest = "";
@@ -90,7 +90,7 @@ class RechnungDAO {
                             . "<td>" . $row["beschreibung"] . "</td>"
                             . "<td>" . $row["kosten"] . "</td></tr>"
                             . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . "><img src='../design/pictures/search.png'></a></td>"
-                            . "<td><a href='#' ><img src='../design/pictures/delete.png' witdh='90%' onclick='deleteInvoice(" . $row['rg_id'] . ")'></a></td>"
+                            . "<td><a href='#' ><img src='../design/pictures/delete.png' witdh='80%' onclick='deleteInvoice(" . $row['rg_id'] . ")'></a></td>"
                             . "</tr>";
                 }
                 return $texttotest;
@@ -179,13 +179,27 @@ class RechnungDAO {
 	/**
 	 * noch überarbeiten
 	 */
-	public function findByXY($xy) {
-            $pdo = Database::connect();
-            $statement = $pdo->prepare('
-                SELECT * FROM rechnung WHERE xy = :xy ORDER BY id;');
-            $statement->bindValue(':xy', $xy);
+	public function readSingleInvoice($rg_id) {
+            $pdo = Database::connect();           
+            $statement = $pdo->prepare("SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten, rechnung.beschreibung, rechnung.dokument
+                               FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE rechnung.rg_id = :rg_id;");
+            $statement->bindValue(':rg_id', $rg_id);
             $statement->execute();
-            return $statement->fetchAll(\PDO::FETCH_CLASS, "Rechnung");
+            $rg = new Rechnung();
+
+            while ($row = $statement->fetch()){
+                $rg->setReise($row['reise_id']);
+                $rg->setRechnungsart($row['rechnungsart']);
+                $rg->setKosten($row['kosten']);
+                $rg->setBeschreibung($row['beschreibung']);
+                $rg->setDokument($row['dokument']);
+            }
+
+            if($rg->getReise() == ""){
+                ErrorController::error404View();
+            }else{
+                return $rg;
+            }
         }
 }
 ?>
