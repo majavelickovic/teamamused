@@ -189,16 +189,6 @@ Router::route("GET", "/deleteInvoice", function () {
     require_once("controller/RechnungController.php");
 });
 
-Router::route("POST", "/readInvoiceTable", function () {
-    $rgtablecontent = controller\RechnungController::readInvoice();
-    if($rgtablecontent != null){
-        return $rgtablecontent;
-    }else{
-        return "";
-    }
-});
-
-
 
 Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
 ?>

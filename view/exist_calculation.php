@@ -15,19 +15,7 @@ use database\Database;
         <script type="text/javascript">
             //Tabelleninhalt anzeigen, sobald nach Rechnungen gesucht wird
             function refreshTable() {
-                var req = new XMLHttpRequest();
-                req.open('POST', '/readInvoiceTable');
-
-                req.onreadystatechange = function() {
-                    if(req.readyState==4 && req.status==200) {
-                        document.getElementById("editableContentTable").innerHTML = req.responseText;
-                    }
-                }
-                req.send(null);
-                                        <?php
-                            
-                        ?>
-                
+                document.getElementById("searchForm").submit();
             }
             //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
             function deleteInvoice(rg_id){
@@ -65,7 +53,7 @@ use database\Database;
                             <td><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
                         </tr>
                     </table>
-                    <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/bestehend" method="POST">
+                    <form id="searchForm" action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/bestehend" method="POST">
                         <table>
                             <tr>
                                 <td>Reise</td>
@@ -76,7 +64,11 @@ use database\Database;
                                             $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
 
                                             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                                echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                                if($_POST[reise_id] == $row['reise_id']){
+                                                    echo "<option selected='selected' value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                                }else{
+                                                    echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                                }
                                             }
                                         ?>
                                     </select>
@@ -95,14 +87,18 @@ use database\Database;
                                             $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
 
                                             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                                echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                                if($_POST['rgard_id'] == $row['rgart_id']){
+                                                    echo "<option selected='selected' value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                                }else{
+                                                    echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                                }
                                             }
                                         ?>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2" align="center"><input type="button" class="button" value="suchen" onclick="refreshTable()"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                                <td colspan="2" align="center"><input type="submit" class="button" value="suchen"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                             </tr>
                         </table>
                     </form>
@@ -116,7 +112,15 @@ use database\Database;
                             <th>Kosten</th>
                             <th></th>
                             <th></th>
-                        </tr><div id="editableContentTable"></div>
+                        </tr>
+                        <?php
+                            $rgtablecontent = controller\RechnungController::readInvoice();
+                            if($rgtablecontent != null){
+                                echo $rgtablecontent;
+                            }else{
+                                echo "";
+                            }
+                        ?>
                     </table>
                 </div>
             </div>
