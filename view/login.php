@@ -47,9 +47,6 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
 
 <?php
 
-//        if (isset($_POST['sub'])) {
-//            include_once './../validator/validate.php';
-
 
 
 ?>
