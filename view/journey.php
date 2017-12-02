@@ -22,14 +22,14 @@ Diese Seite stellt die Reise-Seite dar.
                 <div id="blockleft">
                     <table>
                         <tr>
-                            <td><img src="../design/pictures/plus.png"></td><td>neue Reise erstellen</td>
+                            <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/plus.png"></td><td>neue Reise erstellen</td>
                         </tr>
                     </table>
                 </div>
                 <div id="blockright">
                     <table>
                         <tr>
-                            <td><img src="../design/pictures/search.png"></td><td>bestehende Reise anzeigen</td>
+                            <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/search.png"></td><td>bestehende Reise anzeigen</td>
                         </tr>
                     </table>
                 </div>

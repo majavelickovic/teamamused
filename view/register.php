@@ -19,7 +19,7 @@ Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User regi
                     <form method="POST" action="<?php echo $GLOBALS["ROOT_URL"]; ?>/register">
                         <table>
                             <tr>
-                                <td><img src="../design/pictures/user.png"></td><td>Benutzername</td>
+                                <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/user.png"></td><td>Benutzername</td>
                                 <td><input type="text" name="benutzername" value="" /></td>
                                 <td><span class="error"> <?php echo $benutzernameRegisterError;?></span><td>
                             </tr>
@@ -36,7 +36,7 @@ Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User regi
                                 <td><span class="error"> <?php echo $nachnameRegisterError;?></span><td> 
                             </tr>
                             <tr>
-                                <td><img src="../design/pictures/key.png"></td><td>Passwort</td>
+                                <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/key.png"></td><td>Passwort</td>
                                 <td><input type="password" name="password1" value="" /></td>
                                 <td><span class="error"> <?php echo $password1RegisterError;?></span><td>
                             </tr>
