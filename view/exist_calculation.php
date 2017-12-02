@@ -90,7 +90,7 @@ use database\Database;
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2" align="center"><input type="submit" class="button" value="suchen" onclick="refreshTable()"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                                <td colspan="2" align="center"><input type="button" class="button" value="suchen" onclick="refreshTable()"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                             </tr>
                         </table>
                     </form>
