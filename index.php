@@ -185,7 +185,7 @@ Router::route("GET", "/testDB", function () {
     require_once("view/testDBConnect.php");
 });
 
-Router::route("GET", "/rgcontroller", function () {
+Router::route("GET", "/deleteInvoice", function () {
     require_once("controller/RechnungController.php");
 });
 
