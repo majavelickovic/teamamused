@@ -88,9 +88,9 @@ class RechnungDAO {
                             . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . ">" . $row["rg_id"] . "</a></td>"
                             . "<td>" . $row['reise_id'] . "</td>"
                             . "<td>" . $row["beschreibung"] . "</td>"
-                            . "<td>" . $row["kosten"] . "</td></tr>"
+                            . "<td>" . $row["kosten"] . "</td>"
                             . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . "><img src='../design/pictures/search.png'></a></td>"
-                            . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteInvoice()'></a></td>"
+                            . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteInvoice(" . $row['rg_id'] . ")'></a></td>"
                             . "</tr>";
                 }
                 return $texttotest;
