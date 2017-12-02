@@ -200,7 +200,7 @@ class RechnungDAO {
         }
 }
 
-if($_GET['del_rg_id'] != ""){
+if($_GET['del_rg_id'] > 0){
     $rgDAO = new RechnungDAO;
     $rgDAO->delete($_GET['del_rg_id']);
 }

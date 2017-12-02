@@ -12,7 +12,7 @@ use database\Database;
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
         <title>Rechnung</title>
-        <script>
+        <script type="text/javascript">
             //Tabelleninhalt anzeigen, sobald nach Rechnungen gesucht wird
             function refreshTable() {
                 document.getElementById("rgTable").refresh();
@@ -25,7 +25,7 @@ use database\Database;
 
                     req.onreadystatechange = function() {
                         if(req.readyState==4 && req.status==200) {
-                            alert("Die Rechnung " + rg_id + " wurde gel&ouml;scht.");
+                            alert("Die Rechnung " + rg_id + " wurde gelöscht.");
                         }
                     }
                     req.send();
