@@ -4,13 +4,6 @@ use database\Database;
 use domain\Rechnung;
 use controller\ErrorController;
 
-$rg_id = $_GET['id'];
-$rgDAO = new dao\RechnungDAO;
-$rg = $rgDAO->readSingleInvoice($rg_id);
-if($rg == ""){
-    ErrorController::error404View();
-}else{
-
 /*
  * View, um eine einzelne Rechnung anzusehen / zu bearbeiten
  */
@@ -126,7 +119,3 @@ Diese Seite stellt die Rechnungs-Seite dar.
     </div>
 </body>
 </html>
-
-<?php
-}
-?>
