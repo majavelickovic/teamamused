@@ -16,7 +16,7 @@ Diese Seite stellt die Willkommens-Seite dar.
                         <li><a href="#reise">Reise</a></li>
                         <li><a href="#rechnung">Rechnung</a></li>
                         <li><a href="#teilnehmer">Teilnehmer</a></li>
-                        <li><a href="#logout">Logout</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/logout" ?>">Logout</a></li>
                     </ul>
                 </div>
                 <div id="blockleft">
