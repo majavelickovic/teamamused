@@ -6,8 +6,9 @@ use controller\ErrorController;
 
 $rg_id = $_GET['id'];
 $rgDAO = new dao\RechnungDAO;
+$rg = new Rechnung();
 $rg = $rgDAO->readSingleInvoice($rg_id);
-if($rg == ""){
+if($rg->getReise() == ""){
     ErrorController::error404View();
 }else{
 
