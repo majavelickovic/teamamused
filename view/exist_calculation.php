@@ -18,7 +18,7 @@ use database\Database;
                 document.getElementById("rgTable").refresh();
             }
             //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
-            function deleteInvoice(rg_id){
+            function deleteInvoice(){
                 If(confirm('Wollen Sie die Rechnung wirklich löschen?') == true){
                     $.get("dao\RechnungsDAO.php", delete(rg_id)){alert('Rechnung ' + rg_id + ' wurde gel&ouml;scht.')};
                     refreshTable();
