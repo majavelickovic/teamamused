@@ -22,14 +22,14 @@ Diese Seite stellt die Rechnungs-Seite dar.
                 <div id="blockleft">
                     <table>
                         <tr>
-                            <td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/neu" ?>"><img src="../design/pictures/plus.png"></a></td><td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/neu" ?>" style="text-decoration: none;">neue Rechnung hinzufügen</a></td>
+                            <td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/neu" ?>"><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/plus.png"></a></td><td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/neu" ?>" style="text-decoration: none;">neue Rechnung hinzufügen</a></td>
                         </tr>
                     </table>
                 </div>
                 <div id="blockright">
                     <table>
                         <tr>
-                            <td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/bestehend" ?>"><img src="../design/pictures/search.png"></a></td><td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/bestehend" ?>" style="text-decoration: none;">bestehende Rechnung anzeigen</a></td>
+                            <td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/bestehend" ?>"><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/search.png"></a></td><td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/bestehend" ?>" style="text-decoration: none;">bestehende Rechnung anzeigen</a></td>
                         </tr>
                     </table>
 
