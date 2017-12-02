@@ -31,7 +31,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                 location.reload();
             }
             function printInvoice(){
-                //todo Rechnung drucken
+                window.print();
             }
         </script>
     </head>
