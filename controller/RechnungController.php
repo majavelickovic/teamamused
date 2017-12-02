@@ -24,14 +24,14 @@ class RechnungController
                 $_POST["dokument"]);
     }
     
-        public static function readInvoice(){
+    public static function readInvoice(){
         return Service::getInstance()->readInvoice(
                 $_POST["reise"],
                 $_POST["rg_id"],
                 $_POST["rgart"]);
     }
     
-        public static function updateInvoice(){
+    public static function updateInvoice(){
         return Service::getInstance()->updateInvoice(
                 $_POST["reise"],
                 $_POST["rgart"],
@@ -40,9 +40,9 @@ class RechnungController
                 $_POST["dokument"]);
     }
     
-        public static function deleteInvoice(){
+    public static function deleteInvoice(){
         return Service::getInstance()->deleteInvoice(
-                $_POST["rg_id"]);
+                $_POST["del_rg_id"]);
     }
     
     public static function invoiceShowView(){
@@ -57,4 +57,10 @@ class RechnungController
         echo (new View("single_calculation.php"))->render();
     }
 }
+
+if($_POST['del_rg_id'] > 0){
+    $rgCon = new RechnungController();
+    $rgCon->deleteInvoice();
+}
+
 ?>

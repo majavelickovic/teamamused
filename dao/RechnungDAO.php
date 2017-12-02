@@ -20,23 +20,23 @@ class RechnungDAO {
 	 * Erstellt einen neues Rechnungs-Objekt in der Tabelle "rechnung" und "reise_rechnung"
 	 */
 	public function create(Rechnung $rechnung) {
-        $pdo = Database::connect();
-        $statement = $pdo->prepare(
-                "INSERT INTO rechnung (rg_id, rechnungsart, kosten, beschreibung, dokument)
-                    VALUES (:rg_id, :rechnungsart, :kosten, :beschreibung, :dokument)");
-        $statement->bindValue(':rg_id', $rechnung->getRg_id());
-        $statement->bindValue(':rechnungsart', $rechnung->getRechnungsart());
-        $statement->bindValue(':kosten', $rechnung->getKosten());
-        $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
-        $statement->bindValue(':dokument', $rechnung->getDokument());
-        $statement->execute();
-        
-        $statement2 = $pdo->prepare(
-                "INSERT INTO reise_rechnung (reise_id, rg_id)
-                    VALUES (:reise, :rg_id)");
-        $statement2->bindValue(':reise', $rechnung->getReise());
-        $statement2->bindValue(':rg_id', $rechnung->getRg_id());
-        $statement2->execute();
+            $pdo = Database::connect();
+            $statement = $pdo->prepare(
+                    "INSERT INTO rechnung (rg_id, rechnungsart, kosten, beschreibung, dokument)
+                        VALUES (:rg_id, :rechnungsart, :kosten, :beschreibung, :dokument)");
+            $statement->bindValue(':rg_id', $rechnung->getRg_id());
+            $statement->bindValue(':rechnungsart', $rechnung->getRechnungsart());
+            $statement->bindValue(':kosten', $rechnung->getKosten());
+            $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
+            $statement->bindValue(':dokument', $rechnung->getDokument());
+            $statement->execute();
+
+            $statement2 = $pdo->prepare(
+                    "INSERT INTO reise_rechnung (reise_id, rg_id)
+                        VALUES (:reise, :rg_id)");
+            $statement2->bindValue(':reise', $rechnung->getReise());
+            $statement2->bindValue(':rg_id', $rechnung->getRg_id());
+            $statement2->execute();
 	}
 
 	/**
@@ -104,35 +104,35 @@ class RechnungDAO {
 	 * Aktualisiert ein Rechnungs-Objekt in der Tabelle "rechnung"
 	 */
 	public function update(Rechnung $rechnung) {
-        $pdo = Database::connect();
-        $statement = $pdo->prepare(
-            "UPDATE rechnung SET rechnungsart = :rechnungsart, kosten = :kosten, beschreibung = :beschreibung, dokument = :dokument
-            WHERE rg_id = :rg_id");
-        $statement->bindValue(':rg_id', $rechnung->getRg_id());
-        //$statement->bindValue(':rechnungsart', $rechnung->get()); -> Kein Getter vorhanden
-        $statement->bindValue(':kosten', $rechnung->getKosten());
-        $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
-        $statement->bindValue(':dokument', $rechnung->getDokument());
-        $statement->execute();
-        return $this->read($rechnung->getRg_id());
+            $pdo = Database::connect();
+            $statement = $pdo->prepare(
+                "UPDATE rechnung SET rechnungsart = :rechnungsart, kosten = :kosten, beschreibung = :beschreibung, dokument = :dokument
+                WHERE rg_id = :rg_id");
+            $statement->bindValue(':rg_id', $rechnung->getRg_id());
+            //$statement->bindValue(':rechnungsart', $rechnung->get()); -> Kein Getter vorhanden
+            $statement->bindValue(':kosten', $rechnung->getKosten());
+            $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
+            $statement->bindValue(':dokument', $rechnung->getDokument());
+            $statement->execute();
+            return $this->read($rechnung->getRg_id());
 	}
 
 	/**
 	 * Löscht ein Rechnungs-Objekt aus der Tabelle "rechnung" und "reise_rechnung"
 	 */
 	public function delete($rg_id) {
-        $pdo = Database::connect();
-        $statement = $pdo->prepare(
-            "DELETE FROM rechnung
-            WHERE rg_id = :rg_id");
-        $statement->bindValue(':rg_id', $rg_id);
-        $statement->execute();
-        
-        $statement2 = $pdo->prepare(
-            "DELETE FROM reise_rechnung
-            WHERE rg_id = :rg_id");
-        $statement2->bindValue(':rg_id', $rg_id);
-        $statement2->execute();
+            $pdo = Database::connect();
+            $statement = $pdo->prepare(
+                "DELETE FROM rechnung
+                WHERE rg_id = :rg_id");
+            $statement->bindValue(':rg_id', $rg_id);
+            $statement->execute();
+
+            $statement2 = $pdo->prepare(
+                "DELETE FROM reise_rechnung
+                WHERE rg_id = :rg_id");
+            $statement2->bindValue(':rg_id', $rg_id);
+            $statement2->execute();
 	}
         
        /**
@@ -198,11 +198,6 @@ class RechnungDAO {
             return $rg;
             
         }
-}
-
-if($_GET['del_rg_id'] > 0){
-    $rgDAO = new RechnungDAO;
-    $rgDAO->delete($_GET['del_rg_id']);
 }
 
 ?>
