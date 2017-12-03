@@ -7,7 +7,10 @@ $pdf->AddPage();
 //Titel
 $pdf->SetFont('Arial','B',16);
 $pdf->Cell(100,5,"Reise: " . $_POST['reise']);
+$pdf->Cell(400,5,"");
 $pdf->Ln();
+$pdf->Ln();
+
 /*Einstellung der Überschrift */  
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->SetLineWidth(0.2);
@@ -15,12 +18,13 @@ $pdf->SetDrawColor(0,0);
 $pdf->SetFillColor(192,192);
 
 // Überschrift
-$pdf->Cell(120,20,"Beschreibung","LTR",1,"C",1);
-$pdf->Cell(40,20,"Einnahmen/Ausgaben","LTR",1,"C",1);
+$pdf->Cell(100,10,"Beschreibung","LTR",1,"C",1);
+$pdf->Cell(40,10,"Einnahmen/Ausgaben","LTR",1,"C",1);
 $pdf->Ln();
 
 /* Einstellungen der Tabelle */
 $pdf->SetFont('Arial', '', 10);
+
 // Lese Daten für Schlussabrechnung
 /*$pdo = database\Database::connect();           
 $statement = $pdo->prepare("SELECT beschreibung FROM reise WHERE reise = :reise;");
