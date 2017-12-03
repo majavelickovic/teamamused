@@ -114,6 +114,12 @@ class RechnungDAO {
             $statement->bindValue(':beschreibung', $beschreibung);
             $statement->bindValue(':dokument', $dokument);
             $statement->execute();
+            
+            $statement2 = $pdo->prepare(
+                "UPDATE reise_rechnung SET reise_id = :reise WHERE rg_id = :rg_id");
+            $statement2->bindValue(':reise', $reise);
+            $statement2->bindValue(':rg_id', $rg_id);
+            $statement2->execute();
 	}
 
 	/**
