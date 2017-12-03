@@ -16,9 +16,9 @@ class PDF extends FPDF {
     // Arial fett 15
     $this->SetFont('Arial','B',15);
      // nach rechts gehen
-     $this->Cell(80);
+     $this->Cell(5);
      // Titel
-     $this->Cell(5,10,'Schlussabrechnung - ' . $reisename,1,0,'L');
+     $this->Cell(200,10,'Schlussabrechnung - ' . $reisename,1,0,'L');
      // Zeilenumbruch
      $this->Ln(20);
   } 
@@ -45,8 +45,8 @@ class PDF extends FPDF {
     $this->SetLineWidth(.3);
     $this->SetFont('','B');
     // Header
-    $this->Cell(150,7,'Beschreibung',1,0,'C',1);
-    $this->Cell(50,7,'Einnahmen/Ausgaben',1,0,'C',1);
+    $this->Cell(170,7,'Beschreibung',1,0,'C',1);
+    $this->Cell(70,7,'Einnahmen/Ausgaben',1,0,'C',1);
     $this->Ln();
     // Color and font restoration
     $this->SetFillColor(224,235,255);
