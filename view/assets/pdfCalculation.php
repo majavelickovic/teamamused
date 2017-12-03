@@ -6,8 +6,8 @@ $pdf->AddPage();
 
 //Titel
 $pdf->SetFont('Arial','B',16);
-$pdf->Cell(100,5,"Reise: " . $_POST['reise']);
-$pdf->Cell(400,5,"");
+$pdf->Cell(100,10,"Reise: " . $_POST['reise']);
+$pdf->Cell(40,10,"");
 $pdf->Ln();
 $pdf->Ln();
 
