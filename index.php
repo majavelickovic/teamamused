@@ -177,6 +177,14 @@ Router::route("GET", "/rechnung", function () {
     require_once("view/calculation.php");
 });
 
+Router::route("GET", "/pdfCalculation", function () {
+    if(AuthentifizController::authenticate()) {
+        controller\PDFController::pdfCalculationView();
+    } else {
+        controller\ErrorController::error403View();
+    }
+});
+
 Router::route("GET", "/teilnehmer", function () {
     require_once("view/participant.php");
 });
