@@ -36,7 +36,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                 location.reload();
             }
             function printInvoice(){      
-                window.open(document.URL+'/printSingleInvoice?rg_id='+rg_id,'_blank');
+                window.print();
             }
         </script>
     </head>
