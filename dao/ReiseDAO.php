@@ -10,7 +10,7 @@
 namespace dao;
 
 use Reise;
-use Database;
+use database\Database;
 
 class ReiseDAO {
 
