@@ -246,7 +246,7 @@ class RechnungDAO {
 
             while ($row = $statement->fetch()){
                 array_push($array, array(
-                    json_encode($row['b1'] . ' / ' . $row['b2']), 0-($row['kosten'])
+                    json_encode($row['b1']) . ' / ' . json_encode($row['b2']), 0-($row['kosten'])
                 ));
             }
         

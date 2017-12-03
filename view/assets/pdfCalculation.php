@@ -18,7 +18,7 @@ class PDF extends FPDF {
      // nach rechts gehen
      $this->Cell(80);
      // Titel
-     $this->Cell(200,10,'Schlussabrechnung - ' . $reisename,1,0,'L');
+     $this->Cell(5,10,'Schlussabrechnung - ' . $reisename,1,0,'L');
      // Zeilenumbruch
      $this->Ln(20);
   } 
@@ -57,14 +57,19 @@ class PDF extends FPDF {
     $totalsum = 0;
     foreach($data as $row)
     {
-     $this->Cell(150,6,$row[0],'LR',0,'L',$fill);
-     $this->Cell(50,6,'CHF ' . number_format($row[1],2),'LR',0,'R',$fill);
+     $this->Cell(170,6,$row[0],'LR',0,'L',$fill);
+     $this->Cell(70,6,'CHF ' . number_format($row[1],2),'LR',0,'R',$fill);
      $totalsum = $totalsum + $row[1];
      $this->Ln();
      $fill=!$fill;
     }
-    $this->Cell(150,6,'Total Gewinn/Verlust','LR',0,'L',$fill);
-    $this->Cell(50,6,'CHF ' . number_format($totalsum,2),'LR',0,'R',$fill);
+    
+    $this->SetFillColor(0,0,255);
+    $this->SetTextColor(255);
+    $this->SetDrawColor(128,0,0);
+    
+    $this->Cell(170,6,'Total Gewinn/Verlust',1,0,'R',$fill);
+    $this->Cell(70,6,'CHF ' . number_format($totalsum,2),1,0,'R',$fill);
   }
   
 }
