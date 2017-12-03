@@ -10,8 +10,8 @@ use view\view as View;
 class PDFController
 {
 
-    public static function pdfCalculationView($reise) {
-        echo (new View("assets/pdfCalculation.php?reise=".$reise))->render();
+    public static function pdfCalculationView() {
+        echo (new View("assets/pdfCalculation.php"))->render();
     }
 }
 ?>

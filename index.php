@@ -208,7 +208,7 @@ Router::route("GET", "/rechnung", function () {
 
 Router::route("POST", "/rechnung/schlussabrechnung", function () {
     if(AuthentifizController::authenticate()) {
-        controller\PDFController::pdfCalculationView($_POST['reise']);
+        controller\PDFController::pdfCalculationView();
     } else {
         controller\ErrorController::error403View();
     }
