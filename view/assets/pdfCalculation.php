@@ -1,52 +1,6 @@
 <?PHP
 include('FPDF/fpdf.php');   //Pfad zu fpdf.php
 
-/*
-$pdf = new FPDF();  
-$pdf->AddPage();  
-
-//Titel
-$pdf->SetFont('Arial','B',16);
-$pdf->SetXY(5,5);
-$pdf->Write(0,"Reise: " . $_POST['reise']);
-$pdf->Ln();
-$pdf->Ln();*/
-
-/*Einstellung der Überschrift */  
-/*$pdf->setXY(30,5);
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->SetLineWidth(0.2);
-$pdf->SetDrawColor(0,0);
-$pdf->SetFillColor(192,192);*/
-
-// Überschrift
-/*$pdf->Cell(100,10,"Beschreibung","LTR",0,"C",0);
-$pdf->Cell(40,10,"Einnahmen/Ausgaben",1,0,"C",0);
-$pdf->Cell(100,10,"text2","LTR",0,"C",0);
-$pdf->Cell(40,10,"text3",1,0,"C",0);*/
-
-/* Einstellungen der Tabelle */
-/*$pdf->SetFont('Arial', '', 10);
-
-
-/*$dataSchlussabrechnung = controller\RechnungController::readFinalBilling($_POST['reise']);
-$pdf->SetTitle($reisename);
-// Tabelle
-
-for ($rows=0; array_count_values($dataSchlussabrechnung)-1; $rows=$row+1)
-{*/
-/* Einstellung für unterschiedliche Zeilenfarbe */
-   /* if ($rows%2==0)
-    {
-	$pdf->SetFillColor(192,192);
-    }else{
-	$pdf->SetFillColor(224,224);
-    }
-
-$pdf->Cell(120,5,array_column($dataSchlussabrechnung($rows,0)),"LR",0,"C",1);
-$pdf->Cell(30,5,"CHF ".number_format(array_columns($dataSchlussabrechnung($rows,1)), 1),"LR",0,"R",1);
-$pdf->Ln();
-}*/
 class PDF extends FPDF {
   // Kopfzeile
   function Header()
@@ -103,7 +57,7 @@ class PDF extends FPDF {
     foreach($data as $row)
     {
      $this->Cell(150,6,$row[0],'LR',0,'L',$fill);
-     $this->Cell(50,6,number_format($row[1],2),'LR',0,'L',$fill);
+     $this->Cell(50,6,'CHF ' . number_format($row[1],2),'LR',0,'R',$fill);
      $this->Ln();
      $fill=!$fill;
     }
@@ -114,7 +68,7 @@ class PDF extends FPDF {
 
 $pdf=new PDF();
 $pdf->AliasNbPages();
-$pdf->AddPage();
+$pdf->AddPage('L');
 $pdf->SetFont('Arial','',14);
 $dataSchlussabrechnung = controller\RechnungController::readFinalBilling($_POST['reise']);
 $pdf->showTableContent($header,$dataSchlussabrechnung);
