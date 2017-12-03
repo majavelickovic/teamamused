@@ -80,46 +80,9 @@ class PDF extends FPDF {
      $this->Cell(0,10,'Seite '.$this->PageNo().'/{nb}',0,0,'C');
   }
   
-  // Simple table
-  function BasicTable($header,$data)
-  {
-    // Header
-    foreach($header as $col)
-     $this->Cell(40,7,$col,1);
-    $this->Ln();
-    // Data
-    foreach($data as $row)
-    {
-     foreach($row as $col)
-     $this->Cell(40,6,$col,1);
-     $this->Ln();
-    }
-  }
-
-  // Better table
-  function ImprovedTable($header,$data)
-  {
-    // Column widths
-    $w=array(40,35,40,45);
-    // Header
-    for($i=0;$i<count($header);$i++)
-     $this->Cell($w[$i],7,$header[$i],1,0,'C');
-    $this->Ln();
-    // Data
-    foreach($data as $row)
-    {
-     $this->Cell($w[0],6,$row[0],'LR');
-     $this->Cell($w[1],6,$row[1],'LR');
-     $this->Cell($w[2],6,number_format($row[2]),'LR',0,'R');
-     $this->Cell($w[3],6,number_format($row[3]),'LR',0,'R');
-     $this->Ln();
-    }
-    // Closure line
-    $this->Cell(array_sum($w),0,'','T');
-  }
 
   // Colored table
-  function FancyTable($header,$data)
+  function showTableContent($header,$data)
   {
     // Colors, line width and bold font
     $this->SetFillColor(255,0,0);
@@ -128,9 +91,8 @@ class PDF extends FPDF {
     $this->SetLineWidth(.3);
     $this->SetFont('','B');
     // Header
-    $w=array(40,35,40,45);
-    for($i=0;$i<count($header);$i++)
-     $this->Cell($w[$i],7,$header[$i],1,0,'C',1);
+    $this->Cell(150,7,'Beschreibung',1,0,'C',1);
+    $this->Cell(50,7,'Einnahmen/Ausgaben',1,0,'C',1);
     $this->Ln();
     // Color and font restoration
     $this->SetFillColor(224,235,255);
@@ -140,10 +102,8 @@ class PDF extends FPDF {
     $fill=0;
     foreach($data as $row)
     {
-     $this->Cell($w[0],6,$row[0],'LR',0,'L',$fill);
-     $this->Cell($w[1],6,$row[1],'LR',0,'L',$fill);
-     $this->Cell($w[2],6,number_format($row[2]),'LR',0,'R',$fill);
-     $this->Cell($w[3],6,number_format($row[3]),'LR',0,'R',$fill);
+     $this->Cell(150,6,$row[0],'LR',0,'L',$fill);
+     $this->Cell(50,6,number_format($row[1],2),'LR',0,'L',$fill);
      $this->Ln();
      $fill=!$fill;
     }
@@ -156,12 +116,7 @@ $pdf=new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','',14);
-$pdf->AddPage();
 $dataSchlussabrechnung = controller\RechnungController::readFinalBilling($_POST['reise']);
-$pdf->BasicTable($header,$dataSchlussabrechnung);
-$pdf->AddPage();
-$pdf->ImprovedTable($header,$dataSchlussabrechnung);
-$pdf->AddPage();
-$pdf->FancyTable($header,$dataSchlussabrechnung);
+$pdf->showTableContent($header,$dataSchlussabrechnung);
 $pdf->Output();    
 ?>
