@@ -58,8 +58,6 @@ class PDF extends FPDF {
   // Kopfzeile
   function Header()
   {
-    // Logo
-    $this->Image('logo_pb.png',10,8,33);
     // Arial fett 15
     $this->SetFont('Arial','B',15);
      // nach rechts gehen
