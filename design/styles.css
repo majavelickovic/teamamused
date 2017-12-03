@@ -29,7 +29,7 @@ table {
 
 #navblock {
     width: 1024px;
-    border: 2px solid #404040;
+    border-bottom: 1px solid #808080;
 }
 
 #blockleft {
@@ -67,24 +67,24 @@ li a {
 }
 
 li a:hover {
-    background-color: #4286f4;
+    background-color: #264d73;
     color: white;
 }
 
 input {
-    border: 2px solid #404040;
+    border: 1px solid #404040;
     border-radius: 2px;
     background-color: rgba(255, 255, 255, 0);
 }
 
 #dropdown {
     width: 100%;
-    border: 2px solid #404040;
+    border: 1px solid #404040;
 }
 
 .dropdown {
     width: 100%;
-    border: 2px solid #404040;
+    border: 1px solid #404040;
 }
 
 #pricerange {
@@ -95,7 +95,7 @@ input {
 .button {
     width: 150px;
     background-color: rgba(255, 255, 255, 0);
-    border: 2px solid #404040;
+    border: 1px solid #404040;
     padding: 6px;
     text-align: center;
     text-decoration: none;
