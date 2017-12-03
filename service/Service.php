@@ -316,6 +316,12 @@ class Service {
         return null;
     }
     
+    // @MAJA: über die Service-Klasse kann auf die DAO zugegriffen werden
+    public function getInvoiceTypes(){
+        $rechnungsDAO = new \dao\RechnungDAO();
+        return $rechnungsDAO->getInvoiceTypes();
+    }
+    
     /**
      * ????
      */
