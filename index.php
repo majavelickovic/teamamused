@@ -193,9 +193,23 @@ Router::route("POST", "/rechnung/anzeige", function () {
     if(AuthentifizController::authenticate()) {
         //controller\RechnungController::updateInvoice();
         //test
-        $rechnungDAO = new \dao\RechnungDAO();
-        $rechnungDAO->update($_POST["rg_id"],  $_POST["reise"], $_POST["rgart"], $_POST["kosten"], $_POST["beschreibung"], $_POST["dokument"]);
-        //controller\RechnungController::invoiceShowSingleView();
+            $pdo = Database::connect();
+            $statement = $pdo->prepare(
+                "UPDATE rechnung SET rechnungsart = :rechnungsart, kosten = :kosten, beschreibung = :beschreibung, dokument = :dokument
+                WHERE rg_id = :rg_id");
+            $statement->bindValue(':rg_id', $_POST["rg_id"]);
+            $statement->bindValue(':rechnungsart', $_POST["rgart"]);
+            $statement->bindValue(':kosten', $_POST["kosten"]);
+            $statement->bindValue(':beschreibung', $_POST["beschreibung"]);
+            $statement->bindValue(':dokument', $_POST["dokument"]);
+            $statement->execute();
+            
+            $statement2 = $pdo->prepare(
+                "UPDATE reise_rechnung SET reise_id = :reise WHERE rg_id = :rg_id");
+            $statement2->bindValue(':reise', $_POST["reise"]);
+            $statement2->bindValue(':rg_id', $_POST["rg_id"]);
+            $statement2->execute();        
+//controller\RechnungController::invoiceShowSingleView();
     }else {
         controller\ErrorController::error403View();
     }
