@@ -51,6 +51,11 @@ class RechnungController
                 $rg_id);
     }
     
+    public static function readFinalBilling($reise){
+        return Service::getInstance()->readFinalBilling(
+                $reise);
+    }
+    
     public static function invoiceShowView(){
         echo (new View("exist_calculation.php"))->render();
     }

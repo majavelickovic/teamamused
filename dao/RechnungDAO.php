@@ -43,37 +43,35 @@ class RechnungDAO {
 	 * Liest alle Rechnungen gemäss Filterkriterien und gibt diese als eine Liste zurück, welche als Tabelle dargestellt wird
 	 */
 	public function read($_reise, $_rg_id, $_rgart) {
-            $texttotest = "";
             $pdo = Database::connect();
             if($_reise != null && $_rg_id == null && $_rgart == null){
-                $texttotest .= "if 1 hat gegriffen";
                 $statement = $pdo->prepare(
                 "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
-                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id WHERE reise_id = :reise_id;");
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
+                   WHERE reise_id = :reise_id ORDER BY :rg_id ASC;");
                 $statement->bindValue(':reise_id', $_reise);
                 $statement->execute();
-            }elseif($_reise != null && $_rg_id != null && $_rgart == null){
-                $texttotest .= "if 2 hat gegriffen";
                  $statement = $pdo->prepare(
                  "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
-                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id WHERE reise_id = :reise_id and rechnung.rg_id = :rg_id;");
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
+                   WHERE reise_id = :reise_id and rechnung.rg_id = :rg_id ORDER BY :rg_id ASC;");
                  $statement->bindValue(':reise_od', $_reise);
                  $statement->bindValue(':rg_id', $_rg_id);
                  $statement->execute();
             }elseif($_reise != null && $_rg_id != null && $_rgart != null){
-                $texttotest .= "if 3 hat gegriffen";
                 $statement = $pdo->prepare(
                 "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
-                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id WHERE reise_id = :reise_id and rechnung.rg_id = :rg_id and rechnungsart = :rgart;");
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
+                   WHERE reise_id = :reise_id and rechnung.rg_id = :rg_id and rechnungsart = :rgart ORDER BY :rg_id ASC;");
                 $statement->bindValue(':reise_id', $_reise);
                 $statement->bindValue(':rg_id', $_rg_id);
                 $statement->bindValue(':rgart', $_rgart);
                 $statement->execute();
             }elseif($_reise != null && $_rg_id == null && $_rgart != null){
-                $texttotest .= "if 4 hat gegriffen";
                 $statement = $pdo->prepare(
                 "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
-                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id WHERE reise_id = :reise_id and rechnungsart = :rgart;");
+                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
+                   WHERE reise_id = :reise_id and rechnungsart = :rgart ORDER BY :rg_id ASC;");
                 $statement->bindValue(':reise_id', $_reise);
                 $statement->bindValue(':rgart', $_rgart);
                 $statement->execute();
@@ -105,21 +103,47 @@ class RechnungDAO {
 	 */
 	public function update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument) {
             $pdo = Database::connect();
-            $statement = $pdo->prepare(
-                "UPDATE rechnung SET rechnungsart = :rechnungsart, kosten = :kosten, beschreibung = :beschreibung, dokument = :dokument
-                WHERE rg_id = :rg_id");
-            $statement->bindValue(':rg_id', $rg_id);
-            $statement->bindValue(':rechnungsart', $rgart);
-            $statement->bindValue(':kosten', $kosten);
-            $statement->bindValue(':beschreibung', $beschreibung);
-            $statement->bindValue(':dokument', $dokument);
-            $statement->execute();
             
-            $statement2 = $pdo->prepare(
-                "UPDATE reise_rechnung SET reise_id = :reise WHERE rg_id = :rg_id");
-            $statement2->bindValue(':reise', $reise);
-            $statement2->bindValue(':rg_id', $rg_id);
-            $statement2->execute();
+            if($rgart != null){
+                $statement1 = $pdo->prepare(
+                    "UPDATE rechnung SET rechnungsart = :rechnungsart WHERE rg_id = :rg_id");
+                $statement1->bindValue(':rg_id', $rg_id);
+                $statement1->bindValue(':rechnungsart', $rgart);
+                $statement1->execute();
+            }
+            
+            if($kosten != null){
+                $statement2 = $pdo->prepare(
+                    "UPDATE rechnung SET kosten = :kosten WHERE rg_id = :rg_id");
+                $statement2->bindValue(':rg_id', $rg_id);
+                $statement2->bindValue(':kosten', $kosten);
+                $statement2->execute();
+            }
+            
+            if($beschreibung != null){
+                $statement3 = $pdo->prepare(
+                    "UPDATE rechnung SET beschreibung = :beschreibung WHERE rg_id = :rg_id");
+                $statement3->bindValue(':rg_id', $rg_id);
+                $statement3->bindValue(':beschreibung', $beschreibung);
+                $statement3->execute();
+            }
+            
+            if($dokument != null){
+                $statement4 = $pdo->prepare(
+                    "UPDATE rechnung SET dokument = :dokument WHERE rg_id = :rg_id");
+                $statement4->bindValue(':rg_id', $rg_id);
+                $statement->bindValue(':dokument', $dokument);
+                $statement4->execute();
+            }
+       
+            if($reise != null){
+                $statement5 = $pdo->prepare(
+                    "UPDATE reise_rechnung SET reise_id = :reise WHERE rg_id = :rg_id");
+                $statement5->bindValue(':reise', $reise);
+                $statement5->bindValue(':rg_id', $rg_id);
+                $statement5->execute();
+            }
+          
 	}
 
 	/**
@@ -204,6 +228,41 @@ class RechnungDAO {
             }
 
             return $rg;
+            
+        }
+        
+        	/**
+	 * noch überarbeiten
+	 */
+	public function readFinalBilling($reise) {
+            $array = array();
+            $pdo = Database::connect();           
+            $statement = $pdo->prepare("SELECT rechnung.kosten, rechnung.beschreibung, rechnungsart.beschreibung
+                               FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id
+                               INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
+                               WHERE reise_rechnung.reise_id = :reise;");
+            $statement->bindValue(':reise', $reise);
+            $statement->execute();
+
+            while ($row = $statement->fetch()){
+                array_push($array, array(
+                    $row['rechnungsart.beschreibung'] . " / " . $row['rechnung.beschreibung'], 0-($row['kosten'])
+                ));
+            }
+        
+            $statement2 = $pdo->prepare("SELECT reise.preis, teilnehmer.vorname, teilnehmer.nachname FROM reise
+                INNER JOIN reise_teilnehmer ON reise.reise_id=reise_teilnehmer.reise_id
+                INNER JOIN teilnehmer ON reise_teilnehmer.teilnehmer_id = teilnehmer.teilnehmer_id;");
+            $statement2->bindValue(':reise', $reise);
+            $statement2->execute();
+            
+            while ($row2 = $statement->fetch()){
+                array_push($array, array(
+                    'Teilnahmekosten von ' . $row2['vorname'] . ' ' . $row['nachname'], $row2['preis'])
+                );
+            }
+
+            return $array;
             
         }
 }

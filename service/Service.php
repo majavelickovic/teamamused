@@ -276,7 +276,16 @@ class Service {
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->read($reise, $rg_id, $rgart);
         //}
-        //return null;
+    }
+    
+        /**
+     * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
+     */
+    public function readFinalBIlling($reise) {
+        //if($this->verifyAuth()) {
+            $rechnungDAO = new \dao\RechnungDAO();
+            return $rechnungDAO->readFinalBilling($reise);
+        //}
     }
 
     /**

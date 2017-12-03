@@ -6,8 +6,8 @@ use controller\ErrorController;
 
 if($_GET['id'] > 0){
     $rg_id = $_GET['id'];
-}elseif($_POST['id'] > 0){
-    $rg_id = $_POST['id'];
+}elseif($_POST['rg_id'] > 0){
+    $rg_id = $_POST['rg_id'];
 }    
 $rgDAO = new dao\RechnungDAO;
 $rg = new Rechnung();
@@ -61,7 +61,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
 			<table>
                             <tr>
                                 <td>Rechnungs-ID</td>
-                                <td><input type="text" id="rg_id" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>" disabled/></td>
+                                <td><input type="text" id="rg_id" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>" readonly/></td>
                                 <td></td>
                             </tr>
                             <tr>
