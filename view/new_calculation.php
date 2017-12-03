@@ -1,6 +1,7 @@
 <?php
 
 use database\Database;
+use service\Service;
 
 /*
  * View, um eine neue Rechnung zu erfassen
@@ -56,12 +57,11 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                 <td>
                                     <select id="dropdown" name="rgart" style="width:300px;">
                                         <?php
-                                        $pdo = Database::connect();
-                                        $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
-
-                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                        // @MAJA -> View greift über die Serviceklasse auf die DAO also Datenbank zu
+                                        foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
+                                            echo "<option value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
                                         }
+                                        
                                         ?>
                                     </select>
                                 </td>

@@ -14,16 +14,17 @@ use domain\Rechnung;
 
 class Service {
     /**
-     * TODO
+     * Variable, welche das Serice-Objekt beinhaltet
      */
     private static $instance = null;
+    
     /**
-     * TODO
+     * Speichert den Benutzernamen des akutellen Users
      */
     private $currentBenutzername;
 
     /**
-     * TODO
+     * Erzeugt ein Service-Objekt
      */
     public static function getInstance() {
         if (!isset(self::$instance)) {
@@ -38,19 +39,14 @@ class Service {
     protected function __construct() { }
 
     /**
-     * TODO
-     */
-    private function __clone() { }
-
-    /**
-     * TODO
+     * Gibt einen Boolean zurück, ob der currentBenutzername gesetzt ist oder nicht
      */
     protected function verifyAuth() {
         return isset($this->currentBenutzername);
     }
 
     /**
-     * TODO
+     * Prüft, ob es den Benutzernamen gibt und ob das eingegebene Passwort stimmt
      */
     public function verifyUser($benutzername, $password) {
         $loginDAO = new dao\LoginDAO();
@@ -318,6 +314,12 @@ class Service {
             return $rechnungDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in RechnungDAO
         }
         return null;
+    }
+    
+    // @MAJA: über die Service-Klasse kann auf die DAO zugegriffen werden
+    public function getInvoiceTypes(){
+        $rechnungsDAO = new \dao\RechnungDAO();
+        return $rechnungsDAO->getInvoiceTypes();
     }
     
     /**

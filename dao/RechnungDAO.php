@@ -265,6 +265,15 @@ class RechnungDAO {
             return $array;
             
         }
+        
+        // @MAJA: DB-Zugriff in der DAO als Prepared Statement
+        public function getInvoiceTypes(){
+            $pdo = Database::connect();           
+            $statement = $pdo->prepare("SELECT * FROM rechnungsart order by beschreibung asc");
+            $statement->execute();
+            return $statement->fetchAll();
+            }
+
 }
 
 ?>
