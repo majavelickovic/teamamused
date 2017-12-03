@@ -207,6 +207,14 @@ Router::route("GET", "/rechnung", function () {
 
 Router::route("POST", "/rechnung/schlussabrechnung", function () {
     if(AuthentifizController::authenticate()) {
+        controller\PDFController::pdfCalculationView();
+    } else {
+        controller\ErrorController::error403View();
+    }
+});
+
+Router::route("GET", "/rechnung/schlussabrechnung", function () {
+    if(AuthentifizController::authenticate()) {
         controller\RechnungController::finalBillingView();
     } else {
         controller\ErrorController::error403View();
