@@ -17,16 +17,15 @@ $pdf->Ln();
 
 /* Einstellungen der Tabelle */
 $pdf->SetFont('Arial', '', 10);
-$zinsfuss = 1.5;
-
+$pdf->SetTitle($_POST['reise']);
 // Lese Daten für Schlussabrechnung
-$pdo = database\Database::connect();           
+/*$pdo = database\Database::connect();           
 $statement = $pdo->prepare("SELECT beschreibung FROM reise WHERE reise = :reise;");
 $statement->bindValue(':reise', $_POST['reise']);
 $statement->execute();
 while ($row = $statement->fetch()){
     $reisename = $row['beschreibung'];
-}
+}*/
 /*$dataSchlussabrechnung = controller\RechnungController::readFinalBilling($_POST['reise']);
 $pdf->SetTitle($reisename);
 // Tabelle
