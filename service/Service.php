@@ -183,10 +183,10 @@ class Service {
      * Lese Reisename anhand Reise-ID
      */
     public function readReiseName($reise) {
-        if($this->verifyAuth()){
+        //if($this->verifyAuth()){
             $reiseDAO = new dao\ReiseDAO();
             return $reiseDAO->readReiseName($reise);
-        }
+        //}
         return null;
     }
 
@@ -279,20 +279,20 @@ class Service {
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
      */
     public function readInvoice($reise, $rg_id, $rgart) {
-        if($this->verifyAuth()) {
+        //if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->read($reise, $rg_id, $rgart);
-        }
+        //}
     }
     
      /**
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
      */
     public function readFinalBIlling($reise) {
-        if($this->verifyAuth()) {
+        //if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->readFinalBilling($reise);
-        }
+        //}
     }
 
     /**
