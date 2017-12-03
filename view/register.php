@@ -50,6 +50,9 @@ Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User regi
                             <tr>
                                 <td colspan="3" align="center"><input type="submit" class="button" value="registrieren" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                             </tr>
+                            <tr>
+                                <td colspan="3" align="right"><a href="<?php echo $GLOBALS["ROOT_URL"] . "/login" ?>"> zum Login</a></td></td>
+                            </tr>
                         </table>
                     </form>
                 </div>
