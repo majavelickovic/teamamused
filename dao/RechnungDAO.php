@@ -237,7 +237,7 @@ class RechnungDAO {
 	public function readFinalBilling($reise) {
             $array = array();
             $pdo = Database::connect();           
-            $statement = $pdo->prepare("SELECT rechnung.kosten, rechnung.beschreibung, rechnungsart.beschreibung
+            $statement = $pdo->prepare("SELECT rechnung.kosten, rechnung.beschreibung AS b1, rechnungsart.beschreibung AS b2
                                FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id
                                INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
                                WHERE reise_rechnung.reise_id = :reise;");
@@ -246,7 +246,7 @@ class RechnungDAO {
 
             while ($row = $statement->fetch()){
                 array_push($array, array(
-                    $row['rechnungsart.beschreibung'] . " / " . $row['rechnung.beschreibung'], 0-($row['kosten'])
+                    $row['b1'] . ' / ' . $row['b2'], 0-($row['kosten'])
                 ));
             }
         
@@ -257,9 +257,9 @@ class RechnungDAO {
             $statement2->bindValue(':reise', $reise);
             $statement2->execute();
             
-            while ($row2 = $statement->fetch()){
+            while ($row2 = $statement2->fetch()){
                 array_push($array, array(
-                    'Teilnahmekosten von ' . $row2['vorname'] . ' ' . $row['nachname'], $row2['preis'])
+                    'Teilnahmekosten von ' . $row2['vorname'] . ' ' . $row2['nachname'], $row2['preis'])
                 );
             }
 
