@@ -8,16 +8,24 @@ namespace validator;
 
 use service\Service;
 
+// Testet den Input, um Cross-Site-Scripting zu verhindern
+function testInput($data){
+    $data = trim($data); // entfernt Whitespace
+    $data = stripslashes($data); // entfernt Anführungszeichen
+    $data = htmlspecialchars($data); // entfernt html-Tags
+    return $data;
+}
+
 // Validierung der Login-Seite bezüglich Vollständigkeit der Inputfelder
 $benutzernameLoginError = "";
 $passwordLoginError = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty($_POST["benutzername"])) {
+  if (empty(testInput($_POST["benutzername"]))) {
     $benutzernameLoginError = "Die Eingabe eines Benutzernamens ist erforderlich!";
   } 
 
-  if (empty($_POST["password"])) {
+  if (empty(testInput($_POST["password"]))) {
     $passwordLoginError = "Die Eingabe eines Passwortes ist erforderlich!";
   }
 }
@@ -35,34 +43,34 @@ $password1CharError = "";
 $password1ConfirmError = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty($_POST["benutzername"])) {
+  if (empty(testInput($_POST["benutzername"]))) {
     $benutzernameRegisterError = "Die Eingabe eines Benutzernamens ist erforderlich!";
   } else {
-    validateBenutzername($_POST["benutzername"]);
+    validateBenutzername(testInput($_POST["benutzername"]));
   }
   
-  if (empty($_POST["vorname"])) {
+  if (empty(testInput($_POST["vorname"]))) {
     $vornameRegisterError = "Die Eingabe eines Vornamens ist erforderlich!";
   } else {
-    validateVorname($_POST["vorname"]);
+    validateVorname(testInput($_POST["vorname"]));
   }  
 
-  if (empty($_POST["nachname"])) {
+  if (empty(testInput($_POST["nachname"]))) {
     $nachnameRegisterError = "Die Eingabe eines Nachnamens ist erforderlich!";
   } else {
-    validateNachname($_POST["nachname"]);
+    validateNachname(testInput($_POST["nachname"]));
   }    
   
-  if (empty($_POST["password1"])) {
+  if (empty(testInput($_POST["password1"]))) {
     $password1RegisterError = "Die Eingabe eines Passwortes ist erforderlich!";
   } else {
-    validatePassword1($_POST["password1"]);
+    validatePassword1(testInput($_POST["password1"]));
   }
   
-  if (empty($_POST["password2"])) {
+  if (empty(testInput($_POST["password2"]))) {
     $password2RegisterError = "Die Bestätigung des Passwortes ist erforderlich!";
   } else {
-    validatePassword2($_POST["password1"],$_POST["password2"]);
+    validatePassword2(testInput($_POST["password1"]), testInput($_POST["password2"]));
   }  
   
 }
