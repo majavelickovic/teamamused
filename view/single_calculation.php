@@ -61,7 +61,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
 			<table>
                             <tr>
                                 <td>Rechnungs-ID</td>
-                                <td><input type="text" id="rg_id" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>" disabled/></td>
+                                <td><input type="text" id="rg_id" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>" readonly/></td>
                                 <td></td>
                             </tr>
                             <tr>
