@@ -105,21 +105,47 @@ class RechnungDAO {
 	 */
 	public function update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument) {
             $pdo = Database::connect();
-            $statement = $pdo->prepare(
-                "UPDATE rechnung SET rechnungsart = :rechnungsart, kosten = :kosten, beschreibung = :beschreibung, dokument = :dokument
-                WHERE rg_id = :rg_id");
-            $statement->bindValue(':rg_id', $rg_id);
-            $statement->bindValue(':rechnungsart', $rgart);
-            $statement->bindValue(':kosten', $kosten);
-            $statement->bindValue(':beschreibung', $beschreibung);
-            $statement->bindValue(':dokument', $dokument);
-            $statement->execute();
             
-            $statement2 = $pdo->prepare(
-                "UPDATE reise_rechnung SET reise_id = :reise WHERE rg_id = :rg_id");
-            $statement2->bindValue(':reise', $reise);
-            $statement2->bindValue(':rg_id', $rg_id);
-            $statement2->execute();
+            if($rgart != null){
+                $statement1 = $pdo->prepare(
+                    "UPDATE rechnung SET rechnungsart = :rechnungsart WHERE rg_id = :rg_id");
+                $statement1->bindValue(':rg_id', $rg_id);
+                $statement1->bindValue(':rechnungsart', $rgart);
+                $statement1->execute();
+            }
+            
+            if($rgart != null){
+                $statement2 = $pdo->prepare(
+                    "UPDATE rechnung SET kosten = :kosten WHERE rg_id = :rg_id");
+                $statement2->bindValue(':rg_id', $rg_id);
+                $statement2->bindValue(':kosten', $kosten);
+                $statement2->execute();
+            }
+            
+            if($rgart != null){
+                $statement3 = $pdo->prepare(
+                    "UPDATE rechnung SET beschreibung = :beschreibung WHERE rg_id = :rg_id");
+                $statement3->bindValue(':rg_id', $rg_id);
+                $statement3->bindValue(':beschreibung', $beschreibung);
+                $statement3->execute();
+            }
+            
+            if($rgart != null){
+                $statement4 = $pdo->prepare(
+                    "UPDATE rechnung SET dokument = :dokument WHERE rg_id = :rg_id");
+                $statement4->bindValue(':rg_id', $rg_id);
+                $statement->bindValue(':dokument', $dokument);
+                $statement4->execute();
+            }
+       
+            if($reise != null){
+                $statement5 = $pdo->prepare(
+                    "UPDATE reise_rechnung SET reise_id = :reise WHERE rg_id = :rg_id");
+                $statement5->bindValue(':reise', $reise);
+                $statement5->bindValue(':rg_id', $rg_id);
+                $statement5->execute();
+            }
+          
 	}
 
 	/**
