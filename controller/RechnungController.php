@@ -62,6 +62,14 @@ class RechnungController
     public static function invoiceShowSingleView(){
         echo (new View("single_calculation.php"))->render();
     }
+    
+    public static function invoiceChoiceView(){
+        echo (new View("calculation.php"))->render();
+    }
+    
+    public static function finalBillingView(){
+        echo (new View("final_billing.php"))->render();
+    }
 }
 
 ?>
