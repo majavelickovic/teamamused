@@ -28,14 +28,7 @@ $pdf->Cell(40,10,"text3",1,0,"C",0);*/
 /* Einstellungen der Tabelle */
 /*$pdf->SetFont('Arial', '', 10);
 
-// Lese Daten für Schlussabrechnung
-/*$pdo = database\Database::connect();           
-$statement = $pdo->prepare("SELECT beschreibung FROM reise WHERE reise = :reise;");
-$statement->bindValue(':reise', $_POST['reise']);
-$statement->execute();
-while ($row = $statement->fetch()){
-    $reisename = $row['beschreibung'];
-}*/
+
 /*$dataSchlussabrechnung = controller\RechnungController::readFinalBilling($_POST['reise']);
 $pdf->SetTitle($reisename);
 // Tabelle
@@ -58,12 +51,20 @@ class PDF extends FPDF {
   // Kopfzeile
   function Header()
   {
+    // Lese Reisetitel
+    $pdo = database\Database::connect();           
+    $statement = $pdo->prepare("SELECT beschreibung FROM reise WHERE reise = :reise;");
+    $statement->bindValue(':reise', $_POST['reise']);
+    $statement->execute();
+    while ($row = $statement->fetch()){
+        $reisename = $row['beschreibung'];
+    }
     // Arial fett 15
     $this->SetFont('Arial','B',15);
      // nach rechts gehen
      $this->Cell(80);
      // Titel
-     $this->Cell(30,10,'Titel',1,0,'C');
+     $this->Cell(30,10,$reisename,1,0,'C');
      // Zeilenumbruch
      $this->Ln(20);
   } 
