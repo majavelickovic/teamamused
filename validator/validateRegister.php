@@ -16,20 +16,6 @@ function testInput($data){
     return $data;
 }
 
-// Validierung der Login-Seite bezüglich Vollständigkeit der Inputfelder
-$benutzernameLoginError = "";
-$passwordLoginError = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty(testInput($_POST["benutzername"]))) {
-    $benutzernameLoginError = "Die Eingabe eines Benutzernamens ist erforderlich!";
-  } 
-
-  if (empty(testInput($_POST["password"]))) {
-    $passwordLoginError = "Die Eingabe eines Passwortes ist erforderlich!";
-  }
-}
-
 // Validierung der Register-Seite bezüglich Vollständigkeit der Inputfelder
 $benutzernameRegisterError = "";
 $vornameRegisterError = "";
@@ -52,8 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty(testInput($_POST["vorname"]))) {
     $vornameRegisterError = "Die Eingabe eines Vornamens ist erforderlich!";
   } else {
-    validateVorname(testInput($_POST["vorname"]));
-  }  
+        // preg_match gibt 1 zurück, falls der String nur Buchstaben und Leerzeichen enthält
+    if(1 !== preg_match('/^[a-zA-Z]+$/', testInput($_POST["vorname"]))){
+        $vornameRegisterError = "Der Vorname darf nur Buchstaben enthalten!";
+    }
+  }
 
   if (empty(testInput($_POST["nachname"]))) {
     $nachnameRegisterError = "Die Eingabe eines Nachnamens ist erforderlich!";
@@ -88,6 +77,8 @@ function validateVorname($vorname){
     // preg_match gibt 1 zurück, falls der String nur Buchstaben und Leerzeichen enthält
     if(1 !== preg_match('/^[a-zA-Z ]$/', $vorname)){
         $vornameCharError = "Der Vorname darf nur Buchstaben enthalten!";
+    } else {
+        $vornameCharError = "test";
     }
     
 }

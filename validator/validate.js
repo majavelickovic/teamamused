@@ -1,5 +1,0 @@
-/*
- * Clientseitige Validierung von Formulareingaben
- */
-
-
