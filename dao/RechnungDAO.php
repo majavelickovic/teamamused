@@ -246,7 +246,7 @@ class RechnungDAO {
 
             while ($row = $statement->fetch()){
                 array_push($array, array(
-                    htmlspecialchars(stripslashes($row['b1']) . ' / ' . $row['b2']), 0-($row['kosten'])
+                    htmlspecialchars($row['b1'] . ' / ' . $row['b2']), 0-($row['kosten'])
                 ));
             }
         
