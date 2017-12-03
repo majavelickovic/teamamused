@@ -46,9 +46,9 @@ class ReiseController
                 $_POST["reise"]);
     }
     
-    public static function readReiseName(){
+    public static function readReiseName($reise){
         return Service::getInstance()->readReiseName(
-                $_POST["reise"]);
+                $reise);
     }
     
     public static function reiseAnzeigeView(){

@@ -180,12 +180,12 @@ class Service {
     }
     
     /**
-     * TODO -> auch in ReiseDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
+     * Lese Reisename anhand Reise-ID
      */
     public function readReiseName($reise) {
         if($this->verifyAuth()){
             $reiseDAO = new dao\ReiseDAO();
-            return $reiseDAO->readReiseName($reise); // Methode gibt es so nicht in ReiseDAO
+            return $reiseDAO->readReiseName($reise);
         }
         return null;
     }

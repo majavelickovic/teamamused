@@ -81,6 +81,7 @@ class RechnungDAO {
             }
             
             if($statement != null){
+                $tableText = "";
                 while ($row = $statement->fetch()){
                     $tableText .= "<tr>"
                             . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . ">" . $row["rg_id"] . "</a></td>"
