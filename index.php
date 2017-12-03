@@ -193,14 +193,9 @@ Router::route("POST", "/rechnung/anzeige", function () {
     if(AuthentifizController::authenticate()) {
         //controller\RechnungController::updateInvoice();
         //test
-        service\Service::getInstance()->updateInvoice(
-                $_POST["rg_id"],
-                $_POST["reise"],
-                $_POST["rgart"],
-                $_POST["kosten"],
-                $_POST["beschreibung"],
-                $_POST["dokument"]);
-        controller\RechnungController::invoiceShowSingleView();
+        $rechnungDAO = new \dao\RechnungDAO();
+        $rechnungDAO->update($_POST["rg_id"],  $_POST["reise"], $_POST["rgart"], $_POST["kosten"], $_POST["beschreibung"], $_POST["dokument"]);
+        //controller\RechnungController::invoiceShowSingleView();
     }else {
         controller\ErrorController::error403View();
     }
