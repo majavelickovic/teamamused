@@ -6,13 +6,6 @@ class PDF extends FPDF {
   function Header()
   {
     // Lese Reisetitel
-    /*$pdo = database\Database::connect();           
-    $statement = $pdo->prepare("SELECT beschreibung FROM reise WHERE reise_id = :reise;");
-    $statement->bindValue(':reise', $_POST['reise']);
-    $statement->execute();
-    while ($row = $statement->fetch()){
-        $reisename = $row['beschreibung'];
-    }*/
     $reisename = controller\ReiseController::readReiseName($_POST['reise']);
     // Arial fett 15
     $this->SetFont('Arial','B',15);

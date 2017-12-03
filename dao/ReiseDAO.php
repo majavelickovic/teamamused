@@ -93,7 +93,7 @@ class ReiseDAO {
         }
         
         public function readReiseName($reise) {
-            $pdo = database\Database::connect();           
+            $pdo = Database::connect();           
             $statement = $pdo->prepare("SELECT beschreibung FROM reise WHERE reise_id = :reise;");
             $statement->bindValue(':reise', $reise);
             $statement->execute();
