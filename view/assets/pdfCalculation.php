@@ -4,6 +4,10 @@ include('FPDF/fpdf.php');   //Pfad zu fpdf.php
 $pdf = new FPDF();  
 $pdf->AddPage();  
 
+//Titel
+$pdf->SetFont('Arial','B',16);
+$pdf->Cell(100,5,"Reise: " . $_GET['reise']);
+
 /*Einstellung der Überschrift */  
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->SetLineWidth(0.2);
@@ -11,13 +15,12 @@ $pdf->SetDrawColor(0,0);
 $pdf->SetFillColor(192,192);
 
 // Überschrift
-$pdf->Cell(120,5,"Beschreibung","LTR",0,"C",1);
-$pdf->Cell(30,5,"Einnahmen/Ausgaben","1",0,"C",1);
+$pdf->Cell(120,20,"Beschreibung","LTR",0,"C",1);
+$pdf->Cell(30,20,"Einnahmen/Ausgaben","1",0,"C",1);
 $pdf->Ln();
 
 /* Einstellungen der Tabelle */
 $pdf->SetFont('Arial', '', 10);
-$pdf->SetTitle("Reise: " . $_GET['reise']);
 // Lese Daten für Schlussabrechnung
 /*$pdo = database\Database::connect();           
 $statement = $pdo->prepare("SELECT beschreibung FROM reise WHERE reise = :reise;");
