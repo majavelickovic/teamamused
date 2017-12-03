@@ -51,11 +51,12 @@ class RechnungDAO {
                    WHERE reise_id = :reise_id ORDER BY :rg_id ASC;");
                 $statement->bindValue(':reise_id', $_reise);
                 $statement->execute();
+            }elseif($_reise != null && $_rg_id != null && $_rgart == null){    
                  $statement = $pdo->prepare(
                  "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
                    FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
                    WHERE reise_id = :reise_id and rechnung.rg_id = :rg_id ORDER BY :rg_id ASC;");
-                 $statement->bindValue(':reise_od', $_reise);
+                 $statement->bindValue(':reise_id', $_reise);
                  $statement->bindValue(':rg_id', $_rg_id);
                  $statement->execute();
             }elseif($_reise != null && $_rg_id != null && $_rgart != null){
