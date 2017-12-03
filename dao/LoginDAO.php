@@ -28,7 +28,6 @@ class LoginDAO {
             $statement->bindValue(':vorname', $login->getVorname());
             $statement->bindValue(':nachname', $login->getNachname());
             return $statement->execute();
-//        return $this->read($pdo->lastInsertId());
 	}
 
 	/**
