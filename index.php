@@ -193,7 +193,7 @@ Router::route("POST", "/rechnung/anzeige", function () {
     if(AuthentifizController::authenticate()) {
         //controller\RechnungController::updateInvoice();
         //test
-            $pdo = Database::connect();
+            $pdo = database\Database::connect();
             $statement = $pdo->prepare(
                 "UPDATE rechnung SET rechnungsart = :rechnungsart, kosten = :kosten, beschreibung = :beschreibung, dokument = :dokument
                 WHERE rg_id = :rg_id");
