@@ -6,7 +6,7 @@ $pdf->AddPage();
 
 //Titel
 $pdf->SetFont('Arial','B',16);
-$pdf->Cell(100,5,"Reise: " . $_GET['reise']);
+$pdf->Cell(100,5,"Reise: " . $_POST['reise']);
 
 /*Einstellung der Überschrift */  
 $pdf->SetFont('Arial', 'B', 10);
@@ -15,8 +15,8 @@ $pdf->SetDrawColor(0,0);
 $pdf->SetFillColor(192,192);
 
 // Überschrift
-$pdf->Cell(120,20,"Beschreibung","LTR",0,"C",1);
-$pdf->Cell(30,20,"Einnahmen/Ausgaben","1",0,"C",1);
+$pdf->Cell(120,20,"Beschreibung","LTR",1,"C",1);
+$pdf->Cell(30,20,"Einnahmen/Ausgaben",1,1,"C",1);
 $pdf->Ln();
 
 /* Einstellungen der Tabelle */
