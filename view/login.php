@@ -3,7 +3,9 @@
 Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte User einloggen können.
 -->
 
-<?php include_once 'validator/validate.php'; ?>
+<?php
+    include_once 'validator/validate.php'; 
+?>
 
 <html>
     <head>
@@ -38,8 +40,8 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                                 <td colspan="3" align="right"><a href="<?php echo $GLOBALS["ROOT_URL"] . "/register" ?>"> zur Registrierung</a></td></td>
                             </tr>
                             <tr>
-                                <!-- TODO: Wieder löschen / Fennster drucken -->
-                                <td colspan="3" align="right"><input type="button" class="button" value="Test drucken" onClick="javascript:window.print()"/> </td>
+                                <!-- TODO: Wieder löschen / PDF mit FPDF generieren -->
+                                <td colspan="3" align="right"><a href="<?php echo $GLOBALS["ROOT_URL"] . "/pdfCalculation" ?>" target="_blank">PDF generieren</a></td>
                             </tr>
                         </table>
                     </form>
@@ -49,8 +51,3 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
     </body>
 </html>
 
-<?php
-
-
-
-?>
