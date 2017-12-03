@@ -4,7 +4,11 @@ use database\Database;
 use domain\Rechnung;
 use controller\ErrorController;
 
-$rg_id = $_GET['id'];
+if($_GET['id'] > 0){
+    $rg_id = $_GET['id'];
+}elseif($_POST['id'] > 0){
+    $rg_id = $_POST['id'];
+}    
 $rgDAO = new dao\RechnungDAO;
 $rg = new Rechnung();
 $rg = $rgDAO->readSingleInvoice($rg_id);
@@ -32,17 +36,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                 location.reload();
             }
             function printInvoice(){      
-                DocRaptor.createAndDownloadDoc("E9kUUIsh6PNW3HJPnB2", {
-                  test: true, // test documents are free, but watermarked
-                  type: "pdf",
-                  document_content: document.querySelector('html').innerHTML, // use this page's HTML
-                   document_content: "<h1>Hello world!</h1>",               // or supply HTML directly
-                   document_url: "http://example.com/your-page",            // or use a URL
-                   javascript: true,                                        // enable JavaScript processing
-                  // prince_options: {
-                  //   media: "screen",                                       // use screen styles instead of print styles
-                  // }
-                })
+                window.open(document.URL+'/printSingleInvoice?rg_id='+rg_id,'_blank');
             }
         </script>
     </head>
@@ -57,13 +51,13 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/logout" ?>">Logout</a></li>
                     </ul>
                 </div>
-                <div id="blockleft">
-                    <table>
-                        <tr>
-                            <td colspan="3"><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
-                        </tr>
-                    </table>
-                     <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/anzeige" method="POST">
+                <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/anzeige" method="POST">
+                    <div id="blockleft">
+                        <table>
+                            <tr>
+                                <td colspan="3"><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
+                            </tr>
+                        </table>
 			<table>
                             <tr>
                                 <td>Rechnungs-ID</td>
@@ -129,8 +123,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("FileInput").type="file";document.getElementById("FileInput").disabled=false'></a></td>
                             </tr>
                         </table>
-                    </form>
-                </div>
+                    </div>
                 <div id="blockright">
                     <table>
                         <tr><td colspan="2"></td></tr>
@@ -148,6 +141,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         </tr>   
                     </table>
                 </div>
+            </form>
         </div>
     </div>
 </body>
