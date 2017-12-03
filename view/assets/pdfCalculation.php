@@ -17,7 +17,7 @@ $pdf->Ln();
 
 /* Einstellungen der Tabelle */
 $pdf->SetFont('Arial', '', 10);
-$pdf->SetTitle($_POST['reise']);
+$pdf->SetTitle($_GET['reise']);
 // Lese Daten für Schlussabrechnung
 /*$pdo = database\Database::connect();           
 $statement = $pdo->prepare("SELECT beschreibung FROM reise WHERE reise = :reise;");
