@@ -27,7 +27,7 @@ Diese Seite stellt die Registrierungs-Seite dar, bei welcher sich neue User regi
                                 <td></td>
                                 <td>Vorname</td>
                                 <td><input type="text" name="vorname" value="" /></td>
-                                <td><span class="error"> <?php echo $vornameRegisterError . "" . $vornameCharError;?></span><td>                                
+                                <td><span class="error"> <?php echo $vornameRegisterError;?></span><td>                                
                             </tr>
                             <tr>
                                 <td></td>
