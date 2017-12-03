@@ -64,7 +64,7 @@ class PDF extends FPDF {
      // nach rechts gehen
      $this->Cell(80);
      // Titel
-     $this->Cell(30,10,$reisename,1,0,'C');
+     $this->Cell(100,10,$reisename,1,0,'C');
      // Zeilenumbruch
      $this->Ln(20);
   } 
@@ -86,6 +86,7 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Times','',12);
 for($i=1;$i<=40;$i++)
-  $pdf->Cell(0,10,'Zeilennummer '.$i,0,1);
+  $pdf->Cell(50,10,'Zeilennummer '.$i,0,1);
+  $pdf->Cell(50,10,'text2',0,1);
 $pdf->Output();    
 ?>
