@@ -40,9 +40,14 @@ class ReiseController
                 $_POST["dokument"]);
     }
     
-        public static function loescheReise(){
+    public static function loescheReise(){
         return Service::getInstance()->deleteRechnung(
                 $_POST["rg_id"],
+                $_POST["reise"]);
+    }
+    
+    public static function readReiseName(){
+        return Service::getInstance()->readReiseName(
                 $_POST["reise"]);
     }
     

@@ -178,6 +178,17 @@ class Service {
         }
         return null;
     }
+    
+    /**
+     * TODO -> auch in ReiseDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
+     */
+    public function readReiseName($reise) {
+        if($this->verifyAuth()){
+            $reiseDAO = new dao\ReiseDAO();
+            return $reiseDAO->readReiseName($reise); // Methode gibt es so nicht in ReiseDAO
+        }
+        return null;
+    }
 
     // CRUD-Methoden für Teilnehmer
     
@@ -268,30 +279,30 @@ class Service {
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
      */
     public function readInvoice($reise, $rg_id, $rgart) {
-        //if($this->verifyAuth()) {
+        if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->read($reise, $rg_id, $rgart);
-        //}
+        }
     }
     
-        /**
+     /**
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
      */
     public function readFinalBIlling($reise) {
-        //if($this->verifyAuth()) {
+        if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->readFinalBilling($reise);
-        //}
+        }
     }
 
     /**
      * TODO
      */
     public function updateInvoice($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument) {
-        //if($this->verifyAuth()) {
+        if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument);
-        //}
+        }
         return null;
     }
 
@@ -299,24 +310,17 @@ class Service {
      * Löscht anhand der Rechnungs-ID die entsprechende Rechnung aus der Datenbank
      */
     public function deleteInvoice($rechnungId) {
-        //if($this->verifyAuth()) {
+        if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             $rechnungDAO->delete($rechnungId);
-        //}
+        }
     }
 
-    /**
-     * TODO -> auch in RechnungDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
-     */
-    public function findAllInvoice() {
-        if($this->verifyAuth()){
-            $rechnungDAO = new \dao\RechnungDAO();
-            return $rechnungDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in RechnungDAO
-        }
-        return null;
-    }
     
-    // @MAJA: über die Service-Klasse kann auf die DAO zugegriffen werden
+    /**
+     * 
+     * Selektabfrage, um alle Rechnungsarten auszulesen
+     */
     public function getInvoiceTypes(){
         $rechnungsDAO = new \dao\RechnungDAO();
         return $rechnungsDAO->getInvoiceTypes();

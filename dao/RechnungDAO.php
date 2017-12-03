@@ -80,9 +80,8 @@ class RechnungDAO {
             }
             
             if($statement != null){
-                $texttotest = "";
                 while ($row = $statement->fetch()){
-                    $texttotest .= "<tr>"
+                    $tableText .= "<tr>"
                             . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . ">" . $row["rg_id"] . "</a></td>"
                             . "<td>" . $row['reise_id'] . "</td>"
                             . "<td>" . $row["beschreibung"] . "</td>"
@@ -91,7 +90,7 @@ class RechnungDAO {
                             . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteInvoice(" . $row['rg_id'] . ")'></a></td>"
                             . "</tr>";
                 }
-                return $texttotest;
+                return $tableText;
             }else{
                 return " ";
             }
@@ -209,7 +208,7 @@ class RechnungDAO {
 
 
 	/**
-	 * noch überarbeiten
+	 * Liest eine einzelne Rechnung aus der Datenbank, um diese dem Benutzer anzuzeigen
 	 */
 	public function readSingleInvoice($rg_id) {
             $pdo = Database::connect();           
@@ -231,8 +230,8 @@ class RechnungDAO {
             
         }
         
-        	/**
-	 * noch überarbeiten
+         /**
+	 * Liest die Daten für die Schlussabrechnung in einen Array und gibt diese zurück
 	 */
 	public function readFinalBilling($reise) {
             $array = array();
@@ -267,7 +266,10 @@ class RechnungDAO {
             
         }
         
-        // @MAJA: DB-Zugriff in der DAO als Prepared Statement
+        /**
+         * 
+         * Liese die Rechnungsarten aus der Datenbank
+         */
         public function getInvoiceTypes(){
             $pdo = Database::connect();           
             $statement = $pdo->prepare("SELECT * FROM rechnungsart order by beschreibung asc");

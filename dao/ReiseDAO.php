@@ -91,5 +91,14 @@ class ReiseDAO {
         $statement->execute();
         return $statement->fetchAll(\PDO::FETCH_CLASS, "Reise");
         }
+        
+        public function readReiseName($reise) {
+            $pdo = Database::connect();
+            $statement = $pdo->prepare('
+                SELECT beschreibung FROM reise WHERE reise = :reise;');
+            $statement->bindValue(':reise', $reise);
+            $statement->execute();
+            return $statement->fetchAll();
+        }
 }
 ?>
