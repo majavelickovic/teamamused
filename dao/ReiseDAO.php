@@ -93,12 +93,14 @@ class ReiseDAO {
         }
         
         public function readReiseName($reise) {
-            $pdo = Database::connect();
-            $statement = $pdo->prepare('
-                SELECT beschreibung FROM reise WHERE reise_id = :reise;');
+            $pdo = database\Database::connect();           
+            $statement = $pdo->prepare("SELECT beschreibung FROM reise WHERE reise_id = :reise;");
             $statement->bindValue(':reise', $reise);
             $statement->execute();
-            return $statement->fetchAll();
+            while ($row = $statement->fetch()){
+                $reisename = $row['beschreibung'];
+            }
+            return $reisename;
         }
 }
 ?>
