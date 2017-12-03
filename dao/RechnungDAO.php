@@ -252,7 +252,8 @@ class RechnungDAO {
         
             $statement2 = $pdo->prepare("SELECT reise.preis, teilnehmer.vorname, teilnehmer.nachname FROM reise
                 INNER JOIN reise_teilnehmer ON reise.reise_id=reise_teilnehmer.reise_id
-                INNER JOIN teilnehmer ON reise_teilnehmer.teilnehmer_id = teilnehmer.teilnehmer_id;");
+                INNER JOIN teilnehmer ON reise_teilnehmer.teilnehmer_id = teilnehmer.teilnehmer_id
+                WHERE reise.reise_id = :reise;");
             $statement2->bindValue(':reise', $reise);
             $statement2->execute();
             
