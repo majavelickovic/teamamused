@@ -114,7 +114,7 @@ class RechnungDAO {
                 $statement1->execute();
             }
             
-            if($rgart != null){
+            if($kosten != null){
                 $statement2 = $pdo->prepare(
                     "UPDATE rechnung SET kosten = :kosten WHERE rg_id = :rg_id");
                 $statement2->bindValue(':rg_id', $rg_id);
@@ -122,7 +122,7 @@ class RechnungDAO {
                 $statement2->execute();
             }
             
-            if($rgart != null){
+            if($beschreibung != null){
                 $statement3 = $pdo->prepare(
                     "UPDATE rechnung SET beschreibung = :beschreibung WHERE rg_id = :rg_id");
                 $statement3->bindValue(':rg_id', $rg_id);
@@ -130,7 +130,7 @@ class RechnungDAO {
                 $statement3->execute();
             }
             
-            if($rgart != null){
+            if($dokument != null){
                 $statement4 = $pdo->prepare(
                     "UPDATE rechnung SET dokument = :dokument WHERE rg_id = :rg_id");
                 $statement4->bindValue(':rg_id', $rg_id);

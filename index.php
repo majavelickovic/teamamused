@@ -191,8 +191,8 @@ Router::route("GET", "/rechnung/anzeige", function () {
 
 Router::route("POST", "/rechnung/anzeige", function () {
     if(AuthentifizController::authenticate()) {
-        controller\RechnungController::updateInvoice();    
-        controller\RechnungController::invoiceShowSingleView();
+        controller\RechnungController::updateInvoice();     
+    controller\RechnungController::invoiceShowSingleView();
     }else {
         controller\ErrorController::error403View();
     }
