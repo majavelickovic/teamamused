@@ -39,10 +39,6 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                             <tr>
                                 <td colspan="3" align="right"><a href="<?php echo $GLOBALS["ROOT_URL"] . "/register" ?>"> zur Registrierung</a></td></td>
                             </tr>
-                            <tr>
-                                <!-- TODO: Wieder löschen / PDF mit FPDF generieren -->
-                                <td colspan="3" align="right"><a href="<?php echo $GLOBALS["ROOT_URL"] . "/pdfCalculation" ?>" target="_blank">PDF generieren</a></td>
-                            </tr>
                         </table>
                     </form>
                 </div>
