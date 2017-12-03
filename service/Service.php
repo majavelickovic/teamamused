@@ -299,21 +299,21 @@ class Service {
      * TODO
      */
     public function updateInvoice($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument) {
-        if($this->verifyAuth()) {
+        //if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument);
-        }
-        return null;
+        //}
+        //return null;
     }
 
     /**
      * Löscht anhand der Rechnungs-ID die entsprechende Rechnung aus der Datenbank
      */
     public function deleteInvoice($rechnungId) {
-        if($this->verifyAuth()) {
+        //if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             $rechnungDAO->delete($rechnungId);
-        }
+        //}
     }
 
     
