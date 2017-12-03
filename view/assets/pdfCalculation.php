@@ -54,14 +54,17 @@ class PDF extends FPDF {
     $this->SetFont('');
     // Data
     $fill=0;
+    $totalsum = 0;
     foreach($data as $row)
     {
      $this->Cell(150,6,$row[0],'LR',0,'L',$fill);
      $this->Cell(50,6,'CHF ' . number_format($row[1],2),'LR',0,'R',$fill);
+     $totalsum = $totalsum + $row[1];
      $this->Ln();
      $fill=!$fill;
     }
-    $this->Cell(array_sum($w),0,'','T');
+    $this->Cell(150,6,'Total Gewinn/Verlust','LR',0,'L',$fill);
+    $this->Cell(50,6,'CHF ' . number_format($totalsum,2),'LR',0,'R',$fill);
   }
   
 }
