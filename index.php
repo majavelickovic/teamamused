@@ -193,6 +193,9 @@ Router::route("POST", "/rechnung/anzeige", function () {
     if(AuthentifizController::authenticate()) {
         //controller\RechnungController::updateInvoice();
         //test
+            echo "RG:" . $_POST["rg_id"];
+            echo "KOSTEN:" . $_POST["kosten"];
+            echo "ID:" . $_POST["id"];
             $pdo = database\Database::connect();
             $statement = $pdo->prepare(
                 "UPDATE rechnung SET rechnungsart = :rechnungsart, kosten = :kosten, beschreibung = :beschreibung, dokument = :dokument
