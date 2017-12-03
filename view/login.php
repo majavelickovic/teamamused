@@ -37,6 +37,10 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                             <tr>
                                 <td colspan="3" align="right"><a href="<?php echo $GLOBALS["ROOT_URL"] . "/register" ?>"> zur Registrierung</a></td></td>
                             </tr>
+                            <tr>
+                                <!-- TODO: Wieder löschen / Fennster drucken -->
+                                <td colspan="3" align="right"><input type="button" class="button" value="test" onClick="javascript:window.print()"/> </td>
+                            </tr>
                         </table>
                     </form>
                 </div>
