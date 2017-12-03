@@ -4,7 +4,7 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
 -->
 
 <?php
-    include_once 'validator/validate.php'; 
+    include_once 'validator/validateLogin.php'; 
 ?>
 
 <html>
@@ -29,7 +29,7 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                             <tr>
                                 <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/key.png"></td><td>Passwort</td>
                                 <td><input type="password" name="password" value="" /></td>
-                                <span class="error">* <?php echo $passwordLoginError;?></span>
+                                <span class="error"><?php echo $passwordLoginError;?></span>
                             </tr>
                             <tr></tr>
                             <tr>
