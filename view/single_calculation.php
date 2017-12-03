@@ -4,7 +4,11 @@ use database\Database;
 use domain\Rechnung;
 use controller\ErrorController;
 
-$rg_id = $_GET['id'];
+if($_GET['id'] > 0){
+    $rg_id = $_GET['id'];
+}elseif($_POST['id'] > 0){
+    $rg_id = $_POST['id'];
+}    
 $rgDAO = new dao\RechnungDAO;
 $rg = new Rechnung();
 $rg = $rgDAO->readSingleInvoice($rg_id);
