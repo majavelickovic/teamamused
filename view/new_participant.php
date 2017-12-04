@@ -20,38 +20,38 @@ Diese Seite stellt die Teilnehmer-Seite dar.
                     </ul>
                 </div>
                 <div id="blockleft">
-					<table>
+                    <table>
                         <tr>
                             <td><img src="../design/pictures/plus.png"></td><td>neue/r Teilnemer/in hinzufügen</td>
                         </tr>
-					</table>
-					<table>
+                    </table>
+                    <table>
                         <tr>
                             <td>Reise</td>
-							<td>
-								<select id="dropdown" name="reise">
-									<option value="">X</option>
-									<option value="">Y</option>
-									<option value="">Z</option>
-								</select>
-							</td>
+                            <td>
+                                <select id="dropdown" name="reise">
+                                    <option value="">X</option>
+                                    <option value="">Y</option>
+                                    <option value="">Z</option>
+                                </select>
+                            </td>
                         </tr>
-						<tr>
+                        <tr>
                             <td>Vorname</td>
-							<td><input type="text" name="vorname" value="" size="40px" /></td>
+                            <td><input type="text" name="vorname" value="" size="40px" /></td>
                         </tr>
-						<tr>
+                        <tr>
                             <td>Nachname</td>
-							<td><input type="text" name="nachname" value="" size="40px" /></td>
+                            <td><input type="text" name="nachname" value="" size="40px" /></td>
                         </tr>
-						<tr>
+                        <tr>
                             <td>Geburtsdatum</td>
-							<td><input type="text" name="birth" value="" size="40px" /></td>
+                            <td><input type="text" name="geburtsdatum" value="" size="40px" /></td>
                         </tr>
-						<tr>
+                        <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="hinzufügen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                         </tr>
-					</table>
+                    </table>
                 </div>
             </div>
         </div>
