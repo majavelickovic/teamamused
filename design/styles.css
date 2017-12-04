@@ -41,9 +41,9 @@ table {
 
 #blockright {
     position: relative;
-    float: left;
+    float: right;
     width: 500px;
-    margin: 15px 0px 15px 525px;
+    margin: 15px 0px 15px 0px;
 }
 
 ul {
