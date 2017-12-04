@@ -31,6 +31,10 @@ class Rechnung {
 	 * @AttributeType int
 	 */
 	private $_reise_id;
+        /**
+         * @AttributeType blob
+         */
+        private $_pdf_object;
 	/**
 	 * @AssociationType domain.Rechnungsart
 	 * @AssociationMultiplicity 1
@@ -41,9 +45,9 @@ class Rechnung {
 
 	/**
 	 * @access public
-	 * @param double aKosten
+	 * @param double $kosten
 	 * @return void
-	 * @ParamType aKosten double
+	 * @ParamType $kosten double
 	 * @ReturnType void
 	 */
 	public function setKosten($kosten) {
@@ -61,9 +65,9 @@ class Rechnung {
 
 	/**
 	 * @access public
-	 * @param String aBeschreibung
+	 * @param String $beschreibung
 	 * @return void
-	 * @ParamType aBeschreibung String
+	 * @ParamType $beschreibung String
 	 * @ReturnType void
 	 */
 	public function setBeschreibung($beschreibung) {
@@ -81,9 +85,9 @@ class Rechnung {
 
 	/**
 	 * @access public
-	 * @param String aDokument
+	 * @param String $dokument
 	 * @return void
-	 * @ParamType aDokument String
+	 * @ParamType $dokument String
 	 * @ReturnType void
 	 */
 	public function setDokument($dokument) {
@@ -101,9 +105,9 @@ class Rechnung {
 
 	/**
 	 * @access public
-	 * @param int aRg_id
+	 * @param int $rg_id
 	 * @return void
-	 * @ParamType aRg_id int
+	 * @ParamType $rg_id int
 	 * @ReturnType void
 	 */
 	public function setRg_id($rg_id) {
@@ -121,9 +125,9 @@ class Rechnung {
 
 	/**
 	 * @access public
-	 * @param int aReise
+	 * @param int $reise_id
 	 * @return void
-	 * @ParamType aReise int
+	 * @ParamType $reise_id int
 	 * @ReturnType void
 	 */
 	public function setReise($reise_id) {
@@ -141,13 +145,34 @@ class Rechnung {
 
 	/**
 	 * @access public
-	 * @param int $aRechnungsart
+	 * @param int $rechnungsart
 	 * @return void
 	 * @ParamType $aRechnungsart int
 	 * @ReturnType void
 	 */
 	public function setRechnungsart($rechnungsart) {
 		$this->_rechnungsart = $rechnungsart;
+	}
+        
+                
+        /**
+	 * @access public
+	 * @return int
+	 * @ReturnType int
+	 */
+	public function getPdf_Object() {
+		return $this->_pdf_object;
+	}
+
+	/**
+	 * @access public
+	 * @param int $pdf_object
+	 * @return void
+	 * @ParamType $pdf_object int
+	 * @ReturnType void
+	 */
+	public function setPdf_Object($pdf_object) {
+		$this->_rechnungsart = $pdf_object;
 	}
 }
 ?>
