@@ -13,8 +13,26 @@ use database\Database;
         <link rel="stylesheet" href="../design/styles.css">
         <title>Rechnung</title>
         <script type="text/javascript">
+            //Seite aktualisieren, damit die Tabelle aktualisiert angzeigt wird
             function refreshTable() {
-                document.getElementById("rgTable").refresh();
+                document.getElementById("searchForm").submit();
+            }
+            //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
+            function deleteInvoice(rg_id){
+                if(confirm("Wollen Sie die Rechnung wirklich löschen?")){
+                    var req = new XMLHttpRequest();
+                    req.open('GET', '/deleteInvoice?del_rg_id='+rg_id);
+
+                    req.onreadystatechange = function() {
+                        if(req.readyState==4 && req.status==200) {
+                            alert("Die Rechnung " + rg_id + " wurde gelöscht.");
+                            refreshTable();
+                        }
+                    }
+                    req.send(null);
+                }else{
+                    //nichts tun, wenn der Benutzer die Rechnung nicht löschen möchte
+                }
             }
         </script>
     </head>
@@ -26,7 +44,7 @@ use database\Database;
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/reise" ?>">Reise</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung" ?>">Rechnung</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer" ?>">Teilnehmer</a></li>
-                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/profil" ?>">Profil</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/logout" ?>">Logout</a></li>
                     </ul>
                 </div>
                 <div id="blockleft">
@@ -35,7 +53,7 @@ use database\Database;
                             <td><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
                         </tr>
                     </table>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                    <form id="searchForm" action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/bestehend" method="POST">
                         <table>
                             <tr>
                                 <td>Reise</td>
@@ -46,7 +64,11 @@ use database\Database;
                                             $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
 
                                             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                                echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                                if($_POST['reise'] == $row['reise_id']){
+                                                    echo "<option selected='selected' value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                                }else{
+                                                    echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                                }
                                             }
                                         ?>
                                     </select>
@@ -65,14 +87,18 @@ use database\Database;
                                             $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
 
                                             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                                echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                                if($_POST['rgart'] == $row['rgart_id']){
+                                                    echo "<option selected='selected' value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                                }else{
+                                                    echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                                }
                                             }
                                         ?>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2" align="center"><input type="submit" class="button" value="suchen" onclick="refreshTable()"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                                <td colspan="2" align="center"><input type="submit" class="button" value="suchen"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                             </tr>
                         </table>
                     </form>
@@ -84,9 +110,11 @@ use database\Database;
                             <th>Reise-ID</th>
                             <th>Rechnungsart</th>
                             <th>Kosten</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         <?php
-                            $rgtablecontent = controller\RechnungController::leseRechnung();
+                            $rgtablecontent = controller\RechnungController::readInvoice();
                             if($rgtablecontent != null){
                                 echo $rgtablecontent;
                             }else{

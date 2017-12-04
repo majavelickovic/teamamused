@@ -10,7 +10,7 @@
 namespace dao;
 
 use Reise;
-use Database;
+use database\Database;
 
 class ReiseDAO {
 
@@ -90,6 +90,17 @@ class ReiseDAO {
         $statement->bindValue(':xy', $xy);
         $statement->execute();
         return $statement->fetchAll(\PDO::FETCH_CLASS, "Reise");
+        }
+        
+        public function readReiseName($reise) {
+            $pdo = Database::connect();           
+            $statement = $pdo->prepare("SELECT beschreibung FROM reise WHERE reise_id = :reise;");
+            $statement->bindValue(':reise', $reise);
+            $statement->execute();
+            while ($row = $statement->fetch()){
+                $reisename = $row['beschreibung'];
+            }
+            return $reisename;
         }
 }
 ?>

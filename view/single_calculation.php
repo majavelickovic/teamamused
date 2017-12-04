@@ -1,16 +1,20 @@
 <?php
 
 use database\Database;
+use domain\Rechnung;
+use controller\ErrorController;
 
-$rg_id = $rg_id;
-print_r("maja test");
-print_r($rg_id);
-print_r($_GET['id']);
-/*$pdo = Database::connect();           
-$query = $pdo->query("SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnung.rechnungsart, rechnung.kosten, rechnung.beschreibung, rechnung.dokument
-                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id WHERE rechnung.rg_id = :rg_id;");
-$query->bindValue(':rg_id', $rg_id);
-$rg = $query->fetchAll(PDO::FETCH_CLASS, "Rechnung");*/
+if($_GET['id'] > 0){
+    $rg_id = $_GET['id'];
+}elseif($_POST['rg_id'] > 0){
+    $rg_id = $_POST['rg_id'];
+}    
+$rgDAO = new dao\RechnungDAO;
+$rg = new Rechnung();
+$rg = $rgDAO->readSingleInvoice($rg_id);
+if($rg->getReise() == ""){
+    ErrorController::error404View();
+}else{
 
 /*
  * View, um eine einzelne Rechnung anzusehen / zu bearbeiten
@@ -26,6 +30,15 @@ Diese Seite stellt die Rechnungs-Seite dar.
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
         <title>Rechnung</title>
+        <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
+        <script type="text/javascript">
+            function reloadOriginalInvoice(){
+                location.reload();
+            }
+            function printInvoice(){      
+                window.print();
+            }
+        </script>
     </head>
     <body>		
         <div id="whiteblock">
@@ -35,72 +48,105 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/reise" ?>">Reise</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung" ?>">Rechnung</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer" ?>">Teilnehmer</a></li>
-                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/profil" ?>">Profil</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/logout" ?>">Logout</a></li>
                     </ul>
                 </div>
-                <div id="blockleft">
-                    <table>
-                        <tr>
-                            <td><img src="../design/pictures/plus.png"></td><td>neue Rechnung hinzufügen</td>
-                        </tr>
-                    </table>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/anzeige" method="POST">
+                    <div id="blockleft">
+                        <table>
+                            <tr>
+                                <td colspan="3"><img src="../design/pictures/search.png"></td><td>bestehende Rechnung anzeigen</td>
+                            </tr>
+                        </table>
 			<table>
                             <tr>
                                 <td>Rechnungs-ID</td>
-                                <td><input type="text" name="rg_id" style="width:296px;" value="<?php $rg->getRg_id();?>"/></td>
+                                <td><input type="text" id="rg_id" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>" readonly/></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Reise</td>
 				<td>
-                                    <select id="dropdown" name="reise" style="width:300px;">
+                                    <select id="reise" name="reise" class="dropdown" style="width:300px;" disabled>
                                         <?php
                                         $pdo = Database::connect();
                                         $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
 
                                         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                            if($row['reise_id'] == $rg->getReise()){
+                                                echo "<option selected='selected' value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                            }else{
+                                                echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                            }   
                                         }
                                         ?>
                                     </select>
                                 </td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Rechnungsart</td>
                                 <td>
-                                    <select id="dropdown" name="rgart" style="width:300px;">
+                                    <select id="rgart" name="rgart" class="dropdown" style="width:300px;" disabled>
                                         <?php
                                         $pdo = Database::connect();
                                         $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
 
                                         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                            if($row['rgart_id'] == $rg->getRechnungsart()){
+                                                echo "<option selected='selected' value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                            }else{
+                                                echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                            }
+
                                         }
                                         ?>
                                     </select>
                                 </td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("rgart").disabled=false'></a></td>
+                            </tr>
+                            <tr>
+                                <td>Kosten</td>
+                                <td><input type="text" id="kosten" name="kosten" style="width:296px;" value="<?php echo $rg->getKosten();?>" disabled/></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("kosten").disabled=false'></a></td>
+                            </tr>
+                            <tr>
+                                <td>Beschreibung</td>
+                                <td><textarea id="beschreibung" name="beschreibung" rows="5" cols="35" disabled><?php echo $rg->getBeschreibung();?></textarea></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("beschreibung").disabled=false'></a></td>
+                            </tr>
+                            <tr>
+                                <td>Dokument</td>
+                                <td>
+                                    <input id="FileInput" type="text" name="dokument" value="<?php echo $rg->getDokument();?>" style="width:300px;" disabled/>
+                                </td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("FileInput").type="file";document.getElementById("FileInput").disabled=false'></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                <div id="blockright">
+                    <table>
+                        <tr><td colspan="2"></td></tr>
+                        <tr><td colspan="2"></td></tr>
+                        <tr><td colspan="2"></td></tr>
+                        <tr><td colspan="2"></td></tr>
+                        <tr><td colspan="2"></td></tr>
+                        <tr><td colspan="2"></td></tr>
+                        <tr><td colspan="2"></td></tr>
+                        <tr>
+                            <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printInvoice()" /></td>
                         </tr>
                         <tr>
-                            <td>Kosten</td>
-                            <td><input type="text" name="kosten" style="width:296px;"/></td>
-                        </tr>
-                        <tr>
-                            <td>Beschreibung</td>
-                            <td><textarea name="beschreibung" rows="5" cols="35"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>Dokument</td>
-                            <td>
-                                <input id="FileInput" type="file" name="dokument" style="width:300px;"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="center"><input type="submit" class="button" value="hinzuf&uuml;gen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
-                        </tr>
+                            <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalInvoice()"/></td>
+                        </tr>   
                     </table>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </body>
 </html>
+
+<?php
+}
+?>

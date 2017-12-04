@@ -1,6 +1,7 @@
 <?php
 
 use database\Database;
+use service\Service;
 
 /*
  * View, um eine neue Rechnung zu erfassen
@@ -25,7 +26,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/reise" ?>">Reise</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung" ?>">Rechnung</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer" ?>">Teilnehmer</a></li>
-                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/profil" ?>">Profil</a></li>
+                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/logout" ?>">Logout</a></li>
                     </ul>
                 </div>
                 <div id="blockleft">
@@ -34,7 +35,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <td><img src="../design/pictures/plus.png"></td><td>neue Rechnung hinzufügen</td>
                         </tr>
                     </table>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                    <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/neu" method="POST" enctype="multipart/form-data">
 			<table>
                             <tr>
                                 <td>Reise</td>
@@ -56,12 +57,11 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                 <td>
                                     <select id="dropdown" name="rgart" style="width:300px;">
                                         <?php
-                                        $pdo = Database::connect();
-                                        $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
-
-                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                        // @MAJA -> View greift über die Serviceklasse auf die DAO also Datenbank zu
+                                        foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
+                                            echo "<option value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
                                         }
+                                        
                                         ?>
                                     </select>
                                 </td>
@@ -77,7 +77,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                         <tr>
                             <td>Dokument</td>
                             <td>
-                                <input id="FileInput" type="file" name="dokument" style="width:300px;"/>
+                                <input id="dokument" type="file" name="dokument" accept="application/pdf" style="width:300px;"/>
                             </td>
                         </tr>
                         <tr>

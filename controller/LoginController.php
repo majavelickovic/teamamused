@@ -35,5 +35,6 @@ class LoginController
     public static function welcomeView() {
         echo (new View("welcome.php"))->render();
     }
+    
 }
 ?>

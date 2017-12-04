@@ -14,16 +14,17 @@ use domain\Rechnung;
 
 class Service {
     /**
-     * TODO
+     * Variable, welche das Serice-Objekt beinhaltet
      */
     private static $instance = null;
+    
     /**
-     * TODO
+     * Speichert den Benutzernamen des akutellen Users
      */
     private $currentBenutzername;
 
     /**
-     * TODO
+     * Erzeugt ein Service-Objekt
      */
     public static function getInstance() {
         if (!isset(self::$instance)) {
@@ -38,19 +39,14 @@ class Service {
     protected function __construct() { }
 
     /**
-     * TODO
-     */
-    private function __clone() { }
-
-    /**
-     * TODO
+     * Gibt einen Boolean zurück, ob der currentBenutzername gesetzt ist oder nicht
      */
     protected function verifyAuth() {
         return isset($this->currentBenutzername);
     }
 
     /**
-     * TODO
+     * Prüft, ob es den Benutzernamen gibt und ob das eingegebene Passwort stimmt
      */
     public function verifyUser($benutzername, $password) {
         $loginDAO = new dao\LoginDAO();
@@ -182,6 +178,17 @@ class Service {
         }
         return null;
     }
+    
+    /**
+     * Lese Reisename anhand Reise-ID
+     */
+    public function readReiseName($reise) {
+        //if($this->verifyAuth()){
+            $reiseDAO = new dao\ReiseDAO();
+            return $reiseDAO->readReiseName($reise);
+        //}
+        return null;
+    }
 
     // CRUD-Methoden für Teilnehmer
     
@@ -253,7 +260,7 @@ class Service {
     /**
      * TODO -> Rechnung mit Werten aus Formular befüllen
      */
-    public function createRechnung($reise, $rgart, $kosten, $beschreibung, $dokument) {
+    public function createInvoice($reise, $rgart, $kosten, $beschreibung, $dokument) {
         $rechnungDAO = new \dao\RechnungDAO();
         // Rechnungsinhalte bestimmen
         $neu_id = $rechnungDAO->getNewRgID(); 
@@ -271,46 +278,52 @@ class Service {
     /**
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
      */
-    public function readRechnung($reise, $rg_id, $rgart) {
+    public function readInvoice($reise, $rg_id, $rgart) {
         //if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
             return $rechnungDAO->read($reise, $rg_id, $rgart);
         //}
-        //return null;
+    }
+    
+     /**
+     * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
+     */
+    public function readFinalBIlling($reise) {
+        //if($this->verifyAuth()) {
+            $rechnungDAO = new \dao\RechnungDAO();
+            return $rechnungDAO->readFinalBilling($reise);
+        //}
     }
 
     /**
      * TODO
      */
-    public function updateRechnung(Rechnung $rechnung) {
-        if($this->verifyAuth()) {
+    public function updateInvoice($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument) {
+        //if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
-            return $rechnungDAO->update($rechnung);
-        }
-        return null;
+            return $rechnungDAO->update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument);
+        //}
+        //return null;
     }
 
     /**
      * Löscht anhand der Rechnungs-ID die entsprechende Rechnung aus der Datenbank
      */
-    public function deleteRechnung($rechnungId) {
-        if($this->verifyAuth()) {
+    public function deleteInvoice($rechnungId) {
+        //if($this->verifyAuth()) {
             $rechnungDAO = new \dao\RechnungDAO();
-            $rechnung = new Rechnung();
-            $rechnung->setRg_id($rechnungId);
-            $rechnungDAO->delete($rechnung);
-        }
+            $rechnungDAO->delete($rechnungId);
+        //}
     }
 
+    
     /**
-     * TODO -> auch in RechnungDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
+     * 
+     * Selektabfrage, um alle Rechnungsarten auszulesen
      */
-    public function findAllRechnungen() {
-        if($this->verifyAuth()){
-            $rechnungDAO = new \dao\RechnungDAO();
-            return $rechnungDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in RechnungDAO
-        }
-        return null;
+    public function getInvoiceTypes(){
+        $rechnungsDAO = new \dao\RechnungDAO();
+        return $rechnungsDAO->getInvoiceTypes();
     }
     
     /**

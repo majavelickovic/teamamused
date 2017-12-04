@@ -127,7 +127,7 @@ class Rechnung {
 	 * @ReturnType void
 	 */
 	public function setReise($reise_id) {
-		$this->_reise = $reise_id;
+		$this->_reise_id = $reise_id;
 	}
         
         /**

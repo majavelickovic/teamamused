@@ -54,6 +54,11 @@ class ReiseController
                 $_POST["reisetitel"]);
     }
     
+    public static function readReiseName($reise){
+        return Service::getInstance()->readReiseName(
+                $reise);
+    }
+    
     public static function reiseAnzeigeView(){
         echo (new View("exist_journey.php"))->render();
     }
