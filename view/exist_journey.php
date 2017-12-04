@@ -33,16 +33,16 @@ Diese Seite stellt die Reise-Seite dar.
                     <table>
                         <tr>
                             <td>Reise-ID</td>
-                            <td><input type="text" name="journeyID" value="" size="40px" /></td>
+                            <td><input type="text" name="reise_id" value="" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Reisetitel</td>
-                            <td><input type="text" name="journey" value="" size="40px" /></td>
+                            <td><input type="text" name="beschreibung" value="" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Reiseleiter</td>
                             <td>
-                                <select id="dropdown" name="guide">
+                                <select id="dropdown" name="reiseleiter">
                                     <option value="">Maja</option>
                                     <option value="">Sandra</option>
                                     <option value="">Michelle</option>
@@ -55,11 +55,11 @@ Diese Seite stellt die Reise-Seite dar.
                         </tr>
                         <tr>
                             <td>Preis</td>
-                            <td><input type="range" id="pricerange" min="0" max="1000" value="0" /></td>
+                            <td><input type="range" id="preis" min="0" max="1000" value="0" /></td>
                         </tr>
                         <tr>
                             <td>Standort</td>
-                            <td><input type="text" name="place" value="" size="40px" /></td>
+                            <td><input type="text" name="standort" value="" size="40px" /></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>

@@ -17,33 +17,41 @@ class ReiseController
      */
     public static function neueReise(){
         return Service::getInstance()->createReise(
-                $_POST["reise"],
-                $_POST["rgart"],
-                $_POST["kosten"],
+                $_POST["reisetitel"],
                 $_POST["beschreibung"],
-                $_POST["dokument"]);
+                $_POST["datum_start"],
+                $_POST["datum_ende"],
+                $_POST["preis"],
+                $_POST["reiseleiter"],
+                $_POST["standort"]);
     }
     
         public static function leseReise(){
         return Service::getInstance()->readReise(
-                $_POST["reise"],
-                $_POST["rg_id"],
-                $_POST["rgart"]);
+                $_POST["reise_id"],
+                $_POST["reisetitel"],
+                $_POST["reiseleiter"],
+                $_POST["datum_start"],
+                $_POST["datum_ende"],
+                $_POST["preis"],
+                $_POST["standort"]);
     }
     
         public static function aktualisiereReise(){
         return Service::getInstance()->updateReise(
-                $_POST["reise"],
-                $_POST["rgart"],
-                $_POST["kosten"],
+                $_POST["reisetitel"],
                 $_POST["beschreibung"],
-                $_POST["dokument"]);
+                $_POST["reiseleiter"],
+                $_POST["datum_start"],
+                $_POST["datum_ende"],
+                $_POST["preis"],                
+                $_POST["standort"]);
     }
     
         public static function loescheReise(){
-        return Service::getInstance()->deleteRechnung(
-                $_POST["rg_id"],
-                $_POST["reise"]);
+        return Service::getInstance()->deleteReise(
+                $_POST["reise_id"],
+                $_POST["reisetitel"]);
     }
     
     public static function reiseAnzeigeView(){
@@ -54,4 +62,3 @@ class ReiseController
         echo (new View("new_journey.php"))->render();
     }
 }
-?>
