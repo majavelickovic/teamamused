@@ -27,7 +27,7 @@ class RechnungController
                 $_POST["kosten"],
                 $_POST["beschreibung"],
                 addslashes($_FILES['dokument']['name']),
-                utf8_encode(addslashes(file_get_contents($_FILES['dokument']['tmp_name']))));
+                addslashes(file_get_contents($_FILES['dokument']['tmp_name'])));
     }
     
     public static function readInvoice(){
