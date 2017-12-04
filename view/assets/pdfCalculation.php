@@ -6,7 +6,7 @@ class PDF extends FPDF {
   function Header()
   {
     // Lese Reisetitel
-    $reisename = controller\ReiseController::readReiseName($_POST['reise']);
+    $reisename = controller\ReiseController::readJourneyName($_POST['reise']);
     // Arial fett 15
     $this->SetFont('Arial','B',15);
      // nach rechts gehen
