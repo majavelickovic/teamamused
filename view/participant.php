@@ -20,18 +20,18 @@ Diese Seite stellt die Teilnehmer-Seite dar.
                     </ul>
                 </div>
                 <div id="blockleft">
-					<table>
+                    <table>
                         <tr>
-                            <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/plus.png"></td><td>neue Teilnehmer hinzufügen</td>
+                            <td><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer/neu" ?>"><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/plus.png"></a></td><td><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer/neu" ?>" style="text-decoration: none;">neue Teilnehmer hinzufügen</a></td>
                         </tr>
-					</table>
+                    </table>
                 </div>
-				<div id="blockright">
-					<table>
+                <div id="blockright">
+                    <table>
                         <tr>
-                            <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/search.png"></td><td>bestehende Teilnehmer anzeigen</td>
+                            <td><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer/bestehend" ?>"><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/search.png"></a></td><td><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer/bestehend" ?>" style="text-decoration: none;">bestehende Teilnehmer anzeigen</a></td>
                         </tr>
-					</table>
+                    </table>
                 </div>
             </div>
         </div>
