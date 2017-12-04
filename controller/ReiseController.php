@@ -23,7 +23,7 @@ class ReiseController
                 $_POST["datum_ende"],
                 $_POST["preis"],
                 $_POST["reiseleiter"],
-                $_POST["standort"]);
+                $_POST["startort"]);
     }
     
         public static function leseReise(){
@@ -34,7 +34,7 @@ class ReiseController
                 $_POST["datum_start"],
                 $_POST["datum_ende"],
                 $_POST["preis"],
-                $_POST["standort"]);
+                $_POST["startort"]);
     }
     
         public static function aktualisiereReise(){
@@ -45,7 +45,7 @@ class ReiseController
                 $_POST["datum_start"],
                 $_POST["datum_ende"],
                 $_POST["preis"],                
-                $_POST["standort"]);
+                $_POST["startort"]);
     }
     
         public static function loescheReise(){

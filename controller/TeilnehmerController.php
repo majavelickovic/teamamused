@@ -31,8 +31,6 @@ class TeilnehmerController
                 $_POST["teilnehmer_id"],
                 $_POST["vorname"],
                 $_POST["nachname"],
-                $_POST["telefon"],
-                $_POST["mail"],
                 $_POST["geburtsdatum"]);
     }
     
@@ -43,8 +41,6 @@ class TeilnehmerController
                 $_POST["teilnehmer_id"],
                 $_POST["vorname"],
                 $_POST["nachname"],
-                $_POST["telefon"],
-                $_POST["mail"],
                 $_POST["geburtsdatum"]);
     }
     
