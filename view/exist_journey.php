@@ -50,16 +50,20 @@ Diese Seite stellt die Reise-Seite dar.
                             </td>
                         </tr>
                         <tr>
-                            <td>Dauer</td>
-                            <td><input type="text" name="duration" value="" size="40px" /></td>
+                            <td>Datum von</td>
+                            <td><input type="text" name="datum_start" value="" size="40px" /></td>
+                        </tr>
+                        <tr>
+                            <td>Datum bis</td>
+                            <td><input type="text" name="datum_ende" value="" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Preis</td>
                             <td><input type="range" id="preis" min="0" max="1000" value="0" /></td>
                         </tr>
                         <tr>
-                            <td>Standort</td>
-                            <td><input type="text" name="standort" value="" size="40px" /></td>
+                            <td>Startort</td>
+                            <td><input type="text" name="startort" value="" size="40px" /></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>

@@ -49,13 +49,13 @@ class ReiseController
     }
     
         public static function deleteJourney(){
-        return Service::getInstance()->deleteReise(
+        return Service::getInstance()->deleteJourney(
                 $_POST["reise_id"],
                 $_POST["reisetitel"]);
     }
     
     public static function readJourneyName($reise){
-        return Service::getInstance()->readReiseName(
+        return Service::getInstance()->readJourneyName(
                 $reise);
     }
     

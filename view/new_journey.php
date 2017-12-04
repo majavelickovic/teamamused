@@ -45,8 +45,12 @@ Diese Seite stellt die Reise-Seite dar.
                                 <td><input type="text" name="beschreibung" value="" size="40px" /></td>
                             </tr>
                             <tr>
-                                <td>Dauer</td>
-                                <td><input type="text" name="duration" value="" size="40px" /></td>
+                                <td>Datum von</td>
+                                <td><input type="text" name="datum_start" value="" size="40px" /></td>
+                            </tr>
+                            <tr>
+                                <td>Datum bis</td>
+                                <td><input type="text" name="datum_ende" value="" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td>Preis</td>
@@ -69,12 +73,8 @@ Diese Seite stellt die Reise-Seite dar.
                     <form action=""<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                         <table> 
                             <tr>
-                                <td>Standort</td>
-                                <td><input type="text" name="standort" value="" size="40px" /></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Karte</td>
+                                <td>Startort</td>
+                                <td><input type="text" name="startort" value="" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2" align="center"><input type="submit" class="button" value="erstellen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
