@@ -260,7 +260,7 @@ class Service {
     /**
      * TODO -> Rechnung mit Werten aus Formular befüllen
      */
-    public function createInvoice($reise, $rgart, $kosten, $beschreibung, $dokument) {
+    public function createInvoice($reise, $rgart, $kosten, $beschreibung, $dokument, $pdf_object) {
         $rechnungDAO = new \dao\RechnungDAO();
         // Rechnungsinhalte bestimmen
         $neu_id = $rechnungDAO->getNewRgID(); 
@@ -271,6 +271,7 @@ class Service {
         $rechnung->setBeschreibung($beschreibung);
         $rechnung->setKosten($kosten);
         $rechnung->setDokument($dokument);
+        $rechnung->setPdf_Object($pdf_object);
         $rechnungDAO->create($rechnung);
         return $rechnung;
     }
