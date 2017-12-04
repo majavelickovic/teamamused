@@ -22,13 +22,15 @@ class RechnungDAO {
 	public function create(Rechnung $rechnung) {
             $pdo = Database::connect();
             $statement = $pdo->prepare(
-                    "INSERT INTO rechnung (rg_id, rechnungsart, kosten, beschreibung, dokument)
-                        VALUES (:rg_id, :rechnungsart, :kosten, :beschreibung, :dokument)");
+                    "INSERT INTO rechnung (rg_id, rechnungsart, kosten, beschreibung, dokument, pdf_object)
+                        VALUES (:rg_id, :rechnungsart, :kosten, :beschreibung, :dokument, :pdf_object)");
             $statement->bindValue(':rg_id', $rechnung->getRg_id());
             $statement->bindValue(':rechnungsart', $rechnung->getRechnungsart());
             $statement->bindValue(':kosten', $rechnung->getKosten());
             $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
             $statement->bindValue(':dokument', $rechnung->getDokument());
+            $pdf_object = addslashes(file_get_contents($_FILES['dokument']['tmp_name']));
+            $statement->bindValue(':pdf_object', $pdf_object);
             $statement->execute();
 
             $statement2 = $pdo->prepare(
@@ -181,33 +183,6 @@ class RechnungDAO {
             }
             return $returnvalue+1;
 	}
-        
-        /**
-         * Datei für Rechnung raufladen (nur PDF erlaubt)
-         */
-        public function uploadInvoiceDoc(){
-            //Erlaube MIME-Typen für Rechnungsupload
-            $allowedMimeTypes = array( 
-                'application/pdf'
-            );
-
-            $fileToUpload = $_FILES['dokument']["name"];
-
-            //Prüfen, ob die Datei nicht zu gross ist
-            if ( 20000000 < $_FILES['dokument']["size"]  ) {
-              throw new Exception('Das PDF ist zu gross für den Upload.' );
-            }
-
-            //Prüfen, ob der MIME-Typ stimmt undn wenn ja, Upload auf Server
-            if ( in_array( $_FILES['dokument']["type"], $allowedMimeTypes ) ) 
-            {      
-             move_uploaded_file($_FILES['dokument']["tmp_name"], "$home/uploads/invoice/" . $fileToUpload); 
-            }
-            else{
-                throw new Exception('Bitte ein PDF raufladen, andere Typen nicht erlaubt.' . $_FILES['dokument']["type"]);
-            }
-         }
-
 
 	/**
 	 * Liest eine einzelne Rechnung aus der Datenbank, um diese dem Benutzer anzuzeigen

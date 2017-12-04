@@ -38,6 +38,20 @@ Diese Seite stellt die Rechnungs-Seite dar.
             function printInvoice(){      
                 window.print();
             }
+            function showPDF(){           
+                var req = new XMLHttpRequest();
+                req.open('GET', '/deleteInvoice?del_rg_id='+rg_id);
+
+                req.onreadystatechange = function() {
+                    if(req.readyState==4 && req.status==200) {
+
+                    }
+                }
+                req.send(null);
+            }
+            header('Content-type: application/pdf');
+            echo file_get_contents('data:application/pdf;base64,'.base64_encode($file));
+            }
         </script>
     </head>
     <body>		
@@ -120,7 +134,10 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                 <td>
                                     <input id="FileInput" type="text" name="dokument" value="<?php echo $rg->getDokument();?>" style="width:300px;" disabled/>
                                 </td>
-                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("FileInput").type="file";document.getElementById("FileInput").disabled=false'></a></td>
+                                <td>
+                                    <a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("FileInput").type="file";document.getElementById("FileInput").disabled=false'></a>
+                                    <a href="#" target="_blank"><img src='../design/pictures/search.png' onclick='showPDF()'></a>
+                                </td>
                             </tr>
                         </table>
                     </div>
