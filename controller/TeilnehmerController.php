@@ -15,8 +15,8 @@ class TeilnehmerController
      * Übernimmt die Angaben aus dem Teilnehmerformular und gibt diese an die Service-Klasse weiter
      * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen eines Teilnehmers
      */
-    public static function neuerTeilnehmer(){
-        return Service::getInstance()->createTeilnehmer(
+    public static function newParticipant(){
+        return Service::getInstance()->createParticipant(
                 $_POST["reise_id"],
                 $_POST["reisetitel"],
                 $_POST["vorname"],
@@ -24,18 +24,8 @@ class TeilnehmerController
                 $_POST["geburtsdatum"]);
     }
     
-        public static function leseTeilnehmer(){
-        return Service::getInstance()->readTeilnehmer(
-                $_POST["reise_id"],
-                $_POST["reisetitel"],
-                $_POST["teilnehmer_id"],
-                $_POST["vorname"],
-                $_POST["nachname"],
-                $_POST["geburtsdatum"]);
-    }
-    
-        public static function aktualisiereTeilnehmer(){
-        return Service::getInstance()->updateTeilnehmer(
+        public static function readParticipant(){
+        return Service::getInstance()->readParticipant(
                 $_POST["reise_id"],
                 $_POST["reisetitel"],
                 $_POST["teilnehmer_id"],
@@ -44,18 +34,28 @@ class TeilnehmerController
                 $_POST["geburtsdatum"]);
     }
     
-        public static function loescheTeilnehmer(){
-        return Service::getInstance()->deleteTeilnehmer(
+        public static function updateParticipant(){
+        return Service::getInstance()->updateParticipant(
+                $_POST["reise_id"],
+                $_POST["reisetitel"],
+                $_POST["teilnehmer_id"],
+                $_POST["vorname"],
+                $_POST["nachname"],
+                $_POST["geburtsdatum"]);
+    }
+    
+        public static function deleteParticipant(){
+        return Service::getInstance()->deleteParticipant(
                 $_POST["teilnehmer_id"],
                 $_POST["vorname"],
                 $_POST["nachname"]);
     }
     
-    public static function teilnehmerAnzeigeView(){
+    public static function participantShowView(){
         echo (new View("exist_participant.php"))->render();
     }
 
-    public static function teilnehmerHinzufView(){
+    public static function participantAddView(){
         echo (new View("new_participant.php"))->render();
     }
 }
