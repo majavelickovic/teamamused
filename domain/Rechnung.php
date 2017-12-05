@@ -157,8 +157,8 @@ class Rechnung {
                 
         /**
 	 * @access public
-	 * @return blob
-	 * @ReturnType blob
+	 * @return bytea
+	 * @ReturnType bytea
 	 */
 	public function getPdf_Object() {
 		return $this->_pdf_object;

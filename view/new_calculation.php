@@ -42,11 +42,9 @@ Diese Seite stellt die Rechnungs-Seite dar.
 				<td>
                                     <select id="dropdown" name="reise" style="width:300px;">
                                         <?php
-                                        $pdo = Database::connect();
-                                        $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
-
-                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                        //Abfrage für Reisetitel
+                                        foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
+                                            echo "<option value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
                                         }
                                         ?>
                                     </select>
@@ -57,7 +55,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                 <td>
                                     <select id="dropdown" name="rgart" style="width:300px;">
                                         <?php
-                                        // @MAJA -> View greift über die Serviceklasse auf die DAO also Datenbank zu
+                                        // Abfrage für Rechnungsarten
                                         foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
                                             echo "<option value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
                                         }

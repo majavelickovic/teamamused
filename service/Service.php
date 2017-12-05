@@ -328,6 +328,14 @@ class Service {
     }
     
     /**
+     * Selektabfrage, um alle Reisetitel auszulesen
+     */
+    public function getJourneyTitles(){
+        $reiseDAO = new \dao\ReiseDAO();
+        return $reiseDAO->getJourneyTitles();
+    }
+    
+    /**
      * Lese Rechnungs-PDF aus der Datenbank und gebe das konvertiert als String zurück
      */
     public function getAttachedPDFInvoice($rg_id){

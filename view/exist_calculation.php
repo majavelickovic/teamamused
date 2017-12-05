@@ -4,6 +4,7 @@ use database\Database;
 
 /*
  * View, um eine besthende Rechnung zu suchen
+ * @author Maja Velickovic
  */
 ?>
 

@@ -94,6 +94,12 @@ class ReiseDAO {
         return $statement->fetchAll(\PDO::FETCH_CLASS, "Reise");
         }
         
+        /**
+         * 
+         * @param type $reise
+         * @return Titel einer spezifischen Reise
+         * @author Maja Velickovic
+         */
         public function readReiseName($reise) {
             $pdo = Database::connect();           
             $statement = $pdo->prepare("SELECT titel FROM reise WHERE reise_id = :reise;");
@@ -103,6 +109,18 @@ class ReiseDAO {
                 $reisename = $row['titel'];
             }
             return $reisename;
+        }
+        
+        /**
+         * 
+         * @return Array mit allen Reisetiteln
+         * @author Maja Velickovic
+         */
+        public function getJourneyTitles(){
+            $pdo = Database::connect();
+            $statement = $pdo->query("SELECT reise_id, titel FROM reise order by beschreibung asc");
+            $statement->execute();
+            return $statement->fetchAll();
         }
 }
 ?>

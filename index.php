@@ -157,6 +157,10 @@
             }
         });
 
+        /**
+         * Neue Rechnung wird von Benutzer erfasst
+         * @author Maja Velickovic
+         */
         Router::route("GET", "/rechnung/neu", function () {
             if (AuthentifizController::authenticate()) {
                 controller\RechnungController::invoiceAddView();
@@ -165,6 +169,10 @@
             }
         });
 
+        /**
+         * Rechnungsformular wurde von Benutzer submittet, Rechnung wird erstellt
+         * @author Maja Velickovic
+         */
         Router::route("POST", "/rechnung/neu", function () {
             if (AuthentifizController::authenticate()) {
                 controller\RechnungController::invoiceAddView();
@@ -187,6 +195,10 @@
             }
         });
 
+        /**
+         * bestehende Rechnungen können über ein Formular abgerufen werden
+         * @author Maja Velickovic
+         */
         Router::route("GET", "/rechnung/bestehend", function () {
             if (AuthentifizController::authenticate()) {
                 controller\RechnungController::invoiceShowView();
@@ -195,6 +207,10 @@
             }
         });
 
+        /**
+         * Formular, um Rechnungen zu suchen wurde ausgefüllt, Tabelle mit Rechnungen werden dem Benutzer ausgewiesen
+         * @author Maja Velickovic
+         */
         Router::route("POST", "/rechnung/bestehend", function () {
             if (AuthentifizController::authenticate()) {
                 controller\RechnungController::invoiceShowView();
@@ -203,6 +219,10 @@
             }
         });
 
+        /**
+         * Eine konkrete bestehende Rechnung wird dem Benutzer in einem Formular angezeigt
+         * @author Maja Velickovic
+         */
         Router::route("GET", "/rechnung/anzeige", function () {
             if (AuthentifizController::authenticate()) {
                 controller\RechnungController::invoiceShowSingleView();
@@ -211,6 +231,10 @@
             }
         });
 
+        /**
+         * Änderungen an einer behenden Rechnungen werden gespeichert
+         * @author Maja Velickovic
+         */
         Router::route("POST", "/rechnung/anzeige", function () {
             if (AuthentifizController::authenticate()) {
                 controller\RechnungController::updateInvoice();
@@ -220,6 +244,10 @@
             }
         });
 
+        /**
+         * Übersichtsseite für Optionen für eine Rechnung werden angezeigt
+         * @author Maja Velickovic
+         */
         Router::route("GET", "/rechnung", function () {
             if (AuthentifizController::authenticate()) {
                 controller\RechnungController::invoiceChoiceView();
@@ -228,6 +256,10 @@
             }
         });
 
+        /**
+         * Formular für Schlussabrechnung wurde submitted, Schlussabrechnung (FPDF) wird aufgerufen
+         * @author Maja Velickovic
+         */
         Router::route("POST", "/rechnung/schlussabrechnung", function () {
             if (AuthentifizController::authenticate()) {
                 controller\PDFController::pdfCalculationView();
@@ -236,6 +268,10 @@
             }
         });
 
+        /**
+         * Formular für Schlussabrechnung wird augerufen, der Benutzer kann hier eine Reise selektieren
+         * @author Maja Velickovic
+         */
         Router::route("GET", "/rechnung/schlussabrechnung", function () {
             if (AuthentifizController::authenticate()) {
                 controller\RechnungController::finalBillingView();
@@ -244,20 +280,22 @@
             }
         });
 
-        Router::route("GET", "/pdfCalculation", function () {
-            if (AuthentifizController::authenticate()) {
-                controller\PDFController::pdfCalculationView();
-            } else {
-                controller\ErrorController::error403View();
-            }
-        });
-
+        // todo -> entfernen!
         Router::route("GET", "/testDB", function () {
             require_once("view/testDBConnect.php");
         });
 
+        /**
+         * eine bestimmte Rechnung wird gelöscht
+         * @author Maja Velickovic
+         */
         Router::route("GET", "/deleteInvoice", function () {
-            require_once("controller/RechnungController.php");
+            if (AuthentifizController::authenticate() && $_GET['del_rg_id'] > 0) {
+                controller\RechnungController::deleteInvoice($_GET['del_rg_id']);
+            } else {
+                controller\ErrorController::error403View();
+            }
+            
         });
 
         Router::route("GET", "/teilnehmer", function () {
