@@ -286,7 +286,7 @@
          */
         Router::route("GET", "/showSingleCalcPDF", function () {
             if (AuthentifizController::authenticate()) {
-                controller\PDFController::showSingeCalcPDF();
+                controller\PDFController::showSingleCalcPDF();
             } else {
                 controller\ErrorController::error403View();
             }
