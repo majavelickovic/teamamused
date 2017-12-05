@@ -40,7 +40,7 @@ if($rg->getReise() == ""){
             //angehängtes PDF der Rechnung anzeigen
             function showPDF(rg_id){           
                 var req = new XMLHttpRequest();
-                req.open('GET', 'assets/viewAttachedCalculationPDF?rg_id='+rg_id);
+                req.open('GET', 'assets/viewAttachedCalculationPDF.php?rg_id='+rg_id);
 
                 req.onreadystatechange = function() {
                     if(req.readyState==4 && req.status==200) {
