@@ -30,7 +30,8 @@ class RechnungDAO {
             $statement->bindValue(':dokument', $rechnung->getDokument());
             $statement->execute();            
           
-            pg_escape_bytea($pdo, $rechnung->getPdf_Object());
+            pg_exec($pdo, 'UPDATE rechnung SET pdf_object =' + $_FILES['dokument']['tmpname'] + ' '
+                    . 'WHERE rg_id = ' + $rechnung->getRg_id() );
 
             $statement2 = $pdo->prepare(
                     "INSERT INTO reise_rechnung (reise_id, rg_id)

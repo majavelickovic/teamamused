@@ -31,10 +31,6 @@ class Rechnung {
 	 * @AttributeType int
 	 */
 	private $_reise_id;
-        /**
-         * @AttributeType bytea
-         */
-        private $_pdf_object;
 	/**
 	 * @AssociationType domain.Rechnungsart
 	 * @AssociationMultiplicity 1
@@ -153,26 +149,6 @@ class Rechnung {
 	public function setRechnungsart($rechnungsart) {
 		$this->_rechnungsart = $rechnungsart;
 	}
-        
-                
-        /**
-	 * @access public
-	 * @return bytea
-	 * @ReturnType bytea
-	 */
-	public function getPdf_Object() {
-		return $this->_pdf_object;
-	}
 
-	/**
-	 * @access public
-	 * @param bytea $pdf_object
-	 * @return void
-	 * @ParamType $pdf_object bytea
-	 * @ReturnType void
-	 */
-	public function setPdf_Object($pdf_object) {
-		$this->_rechnungsart = $pdf_object;
-	}
 }
 ?>
