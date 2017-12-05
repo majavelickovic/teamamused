@@ -8,6 +8,11 @@ namespace controller;
 use view\view as View;
 use service\Service;
 
+$del_teilnehmer_id = $_GET['del_teilnehmer_id'];
+if($del_teilnehmer_id > 0){
+    TeilnehmerController::deleteParticipant($del_teilnehmer_id);
+}
+
 class TeilnehmerController
 {
 

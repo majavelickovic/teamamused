@@ -9,6 +9,11 @@ namespace controller;
 use view\view as View;
 use service\Service;
 
+$del_reise_id = $_GET['del_reise_id'];
+if($del_reise_id > 0){
+    ReiseController::deleteJourney($del_reise_id);
+}
+
 class ReiseController {
     /*
      * Übernimmt die Angaben aus dem Reiseformular und gibt diese an die Service-Klasse weiter
