@@ -279,6 +279,18 @@
                 controller\ErrorController::error403View();
             }
         });
+        
+        /**
+         * PDF von angehängter Rechnung wird angezeigt
+         * @author Maja Velickovic
+         */
+        Router::route("GET", "/showSingleCalcPDF", function () {
+            if (AuthentifizController::authenticate()) {
+                controller\PDFController::showSingeCalcPDF();
+            } else {
+                controller\ErrorController::error403View();
+            }
+        });
 
         // todo -> entfernen!
         Router::route("GET", "/testDB", function () {
