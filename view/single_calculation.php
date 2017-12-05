@@ -38,9 +38,9 @@ Diese Seite stellt die Rechnungs-Seite dar.
             function printInvoice(){      
                 window.print();
             }
-            function showPDF(){           
+            function showPDF(rg_id){           
                 var req = new XMLHttpRequest();
-                req.open('GET', '/deleteInvoice?del_rg_id='+rg_id);
+                req.open('GET', 'assets/viewAttachedCalculationPDF?rg_id='+rg_id);
 
                 req.onreadystatechange = function() {
                     if(req.readyState==4 && req.status==200) {
@@ -48,9 +48,6 @@ Diese Seite stellt die Rechnungs-Seite dar.
                     }
                 }
                 req.send(null);
-            }
-            header('Content-type: application/pdf');
-            echo file_get_contents('data:application/pdf;base64,'.base64_encode($file));
             }
         </script>
     </head>
@@ -154,7 +151,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                             <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printInvoice()" /></td>
                         </tr>
                         <tr>
-                            <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalInvoice()"/></td>
+                            <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalInvoice(document.getElementById('rg_id');)"/></td>
                         </tr>   
                     </table>
                 </div>

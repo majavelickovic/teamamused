@@ -29,7 +29,7 @@ class RechnungDAO {
             $statement->bindValue(':kosten', $rechnung->getKosten());
             $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
             $statement->bindValue(':dokument', $rechnung->getDokument());
-            $statement->bindValue(':pdf_object', pg_read_file($rechnung->getPdf_Object()));
+            $statement->bindValue(':pdf_object', pg_escape_bytea($rechnung->getPdf_Object()));
             $statement->execute();
 
             $statement2 = $pdo->prepare(
@@ -252,6 +252,20 @@ class RechnungDAO {
             $statement->execute();
             return $statement->fetchAll();
             }
+            
+        /**
+         * Liest das angehängte PDF einer Rechnung aus
+         */
+         public function  getAttachedPDFInvoice($rg_id){
+            $pdo = Database::connect();           
+            $statement = $pdo->prepare("SELECT pdf_object FROM rechnung where rg_id = :rg_id");
+            $statement->bindValue(':rg_id', $rg_id);
+            $statement->execute();
+            foreach($statement as $result){
+                $file= pg_unescape_bytea($result['pdf_object']);
+            }
+            return $file;
+         }
 
 }
 

@@ -328,6 +328,14 @@ class Service {
     }
     
     /**
+     * Lese Rechnungs-PDF aus der Datenbank und gebe das konvertiert als String zurück
+     */
+    public function getAttachedPDFInvoice($rg_id){
+        $rechnungDAO = new \dao\RechnungDAO();
+        $rechnungDAO->getAttachedPDFInvoice($rg_id);
+    }
+    
+    /**
      * ????
      */
 //    public function validateToken($token, $type = self::AGENT_TOKEN) {
