@@ -32,7 +32,7 @@ class Rechnung {
 	 */
 	private $_reise_id;
         /**
-         * @AttributeType blob
+         * @AttributeType bytea
          */
         private $_pdf_object;
 	/**
@@ -157,8 +157,8 @@ class Rechnung {
                 
         /**
 	 * @access public
-	 * @return int
-	 * @ReturnType int
+	 * @return blob
+	 * @ReturnType blob
 	 */
 	public function getPdf_Object() {
 		return $this->_pdf_object;
@@ -166,9 +166,9 @@ class Rechnung {
 
 	/**
 	 * @access public
-	 * @param int $pdf_object
+	 * @param bytea $pdf_object
 	 * @return void
-	 * @ParamType $pdf_object int
+	 * @ParamType $pdf_object bytea
 	 * @ReturnType void
 	 */
 	public function setPdf_Object($pdf_object) {

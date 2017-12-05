@@ -26,7 +26,7 @@ class RechnungController
                 $_POST["rgart"],
                 $_POST["kosten"],
                 $_POST["beschreibung"],
-                $_POST['dokument'],
+                $_FILES['dokument']['name'],
                 $_FILES['dokument']['tmp_name']);
     }
     

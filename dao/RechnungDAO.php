@@ -31,6 +31,7 @@ class RechnungDAO {
             $statement->bindValue(':dokument', $rechnung->getDokument());
             $statement->execute();
             
+          
             pg_escape_bytea($pdo, $rechnung->getPdf_Object());
 
             $statement2 = $pdo->prepare(
