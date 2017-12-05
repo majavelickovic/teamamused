@@ -11,7 +11,7 @@ if($_GET['id'] > 0){
 }    
 $rgDAO = new dao\RechnungDAO;
 $rg = new Rechnung();
-$rg = service\Service::getInstance()->readSingleInvoice($rg_id);
+$rg = Service::getInstance()->readSingleInvoice($rg_id);
 if($rg->getReise() == ""){
     ErrorController::error404View();
 }else{
