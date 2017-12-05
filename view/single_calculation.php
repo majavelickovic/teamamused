@@ -44,7 +44,7 @@ if($rg->getReise() == ""){
 
                 req.onreadystatechange = function() {
                     if(req.readyState==4 && req.status==200) {
-                        //keine Aktion
+                        window.open(req.responseText);
                     }
                 }
                 req.send(null);
@@ -128,8 +128,8 @@ if($rg->getReise() == ""){
                                     <input id="FileInput" type="text" name="dokument" value="<?php echo $rg->getDokument();?>" style="width:300px;" disabled/>
                                 </td>
                                 <td>
-                                    <a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("FileInput").type="file";document.getElementById("FileInput").disabled=false'></a>
-                                    <a href="#" target="_blank"><img src='../design/pictures/search.png' onclick='showPDF()'></a>
+                                    <a href="#"><img src="../design/pictures/edit.png" onclick="document.getElementById('FileInput').type='file';document.getElementById('FileInput').disabled=false"></a>
+                                    <a href="#" target="_blank"><img src="../design/pictures/search.png" onclick="showPDF(document.getElementById('rg_id');)"></a>
                                 </td>
                             </tr>
                         </table>
@@ -147,7 +147,7 @@ if($rg->getReise() == ""){
                             <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printInvoice()" /></td>
                         </tr>
                         <tr>
-                            <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalInvoice(document.getElementById('rg_id');)"/></td>
+                            <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalInvoice()"/></td>
                         </tr>   
                     </table>
                 </div>
