@@ -37,18 +37,6 @@ if($rg->getReise() == ""){
             function printInvoice(){      
                 window.print();
             }
-            //angehängtes PDF der Rechnung anzeigen
-            function showPDF(rg_id){           
-                var req = new XMLHttpRequest();
-                req.open('GET', 'assets/viewAttachedCalculationPDF.php?rg_id='+rg_id);
-
-                req.onreadystatechange = function() {
-                    if(req.readyState==4 && req.status==200) {
-                        window.open(req.responseText);
-                    }
-                }
-                req.send(null);
-            }
         </script>
     </head>
     <body>		
@@ -129,7 +117,7 @@ if($rg->getReise() == ""){
                                 </td>
                                 <td>
                                     <a href="#"><img src="../design/pictures/edit.png" onclick="document.getElementById('FileInput').type='file';document.getElementById('FileInput').disabled=false"></a>
-                                    <a href="#" target="_blank"><img src="../design/pictures/search.png" onclick="showPDF(document.getElementById('rg_id');)"></a>
+                                    <a href="#" target="_blank"><img src="../design/pictures/search.png" onclick="window.open('/showSingleCalcPDF', 'Anzeige PDF')"></a>
                                 </td>
                             </tr>
                         </table>
