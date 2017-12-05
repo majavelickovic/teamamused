@@ -22,7 +22,7 @@ class RechnungDAO {
 	public function create(Rechnung $rechnung) {
             $pdo = Database::connect();
             $statement = $pdo->prepare(
-                    "INSERT INTO rechnung (rg_id, rechnungsart, kosten, beschreibung, dokument, pdf_object)
+                    "INSERT INTO rechnung (rg_id, rechnungsart, kosten, beschreibung, dokument)
                         VALUES (:rg_id, :rechnungsart, :kosten, :beschreibung, :dokument)");
             $statement->bindValue(':rg_id', $rechnung->getRg_id());
             $statement->bindValue(':rechnungsart', $rechnung->getRechnungsart());
