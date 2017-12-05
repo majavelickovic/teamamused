@@ -357,7 +357,7 @@ class Service {
      */
     public function getAttachedPDFInvoice($rg_id){
         $rechnungDAO = new \dao\RechnungDAO();
-        $rechnungDAO->getAttachedPDFInvoice($rg_id);
+        return $rechnungDAO->getAttachedPDFInvoice($rg_id);
     }
     
     /**
