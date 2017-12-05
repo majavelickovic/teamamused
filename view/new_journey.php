@@ -1,6 +1,7 @@
 <?php
 
 use database\Database;
+use service\Service;
 
 /*
  * View, um eine neue Reise zu erfassen
@@ -34,7 +35,7 @@ Diese Seite stellt die Reise-Seite dar.
                             <td><img src="../design/pictures/plus.png"></td><td>neue Reise erstellen</td>
                         </tr>
                     </table>
-                    <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
+                    <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/reise/neu" method="POST" enctype="multipart/form-data">
                         <table>
                             <tr>
                                 <td>Reisetitel</td>
@@ -42,7 +43,7 @@ Diese Seite stellt die Reise-Seite dar.
                             </tr>
                             <tr>
                                 <td>Beschreibung</td>
-                                <td><input type="text" name="beschreibung" value="" size="40px" /></td>
+                                <td><textarea name="beschreibung" rows="5" cols="35"></textarea></td>
                             </tr>
                             <tr>
                                 <td>Datum von</td>
@@ -60,15 +61,15 @@ Diese Seite stellt die Reise-Seite dar.
                                 <td>Reiseleiter</td>
                                 <td>
                                     <select id="dropdown" name="reiseleiter">
-                                        <option value="">Maja</option>
-                                        <option value="">Sandra</option>
-                                        <option value="">Michelle</option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Startort</td>
-                                <td><input type="text" name="startort" value="" size="40px" /></td>
+                                <td><input type="text" name="startort" value="" size="40px" /></td></br>
                             </tr>
                             <tr>
                                 <td colspan="2" align="center"><input type="submit" class="button" value="erstellen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
@@ -77,7 +78,7 @@ Diese Seite stellt die Reise-Seite dar.
                     </form>
                 </div>
                 <div id="blockright">
-                   
+
                 </div>
             </div>
         </div>
