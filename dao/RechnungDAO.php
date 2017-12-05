@@ -23,14 +23,15 @@ class RechnungDAO {
             $pdo = Database::connect();
             $statement = $pdo->prepare(
                     "INSERT INTO rechnung (rg_id, rechnungsart, kosten, beschreibung, dokument, pdf_object)
-                        VALUES (:rg_id, :rechnungsart, :kosten, :beschreibung, :dokument, :pdf_object)");
+                        VALUES (:rg_id, :rechnungsart, :kosten, :beschreibung, :dokument)");
             $statement->bindValue(':rg_id', $rechnung->getRg_id());
             $statement->bindValue(':rechnungsart', $rechnung->getRechnungsart());
             $statement->bindValue(':kosten', $rechnung->getKosten());
             $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
             $statement->bindValue(':dokument', $rechnung->getDokument());
-            $statement->bindValue(':pdf_object', pg_escape_bytea($rechnung->getPdf_Object()));
             $statement->execute();
+            
+            pg_escape_bytea($pdo, $rechnung->getPdf_Object());
 
             $statement2 = $pdo->prepare(
                     "INSERT INTO reise_rechnung (reise_id, rg_id)
