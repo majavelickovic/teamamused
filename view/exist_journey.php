@@ -1,3 +1,12 @@
+<?php
+
+use database\Database;
+
+/*
+ * View, um eine besthende Reise zu suchen
+ */
+?>
+
 <!DOCTYPE html>
 <!--
 Diese Seite stellt die Reise-Seite dar.
@@ -8,26 +17,44 @@ Diese Seite stellt die Reise-Seite dar.
         <link rel="stylesheet" href="../design/styles.css">
         <title>Reise</title>
         <script type="text/javascript">
+            //Seite aktualisieren, damit die Tabelle aktualisiert angzeigt wird
             function refreshTable() {
-                document.getElementById("Table").refresh();
+                document.getElementById("searchForm").submit();
+            }
+            //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
+            function deleteJourney(reise_id) {
+                if (confirm("Wollen Sie die Reise wirklich löschen?")) {
+                    var req = new XMLHttpRequest();
+                    req.open('GET', '/deleteJourney?del_reise_id=' + reise_id);
+
+                    req.onreadystatechange = function () {
+                        if (req.readyState == 4 && req.status == 200) {
+                            alert("Die Reise " + reise_id + " wurde gelöscht.");
+                            refreshTable();
+                        }
+                    }
+                    req.send(null);
+                } else {
+                    //nichts tun, wenn der Benutzer die Rechnung nicht löschen möchte
+                }
             }
         </script>
     </head>
-    <body>		
+    <body>
         <div id="whiteblock">
             <div id="block">
                 <div id="navblock">
                     <ul>
-                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/reise" ?>">Reise</a></li>
-                        <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung" ?>">Rechnung</a></li>
+                        <li><a href="<?php echo $GLOBALS["RO                                       OT URL"] . "/reise" ?>">Reise</a></li>
+                        <li><a href="<                                                                                           ?php echo $GLOBALS["ROOT URL"] . "/rechnung" ?>">Rechnung</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer" ?>">Teilnehmer</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT URL"] . "/logout" ?>">Logout</a></li>
-                    </ul>
+                        </u                                                                                       l>
                 </div>
                 <div id="blockleft">
                     <table>
                         <tr>
-                            <td><img src="../design/pictures/search.png"></td><td>bestehende Reise anzeigen</td>
+                            <td><img src="../design/pictures/search.png"></td><td>bestehende                                                                                                                    Reise anzeigen</td>
                         </tr>
                     </table>
                     <table>
@@ -51,23 +78,39 @@ Diese Seite stellt die Reise-Seite dar.
                         </tr>
                         <tr>
                             <td>Datum von</td>
-                            <td><input type="text" name="datum_start" value="" size="40px" /></td>
+                            <td><input type="text" na                                                                                                        me="datum_start" value="" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Datum bis</td>
-                            <td><input type="text" name="datum_ende" value="" size="40px" /></td>
+                            <td><input type="tex                                                                                                            t" name="datum_ende" value="" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Preis</td>
-                            <td><input type="range" id="preis" min="0" max="1000" value="0" /></td>
+                            <td><input type="range                                                                                                                    " id="preis" min="0" max="1000" value="0" /></td>
                         </tr>
                         <tr>
                             <td>Startort</td>
-                            <td><input type="text" name="startort" value="" size="40px" /></td>
+                            <td><input typ                                                                                                                    e="text" name="startort" value="" size="40px" /></td>
                         </tr>
                         <tr>
-                            <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                            <td colspan="2" align="center"><input type="submit" class="button" value="suche                                                                                                        n" />  <input type="reset" cla                                                                                                    ss="button" value="zur&uuml;c                                                                                                    ksetzen" /></td>
                         </tr>
+                    </table>
+                </div>
+                <div id="blockright">
+                    <table id="reiseTable">
+                        <tr>
+                            <th>Reise-ID</th>
+                            <th>Reisetitel</th>
+                        </tr>
+                        <?php
+                        $reisetablecontent = controller\ReiseController::readJourney();
+                        if ($reisetablecontent != null) {
+                            echo $reisetablecontent;
+                        } else {
+                            echo "";
+                        }
+                        ?>
                     </table>
                 </div>
             </div>

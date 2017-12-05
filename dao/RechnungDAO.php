@@ -17,7 +17,7 @@ use Exception;
 class RechnungDAO {
 
 	/**
-	 * Erstellt einen neues Rechnungs-Objekt in der Tabelle "rechnung" und "reise_rechnung"
+	 * Erstellt ein neues Rechnungs-Objekt in der Tabelle "rechnung" und "reise_rechnung"
 	 */
 	public function create(Rechnung $rechnung) {
             $pdo = Database::connect();

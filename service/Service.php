@@ -119,7 +119,7 @@ class Service {
     /**
      * TODO -> Reise mit Werten aus Formular befüllen
      */
-    public function createReise(Reise $reise) {
+    public function createJourney(Reise $reise) {
         if($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             // Reiseinhalte bestimmen
@@ -137,7 +137,7 @@ class Service {
     /**
      * Liest anhand der Reise-Id die entsprechende Reise aus der Datenbank
      */
-    public function readReise($reiseId) {
+    public function readJourney($reiseId) {
         if($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             return $reiseDAO->read($reiseId);
@@ -148,7 +148,7 @@ class Service {
     /**
      * TODO
      */
-    public function updateReise(Reise $reise) {
+    public function updateJourney(Reise $reise) {
         if($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             return $reiseDAO->update($reise);
@@ -159,7 +159,7 @@ class Service {
     /**
      * Löscht anhand der Reise-ID die entsprechende Reise aus der Datenbank
      */
-    public function deleteReise($reiseId) {
+    public function deleteJourney($reiseId) {
         if($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             $reise = new Reise();
@@ -171,7 +171,7 @@ class Service {
     /**
      * TODO -> auch in ReiseDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
      */
-    public function findAllReisen() {
+    public function findAllJourney() {
         if($this->verifyAuth()){
             $reiseDAO = new dao\ReiseDAO();
             return $reiseDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in ReiseDAO
@@ -182,7 +182,7 @@ class Service {
     /**
      * Lese Reisename anhand Reise-ID
      */
-    public function readReiseName($reise) {
+    public function readJourneyName($reise) {
         //if($this->verifyAuth()){
             $reiseDAO = new dao\ReiseDAO();
             return $reiseDAO->readReiseName($reise);
@@ -195,7 +195,7 @@ class Service {
     /**
      * TODO -> Teilnehmer mit Werten aus Formular befüllen
      */
-    public function createTeilnehmer(Teilnehmer $teilnehmer) {
+    public function createParticipant(Teilnehmer $teilnehmer) {
         if($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
             // Teilnehmerinhalte bestimmen
@@ -213,7 +213,7 @@ class Service {
     /**
      * Liest anhand der Teilnehmer-Id den entsprechenden Teilnehmer aus der Datenbank
      */
-    public function readTeilnehmer($teilnehmerId) {
+    public function readParticipant($teilnehmerId) {
         if($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
             return $teilnehmerDAO->read($teilnehmerId);
@@ -224,7 +224,7 @@ class Service {
     /**
      * TODO
      */
-    public function updateTeilnehmer(Teilnehmer $teilnehmer) {
+    public function updateParticipant(Teilnehmer $teilnehmer) {
         if($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
             return $teilnehmerDAO->update($teilnehmer);
@@ -235,7 +235,7 @@ class Service {
     /**
      * Löscht anhand der Teilnehmer-ID den entsprechenden Teilnehmer aus der Datenbank
      */
-    public function deleteTeilnehmer($teilnehmerId) {
+    public function deleteParticipant($teilnehmerId) {
         if($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
             $teilnehmer = new Teilnehmer();
@@ -247,7 +247,7 @@ class Service {
     /**
      * TODO -> auch in TeilnehmerDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
      */
-    public function findAllTeilnehmer() {
+    public function findAllParticipant() {
         if($this->verifyAuth()){
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
             return $teilnehmerDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in TeilnehmerDAO
