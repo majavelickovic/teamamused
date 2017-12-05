@@ -66,12 +66,6 @@ Diese Seite stellt die Reise-Seite dar.
                                     </select>
                                 </td>
                             </tr>
-                        </table>
-                    </form>
-                </div>
-                <div id="blockright">
-                    <form action=""<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                        <table> 
                             <tr>
                                 <td>Startort</td>
                                 <td><input type="text" name="startort" value="" size="40px" /></td>
@@ -81,6 +75,9 @@ Diese Seite stellt die Reise-Seite dar.
                             </tr>
                         </table>
                     </form>
+                </div>
+                <div id="blockright">
+                   
                 </div>
             </div>
         </div>
