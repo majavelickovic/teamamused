@@ -43,7 +43,7 @@ Diese Seite stellt die Reise-Seite dar.
                             </tr>
                             <tr>
                                 <td>Beschreibung</td>
-                                <td><textarea name="beschreibung" rows="5" cols="35"></textarea></td>
+                                <td><textarea name="beschreibung" rows="4" cols=""></textarea></td>
                             </tr>
                             <tr>
                                 <td>Datum von</td>
@@ -69,7 +69,7 @@ Diese Seite stellt die Reise-Seite dar.
                             </tr>
                             <tr>
                                 <td>Startort</td>
-                                <td><input type="text" name="startort" value="" size="40px" /></td></br>
+                                <td><input type="text" name="startort" value="" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2" align="center"><input type="submit" class="button" value="erstellen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
