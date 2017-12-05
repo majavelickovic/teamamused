@@ -21,7 +21,8 @@ class RechnungController
                 $_POST["rgart"],
                 $_POST["kosten"],
                 $_POST["beschreibung"],
-                $_FILES['dokument']['name']);
+                $_FILES['dokument']['name'],
+                $_FILES['dokument']['tmpname']);
     }
     
     public static function readInvoice(){

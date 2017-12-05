@@ -261,7 +261,7 @@ class Service {
      * Erstellt eine neue Rechnung anhand angaben aus Formular von Benutzer
      * @author Maja Velickovic
      */
-    public function createInvoice($reise, $rgart, $kosten, $beschreibung, $dokument) {
+    public function createInvoice($reise, $rgart, $kosten, $beschreibung, $dokument, $pdf_object) {
         $rechnungDAO = new \dao\RechnungDAO();
         // Rechnungsinhalte bestimmen
         $neu_id = $rechnungDAO->getNewRgID(); 
@@ -272,7 +272,7 @@ class Service {
         $rechnung->setBeschreibung($beschreibung);
         $rechnung->setKosten($kosten);
         $rechnung->setDokument($dokument);
-        $rechnungDAO->create($rechnung);
+        $rechnungDAO->create($rechnung, $pdf_object);
         return $rechnung;
     }
 

@@ -18,21 +18,19 @@ class RechnungDAO {
 	/**
 	 * Erstellt ein neues Rechnungs-Objekt in der Tabelle "rechnung" und "reise_rechnung"
 	 */
-	public function create(Rechnung $rechnung) {
+	public function create(Rechnung $rechnung, $pdf_object) {
             $pdo = Database::connect();
             $statement = $pdo->prepare(
-                    "INSERT INTO rechnung (rg_id, rechnungsart, kosten, beschreibung, dokument)
-                        VALUES (:rg_id, :rechnungsart, :kosten, :beschreibung, :dokument)");
+                    "INSERT INTO rechnung (rg_id, rechnungsart, kosten, beschreibung, dokument, pdf_object)
+                        VALUES (:rg_id, :rechnungsart, :kosten, :beschreibung, :dokument, :pdf_object)");
             $statement->bindValue(':rg_id', $rechnung->getRg_id());
             $statement->bindValue(':rechnungsart', $rechnung->getRechnungsart());
             $statement->bindValue(':kosten', $rechnung->getKosten());
             $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
             $statement->bindValue(':dokument', $rechnung->getDokument());
+            $statement->bindValue(':pdf_object', pg_escape_bytea($pdf_object));
             $statement->execute();            
-          
-            pg_exec($pdo, 'UPDATE rechnung SET pdf_object =' + $_FILES['dokument']['tmpname'] + ' '
-                    . 'WHERE rg_id = ' + $rechnung->getRg_id() );
-
+    
             $statement2 = $pdo->prepare(
                     "INSERT INTO reise_rechnung (reise_id, rg_id)
                         VALUES (:reise, :rg_id)");
