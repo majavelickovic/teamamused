@@ -1,6 +1,6 @@
 <?php
 
-use database\Database;
+use service\Service;
 use domain\Rechnung;
 use controller\ErrorController;
 

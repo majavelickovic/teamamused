@@ -1,6 +1,6 @@
 <?php
 
-use database\Database;
+use service\Service;
 
 /*
  * View, um eine besthende Rechnung zu suchen

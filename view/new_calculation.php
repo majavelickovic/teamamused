@@ -1,6 +1,5 @@
 <?php
 
-use database\Database;
 use service\Service;
 
 /*
