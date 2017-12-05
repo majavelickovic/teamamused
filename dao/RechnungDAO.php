@@ -1,7 +1,7 @@
 <?php
 /**
  * @access public
- * @author Michelle Widmer (angelehnt an Andreas Martin)
+ * @author Maja Velickovic, Michelle Widmer (angelehnt an Andreas Martin)
  * 
  * Die Klasse stellt ein Data Access Object für die Klasse Rechnung dar und bietet alle CRUD-Operatoren als Prepared Statement an.
  * 
@@ -12,7 +12,6 @@ namespace dao;
 use domain\Rechnung;
 use database\Database;
 use PDO;
-use Exception;
 
 class RechnungDAO {
 
@@ -29,8 +28,7 @@ class RechnungDAO {
             $statement->bindValue(':kosten', $rechnung->getKosten());
             $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
             $statement->bindValue(':dokument', $rechnung->getDokument());
-            $statement->execute();
-            
+            $statement->execute();            
           
             pg_escape_bytea($pdo, $rechnung->getPdf_Object());
 
@@ -176,10 +174,10 @@ class RechnungDAO {
 	 */
 	public function getNewRgID() {
             $pdo = Database::connect();
-            $query = $pdo->query(
+            $statement = $pdo->query(
                 "SELECT rg_id FROM rechnung
                 ORDER BY rg_id DESC LIMIT 1");
-            while($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $returnvalue = $row["rg_id"];
             }
             return $returnvalue+1;
@@ -236,7 +234,7 @@ class RechnungDAO {
             
             while ($row2 = $statement2->fetch()){
                 array_push($array, array(
-                    utf8_decode('Teilnahmekosten von ' . $row2['vorname'] . ' ' . $row2['nachname']), $row2['preis'])
+                    utf8_decode('Teilnahmebeitrag von ' . $row2['vorname'] . ' ' . $row2['nachname']), $row2['preis'])
                 );
             }
 
@@ -253,7 +251,7 @@ class RechnungDAO {
             $statement = $pdo->prepare("SELECT * FROM rechnungsart order by beschreibung asc");
             $statement->execute();
             return $statement->fetchAll();
-            }
+        }
             
         /**
          * Liest das angehängte PDF einer Rechnung aus

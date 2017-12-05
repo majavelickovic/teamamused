@@ -11,20 +11,17 @@ if($_GET['id'] > 0){
 }    
 $rgDAO = new dao\RechnungDAO;
 $rg = new Rechnung();
-$rg = $rgDAO->readSingleInvoice($rg_id);
+$rg = service\Service::getInstance()->readSingleInvoice($rg_id);
 if($rg->getReise() == ""){
     ErrorController::error404View();
 }else{
 
 /*
  * View, um eine einzelne Rechnung anzusehen / zu bearbeiten
+ * @author Maja Velickovic
  */
 ?>
 
-<!DOCTYPE html>
-<!--
-Diese Seite stellt die Rechnungs-Seite dar.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -32,19 +29,22 @@ Diese Seite stellt die Rechnungs-Seite dar.
         <title>Rechnung</title>
         <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
         <script type="text/javascript">
+            //Seite nochmals laden, wenn zurücksetzen angeklickt wurde, um die ursprüngliche Rechnung ohne Änderungen anzuzeigen
             function reloadOriginalInvoice(){
                 location.reload();
             }
+            //Rechnungsseite drucken
             function printInvoice(){      
                 window.print();
             }
+            //angehängtes PDF der Rechnung anzeigen
             function showPDF(rg_id){           
                 var req = new XMLHttpRequest();
                 req.open('GET', 'assets/viewAttachedCalculationPDF?rg_id='+rg_id);
 
                 req.onreadystatechange = function() {
                     if(req.readyState==4 && req.status==200) {
-
+                        //keine Aktion
                     }
                 }
                 req.send(null);
@@ -80,14 +80,12 @@ Diese Seite stellt die Rechnungs-Seite dar.
 				<td>
                                     <select id="reise" name="reise" class="dropdown" style="width:300px;" disabled>
                                         <?php
-                                        $pdo = Database::connect();
-                                        $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
-
-                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            if($row['reise_id'] == $rg->getReise()){
-                                                echo "<option selected='selected' value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                        //Abfrage für Reisetitel
+                                        foreach(Service::getInstance()->getJourneyTitles() as $key => $invoiceType) {
+                                            if($invoiceType['reise_id'] == $rg->getReise()){
+                                                echo "<option selected='selected' value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
                                             }else{
-                                                echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                                echo "<option value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
                                             }   
                                         }
                                         ?>
@@ -100,14 +98,12 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                 <td>
                                     <select id="rgart" name="rgart" class="dropdown" style="width:300px;" disabled>
                                         <?php
-                                        $pdo = Database::connect();
-                                        $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
-
-                                        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                            if($row['rgart_id'] == $rg->getRechnungsart()){
-                                                echo "<option selected='selected' value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                        // Abfrage für Rechnungsarten
+                                        foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
+                                            if($invoiceType['rgart_id'] == $rg->getRechnungsart()){
+                                                echo "<option selected='selected' value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
                                             }else{
-                                                echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                                echo "<option value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
                                             }
 
                                         }

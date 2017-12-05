@@ -3,7 +3,7 @@ namespace domain;
 
 /**
  * @access public
- * @author majav
+ * @author Maja Velickovic
  * @package domain
  */
 class Rechnung {

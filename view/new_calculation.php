@@ -5,13 +5,10 @@ use service\Service;
 
 /*
  * View, um eine neue Rechnung zu erfassen
+ * @author Maja Velickovic
  */
 ?>
 
-<!DOCTYPE html>
-<!--
-Diese Seite stellt die Rechnungs-Seite dar.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -43,7 +40,7 @@ Diese Seite stellt die Rechnungs-Seite dar.
                                     <select id="dropdown" name="reise" style="width:300px;">
                                         <?php
                                         //Abfrage für Reisetitel
-                                        foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
+                                        foreach(Service::getInstance()->getJourneyTitles() as $key => $invoiceType) {
                                             echo "<option value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
                                         }
                                         ?>

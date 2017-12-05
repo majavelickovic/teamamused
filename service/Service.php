@@ -258,7 +258,8 @@ class Service {
     // CRUD-Methoden für Rechnungen
     
     /**
-     * TODO -> Rechnung mit Werten aus Formular befüllen
+     * Erstellt eine neue Rechnung anhand angaben aus Formular von Benutzer
+     * @author Maja Velickovic
      */
     public function createInvoice($reise, $rgart, $kosten, $beschreibung, $dokument, $pdf_object) {
         $rechnungDAO = new \dao\RechnungDAO();
@@ -278,6 +279,7 @@ class Service {
 
     /**
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
+     * @author Maja Velickovic
      */
     public function readInvoice($reise, $rg_id, $rgart) {
         //if($this->verifyAuth()) {
@@ -286,8 +288,20 @@ class Service {
         //}
     }
     
+    /**
+     * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
+     * @author Maja Velickovic
+     */
+    public function readSingleInvoice($rg_id) {
+        //if($this->verifyAuth()) {
+            $rechnungDAO = new \dao\RechnungDAO();
+            return $rechnungDAO->readSingleInvoice($rg_id);
+        //}
+    }
+    
      /**
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
+      * @author Maja Velickovic
      */
     public function readFinalBIlling($reise) {
         //if($this->verifyAuth()) {
@@ -297,7 +311,8 @@ class Service {
     }
 
     /**
-     * TODO
+     * Aktualisiert eine bestehende Rechnung mit neuen Daten (ausser Rg-ID)
+     * @author Maja Velickovic
      */
     public function updateInvoice($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument) {
         //if($this->verifyAuth()) {
@@ -309,6 +324,7 @@ class Service {
 
     /**
      * Löscht anhand der Rechnungs-ID die entsprechende Rechnung aus der Datenbank
+     * @author Maja Velickovic
      */
     public function deleteInvoice($rechnungId) {
         //if($this->verifyAuth()) {
@@ -316,11 +332,11 @@ class Service {
             $rechnungDAO->delete($rechnungId);
         //}
     }
-
     
     /**
      * 
      * Selektabfrage, um alle Rechnungsarten auszulesen
+     * @author Michelle Widmer
      */
     public function getInvoiceTypes(){
         $rechnungsDAO = new \dao\RechnungDAO();
@@ -329,6 +345,7 @@ class Service {
     
     /**
      * Selektabfrage, um alle Reisetitel auszulesen
+     * @author Maja Velickovic
      */
     public function getJourneyTitles(){
         $reiseDAO = new \dao\ReiseDAO();
@@ -337,6 +354,7 @@ class Service {
     
     /**
      * Lese Rechnungs-PDF aus der Datenbank und gebe das konvertiert als String zurück
+     * @author Maja Velickovic
      */
     public function getAttachedPDFInvoice($rg_id){
         $rechnungDAO = new \dao\RechnungDAO();

@@ -61,14 +61,12 @@ use database\Database;
                                 <td>
                                     <select id="dropdown" name="reise" style="width:300px;">
                                         <?php
-                                            $pdo = Database::connect();
-                                            $query = $pdo->query("SELECT reise_id, beschreibung FROM reise order by beschreibung asc");
-
-                                            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                                if($_POST['reise'] == $row['reise_id']){
-                                                    echo "<option selected='selected' value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                            //Abfrage für Reisetitel
+                                            foreach(Service::getInstance()->getJourneyTitles() as $key => $invoiceType) {
+                                                if($_POST['reise'] == $invoiceType['reise_id']){
+                                                    echo "<option selected='selected' value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
                                                 }else{
-                                                    echo "<option value='" . $row['reise_id'] . "'>" . $row['beschreibung'] . ", " . $row['reise_id'] . "</option>";
+                                                    echo "<option value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
                                                 }
                                             }
                                         ?>
@@ -84,14 +82,12 @@ use database\Database;
                                 <td>
                                     <select id="dropdown" name="rgart" style="width:300px;">
                                         <?php
-                                            $pdo = Database::connect();
-                                            $query = $pdo->query("SELECT * FROM rechnungsart order by beschreibung asc");
-
-                                            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                                                if($_POST['rgart'] == $row['rgart_id']){
-                                                    echo "<option selected='selected' value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                            // Abfrage für Rechnungsarten
+                                            foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
+                                                if($_POST['rgart'] == $invoiceType['rgart_id']){
+                                                    echo "<option selected='selected' value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
                                                 }else{
-                                                    echo "<option value='" . $row['rgart_id'] . "'>" . $row['beschreibung'] . "</option>";
+                                                    echo "<option value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
                                                 }
                                             }
                                         ?>

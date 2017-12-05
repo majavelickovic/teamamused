@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!--
-Diese Seite stellt die Rechnungs-Seite dar.
+Diese Seite stellt die Rechnungs-Seite dar, wo man die Auswahl zwischen verschiedenen Optionen hat
+@author Maja Velickovic
 -->
 <html>
     <head>

@@ -1,4 +1,10 @@
-<?PHP
+<?php
+
+/**
+ * Erstellt ein PDF, um die Schlussabrechnung in tabellarischer Form anzuzeigen
+ * @author Maja Velickovic, Michelle Widmer
+ */
+
 include('FPDF/fpdf.php');   //Pfad zu fpdf.php
 
 class PDF extends FPDF {
