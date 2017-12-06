@@ -4,7 +4,7 @@
  * Zeigt das PDF an, welches einer Rechnung angehängt wurde beim erstellen oder aktualisieren einer Rechnung
  * @author Maja Velickovic
  */
-
+use database\Database;
 
             $pdo = Database::connect();           
             $statement = $pdo->prepare("SELECT pdf_object FROM rechnung where rg_id = 38");
