@@ -10,10 +10,9 @@ use database\Database;
             $statement = $pdo->prepare("SELECT pdf_object FROM rechnung where rg_id = 38");
            // $statement->bindValue(':rg_id', $rg_id);
             $statement->execute();
-            foreach($statement as $result){
-                $file= pg_unescape_bytea($result['pdf_object']);
-            }
+            $file = $statement->fetchAll();
+
         
 //$file = service\Service::getInstance()->getAttachedPDFInvoice($_GET['rg_id']);
 header("Content-type: application/pdf"); 
-print $file;  
+print pg_unescape_bytea($file);  
