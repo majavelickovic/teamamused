@@ -123,12 +123,13 @@ class Service {
         if($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             // Reiseinhalte bestimmen
-            $reise->setReise_id($aReise_id);
-            $reise->setBeschreibung($aBeschreibung);
-            $reise->setDatum_start($aDatum_start);
-            $reise->setDatum_ende($aDatum_ende);
+            $reise->setReise_id($reise_id);
+            $reise->setTitel($titel);
+            $reise->setBeschreibung($beschreibung);
+            $reise->setDatum_start($datum_start);
+            $reise->setDatum_ende($datum_ende);
             $reise->getMax_teilnehmer();
-            $reise->setPreis($aPreis);
+            $reise->setPreis($preis);
             return $reiseDAO->create($reise);
         }
         return null;
@@ -199,12 +200,10 @@ class Service {
         if($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
             // Teilnehmerinhalte bestimmen
-            $teilnehmer->setTeilnehmer_id($aTeilnehmer_id);         
-            $teilnehmer->setVorname($aVorname);
-            $teilnehmer->setNachname($aNachname);
-            $teilnehmer->setGeburtsdatum($aGeburtsdatum);
-            $teilnehmer->setMail($aMail);
-            $teilnehmer->setTelefon($aTelefon);
+            $teilnehmer->setTeilnehmer_id($teilnehmer_id);         
+            $teilnehmer->setVorname($vorname);
+            $teilnehmer->setNachname($nachname);
+            $teilnehmer->setGeburtsdatum($geburtsdatum);
             return $teilnehmerDAO->create($teilnehmer);
         }
         return null;
