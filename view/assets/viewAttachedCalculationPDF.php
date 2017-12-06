@@ -5,8 +5,6 @@
  * @author Maja Velickovic
  */
 
-
+header("Content-type: application/pdf"); 
+print $content;  
 ?>
-<html>
-<object data="data:application/pdf;base64,<?php echo base64_encode(service\Service::getInstance()->getAttachedPDFInvoice($_GET['rg_id'])) ?>" type="application/pdf" style="height:200px;width:60%"></object>
-</html>
