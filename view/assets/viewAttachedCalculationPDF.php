@@ -7,7 +7,7 @@
 use database\Database;
 
             $pdo = Database::connect();           
-            $statement = $pdo->prepare("SELECT pdf_object FROM rechnung where rg_id = 41");
+            $statement = $pdo->prepare("SELECT pdf_object FROM rechnung where rg_id = 43");
            // $statement->bindValue(':rg_id', $rg_id);
             $statement->execute();
             $file = $statement->fetchAll();
