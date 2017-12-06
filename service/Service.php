@@ -123,12 +123,13 @@ class Service {
         if($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             // Reiseinhalte bestimmen
-            $reise->setReise_id($aReise_id);
-            $reise->setBeschreibung($aBeschreibung);
-            $reise->setDatum_start($aDatum_start);
-            $reise->setDatum_ende($aDatum_ende);
+            $reise->setReise_id($reise_id);
+            $reise->setTitel($titel);
+            $reise->setBeschreibung($beschreibung);
+            $reise->setDatum_start($datum_start);
+            $reise->setDatum_ende($datum_ende);
             $reise->getMax_teilnehmer();
-            $reise->setPreis($aPreis);
+            $reise->setPreis($preis);
             return $reiseDAO->create($reise);
         }
         return null;
@@ -137,10 +138,10 @@ class Service {
     /**
      * Liest anhand der Reise-Id die entsprechende Reise aus der Datenbank
      */
-    public function readJourney($reiseId) {
+    public function readJourney($reise_id) {
         if($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
-            return $reiseDAO->read($reiseId);
+            return $reiseDAO->read($reise_id);
         }
         return null;
     }
@@ -159,11 +160,11 @@ class Service {
     /**
      * Löscht anhand der Reise-ID die entsprechende Reise aus der Datenbank
      */
-    public function deleteJourney($reiseId) {
+    public function deleteJourney($reise_id) {
         if($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             $reise = new Reise();
-            $reise->setReise_id($reiseId);
+            $reise->setReise_id($reise_id);
             $reiseDAO->delete($reise);
         }
     }
@@ -199,12 +200,10 @@ class Service {
         if($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
             // Teilnehmerinhalte bestimmen
-            $teilnehmer->setTeilnehmer_id($aTeilnehmer_id);         
-            $teilnehmer->setVorname($aVorname);
-            $teilnehmer->setNachname($aNachname);
-            $teilnehmer->setGeburtsdatum($aGeburtsdatum);
-            $teilnehmer->setMail($aMail);
-            $teilnehmer->setTelefon($aTelefon);
+            $teilnehmer->setTeilnehmer_id($teilnehmer_id);         
+            $teilnehmer->setVorname($vorname);
+            $teilnehmer->setNachname($nachname);
+            $teilnehmer->setGeburtsdatum($geburtsdatum);
             return $teilnehmerDAO->create($teilnehmer);
         }
         return null;
@@ -213,10 +212,10 @@ class Service {
     /**
      * Liest anhand der Teilnehmer-Id den entsprechenden Teilnehmer aus der Datenbank
      */
-    public function readParticipant($teilnehmerId) {
+    public function readParticipant($teilnehmer_id) {
         if($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
-            return $teilnehmerDAO->read($teilnehmerId);
+            return $teilnehmerDAO->read($teilnehmer_id);
         }
         return null;
     }
@@ -235,11 +234,11 @@ class Service {
     /**
      * Löscht anhand der Teilnehmer-ID den entsprechenden Teilnehmer aus der Datenbank
      */
-    public function deleteParticipant($teilnehmerId) {
+    public function deleteParticipant($teilnehmer_id) {
         if($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
             $teilnehmer = new Teilnehmer();
-            $teilnehmer->setTeilnehmer_id($teilnehmerId);
+            $teilnehmer->setTeilnehmer_id($teilnehmer_id);
             $teilnehmerDAO->delete($teilnehmer);
         }
     }

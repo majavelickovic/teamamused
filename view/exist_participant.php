@@ -53,6 +53,24 @@ Diese Seite stellt die Teilnehmer-Seite dar.
                         </tr>
                     </table>
                 </div>
+                <div id="blockright">
+                    <table id="participantTable">
+                        <tr>
+                            <th>Teilnehmer-ID</th>
+                            <th>Reise-ID</th>
+                            <th>Vorname</th>
+                            <th>Nachname</th>
+                        </tr>
+                        <?php
+                            $participanttablecontent = controller\TeilnehmerController::readParticipant();
+                            if($participanttablecontent != null){
+                                echo $participanttablecontent;
+                            }else{
+                                echo "";
+                            }
+                        ?>
+                    </table>
+                </div>
             </div>
         </div>
     </body>
