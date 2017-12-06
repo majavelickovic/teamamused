@@ -6,5 +6,8 @@
  */
 
 $file = service\Service::getInstance()->getAttachedPDFInvoice($_GET['rg_id']);
-header('Content-type: application/x-pdf pdf');
-echo file_get_contents($file);
+
+?>
+<html>
+<object data="data:application/pdf;base64,<?php echo base64_encode($file) ?>" type="application/pdf" style="height:200px;width:60%"></object>
+</html>
