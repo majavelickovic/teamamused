@@ -1,4 +1,4 @@
-<?php //
+<?php 
 
 /**
  * @author Michelle Widmer (angelehnt an Andreas Martin)
