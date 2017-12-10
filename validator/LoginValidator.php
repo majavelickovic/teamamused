@@ -46,6 +46,11 @@ class LoginValidator {
             if (empty($login->getBenutzername())) {
                 $this->benutzernameLoginError = 'Bitte einen Benutzernamen eingeben';
                 $this->valid = false;
+            } else {
+                if (!Service::getInstance()->uniqueBenutzername($login->getBenutzername())){ // Gibt true zurück, falls es den Benutzernamen bereits gibt
+                    $this->benutzernameRegisterError = 'Bitte einen registrierten Benutzernamen eingeben';
+                    $this->valid = false;
+                }
             }
             
             // Prüft das beim Login eingegebene Passwort
