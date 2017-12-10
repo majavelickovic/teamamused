@@ -9,17 +9,32 @@
 namespace controller;
 
 use service\Service;
+use domain\Login;
+use validator\LoginValidator;
+use view\View;
 
 class AuthentifizController
 {
     
     /*
-     * Setzt die Session-Variable, falls der User nach dem Abgleich mit der DB verifiziert werden konnte
+     * Setzt die Session-Variable, falls die Eingaben des Users valide sind
+     * und der User nach dem Abgleich mit der DB verifiziert werden konnte
      */
     public static function login(){
-        if(Service::getInstance()->verifyUser($_POST['benutzername'],$_POST['password']))
-        {
-            $_SESSION['login'] = true;
+        $login = new Login(); // Objekt wird als Datenhaltung zur Validierung verwendet
+        @$login->setBenutzername(AuthentifizController::testInput($_POST['benutzername']));
+        @$login->setPasswort(AuthentifizController::testInput($_POST['password']));
+        $loginValidator = new LoginValidator($login); // validiert implizit im Konstruktor das übergebene Objekt
+        if($loginValidator->isValid()) {
+            if(Service::getInstance()->verifyUser($login->getBenutzername(), $login->getPasswort())) {
+                $_SESSION['login'] = true;
+            }
+        } else {
+            $view = new View("login.php");
+            $view->login = $login; // schreibt bereits eingegebene Werte in das Formular, so dass diese nicht erneut eingegeben werden müssen
+            $view->loginValidator = $loginValidator;
+            echo $view->render();
+            exit();
         }
     }
     
@@ -48,6 +63,14 @@ class AuthentifizController
         
         // Session wird gelöscht
         session_destroy();
+    }
+    
+    // Überprüft übergebene Daten, um Cross-Site-Scripting zu verhindern
+    public static function testInput($data){
+        $data = trim($data); // entfernt Whitespace
+        $data = stripslashes($data); // entfernt Anführungszeichen
+        $data = htmlspecialchars($data); // entfernt html-Tags
+        return $data;
     }
 
 }

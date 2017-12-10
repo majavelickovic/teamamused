@@ -12,8 +12,9 @@
         use router\Router;
         use controller\AuthentifizController;
 
-/*
-         * Startet eine neue Session - muss auf nachfolgenden Seiten nicht implementiert werden, da die Kommunikation über das Index-File läuft
+        /*
+         * Startet eine neue Session - muss auf nachfolgenden Seiten nicht implementiert werden,
+         * da die Kommunikation über das Index-File läuft
          */
         session_start();
 

@@ -4,7 +4,9 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
 -->
 
 <?php
-    include_once 'validator/validateLogin.php'; 
+// Globale Variablen für die Validierung
+global $login;
+global $loginValidator;
 ?>
 
 <html>
@@ -23,13 +25,19 @@ Diese Seite stellt die Login-Seite dar, bei welcher sich bereits registrierte Us
                         <table>
                             <tr>
                                 <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/user.png"></td><td>Benutzername</td>
-                                <td><input type="text" name="benutzername" value="" /></td>
-                                <td><span class="error"> <?php echo $benutzernameLoginError;?></span><td>
+                                <td><input type="text" name="benutzername" value="<?php echo isset($this->login) ? $this->login->getBenutzername() : ''; ?>" /></td>
+                                <td><span class="error">
+                                    <?php echo isset($this->loginValidator) &&
+                                        $this->loginValidator->isLoginNameError() ? $this->loginValidator->getLoginNameError() : ""; ?>
+                                </span><td>
                             </tr>
                             <tr>
                                 <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/key.png"></td><td>Passwort</td>
                                 <td><input type="password" name="password" value="" /></td>
-                                <span class="error"><?php echo $passwordLoginError;?></span>
+                                <td><span class="error">
+                                    <?php echo isset($this->loginValidator) &&
+                                            $this->loginValidator->isLoginPasswordError() ? $this->loginValidator->getLoginPasswordError() : ""; ?>
+                                </span></td>
                             </tr>
                             <tr></tr>
                             <tr>

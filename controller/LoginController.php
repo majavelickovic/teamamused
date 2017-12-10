@@ -10,6 +10,8 @@ namespace controller;
 
 use view\view as View;
 use service\Service;
+use domain\Login;
+use validator\LoginValidator;
 
 class LoginController
 {
@@ -19,12 +21,27 @@ class LoginController
      * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen eines Mitarbeiters
      */
     public static function register(){
-        return Service::getInstance()->editLogin(
-                $_POST["benutzername"],
-                $_POST["password1"],
-                $_POST["vorname"],
-                $_POST["nachname"]
-        );
+                $login = new Login(); // Objekt wird als Datenhaltung zur Validierug verwendet
+                @$login->setBenutzername(LoginController::testInput($_POST['benutzername']));
+                @$login->setPasswort(LoginController::testInput($_POST['password1']));
+                @$login->setPasswort(LoginController::testInput($_POST['vorname']));
+                @$login->setPasswort(LoginController::testInput($_POST['nachname']));
+                $loginValidator = new LoginValidator($login); // validiert implizit im Konstruktor das übergebene Objekt
+                if($loginValidator->isValid()) {
+                    Service::getInstance()->editLogin(
+                        $login->getBenutzername(),
+                        $login->getPasswort(),
+                        $login->getVorname(),
+                        $login->getNachname()
+                    );
+                } else {
+                    $view = new View("register.php");
+                    $view->login = $login; // schreibt bereits eingegebene Werte in das Formular, so dass diese nicht erneut eingegeben werden müssen
+                    $view->loginValidator = $loginValidator;
+                    echo $view->render();
+                    exit();
+        }
+        
     }
     
     public static function registerView(){
@@ -37,6 +54,14 @@ class LoginController
     
     public static function welcomeView() {
         echo (new View("welcome.php"))->render();
+    }
+    
+    // Überprüft übergebene Daten, um Cross-Site-Scripting zu verhindern
+    public static function testInput($data){
+        $data = trim($data); // entfernt Whitespace
+        $data = stripslashes($data); // entfernt Anführungszeichen
+        $data = htmlspecialchars($data); // entfernt html-Tags
+        return $data;
     }
     
 }
