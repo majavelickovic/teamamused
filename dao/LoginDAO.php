@@ -73,7 +73,7 @@ class LoginDAO {
 
 	/**
 	 * Sucht in der DB  nach einem Mitarbeiter anhand dem Benutzernamen
-         * und gibt diesen zurück, falls es den Benutzernamen gibt
+         * und gibt diesen als Objektzurück, falls es den Benutzernamen gibt
 	 */
 	public function findByBenutzername($benutzername) {
             $pdo = Database::connect();
@@ -89,8 +89,6 @@ class LoginDAO {
                 $login->setNachname($res[0]['nachname']);
                 $login->setPasswort($res[0]['passwort']);
                 return $login;
-            } else {
-                echo("Unbekannter Benutzername");
             }
         }
         
