@@ -2,9 +2,7 @@
 require_once(realpath(dirname(__FILE__)) . '/../domain/Reise.php');
 
 /**
- * @access public
- * @author majav
- * @package domain
+ * Diese Klasse stellt Reiseort-Entitäten dar
  */
 class Ort {
 	/**

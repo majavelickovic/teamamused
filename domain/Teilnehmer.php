@@ -2,9 +2,7 @@
 require_once(realpath(dirname(__FILE__)) . '/../domain/Reise_teilnehmer.php');
 
 /**
- * @access public
- * @author majav
- * @package domain
+ * Diese Klasse stellt Teilnehmer-Entitäten dar
  */
 class Teilnehmer {
 	/**

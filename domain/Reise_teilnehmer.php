@@ -3,9 +3,7 @@ require_once(realpath(dirname(__FILE__)) . '/../domain/Reise.php');
 require_once(realpath(dirname(__FILE__)) . '/../domain/Teilnehmer.php');
 
 /**
- * @access public
- * @author majav
- * @package domain
+ * Diese Klasse stellt Beziehungen zwischen Reisen und Teilnehmer dar
  */
 class Reise_teilnehmer {
 	/**

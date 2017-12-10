@@ -2,9 +2,7 @@
 require_once(realpath(dirname(__FILE__)) . '/../domain/Rechnung.php');
 
 /**
- * @access public
- * @author majav
- * @package domain
+ * Diese Klasse stellt Rechnungsart-Entitäten dar
  */
 class Rechnungsart {
 	/**

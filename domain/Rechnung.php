@@ -2,9 +2,7 @@
 namespace domain;
 
 /**
- * @access public
- * @author Maja Velickovic
- * @package domain
+ * Diese Klasse stellt Rechnung-Entitäten dar
  */
 class Rechnung {
 	/**
