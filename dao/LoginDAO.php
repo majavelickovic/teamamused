@@ -1,9 +1,9 @@
 <?php
 /**
- * @access public
  * @author Michelle Widmer (angelehnt an Andreas Martin)
  * 
- * Die Klasse stellt ein Data Access Object für die Klasse Login (also die registriertne Mitarbeiter) dar und bietet alle CRUD-Operatoren als Prepared Statement an.
+ * Die Klasse stellt ein Data Access Object für die Domain Login (also die registrierten Mitarbeiter) dar
+ * und bietet alle CRUD-Operatoren als Prepared Statement an.
  * 
  */
 
@@ -16,7 +16,7 @@ use domain\Rolle;
 class LoginDAO {
 
 	/**
-	 * Erstellt einen registrierten Mitarbeiter in der Tabelle "login"
+	 * Erstellt einen registrierten Mitarbeiter in der DB-Tabelle "login"
 	 */
 	public function create(Login $login) {
             $pdo = Database::connect();
@@ -31,7 +31,8 @@ class LoginDAO {
 	}
 
 	/**
-	 * Liest einen registrierten Mitarbeiter aus der Tabelle "login"
+	 * Liest einen registrierten Mitarbeiter anhand des Benutzernamens aus der DB-Tabelle "login"
+         * und gibt den entsprechenden Datensatz zurück
 	 */
 	public function read($benutzername) {
             $pdo = Database::connect();
@@ -43,7 +44,8 @@ class LoginDAO {
 	}
 
 	/**
-	 * Aktualisiert einen registrierten Mitarbeiter in der Tabelle "login"
+	 * Aktualisiert einen registrierten Mitarbeiter in der DB-Tabelle "login"
+         * und gibt den geänderten Datensatz zurück
 	 */
 	public function update(Login $login) {
             $pdo = Database::connect();
@@ -59,7 +61,7 @@ class LoginDAO {
 	}
 
 	/**
-	 * Löscht einen registrierten Mitarbeiter aus der Tabelle "login"
+	 * Löscht einen registrierten Mitarbeiter aus der DB-Tabelle "login"
 	 */
 	public function delete(Login $login) {
             $pdo = Database::connect();
@@ -71,35 +73,38 @@ class LoginDAO {
 	}
 
 	/**
-	 * noch überarbeiten
+	 * Sucht in der DB  nach einem Mitarbeiter anhand dem Benutzernamen
+         * und gibt diesen zurück, falls es den Benutzernamen gibt
 	 */
 	public function findByBenutzername($benutzername) {
             $pdo = Database::connect();
             $statement = $pdo->prepare(
                 "SELECT * FROM login WHERE benutzername = :benutzername");
             $statement->bindValue(':benutzername', $benutzername);
-            $statement->execute();
-            $row = $statement->fetchAll()[0];
-            if(isset($row)) {
+            if(isset($statement->fetchAll()[0])) {
                 $login = new Login();
+                $row = $statement->fetchAll()[0];
                 $login->setBenutzername($row['benutzername']);
                 $login->setVorname($row['vorname']);
                 $login->setNachname($row['nachname']);
                 $login->setPasswort($row['passwort']);
                 return $login;
             } else {
-                echo("Unbekannter Benutzername.");
+                echo("Unbekannter Benutzername");
             }
         }
         
+        /**
+         * Sucht in der DB nach einem einem übergebenen Benutzernamen
+         * und gibt den entsprechenden Boolean zurück         * 
+         */
         public function findBenutzername($benutzername){
             $pdo = Database::connect();
             $statement = $pdo->prepare(
                 "SELECT * FROM login WHERE benutzername = :benutzername");
             $statement->bindValue(':benutzername', $benutzername);
             $statement->execute();
-            $row = $statement->fetchAll()[0];
-            if(isset($row)) {
+            if(isset($statement->fetchAll()[0])) {
                 return true;
             } else {
                 return false;
