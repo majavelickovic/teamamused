@@ -24,7 +24,7 @@ global $loginValidator;
                         <table>
                             <tr>
                                 <td><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/user.png"></td><td>Benutzername</td>
-                                <td><input type="text" name="benutzername" value="" /></td>
+                                <td><input type="text" name="benutzername" value="<?php echo isset($this->login) ? $this->login->getBenutzername() : ''; ?>" /></td>
                                 <td><span class="error">
                                         <?php echo isset($this->loginValidator) &&
                                             $this->loginValidator->isRegisterNameError() ? $this->loginValidator->getRegisterNameError() : ""; ?>
@@ -34,7 +34,7 @@ global $loginValidator;
                             <tr>
                                 <td></td>
                                 <td>Vorname</td>
-                                <td><input type="text" name="vorname" value=""/></td>
+                                <td><input type="text" name="vorname" value="<?php echo isset($this->login) ? $this->login->getVorname() : ''; ?>"/></td>
                                 <td><span class="error">
                                         <?php echo isset($this->loginValidator) &&
                                             $this->loginValidator->isRegisterVornameError() ? $this->loginValidator->getRegisterVornameError() : ""; ?>
@@ -44,7 +44,7 @@ global $loginValidator;
                             <tr>
                                 <td></td>
                                 <td>Nachname</td>
-                                <td><input type="text" name="nachname" value="" /></td>
+                                <td><input type="text" name="nachname" value="<?php echo isset($this->login) ? $this->login->getNachname() : ''; ?>" /></td>
                                 <td><span class="error">
                                         <?php echo isset($this->loginValidator) &&
                                             $this->loginValidator->isRegisterNachnameError() ? $this->loginValidator->getRegisterNachnameError() : ""; ?>
