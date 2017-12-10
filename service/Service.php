@@ -9,6 +9,9 @@ use domain\Rechnung;
 /**
  * @access public
  * @author Michelle Widmer (angelehnt an Andreas Martin)
+ * 
+ * Die Klasse ermöglicht den zentralen Zugriff auf die verschiedenen DAO's
+ * 
  */
 
 
@@ -46,7 +49,8 @@ class Service {
     }
 
     /**
-     * Prüft, ob es den Benutzernamen gibt und ob das eingegebene Passwort stimmt
+     * Prüft über die LoginDAO, ob es den Benutzernamen gibt und ob das eingegebene Passwort stimmt
+     * @author Michelle Widmer
      */
     public function verifyUser($benutzername, $password) {
         $loginDAO = new dao\LoginDAO();
@@ -68,6 +72,7 @@ class Service {
     
     /**
      * Liest den eingeloggten Mitarbeiter aus der Datenbank
+     * @author Michelle Widmer
      */
     public function readLogin() {
         if($this->verifyAuth()) {
@@ -79,13 +84,13 @@ class Service {
 
     /**
      * Bearbeitet den eingeloggten Mitarbeiter in der Datenbank, falls es diesen bereits gibt, oder erstellt einen neuen Eintrag
+     * @author Michelle Widmer
      */
-    public function editLogin($benutzername, $passwort, $vorname, $nachname, $rolle) {
+    public function editLogin($benutzername, $passwort, $vorname, $nachname) {
         $loginUser = new Login();
         $loginUser->setBenutzername($benutzername);
         $loginUser->setVorname($vorname);
         $loginUser->setNachname($nachname);        
-        //$loginUser->set($rolle); -> kein Setter vorhanden
         $passwordHash = password_hash($passwort, PASSWORD_DEFAULT);
         $loginUser->setPasswort($passwordHash);
         $loginDAO = new dao\LoginDAO();
@@ -102,7 +107,10 @@ class Service {
         }
     }
     
-    // Überprüft, ob es den übergebenen Benutzernamen bereits gibt
+    /*
+     * Überprüft, ob es den übergebenen Benutzernamen bereits gibt
+     * @author Michelle Widmer
+     */
     public function uniqueBenutzername($benutzername){
         $loginDAO = new dao\LoginDAO();
         if ($loginDAO->findBenutzername($benutzername)){
@@ -359,38 +367,4 @@ class Service {
         return $rechnungDAO->getAttachedPDFInvoice($rg_id);
     }
     
-    /**
-     * ????
-     */
-//    public function validateToken($token, $type = self::AGENT_TOKEN) {
-//        switch ($type){
-//            case self::AGENT_TOKEN :
-//                $tokenArray = explode(":", $token);
-//                if(count($tokenArray)>1) {
-//                    $this->currentAgentId = $tokenArray[0];
-//                    return true;
-//                }
-//                break;
-//            case self::RESET_TOKEN :
-//                break;
-//            case self::JWT_TOKEN :
-//                break;
-//        }
-//        return false;
-//    }
-
-    /**
-     * ???
-     */
-//    public function issueToken($type = self::AGENT_TOKEN) {
-//        switch ($type){
-//            case self::AGENT_TOKEN :
-//                return $this->currentAgentId .":". bin2hex(random_bytes(20));
-//            case self::RESET_TOKEN :
-//                break;
-//            case self::JWT_TOKEN :
-//                break;
-//        }
-//        return null;
-//    }
 }
