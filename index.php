@@ -30,24 +30,40 @@
             }
         };
 
+        /*
+         * Wenn eine Seite nicht gefunden werden kann, erscheint ein 404-Fehler
+         */
         $errorFunction = function () {
             controller\ErrorController::error404View();
         };
 
+        /*
+         * Dem User wird die 404-Fehlerseite angezeigt
+         * @author Michelle Widmer
+         */
         Router::route("GET", "/error404", function () {
             controller\ErrorController::error404View();
         });
-
+        
+        /*
+         * Dem User wird die 403-Fehlerseite angezeigt
+         * @author Michelle Widmer
+         */
         Router::route("GET", "/error403", function () {
             controller\ErrorController::error403View();
         });
 
+         /*
+         * Dem User wird die Registrierungsseite angezeigt
+         * @author Michelle Widmer
+         */
         Router::route("GET", "/register", function () {
             controller\LoginController::registerView();
         });
 
         /*
-         * Wenn die Registrierung erfolgreich verlief (boolean), wird der User auf die Login-Seite weitergeleitet
+         * Wenn die Registrierung erfolgreich verlief und valide ist (boolean), wird der User auf die Login-Seite weitergeleitet
+         * @author Michelle Widmer
          */
         Router::route("POST", "/register", function () {
             if (controller\LoginController::register()) {
@@ -56,11 +72,20 @@
                 controller\LoginController::registerView();
             }
         });
-
+        
+        /*
+         * Dem User wird die Loginseite angezeigt
+         * @author Michelle Widmer
+         */
         Router::route("GET", "/login", function () {
             controller\LoginController::loginView();
         });
 
+        /*
+         * Die Formulareingaben der Loginseite werden entgegengenommen und validiert
+         * Nur ein authentifizierte User gelangt auf die Welcome-Seite
+         * @author Michelle Widmer
+         */
         Router::route("POST", "/login", function () {
             AuthentifizController::login();
             if (AuthentifizController::authenticate()) {
@@ -70,10 +95,18 @@
             }
         });
 
+        /*
+         * Dem User wird die Loginseite angezeigt
+         * @author Michelle Widmer
+         */
         Router::route("GET", "/", function () {
             Router::redirect("/login");
         });
 
+        /*
+         * Dem User wird die Welcomeseite angezeigt, falls er authentifiziert ist
+         * @author Michelle Widmer
+         */
         Router::route("GET", "/welcome", function() {
             if (AuthentifizController::authenticate()) {
                 controller\LoginController::welcomeView();
@@ -82,6 +115,10 @@
             }
         });
 
+         /*
+         * Beim Logout wird der User auf die Loginseite weitergeleitet
+         * @author Michelle Widmer
+         */
         Router::route("GET", "/logout", function() {
             AuthentifizController::logout();
             controller\LoginController::loginView();
