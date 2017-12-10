@@ -23,8 +23,8 @@ class LoginController
                 $_POST["benutzername"],
                 $_POST["password1"],
                 $_POST["vorname"],
-                $_POST["nachname"],
-                "rolle"); // TODO: delete
+                $_POST["nachname"]
+        );
     }
     
     public static function registerView(){
