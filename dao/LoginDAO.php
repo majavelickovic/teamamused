@@ -80,13 +80,14 @@ class LoginDAO {
             $statement = $pdo->prepare(
                 "SELECT * FROM login WHERE benutzername = :benutzername");
             $statement->bindValue(':benutzername', $benutzername);
-            if(isset($statement->fetchAll()[0])) {
+            $statement->execute();
+            $res = $statement->fetchAll();
+            if(isset($res[0])) {
                 $login = new Login();
-                $row = $statement->fetchAll()[0];
-                $login->setBenutzername($row['benutzername']);
-                $login->setVorname($row['vorname']);
-                $login->setNachname($row['nachname']);
-                $login->setPasswort($row['passwort']);
+                $login->setBenutzername($res[0]['benutzername']);
+                $login->setVorname($res[0]['vorname']);
+                $login->setNachname($res[0]['nachname']);
+                $login->setPasswort($res[0]['passwort']);
                 return $login;
             } else {
                 echo("Unbekannter Benutzername");
