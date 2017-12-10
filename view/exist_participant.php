@@ -60,6 +60,8 @@ Diese Seite stellt die Teilnehmer-Seite dar.
                             <th>Reise-ID</th>
                             <th>Vorname</th>
                             <th>Nachname</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         <?php
                             $participanttablecontent = controller\TeilnehmerController::readParticipant();

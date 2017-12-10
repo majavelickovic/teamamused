@@ -102,6 +102,8 @@ Diese Seite stellt die Reise-Seite dar.
                         <tr>
                             <th>Reise-ID</th>
                             <th>Reisetitel</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         <?php
                         $reisetablecontent = controller\ReiseController::readJourney();
