@@ -19,9 +19,12 @@ $benutzernameLoginError = "";
 $passwordLoginError = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    echo "hello world";
+    
   if (empty(testInput($_POST["benutzername"]))) {
     $benutzernameLoginError = "Die Eingabe eines Benutzernamens ist erforderlich!";
-  } 
+  }
 
   if (empty(testInput($_POST["password"]))) {
     $passwordLoginError = "Die Eingabe eines Passwortes ist erforderlich!";
