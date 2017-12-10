@@ -1,6 +1,9 @@
 <?php
 /**
- * TODO
+ * @author Michelle Widmer (angelehnt an Andreas Martin)
+ * 
+ * Der Controller stellt Methoden für die Arbeit Sessions bereit
+ * 
  */
 
 namespace controller;
@@ -9,18 +12,10 @@ use service\Service;
 
 class AuthentifizController
 {
+    
     /*
-     * Überprüft, ob die Session-Variable gesetzt ist und validiert das Token
+     * Setzt die Session-Variable, falls der User nach dem Abgleich mit der DB verifiziert werden konnte
      */
-    public static function authenticate(){
-        if (isset($_SESSION['login'])) {
-//            if(Service::getInstance()->validateToken($_SESSION['login']['token'])) {
-                return true;
-//            }
-        }
-        return false;
-    }
-
     public static function login(){
         if(Service::getInstance()->verifyUser($_POST['benutzername'],$_POST['password']))
         {
@@ -28,15 +23,31 @@ class AuthentifizController
         }
     }
     
+    /*
+     * Überprüft, ob die Session-Variable gesetzt ist
+     */
+    public static function authenticate(){
+        if (isset($_SESSION['login'])) {
+                return true;
+        }
+        return false;
+    }
+   
+    /*
+     * Zerstört die Session beim Logout
+     */
     public static function logout(){
         
-        // Session wird zerstört
-        session_destroy();
+        // von www.php.net
+        // Mit der Löschung des Session-Cokkie wird die Session gelöscht und nicht nur die Session-Daten
         if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]
             );
         }
+        
+        // Session wird gelöscht
+        session_destroy();
     }
 
 }
