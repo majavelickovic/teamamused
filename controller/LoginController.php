@@ -1,6 +1,9 @@
 <?php
 /**
- * Controller für die Login- und Register-View
+ * @author Michelle Widmer (angelehnt an Andreas Martin)
+ * 
+ * Der Controller zum Einstieg in die Webapplikation
+ * 
  */
 
 namespace controller;
