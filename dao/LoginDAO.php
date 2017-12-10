@@ -11,7 +11,6 @@ namespace dao;
 
 use database\Database;
 use domain\Login;
-use domain\Rolle;
 
 class LoginDAO {
 
@@ -21,8 +20,8 @@ class LoginDAO {
 	public function create(Login $login) {
             $pdo = Database::connect();
             $statement = $pdo->prepare(
-                    "INSERT INTO login (benutzername, passwort, vorname, nachname, rolle)
-                        VALUES (:benutzername, :passwort, :vorname, :nachname, 1)");
+                    "INSERT INTO login (benutzername, passwort, vorname, nachname)
+                        VALUES (:benutzername, :passwort, :vorname, :nachname)");
             $statement->bindValue(':benutzername', $login->getBenutzername());
             $statement->bindValue(':passwort', $login->getPasswort());
             $statement->bindValue(':vorname', $login->getVorname());
@@ -50,7 +49,7 @@ class LoginDAO {
 	public function update(Login $login) {
             $pdo = Database::connect();
             $statement = $pdo->prepare(
-                "UPDATE login SET benutzername = :benutzername, passwort = :passwort, vorname = :vorname, nachname = :nachname, rolle = 1
+                "UPDATE login SET benutzername = :benutzername, passwort = :passwort, vorname = :vorname, nachname = :nachname
                 WHERE benutzername = :benutzername");
             $statement->bindValue(':benutzername', $login->getBenutzername());
             $statement->bindValue(':passwort', $login->getPasswort());
