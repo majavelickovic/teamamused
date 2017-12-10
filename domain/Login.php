@@ -3,9 +3,7 @@
 namespace domain;
 
 /**
- * @access public
- * @author majav
- * @package domain
+ * Diese Klasse stellt Mitarbeiter-Entitäten dar
  */
 class Login {
     
