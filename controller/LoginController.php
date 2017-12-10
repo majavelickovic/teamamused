@@ -11,7 +11,7 @@ namespace controller;
 use view\view as View;
 use service\Service;
 use domain\Login;
-use validator\LoginValidator;
+use validator\RegisterValidator;
 
 class LoginController
 {
@@ -21,25 +21,32 @@ class LoginController
      * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen eines Mitarbeiters
      */
     public static function register(){
-                $login = new Login(); // Objekt wird als Datenhaltung zur Validierug verwendet
-                @$login->setBenutzername(LoginController::testInput($_POST['benutzername']));
-                @$login->setPasswort(LoginController::testInput($_POST['password1']));
-                @$login->setPasswort(LoginController::testInput($_POST['vorname']));
-                @$login->setPasswort(LoginController::testInput($_POST['nachname']));
-                $loginValidator = new LoginValidator($login); // validiert implizit im Konstruktor das übergebene Objekt
-                if($loginValidator->isValid()) {
-                    Service::getInstance()->editLogin(
-                        $login->getBenutzername(),
-                        $login->getPasswort(),
-                        $login->getVorname(),
-                        $login->getNachname()
-                    );
-                } else {
-                    $view = new View("register.php");
-                    $view->login = $login; // schreibt bereits eingegebene Werte in das Formular, so dass diese nicht erneut eingegeben werden müssen
-                    $view->loginValidator = $loginValidator;
-                    echo $view->render();
-                    exit();
+        $benutzername = LoginController::testInput($_POST['benutzername']);
+        $password = LoginController::testInput($_POST['password1']);
+        $vorname = LoginController::testInput($_POST['vorname']);
+        $nachname = LoginController::testInput($_POST['nachname']);
+
+        $login = new Login(); // Objekt wird als Datenhaltung zur Validierug verwendet
+        $login->setBenutzername($benutzername);
+        $login->setPasswort($password);
+        $login->setVorname($vorname);
+        $login->setNachname($nachname);
+
+        $loginValidator = new RegisterValidator($login); // validiert implizit im Konstruktor das übergebene Objekt
+        if($loginValidator->isValid()) {
+            Service::getInstance()->editLogin(
+                $login->getBenutzername(),
+                $login->getPasswort(),
+                $login->getVorname(),
+                $login->getNachname()
+            );
+            return true;
+        } else {
+            $view = new View("register.php");
+            $view->login = $login; // schreibt bereits eingegebene Werte in das Formular, so dass diese nicht erneut eingegeben werden müssen
+            $view->loginValidator = $loginValidator;
+            echo $view->render();
+            exit();
         }
         
     }
@@ -50,10 +57,6 @@ class LoginController
 
     public static function loginView(){
         echo (new View("login.php"))->render();
-    }
-    
-    public static function welcomeView() {
-        echo (new View("welcome.php"))->render();
     }
     
     // Überprüft übergebene Daten, um Cross-Site-Scripting zu verhindern

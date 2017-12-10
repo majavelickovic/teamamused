@@ -83,13 +83,13 @@
 
         /*
          * Die Formulareingaben der Loginseite werden entgegengenommen und validiert
-         * Nur ein authentifizierte User gelangt auf die Welcome-Seite
+         * Nur ein authentifizierte User gelangt auf die Reiseübersichts-Seite
          * @author Michelle Widmer
          */
         Router::route("POST", "/login", function () {
             AuthentifizController::login();
             if (AuthentifizController::authenticate()) {
-                controller\LoginController::welcomeView();
+                controller\ReiseController::journeyChoiceView();
             } else {
                 controller\ErrorController::error403View();
             }
@@ -101,18 +101,6 @@
          */
         Router::route("GET", "/", function () {
             Router::redirect("/login");
-        });
-
-        /*
-         * Dem User wird die Welcomeseite angezeigt, falls er authentifiziert ist
-         * @author Michelle Widmer
-         */
-        Router::route("GET", "/welcome", function() {
-            if (AuthentifizController::authenticate()) {
-                controller\LoginController::welcomeView();
-            } else {
-                controller\ErrorController::error403View();
-            }
         });
 
          /*

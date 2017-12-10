@@ -21,9 +21,12 @@ class AuthentifizController
      * und der User nach dem Abgleich mit der DB verifiziert werden konnte
      */
     public static function login(){
+        $benutzername = AuthentifizController::testInput($_POST['benutzername']);
+        $passwort = AuthentifizController::testInput($_POST['password']);
+        
         $login = new Login(); // Objekt wird als Datenhaltung zur Validierung verwendet
-        @$login->setBenutzername(AuthentifizController::testInput($_POST['benutzername']));
-        @$login->setPasswort(AuthentifizController::testInput($_POST['password']));
+        $login->setBenutzername($benutzername);
+        $login->setPasswort($passwort);
         $loginValidator = new LoginValidator($login); // validiert implizit im Konstruktor das übergebene Objekt
         if($loginValidator->isValid()) {
             if(Service::getInstance()->verifyUser($login->getBenutzername(), $login->getPasswort())) {
