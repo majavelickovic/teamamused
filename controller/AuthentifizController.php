@@ -11,7 +11,7 @@ namespace controller;
 use service\Service;
 use domain\Login;
 use validator\LoginValidator;
-use view\View;
+use view\view;
 
 class AuthentifizController
 {
@@ -30,7 +30,7 @@ class AuthentifizController
                 $_SESSION['login'] = true;
             }
         } else {
-            $view = new View("login.php");
+            $view = new view("login.php");
             $view->login = $login; // schreibt bereits eingegebene Werte in das Formular, so dass diese nicht erneut eingegeben werden müssen
             $view->loginValidator = $loginValidator;
             echo $view->render();
