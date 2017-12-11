@@ -1,7 +1,12 @@
-<!DOCTYPE html>
-<!--
-Diese Seite stellt die Teilnehmer-Seite dar.
--->
+<?php
+
+use service\Service;
+
+/*
+ * View, um eine besthende Rechnung zu suchen
+ */
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -38,15 +43,19 @@ Diese Seite stellt die Teilnehmer-Seite dar.
                         </tr>
                         <tr>
                             <td>Teilnehmer-ID</td>
-                            <td><input type="text" name="teilnehmer_id" value="" size="40px" /></td>
+                            <td><input type="text" name="teilnehmer_id" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Vorname</td>
-                            <td><input type="text" name="vorname" value="" size="40px" /></td>
+                            <td><input type="text" name="vorname" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Nachname</td>
-                            <td><input type="text" name="nachname" value="" size="40px" /></td>
+                            <td><input type="text" name="nachname" size="40px" /></td>
+                        </tr>
+                        <tr>
+                            <td>Geburtsdatum</td>
+                            <td><input type="text" name="geburtsdatum" size="40px" /></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
@@ -64,12 +73,12 @@ Diese Seite stellt die Teilnehmer-Seite dar.
                             <th></th>
                         </tr>
                         <?php
-                            $participanttablecontent = controller\TeilnehmerController::readParticipant();
-                            if($participanttablecontent != null){
-                                echo $participanttablecontent;
-                            }else{
-                                echo "";
-                            }
+                        $participanttablecontent = controller\TeilnehmerController::readParticipant();
+                        if ($participanttablecontent != null) {
+                            echo $participanttablecontent;
+                        } else {
+                            echo "";
+                        }
                         ?>
                     </table>
                 </div>

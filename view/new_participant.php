@@ -38,15 +38,15 @@ Diese Seite stellt die Teilnehmer-Seite dar.
                         </tr>
                         <tr>
                             <td>Vorname</td>
-                            <td><input type="text" name="vorname" value="" size="40px" /></td>
+                            <td><input type="text" name="vorname" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Nachname</td>
-                            <td><input type="text" name="nachname" value="" size="40px" /></td>
+                            <td><input type="text" name="nachname" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Geburtsdatum</td>
-                            <td><input type="text" name="geburtsdatum" value="" size="40px" /></td>
+                            <td><input type="text" name="geburtsdatum" size="40px" /></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="hinzufügen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>

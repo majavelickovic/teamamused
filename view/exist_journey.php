@@ -1,16 +1,12 @@
 <?php
 
-use database\Database;
+use service\Service;
 
 /*
- * View, um eine besthende Reise zu suchen
+ * View, um eine besthende Rechnung zu suchen
  */
 ?>
 
-<!DOCTYPE html>
-<!--
-Diese Seite stellt die Reise-Seite dar.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -78,11 +74,11 @@ Diese Seite stellt die Reise-Seite dar.
                         </tr>
                         <tr>
                             <td>Datum von</td>
-                            <td><input type="text" name="datum_start" value="" size="40px" /></td>
+                            <td><input type="text" name="datum_start" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Datum bis</td>
-                            <td><input type="text" name="datum_ende" value="" size="40px" /></td>
+                            <td><input type="text" name="datum_ende" size="40px" /></td>
                         </tr>
                         <tr>
                             <td>Preis</td>
@@ -90,7 +86,7 @@ Diese Seite stellt die Reise-Seite dar.
                         </tr>
                         <tr>
                             <td>Startort</td>
-                            <td><input type="text" name="startort" value="" size="40px" /></td>
+                            <td><input type="text" name="startort" size="40px" /></td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
