@@ -1,4 +1,5 @@
 <?php
+
 use service\Service;
 use domain\Reise;
 use controller\ErrorController;
@@ -13,7 +14,16 @@ use controller\ErrorController;
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
         <title>Reise</title>
-        <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
+        <script type="text/javascript">
+            //Seite nochmals laden, wenn zurücksetzen angeklickt wurde, um die ursprüngliche Reise ohne Änderungen anzuzeigen
+            function reloadOriginalJourney() {
+                location.reload();
+            }
+            //Reiseseite drucken
+            function printJourney() {
+                window.print();
+            }
+        </script>
     </head>
     <body>		
         <div id="whiteblock">
@@ -46,11 +56,11 @@ use controller\ErrorController;
                                         <?php
                                         //Abfrage für Reisetitel
                                         foreach (Service::getInstance()->getJourneyTitles() as $key => $invoiceType) {
-                                        if ($invoiceType['reise_id'] == $rg->getReise()) {
-                                        echo "<option selected='selected' value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
-                                        } else {
-                                        echo "<option value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
-                                        }
+                                            if ($invoiceType['reise_id'] == $rg->getReise()) {
+                                                echo "<option selected='selected' value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
+                                            } else {
+                                                echo "<option value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
+                                            }
                                         }
                                         ?>
                                     </select>
@@ -106,10 +116,10 @@ use controller\ErrorController;
                             <tr><td colspan="2"></td></tr>
                             <tr><td colspan="2"></td></tr>
                             <tr>
-                                <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printInvoice()" /></td>
+                                <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printJourney()" /></td>
                             </tr>
                             <tr>
-                                <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalInvoice()"/></td>
+                                <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalJourney()"/></td>
                             </tr>   
                         </table>
                     </div>

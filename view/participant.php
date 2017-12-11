@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!--
-Diese Seite stellt die Teilnehmer-Seite dar.
+Diese Seite stellt die Reise-Seite dar.
+@author Sandra Bodack
 -->
 <html>
     <head>

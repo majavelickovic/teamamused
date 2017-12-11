@@ -36,8 +36,6 @@ Diese Seite stellt die Rechnungs-Seite dar, wo man die Auswahl zwischen verschie
                             <td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/schlussabrechnung" ?>"><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/search.png"></a></td><td><a href="<?php echo $GLOBALS["ROOT URL"] . "/rechnung/schlussabrechnung" ?>" style="text-decoration: none;">Schlussabrechnung anzeigen</a></td>
                         </tr>
                     </table>
-
-
                 </div>
             </div>
         </div>

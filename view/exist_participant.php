@@ -4,6 +4,7 @@ use service\Service;
 
 /*
  * View, um eine besthende Rechnung zu suchen
+ * @author Sandra Bodack
  */
 ?>
 

@@ -4,6 +4,7 @@ use service\Service;
 
 /*
  * View, um eine besthende Rechnung zu suchen
+ * @author Sandra Bodack
  */
 ?>
 
@@ -17,7 +18,7 @@ use service\Service;
             function refreshTable() {
                 document.getElementById("searchForm").submit();
             }
-            //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
+            //Bild zum Reise löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Reise gelöscht und die Ansicht aktualisiert
             function deleteJourney(reise_id) {
                 if (confirm("Wollen Sie die Reise wirklich löschen?")) {
                     var req = new XMLHttpRequest();
@@ -31,7 +32,7 @@ use service\Service;
                     }
                     req.send(null);
                 } else {
-                    //nichts tun, wenn der Benutzer die Rechnung nicht löschen möchte
+                    //nichts tun, wenn der Benutzer die Reise nicht löschen möchte
                 }
             }
         </script>
@@ -45,7 +46,7 @@ use service\Service;
                         <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/rechnung" ?>">Rechnung</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/teilnehmer" ?>">Teilnehmer</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/logout" ?>">Logout</a></li>
-                        </ul>
+                    </ul>
                 </div>
                 <div id="blockleft">
                     <table>

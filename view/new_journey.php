@@ -1,17 +1,13 @@
 <?php
 
-use database\Database;
 use service\Service;
 
 /*
  * View, um eine neue Reise zu erfassen
+ * @author Sandra Bodack
  */
 ?>
 
-<!DOCTYPE html>
-<!--
-Diese Seite stellt die Reise-Seite dar.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -63,7 +59,7 @@ Diese Seite stellt die Reise-Seite dar.
                                     <select id="dropdown" name="reiseleiter">
                                         <?php
                                         // @SANDRA -> View greift über die Serviceklasse auf die DAO also Datenbank zu
-                                        foreach(Service::getInstance()->getReiseleiter() as $key => $reiseleiter) {
+                                        foreach (Service::getInstance()->getReiseleiter() as $key => $reiseleiter) {
                                             echo "<option value='" . $reiseleiter['reiseleiter'] . "'></option>";
                                         }
                                         ?>
@@ -79,9 +75,6 @@ Diese Seite stellt die Reise-Seite dar.
                             </tr>
                         </table>
                     </form>
-                </div>
-                <div id="blockright">
-
                 </div>
             </div>
         </div>

@@ -14,6 +14,16 @@ use controller\ErrorController;
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
         <title>Teilnehmer</title>
+        <script type="text/javascript">
+            //Seite nochmals laden, wenn zurücksetzen angeklickt wurde, um den ursprünglichen Teilnehmer ohne Änderungen anzuzeigen
+            function reloadOriginalParticipant() {
+                location.reload();
+            }
+            //Teilnehmerseite drucken
+            function printParticipant() {
+                window.print();
+            }
+        </script>
     </head>
     <body>		
         <div id="whiteblock">
@@ -69,6 +79,23 @@ use controller\ErrorController;
                                 <td>Geburtsdatum</td>
                                 <td><input type="text" name="geburtsdatum" size="40px" /></td>
                             </tr>
+                        </table>
+                    </div>
+                    <div id="blockright">
+                        <table>
+                            <tr><td colspan="2"></td></tr>
+                            <tr><td colspan="2"></td></tr>
+                            <tr><td colspan="2"></td></tr>
+                            <tr><td colspan="2"></td></tr>
+                            <tr><td colspan="2"></td></tr>
+                            <tr><td colspan="2"></td></tr>
+                            <tr><td colspan="2"></td></tr>
+                            <tr>
+                                <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printParticipant()" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalParticipant()"/></td>
+                            </tr>   
                         </table>
                     </div>
                 </form>
