@@ -45,7 +45,11 @@ class ReiseController {
     public static function jouneyAddView() {
         echo (new View("new_journey.php"))->render();
     }
-
+    
+       public static function journeyShowSingleView(){
+        echo (new View("single_journey.php"))->render();
+    }
+    
     public static function journeyChoiceView() {
         echo (new View("journey.php"))->render();
     }

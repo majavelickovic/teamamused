@@ -43,6 +43,10 @@ class TeilnehmerController {
         echo (new View("new_participant.php"))->render();
     }
 
+    public static function participantShowSingleView() {
+        echo (new View("single_participant.php"))->render();
+    }
+
     public static function participantChoiceView() {
         echo (new View("participant.php"))->render();
     }
