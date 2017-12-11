@@ -42,7 +42,7 @@ class ReiseController {
         echo (new View("exist_journey.php"))->render();
     }
 
-    public static function jouneyAddView() {
+    public static function journeyAddView() {
         echo (new View("new_journey.php"))->render();
     }
     

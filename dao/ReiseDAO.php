@@ -12,7 +12,6 @@ namespace dao;
 use domain\Reise;
 use database\Database;
 use PDO;
-use Exception;
 
 class ReiseDAO {
 
