@@ -36,10 +36,13 @@ use service\Service;
                             <tr>
                                 <td>Reise</td>
                                 <td>
-                                    <select id="dropdown" name="reise">
-                                        <option value="">X</option>
-                                        <option value="">Y</option>
-                                        <option value="">Z</option>
+                                    <select id="dropdown" name="reise" style="width:300px;">
+                                        <?php
+                                        //Abfrage für Reisetitel
+                                        foreach (Service::getInstance()->getJourneyTitles() as $key => $journeyType) {
+                                            echo "<option value='" . $journeyType['reise_id'] . "'>" . $journeyType['titel'] . ", " . $journeyType['reise_id'] . "</option>";
+                                        }
+                                        ?>
                                     </select>
                                 </td>
                             </tr>
