@@ -365,7 +365,7 @@
                 } else {
                     ?>
                     <script type="text/javascript">
-                        alert("FEHLER - Die Reise konnte nicht erstellt werden. Bitte versuchen Sie es erneut.");
+                        alert("FEHLER - Der Teilnehmer konnte nicht erstellt werden. Bitte versuchen Sie es erneut.");
                     </script>
                     <?php
                 }
