@@ -5,6 +5,7 @@ namespace service;
 use dao;
 use domain\Login;
 use domain\Rechnung;
+use domain\Teilnehmer;
 
 /**
  * @access public
