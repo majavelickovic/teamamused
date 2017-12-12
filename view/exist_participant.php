@@ -87,7 +87,7 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Geburtsdatum</td>
-                                <td><input type="text" name="geburtsdatum" style="width:296px;" value="<?php echo $_POST['geburtsdatum'] ?>" /></td>
+                                <td><input type="date" name="geburtsdatum" style="width:296px;" value="<?php echo $_POST['geburtsdatum'] ?>" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>

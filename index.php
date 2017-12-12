@@ -12,7 +12,7 @@
         use router\Router;
         use controller\AuthentifizController;
 
-        /*
+/*
          * Startet eine neue Session - muss auf nachfolgenden Seiten nicht implementiert werden,
          * da die Kommunikation über das Index-File läuft
          */
@@ -44,7 +44,7 @@
         Router::route("GET", "/error404", function () {
             controller\ErrorController::error404View();
         });
-        
+
         /*
          * Dem User wird die 403-Fehlerseite angezeigt
          * @author Michelle Widmer
@@ -53,7 +53,7 @@
             controller\ErrorController::error403View();
         });
 
-         /*
+        /*
          * Dem User wird die Registrierungsseite angezeigt
          * @author Michelle Widmer
          */
@@ -72,7 +72,7 @@
                 controller\LoginController::registerView();
             }
         });
-        
+
         /*
          * Dem User wird die Loginseite angezeigt
          * @author Michelle Widmer
@@ -103,7 +103,7 @@
             Router::redirect("/login");
         });
 
-         /*
+        /*
          * Beim Logout wird der User auf die Loginseite weitergeleitet
          * @author Michelle Widmer
          */
@@ -305,7 +305,7 @@
                 controller\ErrorController::error403View();
             }
         });
-        
+
         /**
          * PDF von angehängter Rechnung wird angezeigt
          * @author Maja Velickovic
@@ -333,7 +333,6 @@
             } else {
                 controller\ErrorController::error403View();
             }
-            
         });
 
         Router::route("GET", "/teilnehmer", function () {
@@ -356,6 +355,8 @@
             if (AuthentifizController::authenticate()) {
                 controller\TeilnehmerController::participantAddView();
                 $returnteilnehmer = controller\TeilnehmerController::newParticipant();
+                console.log("teilnehmer: ");
+                console.log($returnteilnehmer);
                 if ($returnteilnehmer != false) {
                     ?>
                     <script type="text/javascript">
@@ -407,6 +408,13 @@
             }
         });
 
+        Router::route("GET", "/deleteParticipant", function () {
+            if (AuthentifizController::authenticate() && $_GET['del_teilnehmer_id'] > 0) {
+                controller\TeilnehmerController::deleteParticipant($_GET['del_teilnehmer_id']);
+            } else {
+                controller\ErrorController::error403View();
+            }
+        });
 
         Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
         ?>
