@@ -204,18 +204,22 @@ class Service {
     /**
      * TODO -> Teilnehmer mit Werten aus Formular befüllen
      */
-    public function createParticipant(Teilnehmer $teilnehmer) {
+    public function createParticipant($reise, $vorname, $nachname, $geburtsdatum) {
         if($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
-            // Teilnehmerinhalte bestimmen
-            $teilnehmer->setTeilnehmer_id($teilnehmer_id);         
+            // Teilnehmerinhalte bestimmen      
+            $neu_id = $teilnehmerDAO->getNewTeilnehmerID();
+            $teilnehmer = new Teilnehmer();
+            $teilnehmer->setTeilnehmer_id($neu_id); // hole neue Teilnehmer-ID
+            $teilnehmer->setReise($reise);
             $teilnehmer->setVorname($vorname);
             $teilnehmer->setNachname($nachname);
             $teilnehmer->setGeburtsdatum($geburtsdatum);
-            return $teilnehmerDAO->create($teilnehmer);
+            $teilnehmerDAO->create($teilnehmer);
+            return $neu_id;
         }
         return null;
-    }
+    } 
 
     /**
      * Liest anhand der Teilnehmer-Id den entsprechenden Teilnehmer aus der Datenbank

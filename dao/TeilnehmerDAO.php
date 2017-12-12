@@ -23,14 +23,20 @@ class TeilnehmerDAO {
     public function create(Teilnehmer $teilnehmer) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
-                "INSERT INTO teilnehmer (teilnehmer_id, vorname, nachname, telefon, mail, geburtsdatum)
-                    VALUES (:teilnehmer_id, :vorname, :nachname, :telefon, :mail, :geburtsdatum)");
+                "INSERT INTO teilnehmer (teilnehmer_id, vorname, nachname, geburtsdatum)
+                    VALUES (:teilnehmer_id, :vorname, :nachname, :geburtsdatum)");
         $statement->bindValue(':teilnehmer_id', $teilnehmer->getTeilnehmer_id());
         $statement->bindValue(':vorname', $teilnehmer->getVorname());
         $statement->bindValue(':nachname', $teilnehmer->getNachname());
         $statement->bindValue(':geburtsdatum', $teilnehmer->getGeburtsdatum());
         $statement->execute();
-        return $this->read($pdo->lastInsertId());
+
+        $statement2 = $pdo->prepare(
+                "INSERT INTO reise_teilnehmer (reise_id, teilnehmer_id)
+                        VALUES (:reise, :teilnehmer_id)");
+        $statement2->bindValue(':reise', $teilnehmer->getReise());
+        $statement2->bindValue(':teilnehmer_id', $teilnehmer->getTeilnehmer_id());
+        $statement2->execute();
     }
 
     /**
@@ -83,6 +89,17 @@ class TeilnehmerDAO {
         $statement->bindValue(':xy', $xy);
         $statement->execute();
         return $statement->fetchAll(\PDO::FETCH_CLASS, "Teilnehmer");
+    }
+
+    public function getNewTeilnehmerID() {
+        $pdo = Database::connect();
+        $statement = $pdo->query(
+                "SELECT teilnehmer_id FROM teilnehmer
+                ORDER BY teilnehmer_id DESC LIMIT 1");
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $returnvalue = $row["teilnehmer_id"];
+        }
+        return $returnvalue + 1;
     }
 
 }

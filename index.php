@@ -355,8 +355,6 @@
             if (AuthentifizController::authenticate()) {
                 controller\TeilnehmerController::participantAddView();
                 $returnteilnehmer = controller\TeilnehmerController::newParticipant();
-                console.log("teilnehmer: ");
-                console.log($returnteilnehmer);
                 if ($returnteilnehmer != false) {
                     ?>
                     <script type="text/javascript">

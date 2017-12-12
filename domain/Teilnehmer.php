@@ -25,6 +25,10 @@ class Teilnehmer {
 	 * @AttributeType int
 	 */
 	private $_reise_teilnehmer = array();
+        /**
+	 * @AttributeType int
+	 */
+	private $_reise_id;
 	/**
 	 * @access public
 	 * @return int
@@ -103,6 +107,26 @@ class Teilnehmer {
 	 */
 	public function setGeburtsdatum(&$geburtsdatum) {
 		$this->_geburtsdatum = $geburtsdatum;
+	}
+        
+        /**
+	 * @access public
+	 * @return int
+	 * @ReturnType int
+	 */
+	public function getReise() {
+		return $this->_reise_id;
+	}
+
+	/**
+	 * @access public
+	 * @param int $reise_id
+	 * @return void
+	 * @ParamType $reise_id int
+	 * @ReturnType void
+	 */
+	public function setReise($reise_id) {
+		$this->_reise_id = $reise_id;
 	}
 }
 ?>
