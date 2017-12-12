@@ -58,10 +58,9 @@ class TeilnehmerDAO {
         $statement->bindValue(':vorname', $vorname."%");
         $statement->bindValue(':nachname', $nachname."%");
         //return "HAllo " . $_teilnehmer_id ."-".  $vorname."%" . "-". $nachname."%";
-        $statement->execute();
 
         $tableText = "";
-        while ($row = $statement->fetch()){
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
             $tableText .= "<tr>"
                     . "<td><a href=" . $GLOBALS["ROOT URL"] . "/teilnehmer/anzeige?id=" . $row['teilnehmer_id'] . ">" . $row["teilnehmer_id"] . "</a></td>"
                     . "<td>" . $row['reise_id'] . "</td>"
