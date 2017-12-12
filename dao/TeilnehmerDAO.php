@@ -38,29 +38,39 @@ class TeilnehmerDAO {
         $statement2->execute();
     }
 
-    /**
+/**
      * Sucht nach Teilnehmern welche den Kriterien entsprechen aus der Tabelle "teilnehmer
      */
     public function read($_teilnehmer_id, $vorname, $nachname) {
         $pdo = Database::connect();
+        if (!isset($_teilnehmer_id)) {
+            $_teilnehmer_id = 0;
+        }
+        if (!isset($vorname)) {
+            $vorname = "qq";
+        }
+        if (!isset($nachname)) {
+            $nachname = "qq";
+        }
         $statement = $pdo->prepare(
-                "SELECT * FROM teilnehmer WHERE teilnehmer_id = :teilnehmer_id OR vorname = :vorname OR nachname =:nachname;");
+                "SELECT * FROM teilnehmer WHERE teilnehmer_id = :teilnehmer_id like vorname = :vorname like nachname =:nachname;");
         $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
-        $statement->bindValue(':vorname', $vorname);
-        $statement->bindValue(':nachname', $nachname);
+        $statement->bindValue(':vorname', $vorname."%");
+        $statement->bindValue(':nachname', $nachname."%");
         $statement->execute();
 
-        $t = new Teilnehmer();
-        
+        $tableText = "";
         while ($row = $statement->fetch()){
-            $t->setTeilnehmer_id($row['teilnehmer_id']);
-            $t->setVorname($row['vorname']);
-            $t->setNachname($row['nachname']);
-            $t->setGeburtsdatum($row['geburtsdatum']);
-            //$t->setReise($row['reise']);
+            $tableText .= "<tr>"
+                    . "<td><a href=" . $GLOBALS["ROOT URL"] . "/teilnehmer/anzeige?id=" . $row['teilnehmer_id'] . ">" . $row["teilnehmer_id"] . "</a></td>"
+                    . "<td>" . $row['reise_id'] . "</td>"
+                    . "<td>" . $row["vorname"] . "</td>"
+                    . "<td>" . $row["nachname"] . "</td>"
+                    . "<td><a href=" . $GLOBALS["ROOT URL"] . "/teilnehmer/anzeige?id=" . $row['teilnehmer_id'] . "><img src='../design/pictures/search.png'></a></td>"
+                    . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteInvoice(" . $row['teilnehmer_id'] . ")'></a></td>"
+                    . "</tr>";
         }
-
-        return $t;
+        return $tableText;
     }
 
     /**
