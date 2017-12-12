@@ -6,7 +6,7 @@ Diese Seite stellt die Reise-Seite dar.
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../design/styles.css">
+        <link rel="stylesheet" href="./design/styles.css">
         <title>Teilnehmer</title>
     </head>
     <body>		

@@ -25,7 +25,7 @@ if($rg->getReise() == ""){
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../design/styles.css">
+        <link rel="stylesheet" href="./design/styles.css">
         <title>Rechnung</title>
         <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
         <script type="text/javascript">

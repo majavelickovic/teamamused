@@ -11,7 +11,7 @@ global $loginValidator;
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../design/styles.css">
+        <link rel="stylesheet" href="./design/styles.css">
         <title>Registrierung</title>
     </head>
     <body>

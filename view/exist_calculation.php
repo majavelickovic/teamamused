@@ -11,7 +11,7 @@ use service\Service;
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../design/styles.css">
+        <link rel="stylesheet" href="./design/styles.css">
         <title>Rechnung</title>
         <script type="text/javascript">
             //Seite aktualisieren, damit die Tabelle aktualisiert angzeigt wird

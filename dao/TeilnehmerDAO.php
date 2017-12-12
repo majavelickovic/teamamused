@@ -28,8 +28,6 @@ class TeilnehmerDAO {
         $statement->bindValue(':teilnehmer_id', $teilnehmer->getTeilnehmer_id());
         $statement->bindValue(':vorname', $teilnehmer->getVorname());
         $statement->bindValue(':nachname', $teilnehmer->getNachname());
-        $statement->bindValue(':telefon', $teilnehmer->getTelefon());
-        $statement->bindValue(':mail', $teilnehmer->getMail());
         $statement->bindValue(':geburtsdatum', $teilnehmer->getGeburtsdatum());
         $statement->execute();
         return $this->read($pdo->lastInsertId());
@@ -58,8 +56,6 @@ class TeilnehmerDAO {
         $statement->bindValue(':teilnehmer_id', $teilnehmer->getTeilnehmer_id());
         $statement->bindValue(':vorname', $teilnehmer->getVorname());
         $statement->bindValue(':nachname', $teilnehmer->getNachname());
-        $statement->bindValue(':telefon', $teilnehmer->getTelefon());
-        $statement->bindValue(':mail', $teilnehmer->getMail());
         $statement->bindValue(':geburtsdatum', $teilnehmer->getGeburtsdatum());
         $statement->execute();
         return $this->read($teilnehmer->getId());

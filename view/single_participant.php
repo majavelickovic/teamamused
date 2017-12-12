@@ -25,7 +25,7 @@ if($teilnehmer->getReise() == ""){
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../design/styles.css">
+        <link rel="stylesheet" href="./design/styles.css">
         <title>Teilnehmer</title>
         <script type="text/javascript">
             //Seite nochmals laden, wenn zurücksetzen angeklickt wurde, um den ursprünglichen Teilnehmer ohne Änderungen anzuzeigen

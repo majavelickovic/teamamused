@@ -6,7 +6,7 @@ Diese Seite stellt die Rechnungs-Seite dar, wo man die Auswahl zwischen verschie
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../design/styles.css">
+        <link rel="stylesheet" href="./design/styles.css">
         <title>Rechnung</title>
     </head>
     <body>		
