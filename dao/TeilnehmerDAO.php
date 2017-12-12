@@ -24,10 +24,11 @@ class TeilnehmerDAO {
         $statement = $pdo->prepare(
                 "INSERT INTO teilnehmer (teilnehmer_id, vorname, nachname, geburtsdatum)
                     VALUES (:teilnehmer_id, :vorname, :nachname, :geburtsdatum)");
-        //$statement->bindValue(':teilnehmer_id', $teilnehmer->getTeilnehmer_id());
-        $statement->bindValue(':teilnehmer_id', 7);
-        $statement->bindValue(':vorname', $teilnehmer->getVorname());
-        $statement->bindValue(':nachname', $teilnehmer->getNachname());
+        $statement->bindValue(':teilnehmer_id', $teilnehmer->getTeilnehmer_id());
+        //$statement->bindValue(':vorname', $teilnehmer->getVorname());
+        //$statement->bindValue(':nachname', $teilnehmer->getNachname());
+        $statement->bindValue(':vorname', "Sandra");
+        $statement->bindValue(':nachname', "Bodack");
         //$statement->bindValue(':geburtsdatum', $teilnehmer->getGeburtsdatum());
         $statement->bindValue(':geburtsdatum', "1989-08-20");
         $statement->execute();
