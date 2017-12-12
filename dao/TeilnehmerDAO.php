@@ -57,8 +57,7 @@ class TeilnehmerDAO {
         $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
         $statement->bindValue(':vorname', $vorname."%");
         $statement->bindValue(':nachname', $nachname."%");
-        //$statement->execute();
-        return $statement->queryString;
+        $statement->execute();
 
         $tableText = "";
         while ($row = $statement->fetch()){
