@@ -53,14 +53,16 @@ class TeilnehmerDAO {
             $nachname = "qq";
         }
         $statement = $pdo->prepare(
-                "SELECT * FROM teilnehmer WHERE teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname;");
+                "SELECT t.*, tr.reise_id "
+                . "FROM teilnehmer t "
+                . " inner join reise_teilnehmer rt on t.teilnehmer_id = rt.teilnehmer_id "
+                . "WHERE teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname;");
         $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
-        $statement->bindValue(':vorname', $vorname);
-        $statement->bindValue(':nachname', $nachname);
-        $tableText = "HAllo " . $_teilnehmer_id ."-".  $vorname."%" . "-". $nachname."%";
+        $statement->bindValue(':vorname', $vorname."%");
+        $statement->bindValue(':nachname', $nachname."%");
 
         $statement->execute();
-        //$tableText = "";
+        $tableText = "";
         while ($row = $statement->fetch()) {
             $tableText .= "<tr>"
                     . "<td><a href=" . $GLOBALS["ROOT URL"] . "/teilnehmer/anzeige?id=" . $row['teilnehmer_id'] . ">" . $row["teilnehmer_id"] . "</a></td>"
