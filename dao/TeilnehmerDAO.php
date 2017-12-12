@@ -57,7 +57,8 @@ class TeilnehmerDAO {
         $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
         $statement->bindValue(':vorname', $vorname."%");
         $statement->bindValue(':nachname', $nachname."%");
-        $statement->execute();
+        return "HAllo " . $_teilnehmer_id ."-".  $vorname."%" . "-". $nachname."%";
+        /*$statement->execute();
 
         $tableText = "";
         while ($row = $statement->fetch()){
@@ -70,7 +71,7 @@ class TeilnehmerDAO {
                     . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteInvoice(" . $row['teilnehmer_id'] . ")'></a></td>"
                     . "</tr>";
         }
-        return $tableText;
+        return $tableText;*/
     }
 
     /**
