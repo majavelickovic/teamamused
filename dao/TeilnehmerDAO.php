@@ -53,7 +53,7 @@ class TeilnehmerDAO {
             $nachname = "qq";
         }
         $statement = $pdo->prepare(
-                "SELECT t.*, tr.reise_id "
+                "SELECT t.teilnehmer_id, t.vorname, t.nachname , tr.reise_id "
                 . "FROM teilnehmer t "
                 . "inner join reise_teilnehmer rt on t.teilnehmer_id = rt.teilnehmer_id "
                 . "WHERE t.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname;");
