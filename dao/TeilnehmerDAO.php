@@ -55,8 +55,8 @@ class TeilnehmerDAO {
         $statement = $pdo->prepare(
                 "SELECT * FROM teilnehmer WHERE teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname;");
         $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
-        $statement->bindValue(':vorname', $vorname."%");
-        $statement->bindValue(':nachname', $nachname."%");
+        $statement->bindValue(':vorname', $vorname);
+        $statement->bindValue(':nachname', $nachname);
         $tableText = "HAllo " . $_teilnehmer_id ."-".  $vorname."%" . "-". $nachname."%";
 
         //$tableText = "";
