@@ -43,13 +43,13 @@ class TeilnehmerDAO {
      */
     public function read($_teilnehmer_id, $vorname, $nachname) {
         $pdo = Database::connect();
-        if (!isset($_teilnehmer_id)) {
+        if (!isset($_teilnehmer_id) OR empty($_teilnehmer_id)) {
             $_teilnehmer_id = 0;
         }
-        if (!isset($vorname)) {
+        if (!isset($vorname) OR empty($vorname)) {
             $vorname = "qq";
         }
-        if (!isset($nachname)) {
+        if (!isset($nachname) OR empty($nachname)) {
             $nachname = "qq";
         }
         $statement = $pdo->prepare(
@@ -57,8 +57,8 @@ class TeilnehmerDAO {
         $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
         $statement->bindValue(':vorname', $vorname."%");
         $statement->bindValue(':nachname', $nachname."%");
-        return "HAllo " . $_teilnehmer_id ."-".  $vorname."%" . "-". $nachname."%";
-        /*$statement->execute();
+        //return "HAllo " . $_teilnehmer_id ."-".  $vorname."%" . "-". $nachname."%";
+        $statement->execute();
 
         $tableText = "";
         while ($row = $statement->fetch()){
@@ -71,7 +71,7 @@ class TeilnehmerDAO {
                     . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteInvoice(" . $row['teilnehmer_id'] . ")'></a></td>"
                     . "</tr>";
         }
-        return $tableText;*/
+        return $tableText;
     }
 
     /**
