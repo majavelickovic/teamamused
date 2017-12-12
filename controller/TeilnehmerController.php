@@ -17,7 +17,7 @@ class TeilnehmerController {
 
     public static function newParticipant() {
         return Service::getInstance()->createParticipant(
-                        $_POST["reise_id"], $_POST["titel"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);
+                        $_POST["reise"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);
     }
 
     public static function readParticipant() {
