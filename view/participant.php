@@ -23,7 +23,7 @@ Diese Seite stellt die Reise-Seite dar.
                 <div id="blockleft">
                     <table>
                         <tr>
-                            <td><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer/neu" ?>"><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/plus.png"></a></td><td><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer/neu" ?>" style="text-decoration: none;">neue Teilnehmer hinzufügen</a></td>
+                            <td><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer/neu" ?>"><img src="<?php echo $GLOBALS["ROOT_URL"]; ?>/design/pictures/plus.png"></a></td><td><a href="<?php echo $GLOBALS["ROOT URL"] . "/teilnehmer/neu" ?>" style="text-decoration: none;">neuer Teilnehmer hinzufügen</a></td>
                         </tr>
                     </table>
                 </div>

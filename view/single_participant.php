@@ -4,8 +4,21 @@ use service\Service;
 use domain\Teilnehmer;
 use controller\ErrorController;
 
+if($_GET['id'] > 0){
+    $teilnehmer_id = $_GET['id'];
+}elseif($_POST['teilnehmer_id'] > 0){
+    $teilnehmer_id = $_POST['teilnehmer_id'];
+}    
+$teilnehmerDAO = new dao\TeilnehmerDAO;
+$teilnehmer = new Teilnehmer();
+$teilnehmer = Service::getInstance()->readSingleParticipant($teilnehmer_id);
+if($teilnehmer->getReise() == ""){
+    ErrorController::error404View();
+}else{
+
 /*
  * View, um einen einzelnen Teilnehmer anzusehen / zu bearbeiten
+ * @author Sandra Bodack
  */
 ?>
 
@@ -40,7 +53,7 @@ use controller\ErrorController;
                     <div id="blockleft">
                         <table>
                             <tr>
-                                <td colspan="3"><img src="../design/pictures/search.png"></td><td>bestehende Teilnehmer anzeigen</td>
+                                <td colspan="3"><img src="../design/pictures/search.png"></td><td>bestehender Teilnehmer anzeigen</td>
                             </tr>
                         </table>
                         <table>
@@ -52,14 +65,14 @@ use controller\ErrorController;
                             <tr>
                                 <td>Reise</td>
                                 <td>
-                                    <select id="titel" name="titel" class="dropdown" style="width:300px;" disabled>
+                                    <select id="reise" name="reise" class="dropdown" style="width:300px;" disabled>
                                         <?php
                                         //Abfrage für Reisetitel
-                                        foreach (Service::getInstance()->getJourneyTitles() as $key => $invoiceType) {
-                                            if ($invoiceType['reise_id'] == $rg->getReise()) {
-                                                echo "<option selected='selected' value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
+                                        foreach (Service::getInstance()->getJourneyTitles() as $key => $journeyType) {
+                                            if ($journeyType['reise_id'] == $teilnehmer->getReise()) {
+                                                echo "<option selected='selected' value='" . $journeyType['reise_id'] . "'>" . $journeyType['titel'] . ", " . $journeyType['reise_id'] . "</option>";
                                             } else {
-                                                echo "<option value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
+                                                echo "<option value='" . $journeyType['reise_id'] . "'>" . $journeyType['titel'] . ", " . $journeyType['reise_id'] . "</option>";
                                             }
                                         }
                                         ?>
@@ -69,15 +82,18 @@ use controller\ErrorController;
                             </tr>
                             <tr>
                                 <td>Vorname</td>
-                                <td><input type="text" name="vorname" size="40px" /></td>
+                                <td><input type="text" id="vorname" name="vorname" style="width:296px;" value="<?php echo $teilnehmer->getVorname();?>" disabled/></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("vorname").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Nachname</td>
-                                <td><input type="text" name="nachname" size="40px" /></td>
+                                <td><input type="text" id="nachname" name="nachname" style="width:296px;" value="<?php echo $teilnehmer->getNachname();?>" disabled/></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("nachname").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Geburtsdatum</td>
-                                <td><input type="text" name="geburtsdatum" size="40px" /></td>
+                                <td><input type="text" id="geburtsdatum" name="geburtsdatum" style="width:296px;" value="<?php echo $teilnehmer->getGeburtsdatum();?>" disabled/></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("geburtsdatum").disabled=false'></a></td>
                             </tr>
                         </table>
                     </div>
@@ -103,3 +119,7 @@ use controller\ErrorController;
         </div>
     </body>
 </html>
+
+<?php
+}
+?>
