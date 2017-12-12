@@ -71,6 +71,9 @@ class TeilnehmerDAO {
                     . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteInvoice(" . $row['teilnehmer_id'] . ")'></a></td>"
                     . "</tr>";
         }
+        if ($tableText == "") {
+            return "Nichts gefunden!";
+        }
         return $tableText;
     }
 
