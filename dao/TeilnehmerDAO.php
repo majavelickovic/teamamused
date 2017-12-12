@@ -11,7 +11,7 @@
 namespace dao;
 
 use domain\Teilnehmer;
-use Database;
+use database\Database;
 use PDO;
 use Exception;
 
