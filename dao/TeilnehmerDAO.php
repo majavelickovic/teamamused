@@ -23,12 +23,12 @@ class TeilnehmerDAO {
     public function create(Teilnehmer $teilnehmer) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
-                "INSERT INTO teilnehmer (teilnehmer_id, vorname, nachname, geburtsdatum)
-                    VALUES (:teilnehmer_id, :vorname, :nachname, :geburtsdatum)");
+                "INSERT INTO teilnehmer (teilnehmer_id, vorname, nachname)
+                    VALUES (:teilnehmer_id, :vorname, :nachname)");
         $statement->bindValue(':teilnehmer_id', $teilnehmer->getTeilnehmer_id());
         $statement->bindValue(':vorname', $teilnehmer->getVorname());
         $statement->bindValue(':nachname', $teilnehmer->getNachname());
-        $statement->bindValue(':geburtsdatum', $teilnehmer->getGeburtsdatum());
+        //$statement->bindValue(':geburtsdatum', $teilnehmer->getGeburtsdatum());
         $statement->execute();
 
         $statement2 = $pdo->prepare(
