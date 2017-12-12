@@ -14,14 +14,13 @@ use domain\Teilnehmer;
  * Die Klasse ermöglicht den zentralen Zugriff auf die verschiedenen DAO's
  * 
  */
-
-
 class Service {
+
     /**
      * Variable, welche das Serice-Objekt beinhaltet
      */
     private static $instance = null;
-    
+
     /**
      * Speichert den Benutzernamen des akutellen Users
      */
@@ -40,7 +39,9 @@ class Service {
     /**
      * Konstruktor
      */
-    protected function __construct() { }
+    protected function __construct() {
+        
+    }
 
     /**
      * Gibt einen Boolean zurück, ob der currentBenutzername gesetzt ist oder nicht
@@ -70,13 +71,13 @@ class Service {
     }
 
     // CRUD-Methoden für Login
-    
+
     /**
      * Liest den eingeloggten Mitarbeiter aus der Datenbank
      * @author Michelle Widmer
      */
     public function readLogin() {
-        if($this->verifyAuth()) {
+        if ($this->verifyAuth()) {
             $loginDAO = new dao\LoginDAO();
             return $loginDAO->read($this->currentBenutzername);
         }
@@ -91,45 +92,44 @@ class Service {
         $loginUser = new Login();
         $loginUser->setBenutzername($benutzername);
         $loginUser->setVorname($vorname);
-        $loginUser->setNachname($nachname);        
+        $loginUser->setNachname($nachname);
         $passwordHash = password_hash($passwort, PASSWORD_DEFAULT);
         $loginUser->setPasswort($passwordHash);
         $loginDAO = new dao\LoginDAO();
-        if($this->verifyAuth()) {
+        if ($this->verifyAuth()) {
             $loginUser->setBenutzername($this->currentBenutzername);
             $loginDAO->update($loginUser);
             return true;
-        }else{
-            if(!is_null($loginDAO->findByBenutzername($benutzername))){
+        } else {
+            if (!is_null($loginDAO->findByBenutzername($benutzername))) {
                 return false;
             }
             $loginDAO->create($loginUser);
             return true;
         }
     }
-    
+
     /*
      * Überprüft, ob es den übergebenen Benutzernamen bereits gibt
      * @author Michelle Widmer
      */
-    public function uniqueBenutzername($benutzername){
+
+    public function uniqueBenutzername($benutzername) {
         $loginDAO = new dao\LoginDAO();
-        if ($loginDAO->findBenutzername($benutzername)){
+        if ($loginDAO->findBenutzername($benutzername)) {
             return true; // Benutzername bereits vorhanden
-        }
-        else {
+        } else {
             return false; // Benutzername noch nicht vorhanden
         }
-            
     }
-    
+
     // CRUD-Methoden für Reisen
-    
+
     /**
      * TODO -> Reise mit Werten aus Formular befüllen
      */
     public function createJourney(Reise $reise) {
-        if($this->verifyAuth()) {
+        if ($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             // Reiseinhalte bestimmen
             $reise->setReise_id($reise_id);
@@ -148,7 +148,7 @@ class Service {
      * Liest anhand der Reise-Id die entsprechende Reise aus der Datenbank
      */
     public function readJourney($reise_id) {
-        if($this->verifyAuth()) {
+        if ($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             return $reiseDAO->read($reise_id);
         }
@@ -159,7 +159,7 @@ class Service {
      * TODO
      */
     public function updateJourney(Reise $reise) {
-        if($this->verifyAuth()) {
+        if ($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             return $reiseDAO->update($reise);
         }
@@ -170,7 +170,7 @@ class Service {
      * Löscht anhand der Reise-ID die entsprechende Reise aus der Datenbank
      */
     public function deleteJourney($reise_id) {
-        if($this->verifyAuth()) {
+        if ($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             $reise = new Reise();
             $reise->setReise_id($reise_id);
@@ -182,70 +182,78 @@ class Service {
      * TODO -> auch in ReiseDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
      */
     public function findAllJourney() {
-        if($this->verifyAuth()){
+        if ($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
             return $reiseDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in ReiseDAO
         }
         return null;
     }
-    
+
     /**
      * Lese Reisename anhand Reise-ID
      */
     public function readJourneyName($reise) {
         //if($this->verifyAuth()){
-            $reiseDAO = new dao\ReiseDAO();
-            return $reiseDAO->readReiseName($reise);
+        $reiseDAO = new dao\ReiseDAO();
+        return $reiseDAO->readReiseName($reise);
         //}
         return null;
     }
 
     // CRUD-Methoden für Teilnehmer
-    
+
     /**
      * TODO -> Teilnehmer mit Werten aus Formular befüllen
      */
     public function createParticipant($reise, $vorname, $nachname, $geburtsdatum) {
-            $teilnehmerDAO = new \dao\TeilnehmerDAO();
-            // Teilnehmerinhalte bestimmen      
-            $neu_id = $teilnehmerDAO->getNewTeilnehmerID();
-            $teilnehmer = new Teilnehmer();
-            $teilnehmer->setTeilnehmer_id($neu_id); // hole neue Teilnehmer-ID
-            $teilnehmer->setReise($reise);
-            $teilnehmer->setVorname($vorname);
-            $teilnehmer->setNachname($nachname);
-            $teilnehmer->setGeburtsdatum($geburtsdatum);
-            $teilnehmerDAO->create($teilnehmer);
-            return $teilnehmer;
-    } 
+        $teilnehmerDAO = new \dao\TeilnehmerDAO();
+        // Teilnehmerinhalte bestimmen      
+        $neu_id = $teilnehmerDAO->getNewTeilnehmerID();
+        $teilnehmer = new Teilnehmer();
+        $teilnehmer->setTeilnehmer_id($neu_id); // hole neue Teilnehmer-ID
+        $teilnehmer->setReise($reise);
+        $teilnehmer->setVorname($vorname);
+        $teilnehmer->setNachname($nachname);
+        $teilnehmer->setGeburtsdatum($geburtsdatum);
+        $teilnehmerDAO->create($teilnehmer);
+        return $teilnehmer;
+    }
 
     /**
      * Liest anhand der Teilnehmer-Id den entsprechenden Teilnehmer aus der Datenbank
      */
-    public function readParticipant($teilnehmer_id) {
-        if($this->verifyAuth()) {
-            $teilnehmerDAO = new \dao\TeilnehmerDAO();
-            return $teilnehmerDAO->read($teilnehmer_id);
-        }
-        return null;
+    public function readParticipant($teilnehmer_id, $vorname, $nachname) {
+        $teilnehmerDAO = new \dao\TeilnehmerDAO();
+        return $teilnehmerDAO->read($teilnehmer_id, $vorname, $nachname);
     }
 
-    /**
-     * TODO
-     */
-    public function updateParticipant(Teilnehmer $teilnehmer) {
-        if($this->verifyAuth()) {
-            $teilnehmerDAO = new \dao\TeilnehmerDAO();
-            return $teilnehmerDAO->update($teilnehmer);
-        }
-        return null;
+    public function readSingleParticipant($teilnehmer_id) {
+        //if($this->verifyAuth()) {
+        $teilnehmerDAO = new \dao\TeilnehmerDAO();
+        return $teilnehmerDAO->readSingleParticipant($teilnehmer_id);
+        //}
+    }
+
+    public function updateParticipant($teilnehmer_id, $reise, $vorname, $nachname, $geburtsdatum) {
+        //if ($this->verifyAuth()) {
+        $teilnehmerDAO = new \dao\TeilnehmerDAO();
+        // Teilnehmerinhalte bestimmen      
+        $teilnehmer = new Teilnehmer();
+        $teilnehmer->setTeilnehmer_id($teilnehmer_id); // hole Teilnehmer-ID
+        $teilnehmer->setReise($reise);
+        $teilnehmer->setVorname($vorname);
+        $teilnehmer->setNachname($nachname);
+        $teilnehmer->setGeburtsdatum($geburtsdatum);
+        return $teilnehmerDAO->update($teilnehmer);
+        //}
+        //return null;
     }
 
     /**
      * Löscht anhand der Teilnehmer-ID den entsprechenden Teilnehmer aus der Datenbank
      */
     public function deleteParticipant($teilnehmer_id) {
-        if($this->verifyAuth()) {
+        if ($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
             $teilnehmer = new Teilnehmer();
             $teilnehmer->setTeilnehmer_id($teilnehmer_id);
@@ -257,15 +265,15 @@ class Service {
      * TODO -> auch in TeilnehmerDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
      */
     public function findAllParticipant() {
-        if($this->verifyAuth()){
+        if ($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
             return $teilnehmerDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in TeilnehmerDAO
         }
         return null;
     }
-    
+
     // CRUD-Methoden für Rechnungen
-    
+
     /**
      * Erstellt eine neue Rechnung anhand angaben aus Formular von Benutzer
      * @author Maja Velickovic
@@ -273,11 +281,11 @@ class Service {
     public function createInvoice($reise, $rgart, $kosten, $beschreibung, $dokument, $pdf_object) {
         $rechnungDAO = new \dao\RechnungDAO();
         // Rechnungsinhalte bestimmen
-        $neu_id = $rechnungDAO->getNewRgID(); 
+        $neu_id = $rechnungDAO->getNewRgID();
         $rechnung = new Rechnung();
         $rechnung->setRg_id($neu_id); // hole neue Rechnungs-ID
         $rechnung->setReise($reise);
-        $rechnung->setRechnungsart($rgart);       
+        $rechnung->setRechnungsart($rgart);
         $rechnung->setBeschreibung($beschreibung);
         $rechnung->setKosten($kosten);
         $rechnung->setDokument($dokument);
@@ -291,30 +299,30 @@ class Service {
      */
     public function readInvoice($reise, $rg_id, $rgart) {
         //if($this->verifyAuth()) {
-            $rechnungDAO = new \dao\RechnungDAO();
-            return $rechnungDAO->read($reise, $rg_id, $rgart);
+        $rechnungDAO = new \dao\RechnungDAO();
+        return $rechnungDAO->read($reise, $rg_id, $rgart);
         //}
     }
-    
+
     /**
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
      * @author Maja Velickovic
      */
     public function readSingleInvoice($rg_id) {
         //if($this->verifyAuth()) {
-            $rechnungDAO = new \dao\RechnungDAO();
-            return $rechnungDAO->readSingleInvoice($rg_id);
+        $rechnungDAO = new \dao\RechnungDAO();
+        return $rechnungDAO->readSingleInvoice($rg_id);
         //}
     }
-    
-     /**
+
+    /**
      * Liest anhand der Rechnungs-Id die entsprechende Rechnung aus der Datenbank
-      * @author Maja Velickovic
+     * @author Maja Velickovic
      */
     public function readFinalBIlling($reise) {
         //if($this->verifyAuth()) {
-            $rechnungDAO = new \dao\RechnungDAO();
-            return $rechnungDAO->readFinalBilling($reise);
+        $rechnungDAO = new \dao\RechnungDAO();
+        return $rechnungDAO->readFinalBilling($reise);
         //}
     }
 
@@ -324,8 +332,8 @@ class Service {
      */
     public function updateInvoice($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument) {
         //if($this->verifyAuth()) {
-            $rechnungDAO = new \dao\RechnungDAO();
-            return $rechnungDAO->update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument);
+        $rechnungDAO = new \dao\RechnungDAO();
+        return $rechnungDAO->update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument);
         //}
         //return null;
     }
@@ -336,37 +344,37 @@ class Service {
      */
     public function deleteInvoice($rechnungId) {
         //if($this->verifyAuth()) {
-            $rechnungDAO = new \dao\RechnungDAO();
-            $rechnungDAO->delete($rechnungId);
+        $rechnungDAO = new \dao\RechnungDAO();
+        $rechnungDAO->delete($rechnungId);
         //}
     }
-    
+
     /**
      * 
      * Selektabfrage, um alle Rechnungsarten auszulesen
      * @author Michelle Widmer
      */
-    public function getInvoiceTypes(){
+    public function getInvoiceTypes() {
         $rechnungsDAO = new \dao\RechnungDAO();
         return $rechnungsDAO->getInvoiceTypes();
     }
-    
+
     /**
      * Selektabfrage, um alle Reisetitel auszulesen
      * @author Maja Velickovic
      */
-    public function getJourneyTitles(){
+    public function getJourneyTitles() {
         $reiseDAO = new \dao\ReiseDAO();
         return $reiseDAO->getJourneyTitles();
     }
-    
+
     /**
      * Lese Rechnungs-PDF aus der Datenbank und gebe das konvertiert als String zurück
      * @author Maja Velickovic
      */
-    public function getAttachedPDFInvoice($rg_id){
+    public function getAttachedPDFInvoice($rg_id) {
         $rechnungDAO = new \dao\RechnungDAO();
         return $rechnungDAO->getAttachedPDFInvoice($rg_id);
     }
-    
+
 }

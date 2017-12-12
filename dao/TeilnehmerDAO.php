@@ -39,9 +39,34 @@ class TeilnehmerDAO {
     }
 
     /**
+     * Sucht nach Teilnehmern welche den Kriterien entsprechen aus der Tabelle "teilnehmer
+     */
+    public function read($_teilnehmer_id, $vorname, $nachname) {
+        $pdo = Database::connect();
+        $statement = $pdo->prepare(
+                "SELECT * FROM teilnehmer WHERE teilnehmer_id = :teilnehmer_id OR vorname = :vorname OR nachname =:nachname;");
+        $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
+        $statement->bindValue(':vorname', $vorname);
+        $statement->bindValue(':nachname', $nachname);
+        $statement->execute();
+
+        $t = new Teilnehmer();
+        
+        while ($row = $statement->fetch()){
+            $t->setTeilnehmer_id($row['teilnehmer_id']);
+            $t->setVorname($row['vorname']);
+            $t->setNachname($row['nachname']);
+            $t->setGeburtsdatum($row['geburtsdatum']);
+            //$t->setReise($row['reise']);
+        }
+
+        return $t;
+    }
+
+    /**
      * Liest ein Teilnehmer-Objekt aus der Tabelle "teilnehmer
      */
-    public function read($_teilnehmer_id) {
+    public function readSingeParticipant($_teilnehmer_id) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
                 "SELECT * FROM teilnehmer WHERE teilnehmer_id = :teilnehmer_id;");
@@ -49,14 +74,14 @@ class TeilnehmerDAO {
         $statement->execute();
         return $statement->fetchAll(\PDO::FETCH_CLASS, "Teilnehmer")[0];
     }
-
+    
     /**
      * Aktualisiert ein Teilnehmer-Objekt in der Tabelle "teilnehmer"
      */
     public function update(Teilnehmer $teilnehmer) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
-                "UPDATE teilnehmer SET vorname = :vorname, nachname = :nachname,telefon = :telefon, mail = :mail, geburtsdatum = :geburtsdatum
+                "UPDATE teilnehmer SET vorname = :vorname, nachname = :nachname, geburtsdatum = :geburtsdatum
             WHERE teilnehmer_id = :teilnehmer_id");
         $statement->bindValue(':teilnehmer_id', $teilnehmer->getTeilnehmer_id());
         $statement->bindValue(':vorname', $teilnehmer->getVorname());
