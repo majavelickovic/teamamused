@@ -12,7 +12,7 @@ use controller\ErrorController;
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./design/styles.css">
+        <link rel="stylesheet" href="../design/styles.css">
         <title>Reise</title>
         <script type="text/javascript">
             //Seite nochmals laden, wenn zurücksetzen angeklickt wurde, um die ursprüngliche Reise ohne Änderungen anzuzeigen
