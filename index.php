@@ -168,7 +168,7 @@
 
         Router::route("GET", "/reise/anzeige", function () {
             if (AuthentifizController::authenticate()) {
-                controller\ReiseController::journeyShowSingleView()();
+                controller\ReiseController::journeyShowSingleView();
             } else {
                 controller\ErrorController::error403View();
             }
