@@ -117,7 +117,7 @@ if($rg->getReise() == ""){
                                 </td>
                                 <td>
                                     <a href="#"><img src="../design/pictures/edit.png" onclick="document.getElementById('FileInput').type='file';document.getElementById('FileInput').disabled=false"></a>
-                                    <a href="#"><img src="../design/pictures/search.png" onclick="window.open('/showSingleCalcPDF', 'Anzeige PDF')"></a>
+                                    <a href="#"><img src="../design/pictures/search.png" onclick="window.open('/showSingleCalcPDF?rg_id='<?php echo $rg_id;?>, 'Anzeige PDF')"></a>
                                 </td>
                             </tr>
                         </table>
