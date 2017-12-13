@@ -328,10 +328,10 @@ class Service {
      * Aktualisiert eine bestehende Rechnung mit neuen Daten (ausser Rg-ID)
      * @author Maja Velickovic
      */
-    public function updateInvoice($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument) {
+    public function updateInvoice($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument, $pdf_object) {
         //if($this->verifyAuth()) {
         $rechnungDAO = new \dao\RechnungDAO();
-        return $rechnungDAO->update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument);
+        return $rechnungDAO->update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument, $pdf_object);
         //}
         //return null;
     }
