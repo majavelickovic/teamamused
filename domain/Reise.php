@@ -126,9 +126,9 @@ class Reise {
 
 	/**
 	 * @access public
-	 * @param Date aDatum_start
+	 * @param Date datum_start
 	 * @return void
-	 * @ParamType aDatum_start Date
+	 * @ParamType datum_start Date
 	 * @ReturnType void
 	 */
 	public function setDatum_start(&$datum_start) {
@@ -146,9 +146,9 @@ class Reise {
 
 	/**
 	 * @access public
-	 * @param Date aDatum_ende
+	 * @param Date datum_ende
 	 * @return void
-	 * @ParamType aDatum_ende Date
+	 * @ParamType datum_ende Date
 	 * @ReturnType void
 	 */
 	public function setDatum_ende(&$datum_ende) {
@@ -166,9 +166,9 @@ class Reise {
 
 	/**
 	 * @access public
-	 * @param Double aPreis
+	 * @param Double preis
 	 * @return void
-	 * @ParamType aPreis Double
+	 * @ParamType preis Double
 	 * @ReturnType void
 	 */
 	public function setPreis(&$preis) {
@@ -186,13 +186,16 @@ class Reise {
 
 	/**
 	 * @access public
-	 * @param Integer aMax_teilnehmer
+	 * @param Integer max_teilnehmer
 	 * @return void
-	 * @ParamType aMax_teilnehmer Integer
+	 * @ParamType max_teilnehmer Integer
 	 * @ReturnType void
 	 */
 	public function setMax_teilnehmer(&$max_teilnehmer) {
 		$this->_max_teilnehmer = $max_teilnehmer;
 	}
+        
+        
+        
 }
 ?>
