@@ -58,8 +58,8 @@ class TeilnehmerDAO {
                 . "inner join reise_teilnehmer rt on t.teilnehmer_id = rt.teilnehmer_id "
                 . "WHERE t.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname;");
         $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
-        $statement->bindValue(':vorname', $vorname."%");
-        $statement->bindValue(':nachname', $nachname."%");
+        $statement->bindValue(':vorname', $vorname);
+        $statement->bindValue(':nachname', $nachname);
 
         $statement->execute();
         $tableText = "";
