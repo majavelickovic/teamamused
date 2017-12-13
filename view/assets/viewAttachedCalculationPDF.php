@@ -7,14 +7,13 @@
         
 use database\Database;
             $pdo = Database::connect();           
-            $statement = $pdo->prepare("SELECT pdf_object FROM rechnung where rg_id = 48");
+            $statement = $pdo->prepare("SELECT encode(pdf_object::bytea FROM rechnung where rg_id = 48");
             //$statement->bindValue(':rg_id', $rg_id);
             $statement->execute();
             $file = "";
             while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                $file .= pg_unescape_bytea(row['pdf_object']);
+                $file .= pg_unescape_bytea(row['encode']);
             }
-            
  
 //$file = service\Service::getInstance()->getAttachedPDFInvoice($_GET['rg_id']);
 header("Content-type: application/pdf"); 
