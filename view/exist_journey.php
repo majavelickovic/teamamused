@@ -54,35 +54,37 @@ use service\Service;
                             <td><img src="../design/pictures/search.png"></td><td>bestehende Reise anzeigen</td>
                         </tr>
                     </table>
-                    <table>
-                        <tr>
-                            <td>Reise-ID</td>
-                            <td><input type="text" name="reise_id" size="40px" /></td>
-                        </tr>
-                        <tr>
-                            <td>Reisetitel</td>
-                            <td><input type="text" name="beschreibung" size="40px" /></td>
-                        </tr>
-                        <tr>
-                            <td>Datum von</td>
-                            <td><input type="text" name="datum_start" size="40px" /></td>
-                        </tr>
-                        <tr>
-                            <td>Datum bis</td>
-                            <td><input type="text" name="datum_ende" size="40px" /></td>
-                        </tr>
-                        <tr>
-                            <td>Preis</td>
-                            <td><input type="range" id="preis" min="0" max="1000" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <td>Startort</td>
-                            <td><input type="text" name="startort" size="40px" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
-                        </tr>
-                    </table>
+                    <form id="searchForm" action="<?php echo $GLOBALS["ROOT_URL"]; ?>/reise/bestehend" method="POST">
+                        <table>
+                            <tr>
+                                <td>Reise-ID</td>
+                                <td><input type="text" name="reise_id" style="width:296px;" value="<?php echo $_POST['reise_id']?>"/></td>
+                            </tr>
+                            <tr>
+                                <td>Reisetitel</td>
+                                <td><input type="text" name="titel" style="width:296px;" value="<?php echo $_POST['titel'] ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td>Datum von</td>
+                                <td><input type="date" name="datum_start" style="width:296px;" value="<?php echo $_POST['datum_start'] ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td>Datum bis</td>
+                                <td><input type="date" name="datum_ende" style="width:296px;" value="<?php echo $_POST['datum_ende'] ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td>Preis</td>
+                                <td><input type="number" name="preis" style="width:296px;" value="<?php echo $_POST['preis'] ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td>Startort</td>
+                                <td><input type="text" name="startort" style="width:296px;" value="<?php echo $_POST['startort'] ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
                 <div id="blockright">
                     <table id="reiseTable">

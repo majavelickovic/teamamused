@@ -28,7 +28,7 @@ use service\Service;
                 <div id="blockleft">
                     <table>
                         <tr>
-                            <td><img src="../design/pictures/plus.png"></td><td>neue/r Teilnemer/in hinzufügen</td>
+                            <td><img src="../design/pictures/plus.png"></td><td>neuer Teilnemer hinzufügen</td>
                         </tr>
                     </table>
                     <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/teilnehmer/neu" method="POST" enctype="multipart/form-data">

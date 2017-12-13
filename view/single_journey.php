@@ -4,6 +4,18 @@ use service\Service;
 use domain\Reise;
 use controller\ErrorController;
 
+if($_GET['id'] > 0){
+    $reise_id = $_GET['id'];
+}elseif($_POST['reise_id'] > 0){
+    $reise_id = $_POST['reise_id'];
+}    
+$reiseDAO = new dao\ReiseDAO;
+$reise = new Teilnehmer();
+$reise = Service::getInstance()->readSingleJourney($reise_id);
+if($reise->getReise() == ""){
+    ErrorController::error404View();
+}else{
+
 /*
  * View, um eine einzelne Reise anzusehen / zu bearbeiten
  */
@@ -55,11 +67,11 @@ use controller\ErrorController;
                                     <select id="titel" name="titel" class="dropdown" style="width:300px;" disabled>
                                         <?php
                                         //Abfrage für Reisetitel
-                                        foreach (Service::getInstance()->getJourneyTitles() as $key => $invoiceType) {
-                                            if ($invoiceType['reise_id'] == $rg->getReise()) {
-                                                echo "<option selected='selected' value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
+                                        foreach (Service::getInstance()->getJourneyTitles() as $key => $journeyType) {
+                                            if ($journeyType['reise_id'] == $reise->getReise()) {
+                                                echo "<option selected='selected' value='" . $journeyType['reise_id'] . "'>" . $journeyType['titel'] . ", " . $journeyType['reise_id'] . "</option>";
                                             } else {
-                                                echo "<option value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
+                                                echo "<option value='" . $journeyType['reise_id'] . "'>" . $journeyType['titel'] . ", " . $journeyType['reise_id'] . "</option>";
                                             }
                                         }
                                         ?>
@@ -74,26 +86,16 @@ use controller\ErrorController;
                             </tr>
                             <tr>
                                 <td>Datum von</td>
-                                <td><input type="text" name="datum_start" size="40px" /></td>
+                                <td><input type="date" name="datum_start" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td>Datum bis</td>
-                                <td><input type="text" name="datum_ende" size="40px" /></td>
+                                <td><input type="date" name="datum_ende" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td>Preis</td>
-                                <td><input type="text" id="kosten" name="kosten" style="width:296px;" value="<?php echo $rg->getKosten(); ?>" disabled/></td>
-                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("kosten").disabled = false'></a></td>
-                            </tr>
-                            <tr>
-                                <td>Reiseleiter</td>
-                                <td>
-                                    <select id="dropdown" name="reiseleiter">
-                                        <option value="">Maja</option>
-                                        <option value="">Sandra</option>
-                                        <option value="">Michelle</option>
-                                    </select>
-                                </td>
+                                <td><input type="number" id="preis" name="preis" style="width:296px;" value="<?php echo $reise->getPreis(); ?>" disabled/></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("preis").disabled = false'></a></td>
                             </tr>
                         </table>
                     </div>
@@ -129,3 +131,6 @@ use controller\ErrorController;
     </body>
 </html>
 
+<?php
+}
+?>

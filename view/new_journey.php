@@ -43,15 +43,15 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Datum von</td>
-                                <td><input type="text" name="datum_start" size="40px" /></td>
+                                <td><input type="date" name="datum_start" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td>Datum bis</td>
-                                <td><input type="text" name="datum_ende" size="40px" /></td>
+                                <td><input type="date" name="datum_ende" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td>Preis</td>
-                                <td><input type="text" name="preis" size="40px" /></td>
+                                <td><input type="number" name="preis" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td>Startort</td>
