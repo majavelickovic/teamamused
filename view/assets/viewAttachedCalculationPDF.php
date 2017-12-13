@@ -7,7 +7,7 @@
         
 use database\Database;
             $pdo = Database::connect();           
-            $statement = $pdo->prepare("SELECT encode(pdf_object::bytea, 'escape') FROM rechnung where rg_id = 48");
+            $statement = $pdo->prepare("SELECT encode(pdf_object::bytea, 'escape') FROM rechnung where rg_id = 49");
             //$statement->bindValue(':rg_id', $rg_id);
             $statement->execute();
             $file = "";
@@ -17,5 +17,5 @@ use database\Database;
  
 //$file = service\Service::getInstance()->getAttachedPDFInvoice($_GET['rg_id']);
 header("Content-type: application/pdf"); 
-print $file;
+print pg_unescape_bytea($file);
 

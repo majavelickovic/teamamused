@@ -28,7 +28,8 @@ class RechnungDAO {
             $statement->bindValue(':kosten', $rechnung->getKosten());
             $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
             $statement->bindValue(':dokument', $rechnung->getDokument());
-            $statement->bindValue(':pdf_object', pg_escape_bytea($pdf_object));
+            $escaped_data = str_replace(array("\\\\", "''"), array("\\", "'"), pg_escape_bytea($pdf_object)); 
+            $statement->bindValue(':pdf_object', pg_escape_bytea($escaped_data));
             $statement->execute();
     
             $statement2 = $pdo->prepare(
