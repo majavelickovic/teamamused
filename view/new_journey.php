@@ -59,10 +59,10 @@ use service\Service;
                                     <select id="dropdown" name="reiseleiter">
                                         <?php
                                         // @SANDRA -> View greift über die Serviceklasse auf die DAO also Datenbank zu
-                                        foreach (Service::getInstance()->getReiseleiter() as $key => $reiseleiter) {
-                                            echo "<option value='" . $reiseleiter['reiseleiter'] . "'></option>";
-                                        }
-                                        ?>
+                                        //foreach (Service::getInstance()->getReiseleiter() as $key => $reiseleiter) {
+                                            //echo "<option value='" . $reiseleiter['reiseleiter'] . "'></option>";
+                                        //}
+                                        //?>
                                     </select>
                                 </td>
                             </tr>
