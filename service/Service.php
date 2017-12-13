@@ -4,9 +4,9 @@ namespace service;
 
 use dao;
 use domain\Login;
+use domain\Reise;
 use domain\Rechnung;
 use domain\Teilnehmer;
-use domain\Reise;
 
 /**
  * @access public
@@ -141,7 +141,7 @@ class Service {
         $reise->setDatum_start($datum_start);
         $reise->setDatum_ende($datum_ende);
         $reise->setPreis($preis);
-        $reise->getMax_teilnehmer();
+        //$reise->getMax_teilnehmer();
         $reise->setPreis($startort);
         return $reise;
     }
