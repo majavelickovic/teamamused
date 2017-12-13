@@ -21,8 +21,8 @@ class ReiseDAO {
 	public function create(Reise $reise) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
-                "INSERT INTO reise (reise_id, titel, beschreibung, datum_start, datum_ende, preis, reiseleiter, max_teilnehmer, startort)
-                    VALUES (:reise_id, :titel, :beschreibung, :datum_start, :datum_ende, :preis, :reiseleiter, :max_teilnehmer, :startort)");
+                "INSERT INTO reise (reise_id, titel, beschreibung, datum_start, datum_ende, preis, reiseleiter, startort)
+                    VALUES (:reise_id, :titel, :beschreibung, :datum_start, :datum_ende, :preis, :reiseleiter, :startort)");
         $statement->bindValue(':reise_id', $reise->getReise_id());
         $statement->bindValue(':titel', $reise->getTitel());
         $statement->bindValue(':beschreibung', $reise->getBeschreibung());
@@ -30,10 +30,10 @@ class ReiseDAO {
         $statement->bindValue(':datum_ende', $reise->getDatum_ende());
         $statement->bindValue(':preis', $reise->getPreis());
         $statement->bindValue(':reiseleiter', $reise->getReiseleiter());
-        $statement->bindValue(':max_teilnehmer', $reise->getMax_teilnehmer());
+        //$statement->bindValue(':max_teilnehmer', $reise->getMax_teilnehmer());
         $statement->bindValue(':startort', $reise->getStartort());
         $statement->execute();
-        return $this->read($pdo->lastInsertId());
+        //return $this->read($pdo->lastInsertId());
 	}
 
 	/**
@@ -77,7 +77,7 @@ class ReiseDAO {
         $statement = $pdo->prepare(
             "DELETE FROM reise
             WHERE reise_id = :reise_id");
-        $statement->bindValue(':rg_id', $reise->getReise_id());
+        $statement->bindValue(':reise_id', $reise->getReise_id());
         $statement->execute();
 	}
 

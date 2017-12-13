@@ -168,7 +168,7 @@
 
         Router::route("GET", "/reise/anzeige", function () {
             if (AuthentifizController::authenticate()) {
-                controller\ReiseController::journeyShowView();
+                controller\ReiseController::journeyShowSingleView()();
             } else {
                 controller\ErrorController::error403View();
             }
@@ -177,7 +177,19 @@
         Router::route("POST", "/reise/anzeige", function () {
             if (AuthentifizController::authenticate()) {
                 controller\ReiseController::updateJourney();
-                controller\ReiseController::journeyShowView();
+                controller\ReiseController::journeyShowSingleView();
+            } else {
+                controller\ErrorController::error403View();
+            }
+        });
+
+        /**
+         * eine bestimmte Reise wird gelöscht
+         * @author Sandra Bodack
+         */
+        Router::route("GET", "/deleteJourney", function () {
+            if (AuthentifizController::authenticate() && $_GET['del_reise_id'] > 0) {
+                controller\ReiseController::deleteJourney($_GET['del_reise_id']);
             } else {
                 controller\ErrorController::error403View();
             }
@@ -391,7 +403,7 @@
 
         Router::route("GET", "/teilnehmer/anzeige", function () {
             if (AuthentifizController::authenticate()) {
-                controller\TeilnehmerController::participantShowView();
+                controller\TeilnehmerController::participantShowSingleView();
             } else {
                 controller\ErrorController::error403View();
             }
@@ -400,7 +412,7 @@
         Router::route("POST", "/teilnehmer/anzeige", function () {
             if (AuthentifizController::authenticate()) {
                 controller\TeilnehmerController::updateParticipant();
-                controller\TeilnehmerController::participantShowView();
+                controller\TeilnehmerController::participantShowSingleView();
             } else {
                 controller\ErrorController::error403View();
             }

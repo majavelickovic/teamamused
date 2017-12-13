@@ -1,7 +1,7 @@
 <?php
-
 /**
  * Controller für die Teilnehmer-View
+ * @author Sandra Bodack
  */
 
 namespace controller;

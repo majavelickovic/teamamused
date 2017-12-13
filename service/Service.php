@@ -6,6 +6,7 @@ use dao;
 use domain\Login;
 use domain\Rechnung;
 use domain\Teilnehmer;
+use domain\Reise;
 
 /**
  * @access public
@@ -126,56 +127,57 @@ class Service {
     // CRUD-Methoden für Reisen
 
     /**
-     * TODO -> Reise mit Werten aus Formular befüllen
+     * Erstellt eine neue Reise anhand von den Angaben aus dem Formular
+     * @author Sandra Bodack
      */
-    public function createJourney(Reise $reise) {
-        if ($this->verifyAuth()) {
-            $reiseDAO = new dao\ReiseDAO();
-            // Reiseinhalte bestimmen
-            $reise->setReise_id($reise_id);
-            $reise->setTitel($titel);
-            $reise->setBeschreibung($beschreibung);
-            $reise->setDatum_start($datum_start);
-            $reise->setDatum_ende($datum_ende);
-            $reise->getMax_teilnehmer();
-            $reise->setPreis($preis);
-            return $reiseDAO->create($reise);
-        }
-        return null;
+    public function createJourney($titel, $beschreibung, $datum_start, $datum_ende, $preis, $reiseleiter, $startort) {
+        $reiseDAO = new dao\ReiseDAO();
+        // Reiseinhalte bestimmen
+        $neu_id = $reiseDAO->getNewReiseID();
+        $reise = new Reise();
+        $reise->setReise_id($neu_id);
+        $reise->setTitel($titel);
+        $reise->setBeschreibung($beschreibung);
+        $reise->setDatum_start($datum_start);
+        $reise->setDatum_ende($datum_ende);
+        $reise->setPreis($preis);
+        $reise->setPreis($reiseleiter);
+        $reise->setPreis($startort);
+        //$reise->getMax_teilnehmer();
+        return $reise;
     }
 
     /**
      * Liest anhand der Reise-Id die entsprechende Reise aus der Datenbank
      */
-    public function readJourney($reise_id) {
-        if ($this->verifyAuth()) {
-            $reiseDAO = new dao\ReiseDAO();
-            return $reiseDAO->read($reise_id);
-        }
-        return null;
+    public function readJourney($reise_id, $titel, $reiseleiter, $datum_start, $datum_ende, $preis, $startort) {
+        //if ($this->verifyAuth()) {
+        $reiseDAO = new dao\ReiseDAO();
+        return $reiseDAO->read($reise_id, $titel, $reiseleiter, $datum_start, $datum_ende, $preis, $startort);
+        //}
+        //return null;
     }
 
     /**
-     * TODO
+     * Aktualisiert eine bestehende Reise mit neuen Daten (ausser Reise-ID)
+     * @author Sandra Bodack
      */
-    public function updateJourney(Reise $reise) {
-        if ($this->verifyAuth()) {
-            $reiseDAO = new dao\ReiseDAO();
-            return $reiseDAO->update($reise);
-        }
-        return null;
+    public function updateJourney($reise_id, $titel, $beschreibung, $datum_start, $datum_ende, $preis, $reiseleiter, $startort) {
+        //if ($this->verifyAuth()) {
+        $reiseDAO = new dao\ReiseDAO();
+        return $reiseDAO->update($reise_id, $titel, $beschreibung, $datum_start, $datum_ende, $preis, $reiseleiter, $startort);
+        //}
+        //return null;
     }
 
     /**
      * Löscht anhand der Reise-ID die entsprechende Reise aus der Datenbank
      */
     public function deleteJourney($reise_id) {
-        if ($this->verifyAuth()) {
-            $reiseDAO = new dao\ReiseDAO();
-            $reise = new Reise();
-            $reise->setReise_id($reise_id);
-            $reiseDAO->delete($reise);
-        }
+        $reiseDAO = new dao\ReiseDAO();
+        $reise = new Reise();
+        $reise->setReise_id($reise_id);
+        $reiseDAO->delete($reise);
     }
 
     /**
@@ -197,13 +199,14 @@ class Service {
         $reiseDAO = new dao\ReiseDAO();
         return $reiseDAO->readReiseName($reise);
         //}
-        return null;
+        //return null;
     }
 
     // CRUD-Methoden für Teilnehmer
 
     /**
-     * TODO -> Teilnehmer mit Werten aus Formular befüllen
+     * Erstellt einen neuen Teilnehmer anhand von den Angaben aus dem Formular
+     * @author Sandra Bodack
      */
     public function createParticipant($reise, $vorname, $nachname, $geburtsdatum) {
         $teilnehmerDAO = new \dao\TeilnehmerDAO();
@@ -228,10 +231,8 @@ class Service {
     }
 
     public function readSingleParticipant($teilnehmer_id) {
-        //if($this->verifyAuth()) {
         $teilnehmerDAO = new \dao\TeilnehmerDAO();
         return $teilnehmerDAO->readSingleParticipant($teilnehmer_id);
-        //}
     }
 
     public function updateParticipant($teilnehmer_id, $reise, $vorname, $nachname, $geburtsdatum) {
@@ -253,12 +254,10 @@ class Service {
      * Löscht anhand der Teilnehmer-ID den entsprechenden Teilnehmer aus der Datenbank
      */
     public function deleteParticipant($teilnehmer_id) {
-        if ($this->verifyAuth()) {
             $teilnehmerDAO = new \dao\TeilnehmerDAO();
             $teilnehmer = new Teilnehmer();
             $teilnehmer->setTeilnehmer_id($teilnehmer_id);
             $teilnehmerDAO->delete($teilnehmer);
-        }
     }
 
     /**

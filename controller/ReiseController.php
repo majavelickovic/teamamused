@@ -1,6 +1,7 @@
 <?php
 /**
  * Controller für die Reise-View
+ * @author Sandra Bodack
  */
 
 namespace controller;
@@ -25,7 +26,7 @@ class ReiseController {
 
     public static function updateJourney() {
         return Service::getInstance()->updateJourney(
-                        $_POST["reise_id"], $_POST["titel"], $_POST["beschreibung"], $_POST["reiseleiter"], $_POST["datum_start"], $_POST["datum_ende"], $_POST["preis"], $_POST["startort"]);
+                        $_POST["reise_id"], $_POST["titel"], $_POST["beschreibung"], $_POST["datum_start"], $_POST["datum_ende"], $_POST["preis"], $_POST["reiseleiter"], $_POST["startort"]);
     }
 
     public static function deleteJourney($reise_id) {

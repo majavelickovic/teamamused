@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @access public
  * @author Michelle Widmer (angelehnt an Andreas Martin)
@@ -115,7 +114,7 @@ class TeilnehmerDAO {
         $statement = $pdo->prepare(
                 "DELETE FROM teilnehmer
             WHERE teilnehmer_id = :teilnehmer_id");
-        $statement->bindValue(':id', $teilnehmer->getTeilnehmer_id());
+        $statement->bindValue(':teilnehmer_id', $teilnehmer->getTeilnehmer_id());
         $statement->execute();
     }
 
