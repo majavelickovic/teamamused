@@ -36,7 +36,7 @@ use service\Service;
                             <tr>
                                 <td>Reise</td>
                                 <td>
-                                    <select id="dropdown" name="reise" style="width:300px;">
+                                    <select id="dropdown" name="reise">
                                         <?php
                                         //Abfrage für Reisetitel
                                         foreach (Service::getInstance()->getJourneyTitles() as $key => $journeyType) {
