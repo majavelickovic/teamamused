@@ -15,4 +15,4 @@ use database\Database;
         
 //$file = service\Service::getInstance()->getAttachedPDFInvoice($_GET['rg_id']);
 header("Content-type: application/pdf"); 
-print pg_unescape_bytea($file);  
+print $file;  
