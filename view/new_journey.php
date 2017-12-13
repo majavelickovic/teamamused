@@ -51,7 +51,7 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Preis</td>
-                                <td><input type="number" name="preis" size="40px" /></td>
+                                <td><input type="number" name="preis" style="width:296px;" /></td>
                             </tr>
                             <tr>
                                 <td>Startort</td>
