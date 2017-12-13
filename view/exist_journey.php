@@ -74,7 +74,11 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Preis</td>
-                                <td><input type="number" name="preis" style="width:296px;" value="<?php echo $_POST['preis'] ?>" /></td>
+                                <td><input type="text" name="preis" style="width:296px;" value="<?php echo $_POST['preis'] ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td>Max. Teilnehmer</td>
+                                <td><input type="text" name="preis" style="width:296px;" value="<?php echo $_POST['max_teilnehmer'] ?>" /></td>
                             </tr>
                             <tr>
                                 <td>Startort</td>

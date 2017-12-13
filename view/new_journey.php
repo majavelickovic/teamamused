@@ -54,6 +54,10 @@ use service\Service;
                                 <td><input type="text" name="preis" size="40px" /></td>
                             </tr>
                             <tr>
+                                <td>Max. Teilnehmer</td>
+                                <td><input type="text" name="max_teilnehmer" size="40px" /></td>
+                            </tr>
+                            <tr>
                                 <td>Startort</td>
                                 <td><input type="text" name="startort" size="40px" /></td>
                             </tr>

@@ -130,7 +130,7 @@ class Service {
      * Erstellt eine neue Reise anhand von den Angaben aus dem Formular
      * @author Sandra Bodack
      */
-    public function createJourney($titel, $beschreibung, $datum_start, $datum_ende, $preis, $startort) {
+    public function createJourney($titel, $beschreibung, $datum_start, $datum_ende, $preis, $max_teilnehmer, $startort) {
         $reiseDAO = new dao\ReiseDAO();
         // Reiseinhalte bestimmen
         $neu_id = $reiseDAO->getNewReiseID();
@@ -141,7 +141,7 @@ class Service {
         $reise->setDatum_start($datum_start);
         $reise->setDatum_ende($datum_ende);
         $reise->setPreis($preis);
-        //$reise->getMax_teilnehmer();
+        $reise->setMax_teilnehmer($max_teilnehmer);
         $reise->setPreis($startort);
         return $reise;
     }
@@ -161,10 +161,10 @@ class Service {
      * Aktualisiert eine bestehende Reise mit neuen Daten (ausser Reise-ID)
      * @author Sandra Bodack
      */
-    public function updateJourney($reise_id, $titel, $beschreibung, $datum_start, $datum_ende, $preis, $startort) {
+    public function updateJourney($reise_id, $titel, $beschreibung, $datum_start, $datum_ende, $preis, $max_teilnehmer, $startort) {
         //if ($this->verifyAuth()) {
         $reiseDAO = new dao\ReiseDAO();
-        return $reiseDAO->update($reise_id, $titel, $beschreibung, $datum_start, $datum_ende, $preis, $startort);
+        return $reiseDAO->update($reise_id, $titel, $beschreibung, $datum_start, $datum_ende, $preis, $max_teilnehmer, $startort);
         //}
         //return null;
     }
