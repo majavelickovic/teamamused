@@ -41,13 +41,6 @@ class Reise {
 	 */
 	private $_startort;
 	/**
-	 * @AssociationType domain.Login
-	 * 
-	 * 
-	 * @AssociationMultiplicity 1
-	 */
-	private $_reiseleiter;
-	/**
 	 * @AssociationType domain.Reise_rechnung
 	 * 
 	 * 

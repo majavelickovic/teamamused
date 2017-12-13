@@ -54,19 +54,6 @@ use service\Service;
                                 <td><input type="text" name="preis" size="40px" /></td>
                             </tr>
                             <tr>
-                                <td>Reiseleiter</td>
-                                <td>
-                                    <select id="dropdown" name="reiseleiter">
-                                        <?php
-                                        // @SANDRA -> View greift über die Serviceklasse auf die DAO also Datenbank zu
-                                        //foreach (Service::getInstance()->getReiseleiter() as $key => $reiseleiter) {
-                                            //echo "<option value='" . $reiseleiter['reiseleiter'] . "'></option>";
-                                        //}
-                                        //?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td>Startort</td>
                                 <td><input type="text" name="startort" size="40px" /></td>
                             </tr>

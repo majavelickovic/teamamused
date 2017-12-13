@@ -130,7 +130,7 @@ class Service {
      * Erstellt eine neue Reise anhand von den Angaben aus dem Formular
      * @author Sandra Bodack
      */
-    public function createJourney($titel, $beschreibung, $datum_start, $datum_ende, $preis, $reiseleiter, $startort) {
+    public function createJourney($titel, $beschreibung, $datum_start, $datum_ende, $preis, $startort) {
         $reiseDAO = new dao\ReiseDAO();
         // Reiseinhalte bestimmen
         $neu_id = $reiseDAO->getNewReiseID();
@@ -141,19 +141,18 @@ class Service {
         $reise->setDatum_start($datum_start);
         $reise->setDatum_ende($datum_ende);
         $reise->setPreis($preis);
-        $reise->setPreis($reiseleiter);
+        $reise->getMax_teilnehmer();
         $reise->setPreis($startort);
-        //$reise->getMax_teilnehmer();
         return $reise;
     }
 
     /**
      * Liest anhand der Reise-Id die entsprechende Reise aus der Datenbank
      */
-    public function readJourney($reise_id, $titel, $reiseleiter, $datum_start, $datum_ende, $preis, $startort) {
+    public function readJourney($reise_id, $titel, $datum_start, $datum_ende, $preis, $startort) {
         //if ($this->verifyAuth()) {
         $reiseDAO = new dao\ReiseDAO();
-        return $reiseDAO->read($reise_id, $titel, $reiseleiter, $datum_start, $datum_ende, $preis, $startort);
+        return $reiseDAO->read($reise_id, $titel, $datum_start, $datum_ende, $preis, $startort);
         //}
         //return null;
     }
@@ -162,10 +161,10 @@ class Service {
      * Aktualisiert eine bestehende Reise mit neuen Daten (ausser Reise-ID)
      * @author Sandra Bodack
      */
-    public function updateJourney($reise_id, $titel, $beschreibung, $datum_start, $datum_ende, $preis, $reiseleiter, $startort) {
+    public function updateJourney($reise_id, $titel, $beschreibung, $datum_start, $datum_ende, $preis, $startort) {
         //if ($this->verifyAuth()) {
         $reiseDAO = new dao\ReiseDAO();
-        return $reiseDAO->update($reise_id, $titel, $beschreibung, $datum_start, $datum_ende, $preis, $reiseleiter, $startort);
+        return $reiseDAO->update($reise_id, $titel, $beschreibung, $datum_start, $datum_ende, $preis, $startort);
         //}
         //return null;
     }

@@ -64,16 +64,6 @@ use service\Service;
                             <td><input type="text" name="beschreibung" size="40px" /></td>
                         </tr>
                         <tr>
-                            <td>Reiseleiter</td>
-                            <td>
-                                <select id="dropdown" name="reiseleiter">
-                                    <option value="">Maja</option>
-                                    <option value="">Sandra</option>
-                                    <option value="">Michelle</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
                             <td>Datum von</td>
                             <td><input type="text" name="datum_start" size="40px" /></td>
                         </tr>

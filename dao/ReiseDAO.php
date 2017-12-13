@@ -21,16 +21,15 @@ class ReiseDAO {
 	public function create(Reise $reise) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
-                "INSERT INTO reise (reise_id, titel, beschreibung, datum_start, datum_ende, preis, reiseleiter, startort)
-                    VALUES (:reise_id, :titel, :beschreibung, :datum_start, :datum_ende, :preis, :reiseleiter, :startort)");
+                "INSERT INTO reise (reise_id, titel, beschreibung, datum_start, datum_ende, preis, max_teilnehmer, startort)
+                    VALUES (:reise_id, :titel, :beschreibung, :datum_start, :datum_ende, :preis, max_teilnehmer, :startort)");
         $statement->bindValue(':reise_id', $reise->getReise_id());
         $statement->bindValue(':titel', $reise->getTitel());
         $statement->bindValue(':beschreibung', $reise->getBeschreibung());
         $statement->bindValue(':datum_start', $reise->getDatum_start());
         $statement->bindValue(':datum_ende', $reise->getDatum_ende());
         $statement->bindValue(':preis', $reise->getPreis());
-        $statement->bindValue(':reiseleiter', $reise->getReiseleiter());
-        //$statement->bindValue(':max_teilnehmer', $reise->getMax_teilnehmer());
+        $statement->bindValue(':max_teilnehmer', $reise->getMax_teilnehmer());
         $statement->bindValue(':startort', $reise->getStartort());
         $statement->execute();
         //return $this->read($pdo->lastInsertId());
@@ -54,7 +53,7 @@ class ReiseDAO {
 	public function update(Reise $reise) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
-            "UPDATE reise SET titel = :titel, beschreibung = :beschreibung, datum_start = :datum_start, datum_ende = :datum_ende, preis = :preis, reiseleiter = :reiseleiter, max_teilnehmer = :max_teilnehmer, startort = :startort
+            "UPDATE reise SET titel = :titel, beschreibung = :beschreibung, datum_start = :datum_start, datum_ende = :datum_ende, preis = :preis, max_teilnehmer = :max_teilnehmer, startort = :startort
             WHERE reise_id = :reise_id");
         $statement->bindValue(':reise_id', $reise->getReise_id());
         $statement->bindValue(':titel', $reise->getTitel());
@@ -62,7 +61,6 @@ class ReiseDAO {
         $statement->bindValue(':datum_start', $reise->getDatum_start());
         $statement->bindValue(':datum_ende', $reise->getDatum_ende());
         $statement->bindValue(':preis', $reise->getPreis());
-        $statement->bindValue(':reiseleiter', $reise->getReiseleiter()); 
         $statement->bindValue(':max_teilnehmer', $reise->getMax_teilnehmer());
         $statement->bindValue(':startort', $reise->getStartort()); 
         $statement->execute();
