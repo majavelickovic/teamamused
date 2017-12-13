@@ -11,7 +11,7 @@ use database\Database;
             //$statement->bindValue(':rg_id', $rg_id);
             $file = "";
             while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                $file .= row['encode'];
+                $file .= $row['encode'];
             }
  
 //$file = service\Service::getInstance()->getAttachedPDFInvoice($_GET['rg_id']);
