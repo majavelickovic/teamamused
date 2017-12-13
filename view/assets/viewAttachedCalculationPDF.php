@@ -12,7 +12,7 @@ use database\Database;
             $statement->execute();
             $file = "";
             while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                $file .= pg_unescape_bytea(row['encode']);
+                $file .= row['encode'];
             }
  
 //$file = service\Service::getInstance()->getAttachedPDFInvoice($_GET['rg_id']);
