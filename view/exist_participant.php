@@ -18,7 +18,7 @@ use service\Service;
             function refreshTable() {
                 document.getElementById("searchForm").submit();
             }
-            //Bild zum Teilnehmer löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
+            //Bild zum Teilnehmer löschen wurde angeklickt, wenn der Benutzer bestätigt, wird der Teilnehmer gelöscht und die Ansicht aktualisiert
             function deleteParticipant(teilnehmer_id) {
                 if (confirm("Wollen Sie den Teilnehmer wirklich löschen?")) {
                     var req = new XMLHttpRequest();
