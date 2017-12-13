@@ -28,7 +28,7 @@ class RechnungDAO {
             $statement->bindValue(':kosten', $rechnung->getKosten());
             $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
             $statement->bindValue(':dokument', $rechnung->getDokument());
-            $statement->bindValue(':pdf_object', pg_escape_string($pdf_object));
+            $statement->bindValue(':pdf_object', pg_escape_bytea($pdf_object));
             $statement->execute();
     
             $statement2 = $pdo->prepare(
@@ -257,12 +257,12 @@ class RechnungDAO {
          */
          public function  getAttachedPDFInvoice($rg_id){
             $pdo = Database::connect();           
-            $statement = $pdo->prepare("SELECT encode(pdf_object::bytea FROM rechnung where rg_id = :rg_id");
+            $statement = $pdo->prepare("SELECT pdf_object FROM rechnung where rg_id = :rg_id");
             $statement->bindValue(':rg_id', $rg_id);
             $statement->execute();
             $file = "";
             while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-                $file .= $row['encode'];
+                $file .= pg_unescape_bytea(row['pdf_object']);
             }
             return $file;
          }
