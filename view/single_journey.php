@@ -81,7 +81,7 @@ if($reise->getReise() == ""){
                             </tr>
                             <tr>
                                 <td>Beschreibung</td>
-                                <td><textarea id="beschreibung" name="beschreibung" rows="5" cols="35" disabled><?php echo $rg->getBeschreibung(); ?></textarea></td>
+                                <td><textarea id="beschreibung" name="beschreibung" rows="5" cols="35" disabled><?php echo $reise->getBeschreibung(); ?></textarea></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("beschreibung").disabled = false'></a></td>
                             </tr>
                             <tr>
@@ -115,11 +115,13 @@ if($reise->getReise() == ""){
                             </tr>
                             <tr>
                                 <td>Rechnungen</td>
-                                <td><textarea name="rechnungen" rows="4" cols="36"></textarea></td>
+                                <td><textarea id="" name="" rows="5" cols="35" disabled><?php echo $reise->getRechnungen(); ?></textarea></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise_rechnung").disabled = false'></a></td>
                             </tr>
                             <tr>
                                 <td>Teilnehmer</td>
-                                <td><textarea name="teilnehmer" rows="4" cols="36"></textarea></td>
+                                <td><textarea id="" name="" rows="5" cols="35" disabled><?php echo $reise->getTeilnehmer(); ?></textarea></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise_teilnehmer").disabled = false'></a></td>
                             </tr>
                             <tr><td colspan="2"></td></tr>
                             <tr><td colspan="2"></td></tr>
