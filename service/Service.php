@@ -243,9 +243,9 @@ class Service {
      * Aktualisiert eine bestehende Rechnung mit neuen Daten (ausser Rg-ID)
      * @author Sandra Bodack
      */
-    public function updateParticipant($teilnehmer_id, $reise, $vorname, $nachname, $geburtsdatum) {
+    public function updateParticipant($reise, $teilnehmer_id, $vorname, $nachname) {
         $teilnehmerDAO = new \dao\TeilnehmerDAO();
-        return $teilnehmerDAO->update($teilnehmer_id, $reise, $vorname, $nachname, $geburtsdatum);
+        return $teilnehmerDAO->update($reise, $teilnehmer_id, $vorname, $nachname);
     }
 
 //    public function updateParticipant($teilnehmer_id, $reise, $vorname, $nachname, $geburtsdatum) {
