@@ -56,11 +56,11 @@ class TeilnehmerDAO {
             $_nachname = "qq";
         }
         $statement = $pdo->prepare(
-                "SELECT teilnehmer.teilnehmer_id, vorname, nachname, reise_id "
-                . "FROM teilnehmer "
-                . "INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id = reise_teilnehmer.teilnehmer_id "
-                . "WHERE teilnehmer.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname OR reise like :reise;");
-        $statement->bindValue(':reise', $_reise);
+                "SELECT teilnehmer.teilnehmer_id, vorname, nachname, reise_id 
+                    FROM teilnehmer 
+                    INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id = reise_teilnehmer.teilnehmer_id 
+                    WHERE teilnehmer.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname OR reise_id like :reise_id;");
+        $statement->bindValue(':reise_id', $_reise);
         $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
         $statement->bindValue(':vorname', $_vorname);
         $statement->bindValue(':nachname', $_nachname);
@@ -99,7 +99,8 @@ class TeilnehmerDAO {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
                 "SELECT reise_teilnehmer.reise_id, teilnehmer.teilnehmer_id, teilnehmer.vorname, teilnehmer.nachname, teilnehmer.geburtsdatum
-                FROM teilnehmer INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id=reise_teilnehmer.teilnehmer_id WHERE teilnehmer.teilnehmer_id = :teilnehmer_id;");
+                FROM teilnehmer INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id=reise_teilnehmer.teilnehmer_id 
+                WHERE teilnehmer.teilnehmer_id = :teilnehmer_id;");
         $statement->bindValue(':teilnehmer_id', $teilnehmer_id);
         $statement->execute();
         $teilnehmer = new Teilnehmer();
