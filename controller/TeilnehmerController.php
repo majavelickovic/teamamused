@@ -22,7 +22,7 @@ class TeilnehmerController {
 
     public static function readParticipant() {
         return Service::getInstance()->readParticipant(
-                        $_POST["teilnehmer_id"], $_POST["vorname"], $_POST["nachname"]);
+                        $_POST["reise"], $_POST["teilnehmer_id"], $_POST["vorname"], $_POST["nachname"]);
     }
 
 //    public static function readSingleParticipant() {
@@ -32,7 +32,7 @@ class TeilnehmerController {
     
     public static function updateParticipant() {
         return Service::getInstance()->updateParticipant(
-                        $_POST["teilnehmer_id"], $_POST["reise"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);
+                        $_POST["reise"], $_POST["teilnehmer_id"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);
     }
 
     public static function deleteParticipant($teilnehmer_id) {
