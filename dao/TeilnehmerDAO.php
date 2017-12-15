@@ -86,13 +86,32 @@ class TeilnehmerDAO {
     /**
      * Liest ein Teilnehmer-Objekt aus der Tabelle "teilnehmer
      */
-    public function readSingeParticipant($_teilnehmer_id) {
+//    public function readSingeParticipant($teilnehmer_id) {
+//        $pdo = Database::connect();
+//        $statement = $pdo->prepare(
+//                "SELECT * FROM teilnehmer WHERE teilnehmer_id = :teilnehmer_id;");
+//        $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
+//        $statement->execute();
+//        return $statement->fetchAll(\PDO::FETCH_CLASS, "Teilnehmer")[0];
+//    }
+
+    public function readSingeParticipant($teilnehmer_id) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
-                "SELECT * FROM teilnehmer WHERE teilnehmer_id = :teilnehmer_id;");
-        $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
+                "SELECT reise_teilnehmer.reise_id, teilnehmer.teilnehmer_id, teilnehmer.vorname, teilnehmer.nachname, teilnehmer.geburtsdatum
+                FROM teilnehmer INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id=reise_teilnehmer.teilnehmer_id WHERE teilnehmer.teilnehmer_id = :teilnehmer_id;");
+        $statement->bindValue(':teilnehmer_id', $teilnehmer_id);
         $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_CLASS, "Teilnehmer")[0];
+        $teilnehmer = new Teilnehmer();
+
+        while ($row = $statement->fetch()) {
+            $teilnehmer->setReise($row['reise_id']);
+            $teilnehmer->setVorname($row['vorname']);
+            $teilnehmer->setNachname($row['nachname']);
+            $teilnehmer->setGeburtsdatum($row['geburtsdatum']);
+        }
+
+        return $teilnehmer;
     }
 
     /**
