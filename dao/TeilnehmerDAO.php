@@ -60,7 +60,7 @@ class TeilnehmerDAO {
                 . "FROM teilnehmer "
                 . "INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id = reise_teilnehmer.teilnehmer_id "
                 . "WHERE teilnehmer.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname OR reise like :reise;");
-        $statement->bindValue(':reise_id', $_reise);
+        $statement->bindValue(':reise', $_reise);
         $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
         $statement->bindValue(':vorname', $_vorname);
         $statement->bindValue(':nachname', $_nachname);
