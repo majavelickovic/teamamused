@@ -17,19 +17,6 @@ table {
     table-layout: auto;
 }
 
-textarea {
-    font-size: 11pt;
-    border: 1px solid #404040;
-    border-radius: 2px;
-    background-color: rgba(255, 255, 255, 0);
-}
-
-#dropdown {
-    border: 1px solid #404040;
-    border-radius: 2px;
-    background-color: rgba(255, 255, 255, 0);
-}
-
 #whiteblock {
     background-color: rgba(255, 255, 255, 0.7);
     margin: 50px 0px 50px 0px;
@@ -90,19 +77,23 @@ input {
     background-color: rgba(255, 255, 255, 0);
 }
 
+textarea {
+    font-size: 11pt;
+    border: 1px solid #404040;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0);
+}
+
 #dropdown {
     width: 100%;
     border: 1px solid #404040;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .dropdown {
     width: 100%;
     border: 1px solid #404040;
-}
-
-#pricerange {
-    width: 100%;
-
 }
 
 .button {
