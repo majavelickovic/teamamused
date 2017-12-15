@@ -60,7 +60,7 @@ class TeilnehmerDAO {
 //                . "FROM teilnehmer t "
 //                . "INNER JOIN reise_teilnehmer rt on t.teilnehmer_id = rt.teilnehmer_id "
 //                . "WHERE t.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname;");
-                "SELECT reise_teilnehmer.reise_id, teilnehmer.teilnehmer_id, teilnehmer.vorname, teilnehmer.nachname "
+                "SELECT teilnehmer.teilnehmer_id, vorname, nachname, reise_id "
                 . "FROM teilnehmer "
                 . "INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id = reise_teilnehmer.teilnehmer_id "
                 . "WHERE teilnehmer.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname;");
