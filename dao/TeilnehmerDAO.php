@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @access public
  * @author Michelle Widmer (angelehnt an Andreas Martin)
@@ -37,11 +38,14 @@ class TeilnehmerDAO {
         $statement2->execute();
     }
 
-/**
+    /**
      * Sucht nach Teilnehmern welche den Kriterien entsprechen aus der Tabelle "teilnehmer
      */
-    public function read($_teilnehmer_id, $_vorname, $_nachname) {
+    public function read($_reise, $_teilnehmer_id, $_vorname, $_nachname) {
         $pdo = Database::connect();
+        if (!isset($_reise) OR empty($_reise)) {
+            $_reise = "qq";
+        }
         if (!isset($_teilnehmer_id) OR empty($_teilnehmer_id)) {
             $_teilnehmer_id = 0;
         }
@@ -60,7 +64,7 @@ class TeilnehmerDAO {
         $statement->bindValue(':vorname', $_vorname);
         $statement->bindValue(':nachname', $_nachname);
         $statement->execute();
-        
+
         $tableText = "";
         while ($row = $statement->fetch()) {
             $tableText .= "<tr>"
@@ -89,7 +93,7 @@ class TeilnehmerDAO {
         $statement->execute();
         return $statement->fetchAll(\PDO::FETCH_CLASS, "Teilnehmer")[0];
     }
-    
+
     /**
      * Aktualisiert ein Teilnehmer-Objekt in der Tabelle "teilnehmer"
      */
