@@ -41,8 +41,11 @@ class TeilnehmerDAO {
     /**
      * Sucht nach Teilnehmern welche den Kriterien entsprechen aus der Tabelle "teilnehmer
      */
-    public function read($_teilnehmer_id, $_vorname, $_nachname) {
+    public function read($_reise, $_teilnehmer_id, $_vorname, $_nachname) {
         $pdo = Database::connect();
+        if (!isset($_reise) OR empty($_reise)) {
+            $_reise = "qq";
+        }
         if (!isset($_teilnehmer_id) OR empty($_teilnehmer_id)) {
             $_teilnehmer_id = 0;
         }
@@ -53,10 +56,15 @@ class TeilnehmerDAO {
             $_nachname = "qq";
         }
         $statement = $pdo->prepare(
-                "SELECT t.teilnehmer_id, t.vorname, t.nachname , tr.reise_id "
-                . "FROM teilnehmer t "
-                . "INNER JOIN reise_teilnehmer rt on t.teilnehmer_id = rt.teilnehmer_id "
-                . "WHERE t.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname;");
+//                "SELECT t.teilnehmer_id, t.vorname, t.nachname , tr.reise_id "
+//                . "FROM teilnehmer t "
+//                . "INNER JOIN reise_teilnehmer rt on t.teilnehmer_id = rt.teilnehmer_id "
+//                . "WHERE t.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname;");
+                "SELECT reise_teilnehmer.reise_id, teilnehmer.teilnehmer_id, teilnehmer.vorname, teilnehmer.nachname "
+                . "FROM teilnehmer "
+                . "INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id = reise_teilnehmer.teilnehmer_id "
+                . "WHERE teilnehmer.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname;");
+        $statement->bindValue(':reise_id', $_reise);
         $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
         $statement->bindValue(':vorname', $_vorname);
         $statement->bindValue(':nachname', $_nachname);
