@@ -60,6 +60,7 @@ class TeilnehmerDAO {
         $statement->bindValue(':vorname', $_vorname);
         $statement->bindValue(':nachname', $_nachname);
         $statement->execute();
+        
         $tableText = "";
         while ($row = $statement->fetch()) {
             $tableText .= "<tr>"
