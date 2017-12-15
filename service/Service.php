@@ -243,22 +243,20 @@ class Service {
      * Aktualisiert eine bestehende Rechnung mit neuen Daten (ausser Rg-ID)
      * @author Sandra Bodack
      */
+//    public function updateParticipant($reise, $teilnehmer_id, $vorname, $nachname) {
+//        $teilnehmerDAO = new \dao\TeilnehmerDAO();
+//        return $teilnehmerDAO->update($reise, $teilnehmer_id, $vorname, $nachname);
+//    }
     public function updateParticipant($reise, $teilnehmer_id, $vorname, $nachname) {
         $teilnehmerDAO = new \dao\TeilnehmerDAO();
-        return $teilnehmerDAO->update($reise, $teilnehmer_id, $vorname, $nachname);
+        // Teilnehmerinhalte bestimmen      
+        $teilnehmer = new Teilnehmer();
+        $teilnehmer->setReise($reise);
+        $teilnehmer->setTeilnehmer_id($teilnehmer_id); // hole Teilnehmer-ID
+        $teilnehmer->setVorname($vorname);
+        $teilnehmer->setNachname($nachname);
+        return $teilnehmerDAO->update($teilnehmer);
     }
-
-//    public function updateParticipant($teilnehmer_id, $reise, $vorname, $nachname, $geburtsdatum) {
-//        $teilnehmerDAO = new \dao\TeilnehmerDAO();
-//        // Teilnehmerinhalte bestimmen      
-//        $teilnehmer = new Teilnehmer();
-//        $teilnehmer->setTeilnehmer_id($teilnehmer_id); // hole Teilnehmer-ID
-//        $teilnehmer->setReise($reise);
-//        $teilnehmer->setVorname($vorname);
-//        $teilnehmer->setNachname($nachname);
-//        $teilnehmer->setGeburtsdatum($geburtsdatum);
-//        return $teilnehmerDAO->update($teilnehmer);
-//    }
 
     /**
      * Löscht anhand der Teilnehmer-ID den entsprechenden Teilnehmer aus der Datenbank
