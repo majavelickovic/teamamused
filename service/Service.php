@@ -229,9 +229,9 @@ class Service {
     /**
      * Liest anhand der Teilnehmer-Id den entsprechenden Teilnehmer aus der Datenbank
      */
-    public function readParticipant($teilnehmer_id, $vorname, $nachname) {
+    public function readParticipant($reise, $teilnehmer_id, $vorname, $nachname) {
         $teilnehmerDAO = new \dao\TeilnehmerDAO();
-        return $teilnehmerDAO->read($teilnehmer_id, $vorname, $nachname);
+        return $teilnehmerDAO->read($reise, $teilnehmer_id, $vorname, $nachname);
     }
 
     public function readSingleParticipant($teilnehmer_id) {
