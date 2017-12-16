@@ -133,7 +133,7 @@ class RechnungDAO {
                 $statement4 = $pdo->prepare(
                     "UPDATE rechnung SET dokument = :dokument WHERE rg_id = :rg_id");
                 $statement4->bindValue(':rg_id', $rg_id);
-                $statement->bindValue(':dokument', $dokument);
+                $statement4->bindValue(':dokument', $dokument);
                 $statement4->execute();
             }
        

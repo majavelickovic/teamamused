@@ -23,7 +23,7 @@ class ReiseController {
 
     public static function readJourney() {
         return Service::getInstance()->readJourney(
-                        $_POST["reise_id"], $_POST["titel"], $_POST["datum_start"], $_POST["datum_ende"], $_POST["preis"], $_POST["startort"]);
+                        $_POST["reise_id"], $_POST["titel"], $_POST["preis"], $_POST["startort"]);
     }
 
     public static function readSingleJourney() {

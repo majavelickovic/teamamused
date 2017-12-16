@@ -52,45 +52,104 @@ class ReiseDAO {
     /**
      * Liest ein Reise-Objekt aus der Tabelle "reise
      */
-    public function read($_reise_id) {
+    public function read($_reise_id, $_titel, $_preis, $_startort) {
         $pdo = Database::connect();
-        $statement = $pdo->prepare(
-                "SELECT * FROM reise WHERE reise_id = :reise_id;");
-        $statement->bindValue(':reise_id', $_reise_id);
-        $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_CLASS, "Reise")[0];
+        if ($_reise_id != null && $_titel == null && $_preis == null && $_startort == null) {
+            $statement = $pdo->prepare(
+                    "SELECT reise_id, titel, preis, startort
+                   FROM reise
+                   WHERE reise_id = :reise_id 
+                   ORDER BY reise_id ASC;");
+            $statement->bindValue(':reise_id', $_reise_id);
+            $statement->execute();
+        }
     }
 
     /**
      * Aktualisiert ein Reise-Objekt in der Tabelle "reise"
      */
-    public function update(Reise $reise) {
+    public function update($reise_id, $titel, $beschreibung, $datum_start, $datum_ende, $preis, $max_teilnehmer, $startort) {
         $pdo = Database::connect();
-        $statement = $pdo->prepare(
-                "UPDATE reise SET titel = :titel, beschreibung = :beschreibung, datum_start = :datum_start, datum_ende = :datum_ende, preis = :preis, max_teilnehmer = :max_teilnehmer, startort = :startort
-            WHERE reise_id = :reise_id");
-        $statement->bindValue(':reise_id', $reise->getReise_id());
-        $statement->bindValue(':titel', $reise->getTitel());
-        $statement->bindValue(':beschreibung', $reise->getBeschreibung());
-        $statement->bindValue(':datum_start', $reise->getDatum_start());
-        $statement->bindValue(':datum_ende', $reise->getDatum_ende());
-        $statement->bindValue(':preis', $reise->getPreis());
-        $statement->bindValue(':max_teilnehmer', $reise->getMax_teilnehmer());
-        $statement->bindValue(':startort', $reise->getStartort());
-        $statement->execute();
-        return $this->read($reise->getReise_id());
+
+        if ($titel != null) {
+            $statement1 = $pdo->prepare(
+                    "UPDATE reise SET titel = :titel WHERE reise_id = :reise_id");
+            $statement1->bindValue(':reise_id', $reise_id);
+            $statement1->bindValue(':titel', $titel);
+            $statement1->execute();
+        }
+
+        if ($beschreibung != null) {
+            $statement2 = $pdo->prepare(
+                    "UPDATE reise SET beschreibung = :beschreibung WHERE reise_id = :reise_id");
+            $statement2->bindValue(':reise_id', $reise_id);
+            $statement2->bindValue(':beschreibung', $beschreibung);
+            $statement2->execute();
+        }
+
+        if ($datum_start != null) {
+            $statement3 = $pdo->prepare(
+                    "UPDATE reise SET datum_start = :datum_start WHERE reise_id = :reise_id");
+            $statement3->bindValue(':reise_id', $reise_id);
+            $statement3->bindValue(':datum_start', $datum_start);
+            $statement3->execute();
+        }
+
+        if ($datum_ende != null) {
+            $statement4 = $pdo->prepare(
+                    "UPDATE reise SET datum_ende = :datum_ende WHERE reise_id = :reise_id");
+            $statement4->bindValue(':reise_id', $reise_id);
+            $statement4->bindValue(':datum_ende', $datum_ende);
+            $statement4->execute();
+        }
+
+        if ($preis != null) {
+            $statement5 = $pdo->prepare(
+                    "UPDATE reise SET preis = :preis WHERE reise_id = :reise_id");
+            $statement5->bindValue(':reise_id', $reise_id);
+            $statement5->bindValue(':preis', $preis);
+            $statement5->execute();
+        }
+
+        if ($max_teilnehmer != null) {
+            $statement6 = $pdo->prepare(
+                    "UPDATE reise SET max_teilnehmer = :max_teilnehmer WHERE reise_id = :reise_id");
+            $statement6->bindValue(':reise_id', $reise_id);
+            $statement6->bindValue(':max_teilnehmer', $max_teilnehmer);
+            $statement6->execute();
+        }
+
+        if ($startort != null) {
+            $statement6 = $pdo->prepare(
+                    "UPDATE reise SET startort = :startort WHERE reise_id = :reise_id");
+            $statement6->bindValue(':reise_id', $reise_id);
+            $statement6->bindValue(':startort', $startort);
+            $statement6->execute();
+        }
     }
 
     /**
      * Löscht ein Reise-Objekt aus der Tabelle "reise"
      */
-    public function delete(Reise $reise) {
+    public function delete($reise_id) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
                 "DELETE FROM reise
             WHERE reise_id = :reise_id");
-        $statement->bindValue(':reise_id', $reise->getReise_id());
+        $statement->bindValue(':reise_id', $reise_id);
         $statement->execute();
+
+        $statement2 = $pdo->prepare(
+                "DELETE FROM reise_rechnung
+                WHERE reise_id = :reise_id");
+        $statement2->bindValue(':reise_id', $reise_id);
+        $statement2->execute();
+
+        $statement3 = $pdo->prepare(
+                "DELETE FROM reise_teilnehmer
+                WHERE reise_id = :reise_id");
+        $statement3->bindValue(':reise_id', $reise_id);
+        $statement3->execute();
     }
 
     /**
