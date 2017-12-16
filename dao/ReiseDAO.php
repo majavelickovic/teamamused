@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @access public
  * @author Sandra Bodack, Michelle Widmer (angelehnt an Andreas Martin)
@@ -32,6 +33,20 @@ class ReiseDAO {
         $statement->bindValue(':max_teilnehmer', $reise->getMax_teilnehmer());
         $statement->bindValue(':startort', $reise->getStartort());
         $statement->execute();
+
+        $statement2 = $pdo->prepare(
+                "INSERT INTO reise_rechnung (reise_id, rg_id)
+                        VALUES (:reise, :rg_id)");
+        $statement2->bindValue(':reise', $reise->getReise());
+        $statement2->bindValue(':rg_id', $reise->getRg_id());
+        $statement2->execute();
+
+        $statement3 = $pdo->prepare(
+                "INSERT INTO reise_teilnehmer (reise_id, teilnehmer_id)
+                        VALUES (:reise, :teilnehmer_id)");
+        $statement3->bindValue(':reise', $reise->getReise());
+        $statement3->bindValue(':teilnehmer_id', $reise->getTeilnehmer_id());
+        $statement3->execute();
     }
 
     /**
