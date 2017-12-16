@@ -25,10 +25,10 @@ class TeilnehmerController {
                         $_POST["reise"], $_POST["teilnehmer_id"], $_POST["vorname"], $_POST["nachname"]);
     }
 
-//    public static function readSingleParticipant() {
-//        return Service::getInstance()->readSingleParticipant(
-//                        $_POST["teilnehmer_id"]);
-//    }
+    public static function readSingleParticipant() {
+        return Service::getInstance()->readSingleParticipant(
+                        $_POST["teilnehmer_id"]);
+    }
     
     public static function updateParticipant() {
         return Service::getInstance()->updateParticipant(
