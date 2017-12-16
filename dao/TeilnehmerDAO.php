@@ -29,7 +29,6 @@ class TeilnehmerDAO {
         $statement->bindValue(':nachname', $teilnehmer->getNachname());
         $statement->bindValue(':geburtsdatum', $teilnehmer->getGeburtsdatum());
         $statement->execute();
-
         $statement2 = $pdo->prepare(
                 "INSERT INTO reise_teilnehmer (reise_id, teilnehmer_id)
                         VALUES (:reise, :teilnehmer_id)");
@@ -154,7 +153,6 @@ class TeilnehmerDAO {
             $teilnehmer->setNachname($row['nachname']);
             $teilnehmer->setGeburtsdatum($row['geburtsdatum']);
         }
-
         return $teilnehmer;
     }
 
