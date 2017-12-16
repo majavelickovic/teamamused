@@ -32,7 +32,7 @@ class TeilnehmerController {
     
     public static function updateParticipant() {
         return Service::getInstance()->updateParticipant(
-                        $_POST["reise"], $_POST["teilnehmer_id"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);
+                        $_POST["teilnehmer_id"], $_POST["reise"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);
     }
 
     public static function deleteParticipant($teilnehmer_id) {

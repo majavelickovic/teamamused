@@ -1,6 +1,7 @@
 <?php
 /**
  * Controller für die Rechnungs-View
+ * @author Maja Velickovic
  */
 
 namespace controller;
@@ -8,9 +9,7 @@ namespace controller;
 use view\view as View;
 use service\Service;
 
-class RechnungController
-{
-
+class RechnungController {
     /*
      * Übernimmt die Angaben aus dem Rechnungsformular und gibt diese an die Service-Klasse weiter
      * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen einer Rechnung

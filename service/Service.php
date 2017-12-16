@@ -142,17 +142,18 @@ class Service {
         $reise->setDatum_ende($datum_ende);
         $reise->setPreis($preis);
         $reise->setMax_teilnehmer($max_teilnehmer);
-        $reise->setPreis($startort);
+        $reise->setStartort($startort);
+        $reiseDAO->create($reise);
         return $reise;
     }
 
     /**
      * Liest anhand der Reise-Id die entsprechende Reise aus der Datenbank
      */
-    public function readJourney($reise_id, $titel, $datum_start, $datum_ende, $preis, $max_teilnehmer, $startort) {
+    public function readJourney($reise_id, $titel, $datum_start, $datum_ende, $preis, $startort) {
         //if ($this->verifyAuth()) {
         $reiseDAO = new dao\ReiseDAO();
-        return $reiseDAO->read($reise_id, $titel, $datum_start, $datum_ende, $preis, $max_teilnehmer, $startort);
+        return $reiseDAO->read($reise_id, $titel, $datum_start, $datum_ende, $preis, $startort);
         //}
         //return null;
     }
@@ -179,9 +180,7 @@ class Service {
      */
     public function deleteJourney($reise_id) {
         $reiseDAO = new dao\ReiseDAO();
-        $reise = new Reise();
-        $reise->setReise_id($reise_id);
-        $reiseDAO->delete($reise);
+        $reiseDAO->delete($reise_id);
     }
 
     /**
@@ -243,29 +242,28 @@ class Service {
      * Aktualisiert eine bestehende Rechnung mit neuen Daten (ausser Rg-ID)
      * @author Sandra Bodack
      */
+    public function updateParticipant($teilnehmer_id, $reise, $vorname, $nachname, $geburtsdatum) {
+        $teilnehmerDAO = new \dao\TeilnehmerDAO();
+        return $teilnehmerDAO->update($teilnehmer_id, $reise, $vorname, $nachname, $geburtsdatum);
+    }
+    
 //    public function updateParticipant($reise, $teilnehmer_id, $vorname, $nachname) {
 //        $teilnehmerDAO = new \dao\TeilnehmerDAO();
-//        return $teilnehmerDAO->update($reise, $teilnehmer_id, $vorname, $nachname);
+//        // Teilnehmerinhalte bestimmen      
+//        $teilnehmer = new Teilnehmer();
+//        $teilnehmer->setReise($reise);
+//        $teilnehmer->setTeilnehmer_id($teilnehmer_id); // hole Teilnehmer-ID
+//        $teilnehmer->setVorname($vorname);
+//        $teilnehmer->setNachname($nachname);
+//        return $teilnehmerDAO->update($teilnehmer);
 //    }
-    public function updateParticipant($reise, $teilnehmer_id, $vorname, $nachname) {
-        $teilnehmerDAO = new \dao\TeilnehmerDAO();
-        // Teilnehmerinhalte bestimmen      
-        $teilnehmer = new Teilnehmer();
-        $teilnehmer->setReise($reise);
-        $teilnehmer->setTeilnehmer_id($teilnehmer_id); // hole Teilnehmer-ID
-        $teilnehmer->setVorname($vorname);
-        $teilnehmer->setNachname($nachname);
-        return $teilnehmerDAO->update($teilnehmer);
-    }
 
     /**
      * Löscht anhand der Teilnehmer-ID den entsprechenden Teilnehmer aus der Datenbank
      */
     public function deleteParticipant($teilnehmer_id) {
         $teilnehmerDAO = new \dao\TeilnehmerDAO();
-        $teilnehmer = new Teilnehmer();
-        $teilnehmer->setTeilnehmer_id($teilnehmer_id);
-        $teilnehmerDAO->delete($teilnehmer);
+        $teilnehmerDAO->delete($teilnehmer_id);
     }
 
     /**
