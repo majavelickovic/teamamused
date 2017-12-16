@@ -44,7 +44,7 @@ class TeilnehmerDAO {
     public function read($_reise, $_teilnehmer_id, $_vorname, $_nachname) {
         $pdo = Database::connect();
         if (!isset($_reise) OR empty($_reise)) {
-            $_reise = "qq";
+            $_reise = 0;
         }
         if (!isset($_teilnehmer_id) OR empty($_teilnehmer_id)) {
             $_teilnehmer_id = 0;
