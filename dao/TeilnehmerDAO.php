@@ -2,7 +2,7 @@
 
 /**
  * @access public
- * @author Michelle Widmer (angelehnt an Andreas Martin)
+ * @author Sandra Bodack, Michelle Widmer (angelehnt an Andreas Martin)
  * 
  * Die Klasse stellt ein Data Access Object für die Klasse Teilnehmer dar und bietet alle CRUD-Operatoren als Prepared Statement an.
  * 
@@ -128,16 +128,7 @@ class TeilnehmerDAO {
     /**
      * Liest ein Teilnehmer-Objekt aus der Tabelle "teilnehmer
      */
-//    public function readSingeParticipant($teilnehmer_id) {
-//        $pdo = Database::connect();
-//        $statement = $pdo->prepare(
-//                "SELECT * FROM teilnehmer WHERE teilnehmer_id = :teilnehmer_id;");
-//        $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
-//        $statement->execute();
-//        return $statement->fetchAll(\PDO::FETCH_CLASS, "Teilnehmer")[0];
-//    }
-
-    public function readSingeParticipant($teilnehmer_id) {
+    public function readSingleParticipant($teilnehmer_id) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
                 "SELECT reise_teilnehmer.reise_id, teilnehmer.teilnehmer_id, teilnehmer.vorname, teilnehmer.nachname, teilnehmer.geburtsdatum
@@ -159,29 +150,53 @@ class TeilnehmerDAO {
     /**
      * Aktualisiert ein Teilnehmer-Objekt in der Tabelle "teilnehmer"
      */
-    public function update(Teilnehmer $teilnehmer) {
+    public function update($teilnehmer_id, $reise, $vorname, $nachname, $geburtsdatum) {
         $pdo = Database::connect();
-        $statement = $pdo->prepare(
-                "UPDATE teilnehmer SET vorname = :vorname, nachname = :nachname, geburtsdatum = :geburtsdatum
-            WHERE teilnehmer_id = :teilnehmer_id");
-        $statement->bindValue(':teilnehmer_id', $teilnehmer->getTeilnehmer_id());
-        $statement->bindValue(':vorname', $teilnehmer->getVorname());
-        $statement->bindValue(':nachname', $teilnehmer->getNachname());
-        $statement->bindValue(':geburtsdatum', $teilnehmer->getGeburtsdatum());
-        $statement->execute();
-        return $this->read($teilnehmer->getId());
+        if ($reise != null) {
+            $statement1 = $pdo->prepare(
+                    "UPDATE reise_teilnehmer SET reise_id = :reise WHERE teilnehmer_id = :teilnehmer_id");
+            $statement1->bindValue(':reise', $reise);
+            $statement1->bindValue(':teilnehmer_id', $teilnehmer_id);
+            $statement1->execute();
+        }
+        if ($vorname != null) {
+            $statement2 = $pdo->prepare(
+                    "UPDATE teilnehmer SET vorname = :vorname WHERE teilnehmer_id = :teilnehmer_id");
+            $statement2->bindValue(':teilnehmer_id', $teilnehmer_id);
+            $statement2->bindValue(':vorname', $vorname);
+            $statement2->execute();
+        }
+        if ($nachname != null) {
+            $statement3 = $pdo->prepare(
+                    "UPDATE teilnehmer SET nachname = :nachname WHERE teilnehmer_id = :teilnehmer_id");
+            $statement3->bindValue(':teilnehmer_id', $teilnehmer_id);
+            $statement3->bindValue(':nachname', $nachname);
+            $statement3->execute();
+        }
+        if ($geburtsdatum != null) {
+            $statement4 = $pdo->prepare(
+                    "UPDATE teilnehmer SET geburtsdatum = :geburtsdatum WHERE teilnehmer_id = :teilnehmer_id");
+            $statement4->bindValue(':teilnehmer_id', $teilnehmer_id);
+            $statement4->bindValue(':geburtsdatum', $geburtsdatum);
+            $statement4->execute();
+        }
     }
 
     /**
      * Löscht ein Teilnehmer-Objekt aus der Tabelle "teilnehmer"
      */
-    public function delete(Teilnehmer $teilnehmer) {
+    public function delete($teilnehmer_id) {
         $pdo = Database::connect();
-        $statement = $pdo->prepare(
+        $statement1 = $pdo->prepare(
+                "DELETE FROM reise_teilnehmer
+            WHERE teilnehmer_id = :teilnehmer_id");
+        $statement1->bindValue(':teilnehmer_id', $teilnehmer);
+        $statement1->execute();
+        $statement2 = $pdo->prepare(
                 "DELETE FROM teilnehmer
             WHERE teilnehmer_id = :teilnehmer_id");
-        $statement->bindValue(':teilnehmer_id', $teilnehmer->getTeilnehmer_id());
-        $statement->execute();
+        $statement2->bindValue(':teilnehmer_id', $teilnehmer);
+        $statement2->execute();
     }
 
     /**

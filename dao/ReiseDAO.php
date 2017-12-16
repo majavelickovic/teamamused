@@ -1,8 +1,7 @@
 <?php
-
 /**
  * @access public
- * @author Michelle Widmer (angelehnt an Andreas Martin)
+ * @author Sandra Bodack, Michelle Widmer (angelehnt an Andreas Martin)
  * 
  * Die Klasse stellt ein Data Access Object für die Klasse Reise dar und bietet alle CRUD-Operatoren als Prepared Statement an.
  * 
@@ -23,7 +22,7 @@ class ReiseDAO {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
                 "INSERT INTO reise (reise_id, titel, beschreibung, datum_start, datum_ende, preis, max_teilnehmer, startort)
-                    VALUES (:reise_id, :titel, :beschreibung, :datum_start, :datum_ende, :preis, max_teilnehmer, :startort)");
+                    VALUES (:reise_id, :titel, :beschreibung, :datum_start, :datum_ende, :preis, :max_teilnehmer, :startort)");
         $statement->bindValue(':reise_id', $reise->getReise_id());
         $statement->bindValue(':titel', $reise->getTitel());
         $statement->bindValue(':beschreibung', $reise->getBeschreibung());
@@ -33,7 +32,6 @@ class ReiseDAO {
         $statement->bindValue(':max_teilnehmer', $reise->getMax_teilnehmer());
         $statement->bindValue(':startort', $reise->getStartort());
         $statement->execute();
-        //return $this->read($pdo->lastInsertId());
     }
 
     /**
