@@ -150,10 +150,10 @@ class Service {
     /**
      * Liest anhand der Reise-Id die entsprechende Reise aus der Datenbank
      */
-    public function readJourney($reise_id, $titel, $datum_start, $datum_ende, $preis, $startort) {
+    public function readJourney($reise_id, $titel, $preis, $startort) {
         //if ($this->verifyAuth()) {
         $reiseDAO = new dao\ReiseDAO();
-        return $reiseDAO->read($reise_id, $titel, $datum_start, $datum_ende, $preis, $startort);
+        return $reiseDAO->read($reise_id, $titel, $preis, $startort);
         //}
         //return null;
     }

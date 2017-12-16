@@ -65,6 +65,25 @@ class ReiseDAO {
         }
     }
 
+    public function readSingleJourney($reise_id) {
+        $pdo = Database::connect();
+        $statement = $pdo->prepare(
+                "SELECT reise_teilnehmer.reise_id, reise_rechnung.reise_id, reise.reise_id, reise.titel, reise.preis, reise.startort
+                FROM reise INNER JOIN reise_teilnehmer ON reise.reise_id=reise_teilnehmer.reise_id INNER JOIN reise_rechnung ON reise.reise_id=reise_rechnung.reise_id 
+                WHERE reise.reise_id = :reise_id;");
+        $statement->bindValue(':reise_id', $reise_id);
+        $statement->execute();
+        $reise = new Reise();
+
+        while ($row = $statement->fetch()) {
+            $reise->setReise($row['reise_id']);
+            $reise->setTitel($row['titel']);
+            $reise->setPreis($row['preis']);
+            $reise->setStartort($row['startort']);
+        }
+        return $reise;
+    }
+
     /**
      * Aktualisiert ein Reise-Objekt in der Tabelle "reise"
      */

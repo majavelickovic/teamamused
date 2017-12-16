@@ -65,20 +65,8 @@ use service\Service;
                                 <td><input type="text" name="titel" style="width:296px;" value="<?php echo $_POST['titel'] ?>" /></td>
                             </tr>
                             <tr>
-                                <td>Datum von</td>
-                                <td><input type="date" name="datum_start" style="width:296px;" value="<?php echo $_POST['datum_start'] ?>" /></td>
-                            </tr>
-                            <tr>
-                                <td>Datum bis</td>
-                                <td><input type="date" name="datum_ende" style="width:296px;" value="<?php echo $_POST['datum_ende'] ?>" /></td>
-                            </tr>
-                            <tr>
                                 <td>Preis</td>
                                 <td><input type="text" name="preis" style="width:296px;" value="<?php echo $_POST['preis'] ?>" /></td>
-                            </tr>
-                            <tr>
-                                <td>Max. Teilnehmer</td>
-                                <td><input type="text" name="preis" style="width:296px;" value="<?php echo $_POST['max_teilnehmer'] ?>" /></td>
                             </tr>
                             <tr>
                                 <td>Startort</td>
