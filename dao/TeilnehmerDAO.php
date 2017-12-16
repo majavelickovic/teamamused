@@ -130,23 +130,23 @@ class TeilnehmerDAO {
         } else {
             //nichts tun
         }
-
-        $tableText = "";
-        while ($row = $statement->fetch()) {
-            $tableText .= "<tr>"
-                    . "<td><a href=" . $GLOBALS["ROOT URL"] . "/teilnehmer/anzeige?id=" . $row['teilnehmer_id'] . ">" . $row["teilnehmer_id"] . "</a></td>"
-                    . "<td>" . $row['reise_id'] . "</td>"
-                    . "<td>" . $row["vorname"] . "</td>"
-                    . "<td>" . $row["nachname"] . "</td>"
-                    . "<td><a href=" . $GLOBALS["ROOT URL"] . "/teilnehmer/anzeige?id=" . $row['teilnehmer_id'] . "><img src='../design/pictures/search.png'></a></td>"
-                    . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteInvoice(" . $row['teilnehmer_id'] . ")'></a></td>"
-                    . "</tr>";
+        if ($statement != null) {
+            $tableText = "";
+            while ($row = $statement->fetch()) {
+                $tableText .= "<tr>"
+                        . "<td><a href=" . $GLOBALS["ROOT URL"] . "/teilnehmer/anzeige?id=" . $row['teilnehmer_id'] . ">" . $row["teilnehmer_id"] . "</a></td>"
+                        . "<td>" . $row['reise_id'] . "</td>"
+                        . "<td>" . $row["vorname"] . "</td>"
+                        . "<td>" . $row["nachname"] . "</td>"
+                        . "<td><a href=" . $GLOBALS["ROOT URL"] . "/teilnehmer/anzeige?id=" . $row['teilnehmer_id'] . "><img src='../design/pictures/search.png'></a></td>"
+                        . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteParticipant(" . $row['teilnehmer_id'] . ")'></a></td>"
+                        . "</tr>";
+            }
+            return $tableText;
+        } else {
+            return " ";
         }
-        if ($tableText == "") {
-            return "Nichts gefunden!";
-        }
-        return $tableText;
-        }
+    }
 
     /**
      * Liest ein Teilnehmer-Objekt aus der Tabelle "teilnehmer
