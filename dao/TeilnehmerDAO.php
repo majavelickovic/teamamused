@@ -99,7 +99,7 @@ class TeilnehmerDAO {
                     "SELECT teilnehmer.teilnehmer_id, reise_teilnehmer.reise_id, teilnehmer.vorname, teilnehmer.nachname
                    FROM teilnehmer 
                    INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id=reise_teilnehmer.teilnehmer_id 
-                   WHERE reise_id = :reise_id and teilnehmer.teilnehmer_id = :teilnehmer_id and teilnehmer.vorname = :vorname 
+                   WHERE reise_id = :reise_id and teilnehmer.teilnehmer_id = :teilnehmer_id 
                    ORDER BY teilnehmer.teilnehmer_id ASC;");
             $statement->bindValue(':reise_id', $_reise);
             $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
