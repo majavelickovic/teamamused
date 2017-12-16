@@ -191,12 +191,12 @@ class TeilnehmerDAO {
         $statement1 = $pdo->prepare(
                 "DELETE FROM reise_teilnehmer
             WHERE teilnehmer_id = :teilnehmer_id");
-        $statement1->bindValue(':teilnehmer_id', $teilnehmer);
+        $statement1->bindValue(':teilnehmer_id', $teilnehmer_id);
         $statement1->execute();
         $statement2 = $pdo->prepare(
                 "DELETE FROM teilnehmer
             WHERE teilnehmer_id = :teilnehmer_id");
-        $statement2->bindValue(':teilnehmer_id', $teilnehmer);
+        $statement2->bindValue(':teilnehmer_id', $teilnehmer_id);
         $statement2->execute();
     }
 
