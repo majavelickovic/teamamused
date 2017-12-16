@@ -41,30 +41,95 @@ class TeilnehmerDAO {
     /**
      * Sucht nach Teilnehmern welche den Kriterien entsprechen aus der Tabelle "teilnehmer
      */
+//    public function read($_reise, $_teilnehmer_id, $_vorname, $_nachname) {
+//        $pdo = Database::connect();
+//        if (!isset($_reise) OR empty($_reise)) {
+//            $_reise = 0;
+//        }
+//        if (!isset($_teilnehmer_id) OR empty($_teilnehmer_id)) {
+//            $_teilnehmer_id = 0;
+//        }
+//        if (!isset($_vorname) OR empty($_vorname)) {
+//            $_vorname = "qq";
+//        }
+//        if (!isset($_nachname) OR empty($_nachname)) {
+//            $_nachname = "qq";
+//        }
+//        $statement = $pdo->prepare(
+//                "SELECT teilnehmer.teilnehmer_id, vorname, nachname, reise_id 
+//                    FROM teilnehmer 
+//                    INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id = reise_teilnehmer.teilnehmer_id 
+//                    WHERE teilnehmer.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname OR reise_id like :reise_id;");
+//        $statement->bindValue(':reise_id', $_reise);
+//        $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
+//        $statement->bindValue(':vorname', $_vorname);
+//        $statement->bindValue(':nachname', $_nachname);
+//        $statement->execute();
+//
+//        $tableText = "";
+//        while ($row = $statement->fetch()) {
+//            $tableText .= "<tr>"
+//                    . "<td><a href=" . $GLOBALS["ROOT URL"] . "/teilnehmer/anzeige?id=" . $row['teilnehmer_id'] . ">" . $row["teilnehmer_id"] . "</a></td>"
+//                    . "<td>" . $row['reise_id'] . "</td>"
+//                    . "<td>" . $row["vorname"] . "</td>"
+//                    . "<td>" . $row["nachname"] . "</td>"
+//                    . "<td><a href=" . $GLOBALS["ROOT URL"] . "/teilnehmer/anzeige?id=" . $row['teilnehmer_id'] . "><img src='../design/pictures/search.png'></a></td>"
+//                    . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteInvoice(" . $row['teilnehmer_id'] . ")'></a></td>"
+//                    . "</tr>";
+//        }
+//        if ($tableText == "") {
+//            return "Nichts gefunden!";
+//        }
+//        return $tableText;
+//    }
+
     public function read($_reise, $_teilnehmer_id, $_vorname, $_nachname) {
         $pdo = Database::connect();
-        if (!isset($_reise) OR empty($_reise)) {
-            $_reise = 0;
+        if ($_reise != null && $_teilnehmer_id == null && $_vorname == null && $_nachname == null) {
+            $statement = $pdo->prepare(
+                    "SELECT teilnehmer.teilnehmer_id, reise_teilnehmer.reise_id, teilnehmer.vorname, teilnehmer.nachname
+                   FROM teilnehmer
+                   INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id=reise_teilnehmer.teilnehmer_id
+                   WHERE reise_id = :reise_id 
+                   ORDER BY teilnehmer.teilnehmer_id ASC;");
+            $statement->bindValue(':reise_id', $_reise);
+            $statement->execute();
+        } elseif ($_reise != null && $_teilnehmer_id != null && $_vorname == null && $_nachname == null) {
+            $statement = $pdo->prepare(
+                    "SELECT teilnehmer.teilnehmer_id, reise_teilnehmer.reise_id, teilnehmer.vorname, teilnehmer.nachname
+                   FROM teilnehmer 
+                   INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id=reise_teilnehmer.teilnehmer_id 
+                   WHERE reise_id = :reise_id and teilnehmer.teilnehmer_id = :teilnehmer_id and teilnehmer.vorname = :vorname 
+                   ORDER BY teilnehmer.teilnehmer_id ASC;");
+            $statement->bindValue(':reise_id', $_reise);
+            $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
+            $statement->execute();
+        } elseif ($_reise != null && $_teilnehmer_id != null && $_vorname != null && $_nachname == null) {
+            $statement = $pdo->prepare(
+                    "SELECT teilnehmer.teilnehmer_id, reise_teilnehmer.reise_id, teilnehmer.vorname, teilnehmer.nachname
+                   FROM teilnehmer 
+                   INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id=reise_teilnehmer.teilnehmer_id
+                   WHERE reise_id = :reise_id and teilnehmer.teilnehmer_id = :teilnehmer_id and teilnehmer.vorname = :vorname 
+                   ORDER BY teilnehmer.teilnehmer_id ASC;");
+            $statement->bindValue(':reise_id', $_reise);
+            $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
+            $statement->bindValue(':vorname', $_vorname);
+            $statement->execute();
+        } elseif ($_reise != null && $_teilnehmer_id != null && $_vorname != null && $_nachname != null) {
+            $statement = $pdo->prepare(
+                    "SELECT teilnehmer.teilnehmer_id, reise_teilnehmer.reise_id, teilnehmer.vorname, teilnehmer.nachname
+                   FROM teilnehmer 
+                   INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id=reise_teilnehmer.teilnehmer_id
+                   WHERE reise_id = :reise_id and teilnehmer.teilnehmer_id = :teilnehmer_id and teilnehmer.vorname = :vorname and teilnehmer.nachname = :nachname
+                   ORDER BY teilnehmer.teilnehmer_id ASC;");
+            $statement->bindValue(':reise_id', $_reise);
+            $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
+            $statement->bindValue(':vorname', $_vorname);
+            $statement->bindValue(':nachname', $_nachname);
+            $statement->execute();
+        } else {
+            //nichts tun
         }
-        if (!isset($_teilnehmer_id) OR empty($_teilnehmer_id)) {
-            $_teilnehmer_id = 0;
-        }
-        if (!isset($_vorname) OR empty($_vorname)) {
-            $_vorname = "qq";
-        }
-        if (!isset($_nachname) OR empty($_nachname)) {
-            $_nachname = "qq";
-        }
-        $statement = $pdo->prepare(
-                "SELECT teilnehmer.teilnehmer_id, vorname, nachname, reise_id 
-                    FROM teilnehmer 
-                    INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id = reise_teilnehmer.teilnehmer_id 
-                    WHERE teilnehmer.teilnehmer_id = :teilnehmer_id OR vorname like :vorname OR nachname like :nachname OR reise_id like :reise_id;");
-        $statement->bindValue(':reise_id', $_reise);
-        $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
-        $statement->bindValue(':vorname', $_vorname);
-        $statement->bindValue(':nachname', $_nachname);
-        $statement->execute();
 
         $tableText = "";
         while ($row = $statement->fetch()) {
@@ -81,7 +146,7 @@ class TeilnehmerDAO {
             return "Nichts gefunden!";
         }
         return $tableText;
-    }
+        }
 
     /**
      * Liest ein Teilnehmer-Objekt aus der Tabelle "teilnehmer
