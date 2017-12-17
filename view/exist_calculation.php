@@ -111,51 +111,24 @@ use service\Service;
                     </form>
                 </div>
                 <div id="blockright">
-                    <table id="rgTable" cellspacing="0" cellpadding="0" border="0" width="325">
+                    <table id="rgTable">
                         <tr>
-                            <td>
-                                <table cellspacing="0" cellpadding="1" border="1" width="300" >
-                                    <tr style="color:white;background-color:grey">
-                                        <th>Rechnungs-ID</th>
-                                        <th>Reise-ID</th>
-                                        <th>Rechnungsart</th>
-                                        <th>Kosten</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </table>
-                            </td>
+                            <th>Rechnungs-ID</th>
+                            <th>Reise-ID</th>
+                            <th>Rechnungsart</th>
+                            <th>Kosten</th>
+                            <th></th>
+                            <th></th>
                         </tr>
-                        <tr>
-                            <td>
-                                <div style="width:320px; height:60px; overflow:auto;">
-                                    <table cellspacing="0" cellpadding="1" border="1" width="300" >
-                                        <?php
-                                        $rgtablecontent = controller\RechnungController::readInvoice();
-                                        if ($rgtablecontent != null) {
-                                            echo $rgtablecontent;
-                                        } else {
-                                            echo "<tr><td colspan='6'>Keine Resultate gefunden. Bitte mindestens einen Filter selektieren, um zu suchen.</td></tr>";
-                                        }
-                                        ?>
-                                    </table>  
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-
-<!--                    <table id="rgTable">
-    <tr>
-        <th>Rechnungs-ID</th>
-        <th>Reise-ID</th>
-        <th>Rechnungsart</th>
-        <th>Kosten</th>
-        <th></th>
-        <th></th>
-    </tr>
-   
-</table>-->
-
+                        <?php
+                        $rgtablecontent = controller\RechnungController::readInvoice();
+                        if ($rgtablecontent != null) {
+                            echo $rgtablecontent;
+                        } else {
+                            echo "<tr><td colspan='6'>Keine Resultate gefunden. Bitte mindestens einen Filter selektieren, um zu suchen.</td></tr>";
+                        }
+                        ?>
+                    </table>  
                 </div>
             </div>
         </div>

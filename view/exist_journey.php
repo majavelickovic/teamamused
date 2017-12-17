@@ -58,7 +58,7 @@ use service\Service;
                         <table>
                             <tr>
                                 <td>Reise-ID</td>
-                                <td><input type="text" name="reise_id" style="width:296px;" value="<?php echo $_POST['reise_id']?>"/></td>
+                                <td><input type="text" name="reise_id" style="width:296px;" value="<?php echo $_POST['reise_id'] ?>"/></td>
                             </tr>
                             <tr>
                                 <td>Reisetitel</td>
@@ -74,7 +74,7 @@ use service\Service;
                                     <select id="dropdown" name="startort">
                                         <?php
                                         //Abfrage für Standorte
-                                        foreach(Service::getInstance()->getPlaces() as $key => $standorte) {
+                                        foreach (Service::getInstance()->getPlaces() as $key => $standorte) {
                                             echo "<option value='" . $standorte['ort_id'] . "'>" . $standorte['ort_name'] . "</option>";
                                         }
                                         ?>
