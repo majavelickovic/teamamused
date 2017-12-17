@@ -74,11 +74,11 @@ use service\Service;
                                     <select id="dropdown" name="startort">
                                         <?php
                                         //Abfrage für Startorte
-                                        foreach (Service::getInstance()->getPlaces() as $key => $startorte) {
+                                        foreach (Service::getInstance()->getPlaces() as $key => $startort) {
                                             if($_POST['startort'] == $startort['ort_id']){
-                                                echo "<option selected='selected' value='" . $startorte['ort_id'] . "'>" . $startort['ort_name'] . "</option>";
+                                                echo "<option selected='selected' value='" . $startort['ort_id'] . "'>" . $startort['ort_name'] . "</option>";
                                             }else{
-                                                echo "<option value='" . $startorte['ort_id'] . "'>" . $startort['ort_name'] . "</option>";
+                                                echo "<option value='" . $startort['ort_id'] . "'>" . $startort['ort_name'] . "</option>";
                                             }
                                         }
                                         ?>
