@@ -78,6 +78,14 @@ class ReiseDAO {
             $statement->bindValue(':preis', $_preis);
             $statement->bindValue(':startort', $_startort);
             $statement->execute();
+        } elseif ($_reise_id == null && $_titel != null && $_preis == null && $_startort == null) {
+            $statement = $pdo->prepare(
+                    "SELECT reise_id, titel, preis, startort
+                   FROM reise
+                   WHERE titel = :titel 
+                   ORDER BY reise_id ASC;");
+            $statement->bindValue(':titel', $_titel);
+            $statement->execute();
         } elseif ($_reise_id == null && $_titel != null && $_preis == null && $_startort != null) {
             $statement = $pdo->prepare(
                     "SELECT reise_id, titel, preis, startort
@@ -85,6 +93,14 @@ class ReiseDAO {
                    WHERE titel = :titel and startort = :startort
                    ORDER BY reise_id ASC;");
             $statement->bindValue(':titel', $_titel);
+            $statement->bindValue(':startort', $_startort);
+            $statement->execute();
+        } elseif ($_reise_id == null && $_titel == null && $_preis == null && $_startort != null) {
+            $statement = $pdo->prepare(
+                    "SELECT reise_id, titel, preis, startort
+                   FROM reise
+                   WHERE startort = :startort
+                   ORDER BY reise_id ASC;");
             $statement->bindValue(':startort', $_startort);
             $statement->execute();
         } else {
