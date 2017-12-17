@@ -125,7 +125,7 @@ use service\Service;
                             if($rgtablecontent != null){
                                 echo $rgtablecontent;
                             }else{
-                                echo "<tr><td>Bitte mindestens einen Filter selektieren, um zu suchen.</td></tr>";
+                                echo "<tr><td colspan='6'>Bitte mindestens einen Filter selektieren, um zu suchen.</td></tr>";
                             }
                         ?>
                     </table>
