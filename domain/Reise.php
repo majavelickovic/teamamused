@@ -201,7 +201,7 @@ class Reise {
 	 * @ReturnType int
 	 */
 	public function getOrt_id() {
-		return $this->_ort_id;
+		return $this->_startort;
 	}
 
 	/**
@@ -211,8 +211,8 @@ class Reise {
 	 * @ParamType aReise_id int
 	 * @ReturnType void
 	 */
-	public function setOrt_id(&$ort_id) {
-		$this->_ort_id = $ort_id;
+	public function setOrt_id(&$startort) {
+		$this->_startort = $startort;
 	}
         
 }

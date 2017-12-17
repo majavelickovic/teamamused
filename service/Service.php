@@ -142,7 +142,7 @@ class Service {
         $reise->setDatum_ende($datum_ende);
         $reise->setPreis($preis);
         $reise->setMax_teilnehmer($max_teilnehmer);
-        $reise->setStartort($startort);
+        $reise->getOrt_id($startort);
         $reiseDAO->create($reise);
         return $reise;
     }
