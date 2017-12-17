@@ -111,7 +111,7 @@ use service\Service;
                     </form>
                 </div>
                 <div id="blockright">
-                    <div style="height:150px; overflow-y: scroll">
+                    <div style="height:400px; overflow-y: scroll">
                         <table id="rgTable">
                             <tr>
                                 <th>Rechnungs-ID</th>

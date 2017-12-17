@@ -124,39 +124,43 @@ if ($reise->getReise_id() == "") {
                             </table>
                         </div>
                         <div id="blockright">
-                            <table id="rechnungenTable">
-                                <tr>
-                                    <th>Rechnungen</th>
-                                    <th>ID</th>
-                                    <th>Beschreibung</th>
-                                    <th>Kosten</th>
-                                    <th></th>
-                                </tr>
-                                <?php
-                                $rechnungentablecontent = controller\ReiseController::readRechnungen($reise_id);
-                                if ($rechnungentablecontent != null) {
-                                    echo $rechnungentablecontent;
-                                } else {
-                                    echo "";
-                                }
-                                ?>
-                            </table>
-                            <table id="teilnehmerTable">
-                                <tr>
-                                    <th>Teilnehmer</th>
-                                    <th>Vorname</th>
-                                    <th>Nachname</th>
-                                    <th></th>
-                                </tr>
-                                <?php
-                                $teilnehmertablecontent = controller\ReiseController::readTeilnehmer($reise_id);
-                                if ($teilnehmertablecontent != null) {
-                                    echo $teilnehmertablecontent;
-                                } else {
-                                    echo "";
-                                }
-                                ?>
-                            </table>
+                            <div style="height:150px; overflow-y: scroll">
+                                <table id="rechnungenTable">
+                                    <tr>
+                                        <th>Rechnungen</th>
+                                        <th>ID</th>
+                                        <th>Beschreibung</th>
+                                        <th>Kosten</th>
+                                        <th></th>
+                                    </tr>
+                                    <?php
+                                    $rechnungentablecontent = controller\ReiseController::readRechnungen($reise_id);
+                                    if ($rechnungentablecontent != null) {
+                                        echo $rechnungentablecontent;
+                                    } else {
+                                        echo "";
+                                    }
+                                    ?>
+                                </table>
+                            </div>
+                            <div style="height:150px; overflow-y: scroll">
+                                <table id="teilnehmerTable">
+                                    <tr>
+                                        <th>Teilnehmer</th>
+                                        <th>Vorname</th>
+                                        <th>Nachname</th>
+                                        <th></th>
+                                    </tr>
+                                    <?php
+                                    $teilnehmertablecontent = controller\ReiseController::readTeilnehmer($reise_id);
+                                    if ($teilnehmertablecontent != null) {
+                                        echo $teilnehmertablecontent;
+                                    } else {
+                                        echo "";
+                                    }
+                                    ?>
+                                </table>
+                            </div>
                             <table>
                                 <tr>
                                     <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printJourney()" />  <input type="button" class="button" value="zur&uuml;ck" onclick=""/></td>

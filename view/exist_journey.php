@@ -92,22 +92,24 @@ use service\Service;
                     </form>
                 </div>
                 <div id="blockright">
-                    <table id="reiseTable">
-                        <tr>
-                            <th>Reise-ID</th>
-                            <th>Reisetitel</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <?php
-                        $reisetablecontent = controller\ReiseController::readJourney();
-                        if ($reisetablecontent != null) {
-                            echo $reisetablecontent;
-                        } else {
-                            echo "";
-                        }
-                        ?>
-                    </table>
+                    <div style="height:400px; overflow-y: scroll">
+                        <table id="reiseTable">
+                            <tr>
+                                <th>Reise-ID</th>
+                                <th>Reisetitel</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <?php
+                            $reisetablecontent = controller\ReiseController::readJourney();
+                            if ($reisetablecontent != null) {
+                                echo $reisetablecontent;
+                            } else {
+                                echo "";
+                            }
+                            ?>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
