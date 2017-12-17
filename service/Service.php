@@ -157,6 +157,14 @@ class Service {
         //}
         //return null;
     }
+    
+    public function readRechnungen($reise_id) {
+        //if ($this->verifyAuth()) {
+        $reiseDAO = new dao\ReiseDAO();
+        return $reiseDAO->read($reise_id);
+        //}
+        //return null;
+    }
 
     public function readSingleJourney($reise_id) {
         $reiseDAO = new \dao\ReiseDAO();

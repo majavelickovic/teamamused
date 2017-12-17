@@ -124,12 +124,24 @@ if ($reise->getReise_id() == "") {
                             </table>
                         </div>
                         <div id="blockright">
-                            <table>
+                            <h1>Rechnungen</h1>
+                            <table id="rechnungenTable">
                                 <tr>
-                                    <td>Rechnungen</td>
-                                    <td><textarea id="reise_rechnung" name="reise_rechnung" rows="5" cols="35" disabled><?php echo $reise->getRechnungen(); ?></textarea></td>
-                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise_rechnung").disabled = false'></a></td>
+                                    <th>ID</th>
+                                    <th>Beschreibung</th>
+                                    <th>Kosten</th>
+                                    <th></th>
                                 </tr>
+                                <?php
+                                $rechnungentablecontent = controller\ReiseController::readRechnungen($reise_id);
+                                if ($rechnungentablecontent != null) {
+                                    echo $rechnungentablecontent;
+                                } else {
+                                    echo "";
+                                }
+                                ?>
+                            </table>
+                            <!--<table>
                                 <tr>
                                     <td>Teilnehmer</td>
                                     <td><textarea id="reise_teilnehmer" name="reise_teilnehmer" rows="5" cols="35" disabled><?php echo $reise->getTeilnehmer(); ?></textarea></td>
@@ -141,7 +153,7 @@ if ($reise->getReise_id() == "") {
                                 <tr>
                                     <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalJourney()"/></td>
                                 </tr>   
-                            </table>
+                            </table>-->
                         </div>
                     </form>
                 </div>

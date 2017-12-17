@@ -121,6 +121,38 @@ class ReiseDAO {
             return " ";
         }
     }
+    
+        /**
+     * Liest ein Reise-Objekt aus der Tabelle "reise
+     */
+    public function readRechnungen($_reise_id) {
+        $pdo = Database::connect();
+        if ($_reise_id != null) {
+            $statement = $pdo->prepare(
+                    "SELECT rg_id, rechnungsart.beschreibung, kosten FROM public.rechnung
+                        INNER JOIN rechnungsart on rechnung.rechnungsart = rechnungsart.rgart_id
+                         WHERE reise_id = :reise_id 
+                         ORDER BY reise_id ASC;");
+            $statement->bindValue(':reise_id', $_reise_id);
+            $statement->execute();
+        }else {
+            //nichts tun
+        }
+        if ($statement != null) {
+            $tableText = "";
+            while ($row = $statement->fetch()) {
+                $tableText .= "<tr>"
+                        . "<td>" . $row["rg_id"] . "</td>"
+                        . "<td>" . $row["beschreibung"] . "</td>"
+                        . "<td>" . $row["kosten"] . "</td>"
+                        . "<td><a href=" . $GLOBALS["ROOT URL"] . "/reise/anzeige?id=" . $row['reise_id'] . "><img src='../design/pictures/search.png'></a></td>"
+                        . "</tr>";
+            }
+            return $tableText;
+        } else {
+            return " ";
+        }
+    }
 
     public function readSingleJourney($reise_id) {
         $pdo = Database::connect();
