@@ -60,11 +60,11 @@ use service\Service;
                             <tr>
                                 <td>Startort</td>
                                 <td>
-                                    <select id="dropdown" name="startort" style="width:300px;">
+                                    <select id="dropdown" name="startort">
                                         <?php
                                         //Abfrage für Standorte
                                         foreach(Service::getInstance()->getPlaces() as $key => $standorte) {
-                                            echo "<option value='" . $standorte['standort'] . "'>" . $standorte['standort'] . "</option>";
+                                            echo "<option value='" . $standorte['standort'] . "'>" . $standorte['standort'] . "'</option>";
                                         }
                                         ?>
                                     </select>
