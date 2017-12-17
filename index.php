@@ -167,7 +167,7 @@
         });
 
         Router::route("GET", "/reise/anzeige", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\ReiseController::journeyShowSingleView();
             } else {
                 controller\ErrorController::error403View();
@@ -188,7 +188,7 @@
          * @author Sandra Bodack
          */
         Router::route("GET", "/deleteJourney", function () {
-            if (AuthentifizController::authenticate() && $_GET['del_reise_id'] > 0) {
+            if (LoginController::authenticate() && $_GET['del_reise_id'] > 0) {
                 controller\ReiseController::deleteJourney($_GET['del_reise_id']);
             } else {
                 controller\ErrorController::error403View();
@@ -212,7 +212,7 @@
          * @author Maja Velickovic
          */
         Router::route("POST", "/rechnung/neu", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 // Datei darf nicht grösser als 2MB sein
                 if($_FILES["dokument"]["size"] > 2048){
                     ?>
@@ -421,7 +421,7 @@
         });
 
         Router::route("GET", "/teilnehmer/anzeige", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantShowSingleView();
             } else {
                 controller\ErrorController::error403View();
@@ -438,7 +438,7 @@
         });
 
         Router::route("GET", "/deleteParticipant", function () {
-            if (AuthentifizController::authenticate() && $_GET['del_teilnehmer_id'] > 0) {
+            if (LoginController::authenticate() && $_GET['del_teilnehmer_id'] > 0) {
                 controller\TeilnehmerController::deleteParticipant($_GET['del_teilnehmer_id']);
             } else {
                 controller\ErrorController::error403View();
