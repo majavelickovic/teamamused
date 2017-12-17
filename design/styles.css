@@ -17,11 +17,6 @@ table {
     table-layout: auto;
 }
 
-#rgTable {
-    border-collapse: collapse;
-    height: 100%;
-}
-
 #whiteblock {
     background-color: rgba(255, 255, 255, 0.7);
     margin: 50px 0px 50px 0px;
