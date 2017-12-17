@@ -163,7 +163,7 @@ class ReiseDAO {
         $pdo = Database::connect();
         if ($reise_id != null) {
             $statement = $pdo->prepare(
-                    "SELECT vorname, nachname FROM public.teilnehmer
+                    "SELECT vorname, nachname, teilnehmer.teilnehmer_id FROM public.teilnehmer
                         INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id = reise_teilnehmer.teilnehmer_id
                          WHERE reise_id = :reise_id 
                          ORDER BY teilnehmer.teilnehmer_id ASC;");

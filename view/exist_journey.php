@@ -75,7 +75,11 @@ use service\Service;
                                         <?php
                                         //Abfrage für Standorte
                                         foreach (Service::getInstance()->getPlaces() as $key => $standorte) {
-                                            echo "<option value='" . $standorte['ort_id'] . "'>" . $standorte['ort_name'] . "</option>";
+                                            if($_POST['startort'] == $standorte['ort_id']){
+                                                echo "<option selected='selected' value='" . $standorte['ort_id'] . "'>" . $standorte['ort_name'] . "</option>";
+                                            }else{
+                                                echo "<option value='" . $standorte['ort_id'] . "'>" . $standorte['ort_name'] . "</option>";
+                                            }
                                         }
                                         ?>
                                     </select>
