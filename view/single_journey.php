@@ -109,6 +109,20 @@ if($reise->getReise_id() == ""){
                                 <td><input type="text" id="startort" name="startort" style="width:296px;" value="<?php echo $reise->getOrt_id(); ?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("startort").disabled = false'></a></td>
                             </tr>
+                            <tr>
+                                <td>Startort</td>
+                                <td>
+                                    <select id="dropdown" name="startort">
+                                        <?php
+                                        //Abfrage für Standorte
+                                        foreach(Service::getInstance()->getPlaces() as $key => $standorte) {
+                                            echo "<option value='" . $standorte['ort_id'] . "'>" . $standorte['ort_name'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("ort_name").disabled = false'></a></td>
+                            </tr>
                         </table>
                     </div>
                     <div id="blockright">
