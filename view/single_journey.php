@@ -115,16 +115,14 @@ if($reise->getReise_id() == ""){
                         <table>
                             <tr>
                                 <td>Rechnungen</td>
-                                <td><textarea id="" name="" rows="5" cols="35" disabled><?php echo $reise->getRechnungen(); ?></textarea></td>
+                                <td><textarea id="reise_rechnung" name="reise_rechnun" rows="5" cols="35" disabled><?php echo $reise->getRechnungen(); ?></textarea></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise_rechnung").disabled = false'></a></td>
                             </tr>
                             <tr>
                                 <td>Teilnehmer</td>
-                                <td><textarea id="" name="" rows="5" cols="35" disabled><?php echo $reise->getTeilnehmer(); ?></textarea></td>
+                                <td><textarea id="reise_teilnehmer" name="reise_teilnehmer" rows="5" cols="35" disabled><?php echo $reise->getTeilnehmer(); ?></textarea></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise_teilnehmer").disabled = false'></a></td>
                             </tr>
-                            <tr><td colspan="2"></td></tr>
-                            <tr><td colspan="2"></td></tr>
                             <tr>
                                 <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printJourney()" />  <input type="button" class="button" value="zur&uuml;ck" onclick=""/></td>
                             </tr>
