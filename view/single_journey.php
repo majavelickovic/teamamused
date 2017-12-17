@@ -12,7 +12,7 @@ if($_GET['id'] > 0){
 $reiseDAO = new dao\ReiseDAO;
 $reise = new Reise();
 $reise = Service::getInstance()->readSingleJourney($reise_id);
-if($reise->getReise() == ""){
+if($reise->getReise_id() == ""){
     ErrorController::error404View();
 }else{
 
