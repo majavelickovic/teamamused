@@ -140,7 +140,7 @@ class ReiseDAO {
             $reise->setTitel($row['datum_ende']);
             $reise->setPreis($row['preis']);
             $reise->setPreis($row['max_teilnehmer']);
-            $reise->setStartort($row['startort']);
+            $reise->setOrt_id($row['startort']);
         }
         return $reise;
     }
