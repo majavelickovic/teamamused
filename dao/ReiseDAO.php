@@ -31,22 +31,8 @@ class ReiseDAO {
         $statement->bindValue(':datum_ende', $reise->getDatum_ende());
         $statement->bindValue(':preis', $reise->getPreis());
         $statement->bindValue(':max_teilnehmer', $reise->getMax_teilnehmer());
-        $statement->bindValue(':startort', $reise->getStartort());
+        $statement->bindValue(':startort', $reise->getOrt_id());
         $statement->execute();
-
-        $statement2 = $pdo->prepare(
-                "INSERT INTO reise_rechnung (reise_id, rg_id)
-                        VALUES (:reise, :rg_id)");
-        $statement2->bindValue(':reise', $reise->getReise());
-        $statement2->bindValue(':rg_id', $reise->getRg_id());
-        $statement2->execute();
-
-        $statement3 = $pdo->prepare(
-                "INSERT INTO reise_teilnehmer (reise_id, teilnehmer_id)
-                        VALUES (:reise, :teilnehmer_id)");
-        $statement3->bindValue(':reise', $reise->getReise());
-        $statement3->bindValue(':teilnehmer_id', $reise->getTeilnehmer_id());
-        $statement3->execute();
     }
 
     /**
@@ -68,7 +54,7 @@ class ReiseDAO {
     public function readSingleJourney($reise_id) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
-                "SELECT reise_teilnehmer.reise_id, reise_rechnung.reise_id, reise.reise_id, reise.titel, reise.preis, reise.startort
+                "SELECT reise_teilnehmer.reise_id, reise_rechnung.reise_id, reise.reise_id, reise.titel, reise.beschreibung, datum_start, datum_ende, reise.preis, reise.max_teilnehmer, reise.startort
                 FROM reise INNER JOIN reise_teilnehmer ON reise.reise_id=reise_teilnehmer.reise_id INNER JOIN reise_rechnung ON reise.reise_id=reise_rechnung.reise_id 
                 WHERE reise.reise_id = :reise_id;");
         $statement->bindValue(':reise_id', $reise_id);
@@ -78,7 +64,11 @@ class ReiseDAO {
         while ($row = $statement->fetch()) {
             $reise->setReise($row['reise_id']);
             $reise->setTitel($row['titel']);
+            $reise->setTitel($row['beschreibung']);
+            $reise->setTitel($row['datum_start']);
+            $reise->setTitel($row['datum_ende']);
             $reise->setPreis($row['preis']);
+            $reise->setPreis($row['max_teilnehmer']);
             $reise->setStartort($row['startort']);
         }
         return $reise;
