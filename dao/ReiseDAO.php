@@ -82,9 +82,9 @@ class ReiseDAO {
             $statement = $pdo->prepare(
                     "SELECT reise_id, titel, preis, startort
                    FROM reise
-                   WHERE titel like '%:titel%' 
+                   WHERE titel like ':titel%' 
                    ORDER BY reise_id ASC;");
-            $statement->bindParam(':titel', $_titel);
+            $statement->bindValue(':titel', $_titel);
             $statement->execute();
         } elseif ($_reise_id == null && $_titel != null && $_preis == null && $_startort != null) {
             $statement = $pdo->prepare(
