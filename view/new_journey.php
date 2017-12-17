@@ -59,7 +59,16 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Startort</td>
-                                <td><input type="text" name="startort" size="40px" /></td>
+                                <td>
+                                    <select id="dropdown" name="startort" style="width:300px;">
+                                        <?php
+                                        //Abfrage für Standorte
+                                        foreach(Service::getInstance()->getPlaces() as $key => $standorte) {
+                                            echo "<option value='" . $standorte['standort'] . "'>" . $standorte['standort'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="2" align="center"><input type="submit" class="button" value="erstellen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
