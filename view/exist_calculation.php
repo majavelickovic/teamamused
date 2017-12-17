@@ -19,19 +19,19 @@ use service\Service;
                 document.getElementById("searchForm").submit();
             }
             //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
-            function deleteInvoice(rg_id){
-                if(confirm("Wollen Sie die Rechnung wirklich löschen?")){
+            function deleteInvoice(rg_id) {
+                if (confirm("Wollen Sie die Rechnung wirklich löschen?")) {
                     var req = new XMLHttpRequest();
-                    req.open('GET', '/deleteInvoice?del_rg_id='+rg_id);
+                    req.open('GET', '/deleteInvoice?del_rg_id=' + rg_id);
 
-                    req.onreadystatechange = function() {
-                        if(req.readyState==4 && req.status==200) {
+                    req.onreadystatechange = function () {
+                        if (req.readyState == 4 && req.status == 200) {
                             alert("Die Rechnung " + rg_id + " wurde gelöscht.");
                             refreshTable();
                         }
                     }
                     req.send(null);
-                }else{
+                } else {
                     //nichts tun, wenn der Benutzer die Rechnung nicht löschen möchte
                 }
             }
@@ -61,45 +61,45 @@ use service\Service;
                                 <td>
                                     <select id="dropdown" name="reise" style="width:300px;">
                                         <?php
-                                            if($_POST['reise'] == ""){
-                                                echo "<option selected='selected' value=''></option>";
-                                            }else{
-                                                echo "<option value=''></option>";
+                                        if ($_POST['reise'] == "") {
+                                            echo "<option selected='selected' value=''></option>";
+                                        } else {
+                                            echo "<option value=''></option>";
+                                        }
+                                        //Abfrage für Reisetitel
+                                        foreach (Service::getInstance()->getJourneyTitles() as $key => $journeyTitle) {
+                                            if ($_POST['reise'] == $journeyTitle['reise_id']) {
+                                                echo "<option selected='selected' value='" . $journeyTitle['reise_id'] . "'>" . $journeyTitle['titel'] . ", " . $journeyTitle['reise_id'] . "</option>";
+                                            } else {
+                                                echo "<option value='" . $journeyTitle['reise_id'] . "'>" . $journeyTitle['titel'] . ", " . $journeyTitle['reise_id'] . "</option>";
                                             }
-                                            //Abfrage für Reisetitel
-                                            foreach(Service::getInstance()->getJourneyTitles() as $key => $journeyTitle) {
-                                                if($_POST['reise'] == $journeyTitle['reise_id']){
-                                                    echo "<option selected='selected' value='" . $journeyTitle['reise_id'] . "'>" . $journeyTitle['titel'] . ", " . $journeyTitle['reise_id'] . "</option>";
-                                                }else{
-                                                    echo "<option value='" . $journeyTitle['reise_id'] . "'>" . $journeyTitle['titel'] . ", " . $journeyTitle['reise_id'] . "</option>";
-                                                }
-                                            }
+                                        }
                                         ?>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Rechnung-ID</td>
-                                <td><input type="text" name="rg_id" style="width:296px;" value="<?php echo $_POST['rg_id']?>"/></td>
+                                <td><input type="text" name="rg_id" style="width:296px;" value="<?php echo $_POST['rg_id'] ?>"/></td>
                             </tr>
                             <tr>
                                 <td>Rechnungsart</td>
                                 <td>
                                     <select id="dropdown" name="rgart" style="width:300px;">
                                         <?php
-                                            if($_POST['rgart'] == ""){
-                                                echo "<option selected='selected' value=''></option>";
-                                            }else{
-                                                echo "<option value=''></option>";
+                                        if ($_POST['rgart'] == "") {
+                                            echo "<option selected='selected' value=''></option>";
+                                        } else {
+                                            echo "<option value=''></option>";
+                                        }
+                                        // Abfrage für Rechnungsarten
+                                        foreach (Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
+                                            if ($_POST['rgart'] == $invoiceType['rgart_id']) {
+                                                echo "<option selected='selected' value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
+                                            } else {
+                                                echo "<option value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
                                             }
-                                            // Abfrage für Rechnungsarten
-                                            foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
-                                                if($_POST['rgart'] == $invoiceType['rgart_id']){
-                                                    echo "<option selected='selected' value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
-                                                }else{
-                                                    echo "<option value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
-                                                }
-                                            }
+                                        }
                                         ?>
                                     </select>
                                 </td>
@@ -111,24 +111,51 @@ use service\Service;
                     </form>
                 </div>
                 <div id="blockright">
-                    <table id="rgTable">
+                    <table id="rgTable" cellspacing="0" cellpadding="0" border="0" width="325">
                         <tr>
-                            <th>Rechnungs-ID</th>
-                            <th>Reise-ID</th>
-                            <th>Rechnungsart</th>
-                            <th>Kosten</th>
-                            <th></th>
-                            <th></th>
+                            <td>
+                                <table cellspacing="0" cellpadding="1" border="1" width="300" >
+                                    <tr style="color:white;background-color:grey">
+                                        <th>Rechnungs-ID</th>
+                                        <th>Reise-ID</th>
+                                        <th>Rechnungsart</th>
+                                        <th>Kosten</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </table>
+                            </td>
                         </tr>
-                        <?php
-                            $rgtablecontent = controller\RechnungController::readInvoice();
-                            if($rgtablecontent != null){
-                                echo $rgtablecontent;
-                            }else{
-                                echo "<tr><td colspan='6'>Keine Resultate gefunden. Bitte mindestens einen Filter selektieren, um zu suchen.</td></tr>";
-                            }
-                        ?>
+                        <tr>
+                            <td>
+                                <div style="width:320px; height:60px; overflow:auto;">
+                                    <table cellspacing="0" cellpadding="1" border="1" width="300" >
+                                        <?php
+                                        $rgtablecontent = controller\RechnungController::readInvoice();
+                                        if ($rgtablecontent != null) {
+                                            echo $rgtablecontent;
+                                        } else {
+                                            echo "<tr><td colspan='6'>Keine Resultate gefunden. Bitte mindestens einen Filter selektieren, um zu suchen.</td></tr>";
+                                        }
+                                        ?>
+                                    </table>  
+                                </div>
+                            </td>
+                        </tr>
                     </table>
+
+<!--                    <table id="rgTable">
+    <tr>
+        <th>Rechnungs-ID</th>
+        <th>Reise-ID</th>
+        <th>Rechnungsart</th>
+        <th>Kosten</th>
+        <th></th>
+        <th></th>
+    </tr>
+   
+</table>-->
+
                 </div>
             </div>
         </div>
