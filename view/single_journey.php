@@ -77,32 +77,32 @@ if ($reise->getReise_id() == "") {
                                             ?>
                                         </select>
                                     </td>
-                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise").disabled = false'></a></td>
+                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise").disabled = "false"'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Beschreibung</td>
                                     <td><textarea id="beschreibung" name="beschreibung" rows="5" cols="35" disabled><?php echo $reise->getBeschreibung(); ?></textarea></td>
-                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("beschreibung").disabled = false'></a></td>
+                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("beschreibung").disabled = "false"'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Datum von</td>
-                                    <td><input type="date" id="datum_start" name="datum_start" style="width:296px;" value="<?php echo $reise->getDatum_start(); ?>" disabled/></td>
-                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("datum_start").disabled = false'></a></td>
+                                    <td><input type="text" id="datum_start" name="datum_start" style="width:296px;" value="<?php echo $reise->getDatum_start(); ?>" disabled/></td>
+                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("datum_start").disabled = "false"; document.getElementById("datum_start").type = "date";'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Datum bis</td>
-                                    <td><input type="date" id="datum_ende" name="datum_ende" style="width:296px;" value="<?php echo $reise->getDatum_ende(); ?>" disabled/></td>
-                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("datum_ende").disabled = false'></a></td>
+                                    <td><input type="text" id="datum_ende" name="datum_ende" style="width:296px;" value="<?php echo $reise->getDatum_ende(); ?>" disabled/></td>
+                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("datum_ende").disabled = "false"; document.getElementById("datum_start").type = "date";'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Preis</td>
                                     <td><input type="text" id="preis" name="preis" style="width:296px;" value="<?php echo $reise->getPreis(); ?>" disabled/></td>
-                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("preis").disabled = false'></a></td>
+                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("preis").disabled = "false"'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Max. Teilnehmer</td>
                                     <td><input type="text" id="max_teilnehmer" name="max_teilnehmer" style="width:296px;" value="<?php echo $reise->getMax_teilnehmer(); ?>" disabled/></td>
-                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("max_teilnehmer").disabled = false'></a></td>
+                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("max_teilnehmer").disabled = "false"'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Startort</td>
@@ -111,16 +111,16 @@ if ($reise->getReise_id() == "") {
                                             <?php
                                             //Abfrage für Standorte
                                             foreach (Service::getInstance()->getPlaces() as $key => $startorte) {
-                                                if ($startorte['ort_name'] == $reise->getReise_id()) {
+                                                if ($startorte['ort_id'] == $reise->getReise_id()) {
                                                     echo "<option selected='selected' value='" . $startorte['ort_id'] . "'>" . $startorte['ort_name'] . "</option>";
                                                 } else {
-                                                    echo "<option value='" . $standorte['ort_id'] . "'>" . $standorte['ort_name'] . "</option>";
+                                                    echo "<option value='" . $startorte['ort_id'] . "'>" . $startorte['ort_name'] . "</option>";
                                                 }
                                             }
                                             ?>
                                         </select>
                                     </td>
-                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("ort_name").disabled = false'></a></td>
+                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("ort_name").disabled = "false"'></a></td>
                                 </tr>
                             </table>
                         </div>
@@ -129,7 +129,7 @@ if ($reise->getReise_id() == "") {
                                 <tr>
                                     <td>Rechnungen</td>
                                     <td><textarea id="reise_rechnung" name="reise_rechnung" rows="5" cols="35" disabled><?php echo $reise->getRechnungen(); ?></textarea></td>
-                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise_rechnung").disabled = false'></a></td>
+                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise_rechnung").disabled = "false"'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Teilnehmer</td>
