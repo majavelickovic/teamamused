@@ -9,7 +9,6 @@ if($_GET['id'] > 0){
 }elseif($_POST['rg_id'] > 0){
     $rg_id = $_POST['rg_id'];
 }    
-$rgDAO = new dao\RechnungDAO;
 $rg = new Rechnung();
 $rg = Service::getInstance()->readSingleInvoice($rg_id);
 if($rg->getReise() == ""){
