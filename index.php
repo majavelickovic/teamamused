@@ -212,7 +212,7 @@
          * @author Maja Velickovic
          */
         Router::route("POST", "/rechnung/neu", function () {
-            if (LoginController::authenticate()) {
+            if (AuthentifizController::authenticate()) {
                 // Datei darf nicht grösser als 2MB sein
                 if($_FILES["dokument"]["size"] > 2048){
                     ?>
@@ -421,7 +421,7 @@
         });
 
         Router::route("GET", "/teilnehmer/anzeige", function () {
-            if (LoginController::authenticate()) {
+            if (AuthentifizController::authenticate()) {
                 controller\TeilnehmerController::participantShowSingleView();
             } else {
                 controller\ErrorController::error403View();
