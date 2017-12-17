@@ -110,7 +110,7 @@ if($reise->getReise_id() == ""){
                         <table>
                             <tr>
                                 <td>Startort</td>
-                                <td><input type="text" id="startort" name="startort" style="width:296px;" value="<?php echo $reise->getStartort(); ?>" disabled/></td>
+                                <td><input type="text" id="startort" name="startort" style="width:296px;" value="<?php echo $reise->getOrt_id(); ?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("startort").disabled = false'></a></td>
                             </tr>
                             <tr>
