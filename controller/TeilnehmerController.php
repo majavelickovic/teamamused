@@ -1,7 +1,7 @@
 <?php
-
 /**
  * Controller für die Teilnehmer-View
+ * @author Sandra Bodack
  */
 
 namespace controller;
@@ -17,17 +17,22 @@ class TeilnehmerController {
 
     public static function newParticipant() {
         return Service::getInstance()->createParticipant(
-                        $_POST["reise_id"], $_POST["titel"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);
+                        $_POST["reise"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);
     }
 
     public static function readParticipant() {
         return Service::getInstance()->readParticipant(
-                        $_POST["reise_id"], $_POST["titel"], $_POST["teilnehmer_id"], $_POST["vorname"], $_POST["nachname"]);
+                        $_POST["reise"], $_POST["teilnehmer_id"], $_POST["vorname"], $_POST["nachname"]);
     }
 
+    public static function readSingleParticipant() {
+        return Service::getInstance()->readSingleParticipant(
+                        $_POST["teilnehmer_id"]);
+    }
+    
     public static function updateParticipant() {
         return Service::getInstance()->updateParticipant(
-                        $_POST["reise_id"], $_POST["titel"], $_POST["teilnehmer_id"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);
+                        $_POST["teilnehmer_id"], $_POST["reise"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);
     }
 
     public static function deleteParticipant($teilnehmer_id) {
@@ -41,6 +46,10 @@ class TeilnehmerController {
 
     public static function participantAddView() {
         echo (new View("new_participant.php"))->render();
+    }
+
+    public static function participantShowSingleView() {
+        echo (new View("single_participant.php"))->render();
     }
 
     public static function participantChoiceView() {

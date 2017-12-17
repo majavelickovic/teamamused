@@ -1,8 +1,5 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/../domain/Ort.php');
-require_once(realpath(dirname(__FILE__)) . '/../domain/Login.php');
-require_once(realpath(dirname(__FILE__)) . '/../domain/Reise_rechnung.php');
-require_once(realpath(dirname(__FILE__)) . '/../domain/Reise_teilnehmer.php');
+namespace domain;
 
 /**
  * Diese Klasse stellt Reise-Entitäten dar
@@ -12,6 +9,10 @@ class Reise {
 	 * @AttributeType int
 	 */
 	private $_reise_id;
+        /**
+	 * @AttributeType String
+	 */
+	private $_titel;
 	/**
 	 * @AttributeType String
 	 */
@@ -39,20 +40,6 @@ class Reise {
 	 * @AssociationMultiplicity 1
 	 */
 	private $_startort;
-	/**
-	 * @AssociationType domain.Login
-	 * 
-	 * 
-	 * @AssociationMultiplicity 1
-	 */
-	private $_reiseleiter;
-	/**
-	 * @AssociationType domain.Login
-	 * 
-	 * 
-	 * @AssociationMultiplicity 1
-	 */
-	private $_fahrer;
 	/**
 	 * @AssociationType domain.Reise_rechnung
 	 * 
@@ -84,11 +71,11 @@ class Reise {
 	 * @ParamType aReise_id int
 	 * @ReturnType void
 	 */
-	public function setReise_id(&$aReise_id) {
-		$this->_reise_id = $aReise_id;
+	public function setReise_id(&$reise_id) {
+		$this->_reise_id = $reise_id;
 	}
 
-	/**
+        	/**
 	 * @access public
 	 * @return String
 	 * @ReturnType String
@@ -99,13 +86,33 @@ class Reise {
 
 	/**
 	 * @access public
-	 * @param String aBeschreibung
+	 * @param String Beschreibung
 	 * @return void
-	 * @ParamType aBeschreibung String
+	 * @ParamType Beschreibung String
 	 * @ReturnType void
 	 */
-	public function setBeschreibung(&$aBeschreibung) {
-		$this->_beschreibung = $aBeschreibung;
+	public function setBeschreibung(&$beschreibung) {
+		$this->_beschreibung = $beschreibung;
+	}
+        
+	/**
+	 * @access public
+	 * @return String
+	 * @ReturnType String
+	 */
+	public function getTitel() {
+		return $this->_titel;
+	}
+
+	/**
+	 * @access public
+	 * @param String Titel
+	 * @return void
+	 * @ParamType Titel String
+	 * @ReturnType void
+	 */
+	public function setTitel(&$titel) {
+		$this->_titel = $titel;
 	}
 
 	/**
@@ -119,13 +126,13 @@ class Reise {
 
 	/**
 	 * @access public
-	 * @param Date aDatum_start
+	 * @param Date datum_start
 	 * @return void
-	 * @ParamType aDatum_start Date
+	 * @ParamType datum_start Date
 	 * @ReturnType void
 	 */
-	public function setDatum_start(&$aDatum_start) {
-		$this->_datum_start = $aDatum_start;
+	public function setDatum_start(&$datum_start) {
+		$this->_datum_start = $datum_start;
 	}
 
 	/**
@@ -139,13 +146,13 @@ class Reise {
 
 	/**
 	 * @access public
-	 * @param Date aDatum_ende
+	 * @param Date datum_ende
 	 * @return void
-	 * @ParamType aDatum_ende Date
+	 * @ParamType datum_ende Date
 	 * @ReturnType void
 	 */
-	public function setDatum_ende(&$aDatum_ende) {
-		$this->_datum_ende = $aDatum_ende;
+	public function setDatum_ende(&$datum_ende) {
+		$this->_datum_ende = $datum_ende;
 	}
 
 	/**
@@ -159,13 +166,13 @@ class Reise {
 
 	/**
 	 * @access public
-	 * @param Double aPreis
+	 * @param Double preis
 	 * @return void
-	 * @ParamType aPreis Double
+	 * @ParamType preis Double
 	 * @ReturnType void
 	 */
-	public function setPreis(&$aPreis) {
-		$this->_preis = $aPreis;
+	public function setPreis(&$preis) {
+		$this->_preis = $preis;
 	}
 
 	/**
@@ -179,13 +186,34 @@ class Reise {
 
 	/**
 	 * @access public
-	 * @param Integer aMax_teilnehmer
+	 * @param Integer max_teilnehmer
 	 * @return void
-	 * @ParamType aMax_teilnehmer Integer
+	 * @ParamType max_teilnehmer Integer
 	 * @ReturnType void
 	 */
-	public function setMax_teilnehmer(&$aMax_teilnehmer) {
-		$this->_max_teilnehmer = $aMax_teilnehmer;
+	public function setMax_teilnehmer(&$max_teilnehmer) {
+		$this->_max_teilnehmer = $max_teilnehmer;
 	}
+        
+        /**
+	 * @access public
+	 * @return int
+	 * @ReturnType int
+	 */
+	public function getOrt_id() {
+		return $this->_startort;
+	}
+
+	/**
+	 * @access public
+	 * @param int aReise_id
+	 * @return void
+	 * @ParamType aReise_id int
+	 * @ReturnType void
+	 */
+	public function setOrt_id(&$startort) {
+		$this->_startort = $startort;
+	}
+        
 }
 ?>

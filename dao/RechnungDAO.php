@@ -102,7 +102,7 @@ class RechnungDAO {
 	/**
 	 * Aktualisiert ein Rechnungs-Objekt in der Tabelle "rechnung"
 	 */
-	public function update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument) {
+	public function update($rg_id, $reise, $rgart, $kosten, $beschreibung, $dokument, $pdf_object) {
             $pdo = Database::connect();
             
             if($rgart != null){
@@ -133,7 +133,7 @@ class RechnungDAO {
                 $statement4 = $pdo->prepare(
                     "UPDATE rechnung SET dokument = :dokument WHERE rg_id = :rg_id");
                 $statement4->bindValue(':rg_id', $rg_id);
-                $statement->bindValue(':dokument', $dokument);
+                $statement4->bindValue(':dokument', $dokument);
                 $statement4->execute();
             }
        
@@ -143,6 +143,14 @@ class RechnungDAO {
                 $statement5->bindValue(':reise', $reise);
                 $statement5->bindValue(':rg_id', $rg_id);
                 $statement5->execute();
+            }
+            
+            if($pdf_object != null){
+                $statement6 = $pdo->prepare(
+                    "UPDATE rechnung SET pdf_object = :pdf_object WHERE rg_id = :rg_id");
+                $statement6->bindValue(':rg_id', $rg_id);
+                $statement6->bindValue(':pdf_object', pg_escape_bytea($pdf_object));
+                $statement6->execute();
             }
           
 	}
@@ -256,14 +264,17 @@ class RechnungDAO {
          * Liest das angehängte PDF einer Rechnung aus
          */
          public function  getAttachedPDFInvoice($rg_id){
-            $pdo = Database::connect();           
-            $statement = $pdo->prepare("SELECT pdf_object FROM rechnung where rg_id = :rg_id");
-            $statement->bindValue(':rg_id', $rg_id);
-            $statement->execute();
-            foreach($statement as $result){
-                $file= pg_unescape_bytea($result['pdf_object']);
+            if($rg_id != null){
+                $pdo = Database::connect();           
+                $statement = $pdo->query("SELECT encode(pdf_object::bytea, 'escape') FROM rechnung where rg_id = " . $rg_id);
+                $file = "";
+                while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+                    $file .= str_replace("''", "'", $row['encode']);
+                }
+                return $file;
+            }else{
+                return "%PDF-1.4 PDF NOT FOUND";
             }
-            return $file;
          }
 
 }

@@ -1,17 +1,13 @@
 <?php
 
-use database\Database;
 use service\Service;
 
 /*
  * View, um eine neue Reise zu erfassen
+ * @author Sandra Bodack
  */
 ?>
 
-<!DOCTYPE html>
-<!--
-Diese Seite stellt die Reise-Seite dar.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -47,28 +43,19 @@ Diese Seite stellt die Reise-Seite dar.
                             </tr>
                             <tr>
                                 <td>Datum von</td>
-                                <td><input type="text" name="datum_start" size="40px" /></td>
+                                <td><input type="date" name="datum_start" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td>Datum bis</td>
-                                <td><input type="text" name="datum_ende" size="40px" /></td>
+                                <td><input type="date" name="datum_ende" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td>Preis</td>
                                 <td><input type="text" name="preis" size="40px" /></td>
                             </tr>
                             <tr>
-                                <td>Reiseleiter</td>
-                                <td>
-                                    <select id="dropdown" name="reiseleiter">
-                                        <?php
-                                        // @SANDRA -> View greift über die Serviceklasse auf die DAO also Datenbank zu
-                                        foreach(Service::getInstance()->getReiseleiter() as $key => $reiseleiter) {
-                                            echo "<option value='" . $reiseleiter['reiseleiter'] . "'></option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </td>
+                                <td>Max. Teilnehmer</td>
+                                <td><input type="text" name="max_teilnehmer" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td>Startort</td>
@@ -79,9 +66,6 @@ Diese Seite stellt die Reise-Seite dar.
                             </tr>
                         </table>
                     </form>
-                </div>
-                <div id="blockright">
-
                 </div>
             </div>
         </div>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <!--
 Diese Seite stellt die Reise-Seite dar.
+@author Sandra Bodack
 -->
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../design/styles.css">
+        <link rel="stylesheet" href="./design/styles.css">
         <title>Reise</title>
     </head>
     <body>		

@@ -1,5 +1,5 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/../domain/Reise_teilnehmer.php');
+namespace domain;
 
 /**
  * Diese Klasse stellt Teilnehmer-Entitäten dar
@@ -18,14 +18,6 @@ class Teilnehmer {
 	 */
 	private $_nachname;
 	/**
-	 * @AttributeType Integer
-	 */
-	private $_telefon;
-	/**
-	 * @AttributeType String
-	 */
-	private $_mail;
-	/**
 	 * @AttributeType Date
 	 */
 	private $_geburtsdatum;
@@ -33,6 +25,10 @@ class Teilnehmer {
 	 * @AttributeType int
 	 */
 	private $_reise_teilnehmer = array();
+        /**
+	 * @AttributeType int
+	 */
+	private $_reise_id;
 	/**
 	 * @access public
 	 * @return int
@@ -49,8 +45,8 @@ class Teilnehmer {
 	 * @ParamType aTeilnehmer_id int
 	 * @ReturnType void
 	 */
-	public function setTeilnehmer_id(&$aTeilnehmer_id) {
-		$this->_teilnehmer_id = $aTeilnehmer_id;
+	public function setTeilnehmer_id(&$teilnehmer_id) {
+		$this->_teilnehmer_id = $teilnehmer_id;
 	}
 
 	/**
@@ -69,8 +65,8 @@ class Teilnehmer {
 	 * @ParamType aVorname String
 	 * @ReturnType void
 	 */
-	public function setVorname(&$aVorname) {
-		$this->_vorname = $aVorname;
+	public function setVorname(&$vorname) {
+		$this->_vorname = $vorname;
 	}
 
 	/**
@@ -89,48 +85,8 @@ class Teilnehmer {
 	 * @ParamType aNachname String
 	 * @ReturnType void
 	 */
-	public function setNachname(&$aNachname) {
-		$this->_nachname = $aNachname;
-	}
-
-	/**
-	 * @access public
-	 * @return Integer
-	 * @ReturnType Integer
-	 */
-	public function getTelefon() {
-		return $this->_telefon;
-	}
-
-	/**
-	 * @access public
-	 * @param Integer aTelefon
-	 * @return void
-	 * @ParamType aTelefon Integer
-	 * @ReturnType void
-	 */
-	public function setTelefon(&$aTelefon) {
-		$this->_telefon = $aTelefon;
-	}
-
-	/**
-	 * @access public
-	 * @return String
-	 * @ReturnType String
-	 */
-	public function getMail() {
-		return $this->_mail;
-	}
-
-	/**
-	 * @access public
-	 * @param String aMail
-	 * @return void
-	 * @ParamType aMail String
-	 * @ReturnType void
-	 */
-	public function setMail(&$aMail) {
-		$this->_mail = $aMail;
+	public function setNachname(&$nachname) {
+		$this->_nachname = $nachname;
 	}
 
 	/**
@@ -149,8 +105,28 @@ class Teilnehmer {
 	 * @ParamType aGeburtsdatum Date
 	 * @ReturnType void
 	 */
-	public function setGeburtsdatum(&$aGeburtsdatum) {
-		$this->_geburtsdatum = $aGeburtsdatum;
+	public function setGeburtsdatum(&$geburtsdatum) {
+		$this->_geburtsdatum = $geburtsdatum;
+	}
+        
+        /**
+	 * @access public
+	 * @return int
+	 * @ReturnType int
+	 */
+	public function getReise() {
+		return $this->_reise_id;
+	}
+
+	/**
+	 * @access public
+	 * @param int $reise_id
+	 * @return void
+	 * @ParamType $reise_id int
+	 * @ReturnType void
+	 */
+	public function setReise($reise_id) {
+		$this->_reise_id = $reise_id;
 	}
 }
 ?>

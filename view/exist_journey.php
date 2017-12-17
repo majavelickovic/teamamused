@@ -1,16 +1,13 @@
 <?php
 
-use database\Database;
+use service\Service;
 
 /*
- * View, um eine besthende Reise zu suchen
+ * View, um eine besthende Rechnung zu suchen
+ * @author Sandra Bodack
  */
 ?>
 
-<!DOCTYPE html>
-<!--
-Diese Seite stellt die Reise-Seite dar.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -21,7 +18,7 @@ Diese Seite stellt die Reise-Seite dar.
             function refreshTable() {
                 document.getElementById("searchForm").submit();
             }
-            //Bild zum Rechnung löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Rechnung gelöscht und die Ansicht aktualisiert
+            //Bild zum Reise löschen wurde angeklickt, wenn der Benutzer bestätigt, wird die Reise gelöscht und die Ansicht aktualisiert
             function deleteJourney(reise_id) {
                 if (confirm("Wollen Sie die Reise wirklich löschen?")) {
                     var req = new XMLHttpRequest();
@@ -35,7 +32,7 @@ Diese Seite stellt die Reise-Seite dar.
                     }
                     req.send(null);
                 } else {
-                    //nichts tun, wenn der Benutzer die Rechnung nicht löschen möchte
+                    //nichts tun, wenn der Benutzer die Reise nicht löschen möchte
                 }
             }
         </script>
@@ -49,7 +46,7 @@ Diese Seite stellt die Reise-Seite dar.
                         <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/rechnung" ?>">Rechnung</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/teilnehmer" ?>">Teilnehmer</a></li>
                         <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/logout" ?>">Logout</a></li>
-                        </ul>
+                    </ul>
                 </div>
                 <div id="blockleft">
                     <table>
@@ -57,45 +54,29 @@ Diese Seite stellt die Reise-Seite dar.
                             <td><img src="../design/pictures/search.png"></td><td>bestehende Reise anzeigen</td>
                         </tr>
                     </table>
-                    <table>
-                        <tr>
-                            <td>Reise-ID</td>
-                            <td><input type="text" name="reise_id" size="40px" /></td>
-                        </tr>
-                        <tr>
-                            <td>Reisetitel</td>
-                            <td><input type="text" name="beschreibung" size="40px" /></td>
-                        </tr>
-                        <tr>
-                            <td>Reiseleiter</td>
-                            <td>
-                                <select id="dropdown" name="reiseleiter">
-                                    <option value="">Maja</option>
-                                    <option value="">Sandra</option>
-                                    <option value="">Michelle</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Datum von</td>
-                            <td><input type="text" name="datum_start" value="" size="40px" /></td>
-                        </tr>
-                        <tr>
-                            <td>Datum bis</td>
-                            <td><input type="text" name="datum_ende" value="" size="40px" /></td>
-                        </tr>
-                        <tr>
-                            <td>Preis</td>
-                            <td><input type="range" id="preis" min="0" max="1000" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <td>Startort</td>
-                            <td><input type="text" name="startort" value="" size="40px" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
-                        </tr>
-                    </table>
+                    <form id="searchForm" action="<?php echo $GLOBALS["ROOT_URL"]; ?>/reise/bestehend" method="POST">
+                        <table>
+                            <tr>
+                                <td>Reise-ID</td>
+                                <td><input type="text" name="reise_id" style="width:296px;" value="<?php echo $_POST['reise_id']?>"/></td>
+                            </tr>
+                            <tr>
+                                <td>Reisetitel</td>
+                                <td><input type="text" name="titel" style="width:296px;" value="<?php echo $_POST['titel'] ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td>Preis</td>
+                                <td><input type="text" name="preis" style="width:296px;" value="<?php echo $_POST['preis'] ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td>Startort</td>
+                                <td><input type="text" name="startort" style="width:296px;" value="<?php echo $_POST['startort'] ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
                 <div id="blockright">
                     <table id="reiseTable">

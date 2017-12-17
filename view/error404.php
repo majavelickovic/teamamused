@@ -5,7 +5,7 @@ Diese Seite stellt die 404-Error-Seite dar.
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../design/styles.css">
+        <link rel="stylesheet" href="./design/styles.css">
         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
         <title>Login</title>
     </head>
