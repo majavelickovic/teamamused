@@ -113,10 +113,10 @@ if($rg->getReise() == ""){
                             <tr>
                                 <td>Dokument</td>
                                 <td>
-                                    <input id="FileInput" type="text" name="dokument" value="<?php echo $rg->getDokument();?>" style="width:300px;" disabled/>
+                                    <input id="dokument" type="text" name="dokument" value="<?php echo $rg->getDokument();?>" style="width:300px;" disabled/>
                                 </td>
                                 <td>
-                                    <a href="#"><img src="../design/pictures/edit.png" onclick="document.getElementById('FileInput').type='file';document.getElementById('FileInput').disabled=false;document.getElementByID('FileInput').name = 'dokument';"></a>
+                                    <a href="#"><img src="../design/pictures/edit.png" onclick="document.getElementById('dokument').type='file';document.getElementById('dokument').disabled=false;"></a>
                                     <a href="#"><img src="../design/pictures/search.png" onclick="window.open('/showSingleCalcPDF?rg_id=<?php echo $_GET['id'];?>', 'Anzeige PDF')"></a>
                                 </td>
                             </tr>
