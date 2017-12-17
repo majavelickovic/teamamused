@@ -115,7 +115,7 @@ if($reise->getReise_id() == ""){
                         <table>
                             <tr>
                                 <td>Rechnungen</td>
-                                <td><textarea id="reise_rechnung" name="reise_rechnun" rows="5" cols="35" disabled><?php echo $reise->getRechnungen(); ?></textarea></td>
+                                <td><textarea id="reise_rechnung" name="reise_rechnung" rows="5" cols="35" disabled><?php echo $reise->getRechnungen(); ?></textarea></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise_rechnung").disabled = false'></a></td>
                             </tr>
                             <tr>
