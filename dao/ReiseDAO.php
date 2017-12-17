@@ -122,8 +122,8 @@ class ReiseDAO {
         }
     }
     
-        /**
-     * Liest ein Reise-Objekt aus der Tabelle "reise
+    /**
+     * Liest die Rechnungen für eine Reise und gibt diese aus in der Reiseansicht
      */
     public function readRechnungen($_reise_id) {
         $pdo = Database::connect();
