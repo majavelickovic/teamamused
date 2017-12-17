@@ -1,5 +1,5 @@
 <?php
-require_once(realpath(dirname(__FILE__)) . '/../domain/Reise.php');
+namespace domain;
 
 /**
  * Diese Klasse stellt Reiseort-Entitäten dar
@@ -37,8 +37,8 @@ class Ort {
 	 * @ParamType aOrt_id int
 	 * @ReturnType void
 	 */
-	public function setOrt_id(&$aOrt_id) {
-		$this->_ort_id = $aOrt_id;
+	public function setOrt_id(&$ort_id) {
+		$this->_ort_id = $ort_id;
 	}
 
 	/**
@@ -57,8 +57,8 @@ class Ort {
 	 * @ParamType aOrt_name String
 	 * @ReturnType void
 	 */
-	public function setOrt_name(&$aOrt_name) {
-		$this->_ort_name = $aOrt_name;
+	public function setOrt_name(&$ort_name) {
+		$this->_ort_name = $ort_name;
 	}
 }
 ?>
