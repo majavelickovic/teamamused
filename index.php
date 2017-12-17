@@ -216,15 +216,17 @@
                 if($_FILES["dokument"]["size"] > 2097152){
                     ?>
                     <script type="text/javascript">
-                        alert("PDF-Anhang ist zu gross, maximale Gr&oouml;sse von 2MB erlaubt. Rechnung konnte nicht gespeichert werden.");
+                        alert("PDF-Anhang ist zu gross, maximale Grösse von 2MB erlaubt. Rechnung konnte nicht gespeichert werden.");
                     </script>
                     <?php
+                        controller\RechnungController::invoiceAddView();
                 }elseif($_FILES["dokument"]["type"] != "application/pdf"){
                     ?>
                     <script type="text/javascript">
-                        alert("Nur PDF ist als Anhang erlaubt. Bitte Format vom Rechnungsanhang &auuml;ndern. Rechnung konnte nicht gespeichert werden.");
+                        alert("Nur PDF ist als Anhang erlaubt. Bitte Format vom Rechnungsanhang ändern. Rechnung konnte nicht gespeichert werden.");
                     </script>
                     <?php
+                        controller\RechnungController::invoiceAddView();
                 }else{
                     controller\RechnungController::invoiceAddView();
                     $returnrg = controller\RechnungController::newInvoice();
