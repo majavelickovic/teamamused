@@ -36,6 +36,7 @@ table {
     position: relative;
     float: left;
     width: 800px;
+    height: 100%;
     margin: 15px 0px 15px 0px;
 }
 
@@ -43,6 +44,7 @@ table {
     position: relative;
     float: right;
     width: 500px;
+    height: 100%;
     margin: 15px 0px 15px 0px;
 }
 
