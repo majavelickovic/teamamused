@@ -10,7 +10,7 @@
         require_once("config/Autoloader.php");
 
         use router\Router;
-        use controller\AuthentifizController;
+        use controller\LoginController;
 
         /*
          * Startet eine neue Session - muss auf nachfolgenden Seiten nicht implementiert werden,
@@ -22,7 +22,7 @@
          * Wenn die Session-Variable login noch nicht gesetzt wurde, wird der User auf die Login-Seite umgeleitet
          */
         $authFunction = function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 return true;
             } else {
                 Router::redirect("/login");
@@ -87,8 +87,8 @@
          * @author Michelle Widmer
          */
         Router::route("POST", "/login", function () {
-            AuthentifizController::login();
-            if (AuthentifizController::authenticate()) {
+            LoginController::login();
+            if (LoginController::authenticate()) {
                 controller\ReiseController::journeyChoiceView();
             } else {
                 controller\ErrorController::error403View();
@@ -108,12 +108,12 @@
          * @author Michelle Widmer
          */
         Router::route("GET", "/logout", function() {
-            AuthentifizController::logout();
+            LoginController::logout();
             controller\LoginController::loginView();
         });
 
         Router::route("GET", "/reise", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\ReiseController::journeyChoiceView();
             } else {
                 controller\ErrorController::error403View();
@@ -121,7 +121,7 @@
         });
 
         Router::route("GET", "/reise/neu", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\ReiseController::journeyAddView();
             } else {
                 controller\ErrorController::error403View();
@@ -129,7 +129,7 @@
         });
 
         Router::route("POST", "/reise/neu", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\ReiseController::journeyAddView();
                 $returnreise = controller\ReiseController::newJourney();
                 if ($returnreise != false) {
@@ -151,7 +151,7 @@
         });
 
         Router::route("GET", "/reise/bestehend", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\ReiseController::journeyShowView();
             } else {
                 controller\ErrorController::error403View();
@@ -159,7 +159,7 @@
         });
 
         Router::route("POST", "/reise/bestehend", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\ReiseController::journeyShowView();
             } else {
                 controller\ErrorController::error403View();
@@ -167,7 +167,7 @@
         });
 
         Router::route("GET", "/reise/anzeige", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\ReiseController::journeyShowView();
             } else {
                 controller\ErrorController::error403View();
@@ -175,7 +175,7 @@
         });
 
         Router::route("POST", "/reise/anzeige", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\ReiseController::updateJourney();
                 controller\ReiseController::journeyShowView();
             } else {
@@ -188,7 +188,7 @@
          * @author Maja Velickovic
          */
         Router::route("GET", "/rechnung/neu", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\RechnungController::invoiceAddView();
             } else {
                 controller\ErrorController::error403View();
@@ -200,7 +200,7 @@
          * @author Maja Velickovic
          */
         Router::route("POST", "/rechnung/neu", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\RechnungController::invoiceAddView();
                 $returnrg = controller\RechnungController::newInvoice();
                 if ($returnrg != false) {
@@ -226,7 +226,7 @@
          * @author Maja Velickovic
          */
         Router::route("GET", "/rechnung/bestehend", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\RechnungController::invoiceShowView();
             } else {
                 controller\ErrorController::error403View();
@@ -238,7 +238,7 @@
          * @author Maja Velickovic
          */
         Router::route("POST", "/rechnung/bestehend", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\RechnungController::invoiceShowView();
             } else {
                 controller\ErrorController::error403View();
@@ -250,7 +250,7 @@
          * @author Maja Velickovic
          */
         Router::route("GET", "/rechnung/anzeige", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\RechnungController::invoiceShowSingleView();
             } else {
                 controller\ErrorController::error403View();
@@ -262,7 +262,7 @@
          * @author Maja Velickovic
          */
         Router::route("POST", "/rechnung/anzeige", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\RechnungController::updateInvoice();
                 controller\RechnungController::invoiceShowSingleView();
             } else {
@@ -275,7 +275,7 @@
          * @author Maja Velickovic
          */
         Router::route("GET", "/rechnung", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\RechnungController::invoiceChoiceView();
             } else {
                 controller\ErrorController::error403View();
@@ -287,7 +287,7 @@
          * @author Maja Velickovic
          */
         Router::route("POST", "/rechnung/schlussabrechnung", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\PDFController::pdfCalculationView();
             } else {
                 controller\ErrorController::error403View();
@@ -299,7 +299,7 @@
          * @author Maja Velickovic
          */
         Router::route("GET", "/rechnung/schlussabrechnung", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\RechnungController::finalBillingView();
             } else {
                 controller\ErrorController::error403View();
@@ -311,7 +311,7 @@
          * @author Maja Velickovic
          */
         Router::route("GET", "/showSingleCalcPDF", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\PDFController::showSingleCalcPDF();
             } else {
                 controller\ErrorController::error403View();
@@ -328,7 +328,7 @@
          * @author Maja Velickovic
          */
         Router::route("GET", "/deleteInvoice", function () {
-            if (AuthentifizController::authenticate() && $_GET['del_rg_id'] > 0) {
+            if (LoginController::authenticate() && $_GET['del_rg_id'] > 0) {
                 controller\RechnungController::deleteInvoice($_GET['del_rg_id']);
             } else {
                 controller\ErrorController::error403View();
@@ -337,7 +337,7 @@
         });
 
         Router::route("GET", "/teilnehmer", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantChoiceView();
             } else {
                 controller\ErrorController::error403View();
@@ -345,7 +345,7 @@
         });
 
         Router::route("GET", "/teilnehmer/neu", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantAddView();
             } else {
                 controller\ErrorController::error403View();
@@ -353,7 +353,7 @@
         });
 
         Router::route("POST", "/teilnehmer/neu", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantAddView();
                 $returnteilnehmer = controller\TeilnehmerController::newParticipant();
                 if ($returnteilnehmer != false) {
@@ -375,7 +375,7 @@
         });
 
         Router::route("GET", "/teilnehmer/bestehend", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantShowView();
             } else {
                 controller\ErrorController::error403View();
@@ -383,7 +383,7 @@
         });
 
         Router::route("POST", "/teilnehmer/bestehend", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantShowView();
             } else {
                 controller\ErrorController::error403View();
@@ -391,7 +391,7 @@
         });
 
         Router::route("GET", "/teilnehmer/anzeige", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantShowView();
             } else {
                 controller\ErrorController::error403View();
@@ -399,7 +399,7 @@
         });
 
         Router::route("POST", "/teilnehmer/anzeige", function () {
-            if (AuthentifizController::authenticate()) {
+            if (LoginController::authenticate()) {
                 controller\TeilnehmerController::updateParticipant();
                 controller\TeilnehmerController::participantShowView();
             } else {
