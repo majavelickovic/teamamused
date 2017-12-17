@@ -44,13 +44,7 @@ class RechnungDAO {
 	 */
 	public function read($_reise, $_rg_id, $_rgart) {
             $pdo = Database::connect();
-            if($_reise == null && $_rg_id == null && $_rgart == null){
-                $statement = $pdo->prepare(
-                "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
-                   FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
-                   ORDER BY rechnung.rg_id ASC;");
-                $statement->execute();
-            }elseif($_reise == null && $_rg_id == null && $_rgart != null){
+            if($_reise == null && $_rg_id == null && $_rgart != null){
                 $statement = $pdo->prepare(
                 "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
                    FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id

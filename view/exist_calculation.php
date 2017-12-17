@@ -62,7 +62,7 @@ use service\Service;
                                     <select id="dropdown" name="reise" style="width:300px;">
                                         <?php
                                             if($_POST['reise'] == ""){
-                                                echo "<option selected='selected' value=''></option>";
+                                                echo "<option selected='selected' value='null'></option>";
                                             }else{
                                                 echo "<option value='null'></option>";
                                             }
@@ -88,7 +88,7 @@ use service\Service;
                                     <select id="dropdown" name="rgart" style="width:300px;">
                                         <?php
                                             if($_POST['rgart'] == ""){
-                                                echo "<option selected='selected' value=''></option>";
+                                                echo "<option selected='selected' value='null'></option>";
                                             }else{
                                                 echo "<option value='null'></option>";
                                             }
@@ -125,7 +125,7 @@ use service\Service;
                             if($rgtablecontent != null){
                                 echo $rgtablecontent;
                             }else{
-                                echo "";
+                                echo "Bitte mindestens einen Filter selektieren, um zu suchen.";
                             }
                         ?>
                     </table>
