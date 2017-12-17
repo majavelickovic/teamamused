@@ -62,7 +62,7 @@ use service\Service;
                         </tr>
                         <tr>
                             <td>Kosten</td>
-                            <td><input type="text" name="kosten" style="width:296px;"/></td>
+                            <td><input type="number" name="kosten" style="width:296px;"/></td>
                         </tr>
                         <tr>
                             <td>Beschreibung</td>

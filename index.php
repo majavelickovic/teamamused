@@ -213,21 +213,36 @@
          */
         Router::route("POST", "/rechnung/neu", function () {
             if (AuthentifizController::authenticate()) {
-                controller\RechnungController::invoiceAddView();
-                $returnrg = controller\RechnungController::newInvoice();
-                if ($returnrg != false) {
+                if($_FILES["dokument"]["size"] > 2097152){
                     ?>
                     <script type="text/javascript">
-                        alert("Rechnung <?php echo $returnrg->getRg_id() ?> wurde erstellt.");
+                        alert("PDF-Anhang ist zu gross, maximale Gr&oouml;sse von 2MB erlaubt. Rechnung konnte nicht gespeichert werden.");
                     </script>
                     <?php
-                } else {
+                }elseif($_FILES["dokument"]["type"] != "application/pdf"){
                     ?>
                     <script type="text/javascript">
-                        alert("FEHLER - Rechnung konnte nicht erstellt werden. Bitte versuchen Sie es erneut.");
+                        alert("Nur PDF ist als Anhang erlaubt. Bitte Format vom Rechnungsanhang &auuml;ndern. Rechnung konnte nicht gespeichert werden.");
                     </script>
                     <?php
+                }else{
+                    controller\RechnungController::invoiceAddView();
+                    $returnrg = controller\RechnungController::newInvoice();
+                    if ($returnrg != false) {
+                        ?>
+                        <script type="text/javascript">
+                            alert("Rechnung <?php echo $returnrg->getRg_id() ?> wurde erstellt.");
+                        </script>
+                        <?php
+                    } else {
+                        ?>
+                        <script type="text/javascript">
+                            alert("FEHLER - Rechnung konnte nicht erstellt werden. Bitte versuchen Sie es erneut.");
+                        </script>
+                        <?php
+                    }
                 }
+ 
             } else {
                 controller\ErrorController::error403View();
             }
