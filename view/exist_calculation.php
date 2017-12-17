@@ -110,8 +110,8 @@ use service\Service;
                         </table>
                     </form>
                 </div>
-                <div id="blockright" overflow="scroll">
-                    <table id="rgTable">
+                <div id="blockright">
+                    <table id="rgTable" overflow="scroll">
                         <tr>
                             <th>Rechnungs-ID</th>
                             <th>Reise-ID</th>
