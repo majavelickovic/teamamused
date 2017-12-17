@@ -110,27 +110,25 @@ use service\Service;
                         </table>
                     </form>
                 </div>
-                <div id="blockright">
-                    <div overflow-y="auto">
-                        <table id="rgTable">
-                            <tr>
-                                <th>Rechnungs-ID</th>
-                                <th>Reise-ID</th>
-                                <th>Rechnungsart</th>
-                                <th>Kosten</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            <?php
-                            $rgtablecontent = controller\RechnungController::readInvoice();
-                            if ($rgtablecontent != null) {
-                                echo $rgtablecontent;
-                            } else {
-                                echo "<tr><td colspan='6'>Keine Resultate gefunden. Bitte mindestens einen Filter selektieren, um zu suchen.</td></tr>";
-                            }
-                            ?>
-                        </table>  
-                    </div>
+                <div id="blockright" overflow-y="auto">
+                    <table id="rgTable">
+                        <tr>
+                            <th>Rechnungs-ID</th>
+                            <th>Reise-ID</th>
+                            <th>Rechnungsart</th>
+                            <th>Kosten</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <?php
+                        $rgtablecontent = controller\RechnungController::readInvoice();
+                        if ($rgtablecontent != null) {
+                            echo $rgtablecontent;
+                        } else {
+                            echo "<tr><td colspan='6'>Keine Resultate gefunden. Bitte mindestens einen Filter selektieren, um zu suchen.</td></tr>";
+                        }
+                        ?>
+                    </table>  
                 </div>
             </div>
         </div>
