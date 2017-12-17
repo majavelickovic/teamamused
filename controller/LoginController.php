@@ -22,10 +22,10 @@ class LoginController
      * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen eines Mitarbeiters
      */
     public static function register(){
-        $benutzername = LoginController::testInput($_POST['benutzername']);
-        $password = LoginController::testInput($_POST['password1']);
-        $vorname = LoginController::testInput($_POST['vorname']);
-        $nachname = LoginController::testInput($_POST['nachname']);
+        $benutzername = LoginController::manipulateInput($_POST['benutzername']);
+        $password = LoginController::manipulateInput($_POST['password1']);
+        $vorname = LoginController::manipulateInput($_POST['vorname']);
+        $nachname = LoginController::manipulateInput($_POST['nachname']);
 
         $login = new Login(); // Objekt wird als Datenhaltung zur Validierug verwendet
         $login->setBenutzername($benutzername);
@@ -57,8 +57,8 @@ class LoginController
      * und der User nach dem Abgleich mit der DB verifiziert werden konnte
      */
     public static function login(){
-        $benutzername = LoginController::testInput($_POST['benutzername']);
-        $passwort = LoginController::testInput($_POST['password']);
+        $benutzername = LoginController::manipulateInput($_POST['benutzername']);
+        $passwort = LoginController::manipulateInput($_POST['password']);
         
         $login = new Login(); // Objekt wird als Datenhaltung zur Validierung verwendet
         $login->setBenutzername($benutzername);
@@ -113,7 +113,7 @@ class LoginController
     }
     
     // Überprüft übergebene Daten, um Cross-Site-Scripting zu verhindern
-    public static function testInput($data){
+    public static function manipulateInput($data){
         $data = trim($data); // entfernt Whitespace
         $data = stripslashes($data); // entfernt Anführungszeichen
         $data = htmlspecialchars($data); // entfernt html-Tags
