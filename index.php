@@ -220,7 +220,7 @@
                     </script>
                     <?php
                         controller\RechnungController::invoiceAddView();
-                }elseif($_FILES["dokument"]["type"] != "application/pdf"){
+                }elseif(substr($_FILES["dokument"]["name"], strlen($_FILES["dokument"]["name"])-4, strlen($_FILES["dokument"]["name"])) != ".pdf"){
                     ?>
                     <script type="text/javascript">
                         alert("Nur PDF ist als Anhang erlaubt. Bitte Format vom Rechnungsanhang ändern. Rechnung konnte nicht gespeichert werden.");
