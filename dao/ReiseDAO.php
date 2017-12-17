@@ -125,15 +125,16 @@ class ReiseDAO {
     /**
      * Liest die Rechnungen für eine Reise und gibt diese aus in der Reiseansicht
      */
-    public function readRechnungen($_reise_id) {
+    public function readRechnungen($reise_id) {
         $pdo = Database::connect();
         if ($_reise_id != null) {
             $statement = $pdo->prepare(
-                    "SELECT rg_id, rechnungsart.beschreibung, kosten FROM public.rechnung
-                        INNER JOIN rechnungsart on rechnung.rechnungsart = rechnungsart.rgart_id
+                    "rechnung.rg_id, rechnungsart.beschreibung, kosten FROM public.rechnung
+                        INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
+                        INNER JOIN reise_rechnung ON rechnung.rg_id = reise_rechnung.rg_id
                          WHERE reise_id = :reise_id 
                          ORDER BY reise_id ASC;");
-            $statement->bindValue(':reise_id', $_reise_id);
+            $statement->bindValue(':reise_id', $reise_id);
             $statement->execute();
         }else {
             //nichts tun
