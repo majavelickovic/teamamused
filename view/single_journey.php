@@ -125,8 +125,6 @@ if($reise->getReise_id() == ""){
                             </tr>
                             <tr><td colspan="2"></td></tr>
                             <tr><td colspan="2"></td></tr>
-                            <tr><td colspan="2"></td></tr>
-                            <tr><td colspan="2"></td></tr>
                             <tr>
                                 <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printJourney()" />  <input type="button" class="button" value="zur&uuml;ck" onclick=""/></td>
                             </tr>
