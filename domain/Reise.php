@@ -195,7 +195,25 @@ class Reise {
 		$this->_max_teilnehmer = $max_teilnehmer;
 	}
         
-        
+        /**
+	 * @access public
+	 * @return int
+	 * @ReturnType int
+	 */
+	public function getOrt_id() {
+		return $this->_ort_id;
+	}
+
+	/**
+	 * @access public
+	 * @param int aReise_id
+	 * @return void
+	 * @ParamType aReise_id int
+	 * @ReturnType void
+	 */
+	public function setOrt_id(&$ort_id) {
+		$this->_ort_id = $ort_id;
+	}
         
 }
 ?>

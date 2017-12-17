@@ -10,7 +10,7 @@ if($_GET['id'] > 0){
     $reise_id = $_POST['reise_id'];
 }    
 $reiseDAO = new dao\ReiseDAO;
-$reise = new Teilnehmer();
+$reise = new Reise();
 $reise = Service::getInstance()->readSingleJourney($reise_id);
 if($reise->getReise() == ""){
     ErrorController::error404View();
@@ -128,7 +128,7 @@ if($reise->getReise() == ""){
                             <tr><td colspan="2"></td></tr>
                             <tr><td colspan="2"></td></tr>
                             <tr>
-                                <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printJourney()" /></td>
+                                <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printJourney()" />  <input type="button" class="button" value="zur&uuml;ck" onclick=""/></td>
                             </tr>
                             <tr>
                                 <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalJourney()"/></td>
