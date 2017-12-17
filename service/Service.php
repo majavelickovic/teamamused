@@ -364,6 +364,15 @@ class Service {
         return $rechnungsDAO->getInvoiceTypes();
     }
 
+        /**
+     * Selektabfrage, um alle Standorte auszulesen
+     * @author Sandra Bodack
+     */
+    public function getPlaces() {
+        $reiseDAO = new \dao\ReiseDAO();
+        return $reiseDAO->getPlaces();
+    }
+    
     /**
      * Selektabfrage, um alle Reisetitel auszulesen
      * @author Maja Velickovic

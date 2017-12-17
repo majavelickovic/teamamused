@@ -272,6 +272,18 @@ class ReiseDAO {
         return $reisename;
     }
 
+     /**
+     * 
+     * @return Array mit allen Standorten
+     * @author Sandra Bodack
+     */
+    public function getPlaces() {
+        $pdo = Database::connect();
+        $statement = $pdo->query("SELECT standorte FROM reise");
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+    
     /**
      * 
      * @return Array mit allen Reisetiteln
