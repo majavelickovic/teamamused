@@ -39,8 +39,8 @@ use service\Service;
                                     <select id="dropdown" name="reise" style="width:300px;">
                                         <?php
                                         //Abfrage für Reisetitel
-                                        foreach(Service::getInstance()->getJourneyTitles() as $key => $invoiceType) {
-                                            echo "<option value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
+                                        foreach(Service::getInstance()->getJourneyTitles() as $key => $journeyTitle) {
+                                            echo "<option value='" . $journeyTitle['reise_id'] . "'>" . $journeyTitle['titel'] . ", " . $journeyTitle['reise_id'] . "</option>";
                                         }
                                         ?>
                                     </select>
@@ -62,7 +62,7 @@ use service\Service;
                         </tr>
                         <tr>
                             <td>Kosten</td>
-                            <td><input type="number" name="kosten" style="width:296px;"/></td>
+                            <td><input type="number" name="kosten" style="width:296px;" min="0" max="999999"/></td>
                         </tr>
                         <tr>
                             <td>Beschreibung</td>

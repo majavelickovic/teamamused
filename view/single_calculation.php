@@ -69,11 +69,11 @@ if($rg->getReise() == ""){
                                     <select id="reise" name="reise" class="dropdown" style="width:300px;" disabled>
                                         <?php
                                         //Abfrage für Reisetitel
-                                        foreach(Service::getInstance()->getJourneyTitles() as $key => $invoiceType) {
-                                            if($invoiceType['reise_id'] == $rg->getReise()){
-                                                echo "<option selected='selected' value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
+                                        foreach(Service::getInstance()->getJourneyTitles() as $key => $journeyTitle) {
+                                            if($journeyTitle['reise_id'] == $rg->getReise()){
+                                                echo "<option selected='selected' value='" . $journeyTitle['reise_id'] . "'>" . $journeyTitle['titel'] . ", " . $journeyTitle['reise_id'] . "</option>";
                                             }else{
-                                                echo "<option value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
+                                                echo "<option value='" . $journeyTitle['reise_id'] . "'>" . $journeyTitle['titel'] . ", " . $journeyTitle['reise_id'] . "</option>";
                                             }   
                                         }
                                         ?>
@@ -103,7 +103,7 @@ if($rg->getReise() == ""){
                             <tr>
                                 <td>Kosten</td>
                                 <td><input type="text" id="kosten" name="kosten" style="width:296px;" value="<?php echo $rg->getKosten();?>" disabled/></td>
-                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("kosten").disabled=false'></a></td>
+                                <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("kosten").disabled=false; document.getElementById("kosten").type="number"; document.getElementById("kosten").min="0"; document.getElementById("kosten").max="999999";'></a></td>
                             </tr>
                             <tr>
                                 <td>Beschreibung</td>

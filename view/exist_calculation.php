@@ -61,12 +61,17 @@ use service\Service;
                                 <td>
                                     <select id="dropdown" name="reise" style="width:300px;">
                                         <?php
+                                            if($_POST['reise'] == ""){
+                                                echo "<option selected='selected' value=''></option>";
+                                            }else{
+                                                echo "<option value='null'></option>";
+                                            }
                                             //Abfrage für Reisetitel
-                                            foreach(Service::getInstance()->getJourneyTitles() as $key => $invoiceType) {
-                                                if($_POST['reise'] == $invoiceType['reise_id']){
-                                                    echo "<option selected='selected' value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
+                                            foreach(Service::getInstance()->getJourneyTitles() as $key => $journeyTitle) {
+                                                if($_POST['reise'] == $journeyTitle['reise_id']){
+                                                    echo "<option selected='selected' value='" . $journeyTitle['reise_id'] . "'>" . $journeyTitle['titel'] . ", " . $journeyTitle['reise_id'] . "</option>";
                                                 }else{
-                                                    echo "<option value='" . $invoiceType['reise_id'] . "'>" . $invoiceType['titel'] . ", " . $invoiceType['reise_id'] . "</option>";
+                                                    echo "<option value='" . $journeyTitle['reise_id'] . "'>" . $journeyTitle['titel'] . ", " . $journeyTitle['reise_id'] . "</option>";
                                                 }
                                             }
                                         ?>
@@ -82,6 +87,11 @@ use service\Service;
                                 <td>
                                     <select id="dropdown" name="rgart" style="width:300px;">
                                         <?php
+                                            if($_POST['rgart'] == ""){
+                                                echo "<option selected='selected' value=''></option>";
+                                            }else{
+                                                echo "<option value='null'></option>";
+                                            }
                                             // Abfrage für Rechnungsarten
                                             foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
                                                 if($_POST['rgart'] == $invoiceType['rgart_id']){
