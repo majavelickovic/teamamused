@@ -214,7 +214,7 @@
         Router::route("POST", "/rechnung/neu", function () {
             if (LoginController::authenticate()) {
                 // Datei darf nicht grösser als 2MB sein
-                if($_FILES["dokument"]["size"] > 2048){
+                if($_FILES["dokument"]["size"] > 2097152){
                     ?>
                     <script type="text/javascript">
                         alert("PDF-Anhang ist zu gross, maximale Grösse von 2MB erlaubt. Rechnung konnte nicht gespeichert werden.");
