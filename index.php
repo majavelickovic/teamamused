@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="design/styles.css">
+        <link rel="stylesheet" href="./design/styles.css">
         <title>Verwaltungstool Reisen</title>
     </head>
     <body>
@@ -12,7 +12,7 @@
         use router\Router;
         use controller\LoginController;
 
-        /*
+/*
          * Startet eine neue Session - muss auf nachfolgenden Seiten nicht implementiert werden,
          * da die Kommunikation über das Index-File läuft
          */
@@ -44,7 +44,7 @@
         Router::route("GET", "/error404", function () {
             controller\ErrorController::error404View();
         });
-        
+
         /*
          * Dem User wird die 403-Fehlerseite angezeigt
          * @author Michelle Widmer
@@ -53,7 +53,7 @@
             controller\ErrorController::error403View();
         });
 
-         /*
+        /*
          * Dem User wird die Registrierungsseite angezeigt
          * @author Michelle Widmer
          */
@@ -72,7 +72,7 @@
                 controller\LoginController::registerView();
             }
         });
-        
+
         /*
          * Dem User wird die Loginseite angezeigt
          * @author Michelle Widmer
@@ -103,7 +103,7 @@
             Router::redirect("/login");
         });
 
-         /*
+        /*
          * Beim Logout wird der User auf die Loginseite weitergeleitet
          * @author Michelle Widmer
          */
@@ -167,8 +167,8 @@
         });
 
         Router::route("GET", "/reise/anzeige", function () {
-            if (LoginController::authenticate()) {
-                controller\ReiseController::journeyShowView();
+            if (AuthentifizController::authenticate()) {
+                controller\ReiseController::journeyShowSingleView();
             } else {
                 controller\ErrorController::error403View();
             }
@@ -177,7 +177,19 @@
         Router::route("POST", "/reise/anzeige", function () {
             if (LoginController::authenticate()) {
                 controller\ReiseController::updateJourney();
-                controller\ReiseController::journeyShowView();
+                controller\ReiseController::journeyShowSingleView();
+            } else {
+                controller\ErrorController::error403View();
+            }
+        });
+
+        /**
+         * eine bestimmte Reise wird gelöscht
+         * @author Sandra Bodack
+         */
+        Router::route("GET", "/deleteJourney", function () {
+            if (AuthentifizController::authenticate() && $_GET['del_reise_id'] > 0) {
+                controller\ReiseController::deleteJourney($_GET['del_reise_id']);
             } else {
                 controller\ErrorController::error403View();
             }
@@ -201,21 +213,40 @@
          */
         Router::route("POST", "/rechnung/neu", function () {
             if (LoginController::authenticate()) {
-                controller\RechnungController::invoiceAddView();
-                $returnrg = controller\RechnungController::newInvoice();
-                if ($returnrg != false) {
+                // Datei darf nicht grösser als 2MB sein
+                if($_FILES["dokument"]["size"] > 2048){
                     ?>
                     <script type="text/javascript">
-                        alert("Rechnung <?php echo $returnrg->getRg_id() ?> wurde erstellt.");
+                        alert("PDF-Anhang ist zu gross, maximale Grösse von 2MB erlaubt. Rechnung konnte nicht gespeichert werden.");
                     </script>
                     <?php
-                } else {
+                        controller\RechnungController::invoiceAddView();
+                //Datei muss mit PDF enden oder darf auch leer sein
+                }elseif((substr($_FILES["dokument"]["name"], strlen($_FILES["dokument"]["name"])-4, strlen($_FILES["dokument"]["name"])) != ".pdf") && $_FILES["dokument"]["name"] != ""){
                     ?>
                     <script type="text/javascript">
-                        alert("FEHLER - Rechnung konnte nicht erstellt werden. Bitte versuchen Sie es erneut.");
+                        alert("Nur PDF ist als Anhang erlaubt. Bitte Format vom Rechnungsanhang ändern. Rechnung konnte nicht gespeichert werden.");
                     </script>
                     <?php
+                        controller\RechnungController::invoiceAddView();
+                }else{
+                    controller\RechnungController::invoiceAddView();
+                    $returnrg = controller\RechnungController::newInvoice();
+                    if ($returnrg != false) {
+                        ?>
+                        <script type="text/javascript">
+                            alert("Rechnung <?php echo $returnrg->getRg_id() ?> wurde erstellt.");
+                        </script>
+                        <?php
+                    } else {
+                        ?>
+                        <script type="text/javascript">
+                            alert("FEHLER - Rechnung konnte nicht erstellt werden. Bitte versuchen Sie es erneut.");
+                        </script>
+                        <?php
+                    }
                 }
+ 
             } else {
                 controller\ErrorController::error403View();
             }
@@ -305,7 +336,7 @@
                 controller\ErrorController::error403View();
             }
         });
-        
+
         /**
          * PDF von angehängter Rechnung wird angezeigt
          * @author Maja Velickovic
@@ -333,7 +364,6 @@
             } else {
                 controller\ErrorController::error403View();
             }
-            
         });
 
         Router::route("GET", "/teilnehmer", function () {
@@ -365,7 +395,7 @@
                 } else {
                     ?>
                     <script type="text/javascript">
-                        alert("FEHLER - Die Reise konnte nicht erstellt werden. Bitte versuchen Sie es erneut.");
+                        alert("FEHLER - Der Teilnehmer konnte nicht erstellt werden. Bitte versuchen Sie es erneut.");
                     </script>
                     <?php
                 }
@@ -392,7 +422,7 @@
 
         Router::route("GET", "/teilnehmer/anzeige", function () {
             if (LoginController::authenticate()) {
-                controller\TeilnehmerController::participantShowView();
+                controller\TeilnehmerController::participantShowSingleView();
             } else {
                 controller\ErrorController::error403View();
             }
@@ -401,12 +431,19 @@
         Router::route("POST", "/teilnehmer/anzeige", function () {
             if (LoginController::authenticate()) {
                 controller\TeilnehmerController::updateParticipant();
-                controller\TeilnehmerController::participantShowView();
+                controller\TeilnehmerController::participantShowSingleView();
             } else {
                 controller\ErrorController::error403View();
             }
         });
 
+        Router::route("GET", "/deleteParticipant", function () {
+            if (AuthentifizController::authenticate() && $_GET['del_teilnehmer_id'] > 0) {
+                controller\TeilnehmerController::deleteParticipant($_GET['del_teilnehmer_id']);
+            } else {
+                controller\ErrorController::error403View();
+            }
+        });
 
         Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO'], $errorFunction);
         ?>
