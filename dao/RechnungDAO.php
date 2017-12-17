@@ -28,7 +28,7 @@ class RechnungDAO {
             $statement->bindValue(':kosten', $rechnung->getKosten());
             $statement->bindValue(':beschreibung', $rechnung->getBeschreibung());
             $statement->bindValue(':dokument', $rechnung->getDokument());
-            $statement->bindValue(':pdf_object', pg_escape_bytea($pdf_object));
+            $statement->bindValue(':pdf_object', pg_escape_bytea(file_get_contents($pdf_object)));
             $statement->execute();
     
             $statement2 = $pdo->prepare(
@@ -149,7 +149,7 @@ class RechnungDAO {
                 $statement6 = $pdo->prepare(
                     "UPDATE rechnung SET pdf_object = :pdf_object WHERE rg_id = :rg_id");
                 $statement6->bindValue(':rg_id', $rg_id);
-                $statement6->bindValue(':pdf_object', pg_escape_bytea($pdf_object));
+                $statement6->bindValue(':pdf_object', pg_escape_bytea(file_get_contents($pdf_object)));
                 $statement6->execute();
             }
           
