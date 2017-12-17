@@ -127,13 +127,13 @@ class ReiseDAO {
      */
     public function readRechnungen($reise_id) {
         $pdo = Database::connect();
-        if ($_reise_id != null) {
+        if ($reise_id != null) {
             $statement = $pdo->prepare(
                     "SELECT rechnung.rg_id, rechnungsart.beschreibung, kosten FROM public.rechnung
                         INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
                         INNER JOIN reise_rechnung ON rechnung.rg_id = reise_rechnung.rg_id
                          WHERE reise_id = :reise_id 
-                         ORDER BY reise_id ASC;");
+                         ORDER BY rechnung.rg_id ASC;");
             $statement->bindValue(':reise_id', $reise_id);
             $statement->execute();
         }else {

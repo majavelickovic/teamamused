@@ -76,7 +76,7 @@ if ($reise->getReise_id() == "") {
                                             ?>
                                         </select>
                                     </td>
-                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise").disabled = false'></a></td>
+                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("titel").disabled = false'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Beschreibung</td>
@@ -119,7 +119,7 @@ if ($reise->getReise_id() == "") {
                                             ?>
                                         </select>
                                     </td>
-                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("ort_name").disabled = false'></a></td>
+                                    <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("startort").disabled = false'></a></td>
                                 </tr>
                             </table>
                         </div>
