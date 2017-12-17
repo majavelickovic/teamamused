@@ -12,6 +12,7 @@ use view\view as View;
 use service\Service;
 use domain\Login;
 use validator\RegisterValidator;
+use validator\LoginValidator;
 
 class LoginController
 {
