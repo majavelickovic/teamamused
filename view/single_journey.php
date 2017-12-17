@@ -124,9 +124,9 @@ if ($reise->getReise_id() == "") {
                             </table>
                         </div>
                         <div id="blockright">
-                            <h2>Rechnungen</h2>
                             <table id="rechnungenTable">
                                 <tr>
+                                    <th>Rechnungen</th>
                                     <th>ID</th>
                                     <th>Beschreibung</th>
                                     <th>Kosten</th>
@@ -136,6 +136,22 @@ if ($reise->getReise_id() == "") {
                                 $rechnungentablecontent = controller\ReiseController::readRechnungen($reise_id);
                                 if ($rechnungentablecontent != null) {
                                     echo $rechnungentablecontent;
+                                } else {
+                                    echo "";
+                                }
+                                ?>
+                            </table>
+                            <table id="teilnehmerTable">
+                                <tr>
+                                    <th>Teilnehmer</th>
+                                    <th>Vorname</th>
+                                    <th>Nachname</th>
+                                    <th></th>
+                                </tr>
+                                <?php
+                                $teilnehmertablecontent = controller\ReiseController::readTeilnehmer($reise_id);
+                                if ($teilnehmertablecontent != null) {
+                                    echo $teilnehmertablecontent;
                                 } else {
                                     echo "";
                                 }

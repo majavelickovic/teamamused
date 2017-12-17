@@ -29,6 +29,11 @@ class ReiseController {
     public static function readRechnungen($reise_id) {
         return Service::getInstance()->readRechnungen($reise_id);
     }
+    
+    public static function readTeilnehmer($reise_id) {
+        return Service::getInstance()->readTeilnehmer($reise_id);
+    }
+
 
     public static function readSingleJourney() {
         return Service::getInstance()->readSingleJourney(

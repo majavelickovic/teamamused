@@ -143,10 +143,43 @@ class ReiseDAO {
             $tableText = "";
             while ($row = $statement->fetch()) {
                 $tableText .= "<tr>"
+                        . "<td></td>"
                         . "<td>" . $row["rg_id"] . "</td>"
                         . "<td>" . $row["beschreibung"] . "</td>"
                         . "<td>" . $row["kosten"] . "</td>"
                         . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . "><img src='../design/pictures/search.png'></a></td>"
+                        . "</tr>";
+            }
+            return $tableText;
+        } else {
+            return " ";
+        }
+    }
+    
+    /**
+     * Liest die Teilnehmer für eine Reise und gibt diese aus in der Reiseansicht
+     */
+    public function readTeilnehmer($reise_id) {
+        $pdo = Database::connect();
+        if ($reise_id != null) {
+            $statement = $pdo->prepare(
+                    "SELECT vorname, nachname FROM public.teilnehmer
+                        INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id = reise_teilnehmer.teilnehmer_id
+                         WHERE reise_id = :reise_id 
+                         ORDER BY teilnehmer.teilnehmer_id ASC;");
+            $statement->bindValue(':reise_id', $reise_id);
+            $statement->execute();
+        }else {
+            //nichts tun
+        }
+        if ($statement != null) {
+            $tableText = "";
+            while ($row = $statement->fetch()) {
+                $tableText .= "<tr>"
+                        . "<td></td>"
+                        . "<td>" . $row["vorname"] . "</td>"
+                        . "<td>" . $row["nachname"] . "</td>"
+                        . "<td><a href=" . $GLOBALS["ROOT URL"] . "/teilnehmer/anzeige?id=" . $row['teilnehmer_id'] . "><img src='../design/pictures/search.png'></a></td>"
                         . "</tr>";
             }
             return $tableText;
