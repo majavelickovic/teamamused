@@ -133,7 +133,7 @@ class ReiseDAO {
         $reise = new Reise();
 
         while ($row = $statement->fetch()) {
-            $reise->setReise($row['reise_id']);
+            $reise->setReise_id($row['reise_id']);
             $reise->setTitel($row['titel']);
             $reise->setTitel($row['beschreibung']);
             $reise->setTitel($row['datum_start']);
