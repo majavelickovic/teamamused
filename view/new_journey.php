@@ -64,7 +64,7 @@ use service\Service;
                                         <?php
                                         //Abfrage für Standorte
                                         foreach(Service::getInstance()->getPlaces() as $key => $standorte) {
-                                            echo "<option value='" . $standorte['ort_id'] . "'>" . $standorte['ort_name'] . "'</option>";
+                                            echo "<option value='" . $standorte['ort_id'] . "'>" . $standorte['ort_name'] . "</option>";
                                         }
                                         ?>
                                     </select>
