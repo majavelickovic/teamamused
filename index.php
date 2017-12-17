@@ -213,14 +213,16 @@
          */
         Router::route("POST", "/rechnung/neu", function () {
             if (AuthentifizController::authenticate()) {
-                if($_FILES["dokument"]["size"] > 2097152){
+                // Datei darf nicht grösser als 2MB sein
+                if($_FILES["dokument"]["size"] > 2048){
                     ?>
                     <script type="text/javascript">
                         alert("PDF-Anhang ist zu gross, maximale Grösse von 2MB erlaubt. Rechnung konnte nicht gespeichert werden.");
                     </script>
                     <?php
                         controller\RechnungController::invoiceAddView();
-                }elseif(substr($_FILES["dokument"]["name"], strlen($_FILES["dokument"]["name"])-4, strlen($_FILES["dokument"]["name"])) != ".pdf"){
+                //Datei muss mit PDF enden oder darf auch leer sein
+                }elseif((substr($_FILES["dokument"]["name"], strlen($_FILES["dokument"]["name"])-4, strlen($_FILES["dokument"]["name"])) != ".pdf") && $_FILES["dokument"]["name"] != ""){
                     ?>
                     <script type="text/javascript">
                         alert("Nur PDF ist als Anhang erlaubt. Bitte Format vom Rechnungsanhang ändern. Rechnung konnte nicht gespeichert werden.");
