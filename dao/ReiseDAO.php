@@ -48,6 +48,61 @@ class ReiseDAO {
                    ORDER BY reise_id ASC;");
             $statement->bindValue(':reise_id', $_reise_id);
             $statement->execute();
+        } elseif ($_reise_id != null && $_titel != null && $_preis == null && $_startort == null) {
+            $statement = $pdo->prepare(
+                    "SELECT reise_id, titel, preis, startort
+                   FROM reise
+                   WHERE reise_id = :reise_id and titel = :titel
+                   ORDER BY reise_id ASC;");
+            $statement->bindValue(':reise_id', $_reise_id);
+            $statement->bindValue(':titel', $_titel);
+            $statement->execute();
+        } elseif ($_reise_id != null && $_titel != null && $_preis != null && $_startort == null) {
+            $statement = $pdo->prepare(
+                    "SELECT reise_id, titel, preis, startort
+                   FROM reise
+                   WHERE reise_id = :reise_id and titel = :titel and preis = :preis
+                   ORDER BY reise_id ASC;");
+            $statement->bindValue(':reise_id', $_reise_id);
+            $statement->bindValue(':titel', $_titel);
+            $statement->bindValue(':preis', $_preis);
+            $statement->execute();
+        } elseif ($_reise_id != null && $_titel != null && $_preis != null && $_startort != null) {
+            $statement = $pdo->prepare(
+                    "SELECT reise_id, titel, preis, startort
+                   FROM reise
+                   WHERE reise_id = :reise_id and titel = :titel and preis = :preis and startort = :startort
+                   ORDER BY reise_id ASC;");
+            $statement->bindValue(':reise_id', $_reise_id);
+            $statement->bindValue(':titel', $_titel);
+            $statement->bindValue(':preis', $_preis);
+            $statement->bindValue(':startort', $_startort);
+            $statement->execute();
+        } elseif ($_reise_id == null && $_titel != null && $_preis == null && $_startort != null) {
+            $statement = $pdo->prepare(
+                    "SELECT reise_id, titel, preis, startort
+                   FROM reise
+                   WHERE titel = :titel and startort = :startort
+                   ORDER BY reise_id ASC;");
+            $statement->bindValue(':titel', $_titel);
+            $statement->bindValue(':startort', $_startort);
+            $statement->execute();
+        } else {
+            //nichts tun
+        }
+        if ($statement != null) {
+            $tableText = "";
+            while ($row = $statement->fetch()) {
+                $tableText .= "<tr>"
+                        . "<td><a href=" . $GLOBALS["ROOT URL"] . "/reise/anzeige?id=" . $row['reise_id'] . ">" . $row["reise_id"] . "</a></td>"
+                        . "<td>" . $row["titel"] . "</td>"
+                        . "<td><a href=" . $GLOBALS["ROOT URL"] . "/reise/anzeige?id=" . $row['reise_id'] . "><img src='../design/pictures/search.png'></a></td>"
+                        . "<td><a href='#' ><img src='../design/pictures/delete.png' onclick='deleteJourney(" . $row['reise_id'] . ")'></a></td>"
+                        . "</tr>";
+            }
+            return $tableText;
+        } else {
+            return " ";
         }
     }
 
