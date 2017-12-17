@@ -17,6 +17,13 @@ table {
     table-layout: auto;
 }
 
+#rgtable {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
 #whiteblock {
     background-color: rgba(255, 255, 255, 0.7);
     margin: 50px 0px 50px 0px;
