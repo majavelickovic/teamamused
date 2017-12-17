@@ -61,7 +61,7 @@ class ReiseDAO {
             $statement = $pdo->prepare(
                     "SELECT reise_id, titel, preis, startort
                    FROM reise
-                   WHERE reise_id = :reise_id and titel = :titel and preis = :preis
+                   WHERE reise_id = :reise_id and titel like '%:titel%' and preis = :preis
                    ORDER BY reise_id ASC;");
             $statement->bindValue(':reise_id', $_reise_id);
             $statement->bindValue(':titel', $_titel);
