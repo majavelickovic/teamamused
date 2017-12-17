@@ -104,15 +104,15 @@ if($reise->getReise_id() == ""){
                                 <td><input type="text" id="max_teilnehmer" name="max_teilnehmer" style="width:296px;" value="<?php echo $reise->getMax_teilnehmer(); ?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("max_teilnehmer").disabled = false'></a></td>
                             </tr>
-                        </table>
-                    </div>
-                    <div id="blockright">
-                        <table>
                             <tr>
                                 <td>Startort</td>
                                 <td><input type="text" id="startort" name="startort" style="width:296px;" value="<?php echo $reise->getOrt_id(); ?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("startort").disabled = false'></a></td>
                             </tr>
+                        </table>
+                    </div>
+                    <div id="blockright">
+                        <table>
                             <tr>
                                 <td>Rechnungen</td>
                                 <td><textarea id="" name="" rows="5" cols="35" disabled><?php echo $reise->getRechnungen(); ?></textarea></td>
