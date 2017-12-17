@@ -110,7 +110,7 @@ if ($reise->getReise_id() == "") {
                                             <?php
                                             //Abfrage für Standorte
                                             foreach (Service::getInstance()->getPlaces() as $key => $startorte) {
-                                                if ($startorte['ort_id'] == $reise->getReise_id()) {
+                                                if ($startorte['ort_id'] == $reise->getOrt_id()) {
                                                     echo "<option selected='selected' value='" . $startorte['ort_id'] . "'>" . $startorte['ort_name'] . "</option>";
                                                 } else {
                                                     echo "<option value='" . $startorte['ort_id'] . "'>" . $startorte['ort_name'] . "</option>";
