@@ -111,7 +111,7 @@ use service\Service;
                     </form>
                 </div>
                 <div id="blockright">
-                    <table id="rgTable">
+                    <table id="rgTable" overflow="auto">
                         <tr>
                             <th>Rechnungs-ID</th>
                             <th>Reise-ID</th>
