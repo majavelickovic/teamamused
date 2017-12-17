@@ -62,9 +62,9 @@ use service\Service;
                                     <select id="dropdown" name="reise" style="width:300px;">
                                         <?php
                                             if($_POST['reise'] == ""){
-                                                echo "<option selected='selected' value='null'></option>";
+                                                echo "<option selected='selected' value=''></option>";
                                             }else{
-                                                echo "<option value='null'></option>";
+                                                echo "<option value=''></option>";
                                             }
                                             //Abfrage für Reisetitel
                                             foreach(Service::getInstance()->getJourneyTitles() as $key => $journeyTitle) {
@@ -88,9 +88,9 @@ use service\Service;
                                     <select id="dropdown" name="rgart" style="width:300px;">
                                         <?php
                                             if($_POST['rgart'] == ""){
-                                                echo "<option selected='selected' value='null'></option>";
+                                                echo "<option selected='selected' value=''></option>";
                                             }else{
-                                                echo "<option value='null'></option>";
+                                                echo "<option value=''></option>";
                                             }
                                             // Abfrage für Rechnungsarten
                                             foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
@@ -125,7 +125,7 @@ use service\Service;
                             if($rgtablecontent != null){
                                 echo $rgtablecontent;
                             }else{
-                                echo "Bitte mindestens einen Filter selektieren, um zu suchen.";
+                                echo "<tr><td>Bitte mindestens einen Filter selektieren, um zu suchen.</td></tr>";
                             }
                         ?>
                     </table>
