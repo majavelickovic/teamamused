@@ -21,7 +21,7 @@ class RechnungController {
                 $_POST["kosten"],
                 $_POST["beschreibung"],
                 $_FILES["dokument"]["name"],
-                $_FILES["dokument"]["tmp_name"]);
+                file_get_contents($_FILES["dokument"]["tmp_name"]));
     }
     
     public static function readInvoice(){
@@ -39,7 +39,7 @@ class RechnungController {
                 $_POST["kosten"],
                 $_POST["beschreibung"],
                 $_FILES["dokument"]["name"],
-                $_FILES["dokument"]["tmp_name"]);
+                file_get_contents($_FILES["dokument"]["tmp_name"]));
     }
     
     public static function deleteInvoice($rg_id){
