@@ -110,7 +110,7 @@ use service\Service;
                         </table>
                     </form>
                 </div>
-                <div id="blockright" overflow-y="auto">
+                <div id="blockright" overflow="scroll">
                     <table id="rgTable">
                         <tr>
                             <th>Rechnungs-ID</th>
