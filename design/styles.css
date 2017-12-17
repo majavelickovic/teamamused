@@ -17,7 +17,7 @@ table {
     table-layout: auto;
 }
 
-#rgtable {
+#rgTable {
     border-collapse: collapse;
     height: 100%;
 }
