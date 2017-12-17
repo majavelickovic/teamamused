@@ -71,7 +71,7 @@ class Reise {
 	 * @ParamType aReise_id int
 	 * @ReturnType void
 	 */
-	public function setReise_id(&$reise_id) {
+	public function setReise_id($reise_id) {
 		$this->_reise_id = $reise_id;
 	}
 
@@ -91,7 +91,7 @@ class Reise {
 	 * @ParamType Beschreibung String
 	 * @ReturnType void
 	 */
-	public function setBeschreibung(&$beschreibung) {
+	public function setBeschreibung($beschreibung) {
 		$this->_beschreibung = $beschreibung;
 	}
         
@@ -111,7 +111,7 @@ class Reise {
 	 * @ParamType Titel String
 	 * @ReturnType void
 	 */
-	public function setTitel(&$titel) {
+	public function setTitel($titel) {
 		$this->_titel = $titel;
 	}
 
@@ -131,7 +131,7 @@ class Reise {
 	 * @ParamType datum_start Date
 	 * @ReturnType void
 	 */
-	public function setDatum_start(&$datum_start) {
+	public function setDatum_start($datum_start) {
 		$this->_datum_start = $datum_start;
 	}
 
@@ -151,7 +151,7 @@ class Reise {
 	 * @ParamType datum_ende Date
 	 * @ReturnType void
 	 */
-	public function setDatum_ende(&$datum_ende) {
+	public function setDatum_ende($datum_ende) {
 		$this->_datum_ende = $datum_ende;
 	}
 
@@ -171,7 +171,7 @@ class Reise {
 	 * @ParamType preis Double
 	 * @ReturnType void
 	 */
-	public function setPreis(&$preis) {
+	public function setPreis($preis) {
 		$this->_preis = $preis;
 	}
 
@@ -191,7 +191,7 @@ class Reise {
 	 * @ParamType max_teilnehmer Integer
 	 * @ReturnType void
 	 */
-	public function setMax_teilnehmer(&$max_teilnehmer) {
+	public function setMax_teilnehmer($max_teilnehmer) {
 		$this->_max_teilnehmer = $max_teilnehmer;
 	}
         
@@ -211,7 +211,7 @@ class Reise {
 	 * @ParamType aReise_id int
 	 * @ReturnType void
 	 */
-	public function setOrt_id(&$startort) {
+	public function setOrt_id($startort) {
 		$this->_startort = $startort;
 	}
         

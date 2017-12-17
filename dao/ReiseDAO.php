@@ -129,7 +129,7 @@ class ReiseDAO {
         $pdo = Database::connect();
         if ($_reise_id != null) {
             $statement = $pdo->prepare(
-                    "rechnung.rg_id, rechnungsart.beschreibung, kosten FROM public.rechnung
+                    "SELECT rechnung.rg_id, rechnungsart.beschreibung, kosten FROM public.rechnung
                         INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
                         INNER JOIN reise_rechnung ON rechnung.rg_id = reise_rechnung.rg_id
                          WHERE reise_id = :reise_id 
@@ -168,11 +168,11 @@ class ReiseDAO {
         while ($row = $statement->fetch()) {
             $reise->setReise_id($row['reise_id']);
             $reise->setTitel($row['titel']);
-            $reise->setTitel($row['beschreibung']);
-            $reise->setTitel($row['datum_start']);
-            $reise->setTitel($row['datum_ende']);
+            $reise->setBeschreibung($row['beschreibung']);
+            $reise->setDatum_start($row['datum_start']);
+            $reise->setDatum_ende($row['datum_ende']);
             $reise->setPreis($row['preis']);
-            $reise->setPreis($row['max_teilnehmer']);
+            $reise->setMax_teilnehmer($row['max_teilnehmer']);
             $reise->setOrt_id($row['startort']);
         }
         return $reise;
