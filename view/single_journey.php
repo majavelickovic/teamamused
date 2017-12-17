@@ -68,7 +68,7 @@ if($reise->getReise_id() == ""){
                                         <?php
                                         //Abfrage für Reisetitel
                                         foreach (Service::getInstance()->getJourneyTitles() as $key => $journeyType) {
-                                            if ($journeyType['reise_id'] == $reise->getReise()) {
+                                            if ($journeyType['reise_id'] == $reise->getReise_id()) {
                                                 echo "<option selected='selected' value='" . $journeyType['reise_id'] . "'>" . $journeyType['titel'] . ", " . $journeyType['reise_id'] . "</option>";
                                             } else {
                                                 echo "<option value='" . $journeyType['reise_id'] . "'>" . $journeyType['titel'] . ", " . $journeyType['reise_id'] . "</option>";
