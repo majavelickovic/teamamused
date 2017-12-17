@@ -145,7 +145,7 @@ class ReiseDAO {
                         . "<td>" . $row["rg_id"] . "</td>"
                         . "<td>" . $row["beschreibung"] . "</td>"
                         . "<td>" . $row["kosten"] . "</td>"
-                        . "<td><a href=" . $GLOBALS["ROOT URL"] . "/reise/anzeige?id=" . $row['reise_id'] . "><img src='../design/pictures/search.png'></a></td>"
+                        . "<td><a href=" . $GLOBALS["ROOT URL"] . "/rechnung/anzeige?id=" . $row['rg_id'] . "><img src='../design/pictures/search.png'></a></td>"
                         . "</tr>";
             }
             return $tableText;

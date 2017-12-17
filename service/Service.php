@@ -161,7 +161,7 @@ class Service {
     public function readRechnungen($reise_id) {
         //if ($this->verifyAuth()) {
         $reiseDAO = new dao\ReiseDAO();
-        return $reiseDAO->read($reise_id);
+        return $reiseDAO->readRechnungen($reise_id);
         //}
         //return null;
     }

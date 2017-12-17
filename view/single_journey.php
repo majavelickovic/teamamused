@@ -124,7 +124,7 @@ if ($reise->getReise_id() == "") {
                             </table>
                         </div>
                         <div id="blockright">
-                            <h1>Rechnungen</h1>
+                            <h2>Rechnungen</h2>
                             <table id="rechnungenTable">
                                 <tr>
                                     <th>ID</th>
