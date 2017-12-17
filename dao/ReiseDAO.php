@@ -279,7 +279,7 @@ class ReiseDAO {
      */
     public function getPlaces() {
         $pdo = Database::connect();
-        $statement = $pdo->query("SELECT standorte FROM reise");
+        $statement = $pdo->query("SELECT ort_name FROM ort");
         $statement->execute();
         return $statement->fetchAll();
     }
