@@ -62,7 +62,7 @@ class RechnungDAO {
                 $statement = $pdo->prepare(
                 "SELECT rechnung.rg_id, reise_rechnung.reise_id, rechnungsart.beschreibung, rechnung.rechnungsart, rechnung.kosten
                    FROM rechnung INNER JOIN reise_rechnung ON rechnung.rg_id=reise_rechnung.rg_id INNER JOIN rechnungsart ON rechnung.rechnungsart = rechnungsart.rgart_id
-                   WHERE rechnungsart = :rgart ORDER BY rechnung.rg_id ASC;");
+                   WHERE rechnungsart = :rgart and rechnung.rg_id = :rg_id ORDER BY rechnung.rg_id ASC;");
                 $statement->bindValue(':rgart', $_rgart);
                 $statement->bindValue(':rg_id', $_rg_id);
                 $statement->execute();
