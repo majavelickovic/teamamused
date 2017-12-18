@@ -38,6 +38,11 @@ use service\Service;
                                 <td>
                                     <select id="dropdown" name="reise">
                                         <?php
+                                        if ($_POST['reise'] == "") {
+                                            echo "<option selected='selected' value=''></option>";
+                                        } else {
+                                            echo "<option value=''></option>";
+                                        }
                                         //Abfrage für Reisetitel
                                         foreach (Service::getInstance()->getJourneyTitles() as $key => $journeyType) {
                                             echo "<option value='" . $journeyType['reise_id'] . "'>" . $journeyType['titel'] . ", " . $journeyType['reise_id'] . "</option>";
