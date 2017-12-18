@@ -47,7 +47,7 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Datum bis</td>
-                                <td><input type="date" name="datum_ende" size="40px" /></td>
+                                <td><input type="date" name="datum_ende" /></td>
                             </tr>
                             <tr>
                                 <td>Preis</td>

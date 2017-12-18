@@ -82,9 +82,17 @@ class ReiseDAO {
             $statement = $pdo->prepare(
                     "SELECT reise_id, titel, preis, startort
                    FROM reise
-                   WHERE titel like ':titel%' 
+                   WHERE titel = :titel
                    ORDER BY reise_id ASC;");
             $statement->bindValue(':titel', $_titel);
+            $statement->execute();
+        } elseif ($_reise_id == null && $_titel == null && $_preis != null && $_startort == null) {
+            $statement = $pdo->prepare(
+                    "SELECT reise_id, titel, preis, startort
+                   FROM reise
+                   WHERE preis = :preis 
+                   ORDER BY reise_id ASC;");
+            $statement->bindValue(':preis', $_preis);
             $statement->execute();
         } elseif ($_reise_id == null && $_titel != null && $_preis == null && $_startort != null) {
             $statement = $pdo->prepare(
@@ -121,7 +129,7 @@ class ReiseDAO {
             return " ";
         }
     }
-    
+
     /**
      * Liest die Rechnungen für eine Reise und gibt diese aus in der Reiseansicht
      */
@@ -136,7 +144,7 @@ class ReiseDAO {
                          ORDER BY rechnung.rg_id ASC;");
             $statement->bindValue(':reise_id', $reise_id);
             $statement->execute();
-        }else {
+        } else {
             //nichts tun
         }
         if ($statement != null) {
@@ -155,7 +163,7 @@ class ReiseDAO {
             return " ";
         }
     }
-    
+
     /**
      * Liest die Teilnehmer für eine Reise und gibt diese aus in der Reiseansicht
      */
@@ -169,7 +177,7 @@ class ReiseDAO {
                          ORDER BY teilnehmer.teilnehmer_id ASC;");
             $statement->bindValue(':reise_id', $reise_id);
             $statement->execute();
-        }else {
+        } else {
             //nichts tun
         }
         if ($statement != null) {
@@ -338,7 +346,7 @@ class ReiseDAO {
         return $reisename;
     }
 
-     /**
+    /**
      * 
      * @return Array mit allen Standorten
      * @author Sandra Bodack
@@ -349,7 +357,7 @@ class ReiseDAO {
         $statement->execute();
         return $statement->fetchAll();
     }
-    
+
     /**
      * 
      * @return Array mit allen Reisetiteln
