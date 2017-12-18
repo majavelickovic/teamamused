@@ -163,7 +163,7 @@ if ($reise->getReise_id() == "") {
                             </div>
                             <table>
                                 <tr>
-                                    <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printJourney()" />  <input type="button" class="button" value="zur&uuml;ck" onclick="<?php echo $GLOBALS["ROOT_URL"] . "/reise/bestehend" ?>"</td>
+                                    <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printJourney()" />  <input type="button" class="button" value="zur&uuml;ck" href="<?php echo $GLOBALS["ROOT_URL"] . "/reise/bestehend" ?>"</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalJourney()"/></td>
