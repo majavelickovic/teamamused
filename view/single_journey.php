@@ -80,7 +80,7 @@ if ($reise->getReise_id() == "") {
                                 </tr>
                                 <tr>
                                     <td>Beschreibung</td>
-                                    <td><textarea id="beschreibung" name="beschreibung" rows="5" cols="35" disabled><?php echo $reise->getBeschreibung(); ?></textarea></td>
+                                    <td><textarea id="beschreibung" name="beschreibung" rows="5" cols="36" disabled><?php echo $reise->getBeschreibung(); ?></textarea></td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("beschreibung").disabled = false'></a></td>
                                 </tr>
                                 <tr>

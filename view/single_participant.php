@@ -59,7 +59,7 @@ if($teilnehmer->getReise() == ""){
                         <table>
                             <tr>
                                 <td>Teilnehmer-ID</td>
-                                <td><input type="text" id="teilnehmer_id" name="teilnehmer_id" style="width:296px;" value="<?php echo $teilnehmer_id; ?>" readonly/></td>
+                                <td><input type="text" id="teilnehmer_id" name="teilnehmer_id" size="40px" value="<?php echo $teilnehmer_id; ?>" readonly/></td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -82,17 +82,17 @@ if($teilnehmer->getReise() == ""){
                             </tr>
                             <tr>
                                 <td>Vorname</td>
-                                <td><input type="text" id="vorname" name="vorname" value="<?php echo $teilnehmer->getVorname();?>" disabled/></td>
+                                <td><input type="text" id="vorname" name="vorname" size="40px" value="<?php echo $teilnehmer->getVorname();?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("vorname").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Nachname</td>
-                                <td><input type="text" id="nachname" name="nachname" value="<?php echo $teilnehmer->getNachname();?>" disabled/></td>
+                                <td><input type="text" id="nachname" name="nachname" size="40px" value="<?php echo $teilnehmer->getNachname();?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("nachname").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Geburtsdatum</td>
-                                <td><input type="text" id="geburtsdatum" name="geburtsdatum" value="<?php echo $teilnehmer->getGeburtsdatum();?>" disabled/></td>
+                                <td><input type="text" id="geburtsdatum" name="geburtsdatum" size="40px" value="<?php echo $teilnehmer->getGeburtsdatum();?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("geburtsdatum").disabled=false'></a></td>
                             </tr>
                             <tr>
