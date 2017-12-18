@@ -100,7 +100,7 @@ if ($rg->getReise() == "") {
                                 </tr>
                                 <tr>
                                     <td>Kosten</td>
-                                    <td><input type="text" id="kosten" name="kosten" style="width:305px;" value="<?php echo $rg->getKosten(); ?>" disabled/></td>
+                                    <td><input type="text" id="kosten" name="kosten" style="width:307px;" value="<?php echo $rg->getKosten(); ?>" disabled/></td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("kosten").disabled = false; document.getElementById("kosten").type = "number"; document.getElementById("kosten").min = "0"; document.getElementById("kosten").max = "999999";'></a></td>
                                 </tr>
                                 <tr>
@@ -111,7 +111,7 @@ if ($rg->getReise() == "") {
                                 <tr>
                                     <td>Dokument</td>
                                     <td>
-                                        <input id="dokument" type="text" name="dokument" style="width:305px;" value="<?php echo $rg->getDokument(); ?>" disabled/>
+                                        <input id="dokument" type="text" name="dokument" style="width:307px;" value="<?php echo $rg->getDokument(); ?>" disabled/>
                                     </td>
                                     <td>
                                         <a href="#"><img src="../design/pictures/edit.png" onclick="document.getElementById('dokument').type = 'file';document.getElementById('dokument').disabled = false;document.getElementById('dokument').accept = 'application/pdf';"></a>
