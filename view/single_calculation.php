@@ -119,7 +119,7 @@ if ($rg->getReise() == "") {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printInvoice()" />  <input type="button" class="button" value="zur&uuml;ck" onclick="" /></td>
+                                    <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printInvoice()" />  <input type="button" class="button" value="zur&uuml;ck" onclick="window.location.href='/rechnung/bestehend'" /></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalInvoice()"/></td>
