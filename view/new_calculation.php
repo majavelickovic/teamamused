@@ -72,7 +72,7 @@ use service\Service;
                         </tr>
                         <tr>
                             <td>Kosten</td>
-                            <td><input type="number" name="kosten" size="40px" min="0" max="999999"/></td>
+                            <td><input type="number" name="kosten" min="0" max="999999"/></td>
                         </tr>
                         <tr>
                             <td>Beschreibung</td>
@@ -81,7 +81,7 @@ use service\Service;
                         <tr>
                             <td>Dokument</td>
                             <td>
-                                <input id="dokument" type="file" name="dokument" accept="application/pdf" style="width:300px;"/>
+                                <input id="dokument" type="file" name="dokument" accept="application/pdf"/>
                             </td>
                         </tr>
                         <tr>
