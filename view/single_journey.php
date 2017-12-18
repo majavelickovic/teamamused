@@ -85,12 +85,12 @@ if ($reise->getReise_id() == "") {
                                 </tr>
                                 <tr>
                                     <td>Datum von</td>
-                                    <td><input type="text" id="datum_start" name="datum_start" value="<?php echo $reise->getDatum_start(); ?>" disabled/></td>
+                                    <td><input type="text" id="datum_start" name="datum_start" style="width:304px;" value="<?php echo $reise->getDatum_start(); ?>" disabled/></td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("datum_start").disabled = false; document.getElementById("datum_start").type = "date";'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Datum bis</td>
-                                    <td><input type="text" id="datum_ende" name="datum_ende" value="<?php echo $reise->getDatum_ende(); ?>" disabled/></td>
+                                    <td><input type="text" id="datum_ende" name="datum_ende" style="width:304px;" value="<?php echo $reise->getDatum_ende(); ?>" disabled/></td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("datum_ende").disabled = false; document.getElementById("datum_ende").type = "date";'></a></td>
                                 </tr>
                                 <tr>
