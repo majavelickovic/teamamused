@@ -29,7 +29,7 @@ class TeilnehmerDAO {
         $statement->bindValue(':nachname', $teilnehmer->getNachname());
         $statement->bindValue(':geburtsdatum', $teilnehmer->getGeburtsdatum());
         $statement->execute();
-        
+
         $statement2 = $pdo->prepare(
                 "INSERT INTO reise_teilnehmer (reise_id, teilnehmer_id)
                         VALUES (:reise, :teilnehmer_id)");
@@ -94,6 +94,24 @@ class TeilnehmerDAO {
                    ORDER BY teilnehmer.teilnehmer_id ASC;");
             $statement->bindValue(':reise_id', $_reise);
             $statement->bindValue(':vorname', $_vorname);
+            $statement->execute();
+        } elseif ($_reise == null && $_teilnehmer_id == null && $_vorname != null && $_nachname == null) {
+            $statement = $pdo->prepare(
+                    "SELECT teilnehmer.teilnehmer_id, reise_teilnehmer.reise_id, teilnehmer.vorname, teilnehmer.nachname
+                   FROM teilnehmer 
+                   INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id=reise_teilnehmer.teilnehmer_id
+                   WHERE teilnehmer.vorname = :vorname 
+                   ORDER BY teilnehmer.teilnehmer_id ASC;");
+            $statement->bindValue(':vorname', $_vorname);
+            $statement->execute();
+        } elseif ($_reise == null && $_teilnehmer_id == null && $_vorname == null && $_nachname != null) {
+            $statement = $pdo->prepare(
+                    "SELECT teilnehmer.teilnehmer_id, reise_teilnehmer.reise_id, teilnehmer.vorname, teilnehmer.nachname
+                   FROM teilnehmer 
+                   INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id=reise_teilnehmer.teilnehmer_id
+                   WHERE teilnehmer.nachname = :nachname 
+                   ORDER BY teilnehmer.teilnehmer_id ASC;");
+            $statement->bindValue(':nachname', $_nachname);
             $statement->execute();
         } elseif ($_reise != null && $_teilnehmer_id == null && $_vorname == null && $_nachname != null) {
             $statement = $pdo->prepare(
