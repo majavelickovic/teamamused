@@ -38,6 +38,11 @@ use service\Service;
 				<td>
                                     <select id="dropdown" name="reise" style="width:300px;">
                                         <?php
+                                        if ($_POST['reise'] == "") {
+                                            echo "<option selected='selected' value=''></option>";
+                                        } else {
+                                            echo "<option value=''></option>";
+                                        }
                                         //Abfrage für Reisetitel
                                         foreach(Service::getInstance()->getJourneyTitles() as $key => $journeyTitle) {
                                             echo "<option value='" . $journeyTitle['reise_id'] . "'>" . $journeyTitle['titel'] . ", " . $journeyTitle['reise_id'] . "</option>";
@@ -51,6 +56,11 @@ use service\Service;
                                 <td>
                                     <select id="dropdown" name="rgart" style="width:300px;">
                                         <?php
+                                        if ($_POST['rgart'] == "") {
+                                            echo "<option selected='selected' value=''></option>";
+                                        } else {
+                                            echo "<option value=''></option>";
+                                        }
                                         // Abfrage für Rechnungsarten
                                         foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
                                             echo "<option value='" . $invoiceType['rgart_id'] . "'>" . $invoiceType['beschreibung'] . "</option>";
