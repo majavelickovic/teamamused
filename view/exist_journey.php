@@ -58,15 +58,15 @@ use service\Service;
                         <table>
                             <tr>
                                 <td>Reise-ID</td>
-                                <td><input type="text" name="reise_id" style="width:296px;" value="<?php echo $_POST['reise_id'] ?>"/></td>
+                                <td><input type="text" name="reise_id" size="40px" value="<?php echo $_POST['reise_id'] ?>"/></td>
                             </tr>
                             <tr>
                                 <td>Reisetitel</td>
-                                <td><input type="text" name="titel" style="width:296px;" value="<?php echo $_POST['titel'] ?>" /></td>
+                                <td><input type="text" name="titel" size="40px" value="<?php echo $_POST['titel'] ?>" /></td>
                             </tr>
                             <tr>
                                 <td>Preis</td>
-                                <td><input type="text" name="preis" style="width:296px;" value="<?php echo $_POST['preis'] ?>" /></td>
+                                <td><input type="text" name="preis" size="40px" value="<?php echo $_POST['preis'] ?>" /></td>
                             </tr>
                             <tr>
                                 <td>Startort</td>

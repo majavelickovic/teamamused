@@ -80,7 +80,7 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Rechnung-ID</td>
-                                <td><input type="text" name="rg_id" style="width:296px;" value="<?php echo $_POST['rg_id'] ?>"/></td>
+                                <td><input type="text" name="rg_id" size="40px" value="<?php echo $_POST['rg_id'] ?>"/></td>
                             </tr>
                             <tr>
                                 <td>Rechnungsart</td>
