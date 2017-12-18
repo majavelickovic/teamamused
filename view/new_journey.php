@@ -51,7 +51,7 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Preis</td>
-                                <td><input type="text" name="preis" size="40px" /></td>
+                                <td><input type="text" name="preis" style="width:300px;" /></td>
                             </tr>
                             <tr>
                                 <td>Max. Teilnehmer</td>
