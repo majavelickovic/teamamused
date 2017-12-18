@@ -43,7 +43,7 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Datum von</td>
-                                <td><input type="date" name="datum_start" size="40px" /></td>
+                                <td><input type="date" name="datum_start" /></td>
                             </tr>
                             <tr>
                                 <td>Datum bis</td>
