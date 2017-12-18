@@ -62,6 +62,15 @@ class TeilnehmerDAO {
             $statement->bindValue(':reise_id', $_reise);
             $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
             $statement->execute();
+        } elseif ($_reise == null && $_teilnehmer_id != null && $_vorname == null && $_nachname == null) {
+            $statement = $pdo->prepare(
+                    "SELECT teilnehmer.teilnehmer_id, reise_teilnehmer.reise_id, teilnehmer.vorname, teilnehmer.nachname
+                   FROM teilnehmer 
+                   INNER JOIN reise_teilnehmer ON teilnehmer.teilnehmer_id=reise_teilnehmer.teilnehmer_id 
+                   WHERE teilnehmer.teilnehmer_id = :teilnehmer_id 
+                   ORDER BY teilnehmer.teilnehmer_id ASC;");
+            $statement->bindValue(':teilnehmer_id', $_teilnehmer_id);
+            $statement->execute();
         } elseif ($_reise != null && $_teilnehmer_id != null && $_vorname != null && $_nachname == null) {
             $statement = $pdo->prepare(
                     "SELECT teilnehmer.teilnehmer_id, reise_teilnehmer.reise_id, teilnehmer.vorname, teilnehmer.nachname
