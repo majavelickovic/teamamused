@@ -73,6 +73,11 @@ use service\Service;
                                 <td>
                                     <select id="dropdown" name="startort">
                                         <?php
+                                        if ($_POST['ort_id'] == "") {
+                                            echo "<option selected='selected' value=''></option>";
+                                        } else {
+                                            echo "<option value=''></option>";
+                                        }
                                         //Abfrage für Startorte
                                         foreach (Service::getInstance()->getPlaces() as $key => $startort) {
                                             if($_POST['startort'] == $startort['ort_id']){
