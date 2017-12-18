@@ -65,7 +65,7 @@ if($teilnehmer->getReise() == ""){
                             <tr>
                                 <td>Reise</td>
                                 <td>
-                                    <select id="reise" name="reise" class="dropdown" style="width:300px;" disabled>
+                                    <select id="reise" name="reise" class="dropdown" disabled>
                                         <?php
                                         //Abfrage für Reisetitel
                                         foreach (Service::getInstance()->getJourneyTitles() as $key => $journeyType) {
@@ -82,17 +82,17 @@ if($teilnehmer->getReise() == ""){
                             </tr>
                             <tr>
                                 <td>Vorname</td>
-                                <td><input type="text" id="vorname" name="vorname" style="width:296px;" value="<?php echo $teilnehmer->getVorname();?>" disabled/></td>
+                                <td><input type="text" id="vorname" name="vorname" value="<?php echo $teilnehmer->getVorname();?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("vorname").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Nachname</td>
-                                <td><input type="text" id="nachname" name="nachname" style="width:296px;" value="<?php echo $teilnehmer->getNachname();?>" disabled/></td>
+                                <td><input type="text" id="nachname" name="nachname" value="<?php echo $teilnehmer->getNachname();?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("nachname").disabled=false'></a></td>
                             </tr>
                             <tr>
                                 <td>Geburtsdatum</td>
-                                <td><input type="text" id="geburtsdatum" name="geburtsdatum" style="width:296px;" value="<?php echo $teilnehmer->getGeburtsdatum();?>" disabled/></td>
+                                <td><input type="text" id="geburtsdatum" name="geburtsdatum" value="<?php echo $teilnehmer->getGeburtsdatum();?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("geburtsdatum").disabled=false'></a></td>
                             </tr>
                             <tr>

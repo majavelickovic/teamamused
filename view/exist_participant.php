@@ -80,15 +80,15 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Teilnehmer-ID</td>
-                                <td><input type="text" name="teilnehmer_id" style="width:296px;" value="<?php echo $_POST['teilnehmer_id'] ?>" /></td>
+                                <td><input type="text" name="teilnehmer_id" value="<?php echo $_POST['teilnehmer_id'] ?>" /></td>
                             </tr>
                             <tr>
                                 <td>Vorname</td>
-                                <td><input type="text" name="vorname" style="width:296px;" value="<?php echo $_POST['vorname'] ?>" /></td>
+                                <td><input type="text" name="vorname" value="<?php echo $_POST['vorname'] ?>" /></td>
                             </tr>
                             <tr>
                                 <td>Nachname</td>
-                                <td><input type="text" name="nachname" style="width:296px;" value="<?php echo $_POST['nachname'] ?>" /></td>
+                                <td><input type="text" name="nachname" value="<?php echo $_POST['nachname'] ?>" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2" align="center"><input type="submit" class="button" value="suchen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
