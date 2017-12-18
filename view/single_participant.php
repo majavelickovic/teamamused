@@ -92,7 +92,7 @@ if($teilnehmer->getReise() == ""){
                             </tr>
                             <tr>
                                 <td>Geburtsdatum</td>
-                                <td><input type="text" id="geburtsdatum" name="geburtsdatum" style="width:300px;" value="<?php echo $teilnehmer->getGeburtsdatum();?>" disabled/></td>
+                                <td><input type="text" id="geburtsdatum" name="geburtsdatum" style="width:302px;" value="<?php echo $teilnehmer->getGeburtsdatum();?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("geburtsdatum").disabled=false'></a></td>
                             </tr>
                             <tr>

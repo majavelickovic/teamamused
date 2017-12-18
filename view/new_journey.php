@@ -43,7 +43,7 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Datum von</td>
-                                <td><input type="date" name="datum_start" width="100%" /></td>
+                                <td><input type="date" name="datum_start" /></td>
                             </tr>
                             <tr>
                                 <td>Datum bis</td>
@@ -51,7 +51,7 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Preis</td>
-                                <td><input type="text" name="preis" style="width:300px;" /></td>
+                                <td><input type="text" name="preis" size="40px" /></td>
                             </tr>
                             <tr>
                                 <td>Max. Teilnehmer</td>
