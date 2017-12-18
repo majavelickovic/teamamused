@@ -59,13 +59,13 @@ if($rg->getReise() == ""){
 			<table>
                             <tr>
                                 <td>Rechnungs-ID</td>
-                                <td><input type="text" id="rg_id" name="rg_id" style="width:296px;" value="<?php echo $rg_id;?>" readonly/></td>
+                                <td><input type="text" id="rg_id" name="rg_id" size="40px" value="<?php echo $rg_id;?>" readonly/></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td>Reise</td>
 				<td>
-                                    <select id="reise" name="reise" class="dropdown" style="width:300px;" disabled>
+                                    <select id="reise" name="reise" class="dropdown" disabled>
                                         <?php
                                         //Abfrage für Reisetitel
                                         foreach(Service::getInstance()->getJourneyTitles() as $key => $journeyTitle) {
@@ -83,7 +83,7 @@ if($rg->getReise() == ""){
                             <tr>
                                 <td>Rechnungsart</td>
                                 <td>
-                                    <select id="rgart" name="rgart" class="dropdown" style="width:300px;" disabled>
+                                    <select id="rgart" name="rgart" class="dropdown" disabled>
                                         <?php
                                         // Abfrage für Rechnungsarten
                                         foreach(Service::getInstance()->getInvoiceTypes() as $key => $invoiceType) {
@@ -101,7 +101,7 @@ if($rg->getReise() == ""){
                             </tr>
                             <tr>
                                 <td>Kosten</td>
-                                <td><input type="text" id="kosten" name="kosten" style="width:296px;" value="<?php echo $rg->getKosten();?>" disabled/></td>
+                                <td><input type="text" id="kosten" name="kosten" size="40px" value="<?php echo $rg->getKosten();?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("kosten").disabled=false; document.getElementById("kosten").type="number"; document.getElementById("kosten").min="0"; document.getElementById("kosten").max="999999";'></a></td>
                             </tr>
                             <tr>
@@ -112,7 +112,7 @@ if($rg->getReise() == ""){
                             <tr>
                                 <td>Dokument</td>
                                 <td>
-                                    <input id="dokument" type="text" name="dokument" value="<?php echo $rg->getDokument();?>" style="width:300px;" disabled/>
+                                    <input id="dokument" type="text" name="dokument" value="<?php echo $rg->getDokument();?>" disabled/>
                                 </td>
                                 <td>
                                     <a href="#"><img src="../design/pictures/edit.png" onclick="document.getElementById('dokument').type='file';document.getElementById('dokument').disabled=false;document.getElementById('dokument').accept='application/pdf';"></a>

@@ -57,13 +57,13 @@ if ($reise->getReise_id() == "") {
                             <table>
                                 <tr>
                                     <td>Reise-ID</td>
-                                    <td><input type="text" id="reise_id" name="reise_id" style="width:296px;" value="<?php echo $reise_id; ?>" readonly/></td>
+                                    <td><input type="text" id="reise_id" name="reise_id" size="40px" value="<?php echo $reise_id; ?>" readonly/></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>Reisetitel</td>
                                     <td>
-                                        <select id="titel" name="titel" class="dropdown" style="width:300px;" disabled>
+                                        <select id="titel" name="titel" class="dropdown" disabled>
                                             <?php
                                             //Abfrage für Reisetitel
                                             foreach (Service::getInstance()->getJourneyTitles() as $key => $journeyType) {
@@ -85,22 +85,22 @@ if ($reise->getReise_id() == "") {
                                 </tr>
                                 <tr>
                                     <td>Datum von</td>
-                                    <td><input type="text" id="datum_start" name="datum_start" style="width:296px;" value="<?php echo $reise->getDatum_start(); ?>" disabled/></td>
+                                    <td><input type="text" id="datum_start" name="datum_start" size="40px" value="<?php echo $reise->getDatum_start(); ?>" disabled/></td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("datum_start").disabled = false; document.getElementById("datum_start").type = "date";'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Datum bis</td>
-                                    <td><input type="text" id="datum_ende" name="datum_ende" style="width:296px;" value="<?php echo $reise->getDatum_ende(); ?>" disabled/></td>
+                                    <td><input type="text" id="datum_ende" name="datum_ende" size="40px" value="<?php echo $reise->getDatum_ende(); ?>" disabled/></td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("datum_ende").disabled = false; document.getElementById("datum_ende").type = "date";'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Preis</td>
-                                    <td><input type="text" id="preis" name="preis" style="width:296px;" value="<?php echo $reise->getPreis(); ?>" disabled/></td>
+                                    <td><input type="text" id="preis" name="preis" size="40px" value="<?php echo $reise->getPreis(); ?>" disabled/></td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("preis").disabled = false'></a></td>
                                 </tr>
                                 <tr>
                                     <td>Max. Teilnehmer</td>
-                                    <td><input type="text" id="max_teilnehmer" name="max_teilnehmer" style="width:296px;" value="<?php echo $reise->getMax_teilnehmer(); ?>" disabled/></td>
+                                    <td><input type="text" id="max_teilnehmer" name="max_teilnehmer" size="40px" value="<?php echo $reise->getMax_teilnehmer(); ?>" disabled/></td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("max_teilnehmer").disabled = false'></a></td>
                                 </tr>
                                 <tr>
