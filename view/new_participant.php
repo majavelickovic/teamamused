@@ -61,7 +61,7 @@ use service\Service;
                             </tr>
                             <tr>
                                 <td>Geburtsdatum</td>
-                                <td><input type="date" name="geburtsdatum" style="width:305px;" /></td>
+                                <td><input type="date" name="geburtsdatum" style="width:306px;" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2" align="center"><input type="submit" class="button" value="hinzuf&uuml;gen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
