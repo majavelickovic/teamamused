@@ -62,7 +62,7 @@ use service\Service;
                         </tr>
                         <tr>
                             <td>Kosten</td>
-                            <td><input type="number" name="kosten" size="40px" min="0" max="999999"/></td>
+                            <td><input type="number" name="kosten" size="40px" style="width:300px;" min="0" max="999999"/></td>
                         </tr>
                         <tr>
                             <td>Beschreibung</td>

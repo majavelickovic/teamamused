@@ -59,7 +59,7 @@ use service\Service;
                             <tr>
                                 <td>Reise</td>
                                 <td>
-                                    <select id="dropdown" name="reise" style="width:300px;">
+                                    <select id="dropdown" name="reise">
                                         <?php
                                         if ($_POST['reise'] == "") {
                                             echo "<option selected='selected' value=''></option>";
@@ -85,7 +85,7 @@ use service\Service;
                             <tr>
                                 <td>Rechnungsart</td>
                                 <td>
-                                    <select id="dropdown" name="rgart" style="width:300px;">
+                                    <select id="dropdown" name="rgart">
                                         <?php
                                         if ($_POST['rgart'] == "") {
                                             echo "<option selected='selected' value=''></option>";
