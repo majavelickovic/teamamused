@@ -15,13 +15,20 @@ class RechnungController {
      * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen einer Rechnung
      */
     public static function newInvoice(){
+        if($_FILES["dokument"]["name"] == ""){
+            $filename = $_FILES["dokument"]["name"];
+            $filecontent = file_get_contents($_FILES["dokument"]["tmp_name"]);
+        }else{
+            $filename = null;
+            $filecontent = null;
+        }
         return Service::getInstance()->createInvoice(
                 $_POST["reise"],
                 $_POST["rgart"],
                 $_POST["kosten"],
                 $_POST["beschreibung"],
-                $_FILES["dokument"]["name"],
-                file_get_contents($_FILES["dokument"]["tmp_name"]));
+                $filename,
+                $filecontent);
     }
     
     public static function readInvoice(){

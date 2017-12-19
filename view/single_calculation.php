@@ -26,7 +26,6 @@ if ($rg->getReise() == "") {
             <meta charset="UTF-8">
             <link rel="stylesheet" href="../design/styles.css">
             <title>Rechnung</title>
-            <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
             <script type="text/javascript">
                 //Seite nochmals laden, wenn zurücksetzen angeklickt wurde, um die ursprüngliche Rechnung ohne Änderungen anzuzeigen
                 function reloadOriginalInvoice() {
