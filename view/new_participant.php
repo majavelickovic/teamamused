@@ -43,7 +43,7 @@ use service\Service;
                     }
                     if($countError == 0){
                         var req = new XMLHttpRequest();
-                        req.open('GET', '/maxParticipantReachedForJourney?reise=' + document.getElementById("reise").value);
+                        req.open('GET', 'assets/maxParticipantReachedForJourney?reise=' + document.getElementById("reise").value);
 
                         //Prüfe, ob maximale Teilnehmeranzahl bereits erreicht wurde
                         req.onreadystatechange = function () {
@@ -51,7 +51,6 @@ use service\Service;
                                 if(req.responseText.toString() == "true"){
                                     alert("maximale Teilnehmeranzahl für Reise bereits erreicht. Es können keine weiteren Teilnehmer für diese Reise erfasst werden.");
                                 }else{
-                                    alert(req.responseText);
                                     document.getElementById("participantForm").submit();
                                 }
                             }
