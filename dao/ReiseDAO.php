@@ -152,13 +152,12 @@ class ReiseDAO {
             $statement2->bindValue(':reise', $reise);
             $statement2->execute();
             while ($row2 = $statement2->fetch()) {
-                $countTeilnehmerReise = $row2['count'];
+                $countTeilnehmerReise = $row2['COUNT'];
             }
             
             if($countTeilnehmerReise >= $maxTeilnehmerReise){
                 return "true";
-            }
-            else{
+            }else{
                 return "false";
             }
         }
