@@ -13,30 +13,24 @@ use service\Service;
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
         <title>Rechnung</title>
-        <script type="text/javascript">
-            //Fehlermeldungen Defaultmässig ausblenden
-            document.getElementById("reiseError").style.visibility = "hidden";
-            document.getElementById("rgartError").style.visibility = "hidden";
-            document.getElementById("kostenError").style.visibility = "hidden";
-            document.getElementById("beschreibungError").style.visibility = "hidden";
-            
+        <script type="text/javascript">            
             //Prüfen, ob alle Anngaben im Formular gemacht wurden
             function checkForm() {
                 $countError = 0;
                 if(document.getElementById("reise").value == ""){
-                    document.getElementById("reiseError").style.visibility = "none";
+                    document.getElementById("reiseError").style.display = "inline";
                     $countError = $countError+1;
                 }
                 if(document.getElementById("rgart").value == ""){
-                    document.getElementById("rgartError").style.visibility = "none";
+                    document.getElementById("rgartError").style.display = "inline";
                     $countError = $countError+1;
                 }
                 if(document.getElementById("kosten").value == ""){
-                    document.getElementById("kostenError").style.visibility = "none";
+                    document.getElementById("kostenError").style.display = "inline";
                     $countError = $countError+1;
                 }
                 if(document.getElementById("beschreibung").value == ""){
-                    document.getElementById("beschreibungError").style.visibility = "none";
+                    document.getElementById("beschreibungError").style.display = "inline";
                     $countError = $countError+1;
                 }
                 if($countError == 0){
@@ -82,7 +76,7 @@ use service\Service;
                                     </select>
                                 </td>
                                 <td>
-                                    <div id="reiseError" class="error">
+                                    <div id="reiseError" class="error" style="display: none;">
                                         Bitte Reise selektieren.
                                     </div>
                                 </td>
@@ -106,7 +100,7 @@ use service\Service;
                                     </select>
                                 </td>
                                 <td>
-                                    <div id="rgartError" class="error">
+                                    <div id="rgartError" class="error" style="display: none;">
                                         Bitte Rechnungsart selektieren.
                                     </div>
                                 </td>
@@ -115,7 +109,7 @@ use service\Service;
                             <td>Kosten</td>
                             <td><input id="kosten" type="number" name="kosten" style="width:308px;" min="0" max="999999"/></td>
                             <td>
-                                <div id="kostenError" class="error">
+                                <div id="kostenError" class="error" style="display: none;">
                                         Bitte Kosten eingeben.
                                 </div>
                             </td>
@@ -124,7 +118,7 @@ use service\Service;
                             <td>Beschreibung</td>
                             <td><textarea id="beschreibung" name="beschreibung" rows="5" cols="36"></textarea></td>
                             <td>
-                                <div id="beschreibungError" class="error">
+                                <div id="beschreibungError" class="error" style="display: none;">
                                         Bitte Beschreibung eingeben.
                                 </div>
                             </td>
