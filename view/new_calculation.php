@@ -41,6 +41,12 @@ use service\Service;
                 }else{
                     document.getElementById("beschreibungError").style.display = "none";
                 }
+                if($('#dokumentError').["0"].firstChild.files["0"].size > 2097152){
+                    document.getElementById("dokumentError").style.display = "inline";
+                    $countError = $countError+1;
+                }else{
+                    document.getElementById("dokumentError").style.display = "none";
+                }
                 if($countError == 0){
                     document.getElementById("rgForm").submit();
                 }
@@ -136,7 +142,11 @@ use service\Service;
                             <td>
                                 <input id="dokument" type="file" name="dokument" style="width:308px;" accept="application/pdf"/>
                             </td>
-                            <td></td>
+                            <td>
+                                <div id="dokumentError" class="error" style="display: none;">
+                                        PDF darf nicht grösser als 2MB sein.
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2" align="center"><input type="button" class="button" value="hinzuf&uuml;gen" onclick="checkForm();"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
