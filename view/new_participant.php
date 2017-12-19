@@ -43,7 +43,7 @@ use service\Service;
                     }
                     if($countError == 0){
                         var req = new XMLHttpRequest();
-                        req.open('GET', '/assets/maxParticipantReachedForJourney?reise=' + document.getElementById("reise").value);
+                        req.open('GET', '/maxParticipantReachedForJourney?reise=' + document.getElementById("reise").value);
 
                         //Prüfe, ob maximale Teilnehmeranzahl bereits erreicht wurde
                         req.onreadystatechange = function () {
