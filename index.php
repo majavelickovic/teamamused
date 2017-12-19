@@ -357,18 +357,6 @@
                 controller\ErrorController::error403View();
             }
         });
-        
-        /**
-         * prüfe max Teilnehmeranzahl
-         * @author Maja Velickovic
-         */
-        Router::route("GET", "/maxParticipantReachedForJourney", function () {
-            if (LoginController::authenticate() && $_GET['reise'] > 0) {
-                return controller\TeilnehmerController::checkMaxParticipant($_GET['reise']);
-            } else {
-                controller\ErrorController::error403View();
-            }
-        });
 
         Router::route("GET", "/teilnehmer", function () {
             if (LoginController::authenticate()) {
