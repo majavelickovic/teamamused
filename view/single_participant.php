@@ -94,14 +94,11 @@ if($teilnehmer->getReise() == ""){
                                 <td>Geburtsdatum</td>
                                 <td><input type="text" id="geburtsdatum" name="geburtsdatum" value="<?php echo $teilnehmer->getGeburtsdatum();?>" disabled/></td>
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("geburtsdatum").disabled=false'></a></td>
-                            </tr>
-                            <tr></br></br></tr>
+                            </tr></br></br>
                             <tr>
                                 <td colspan="3" align="center"><input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalParticipant()"/><input type="submit" class="button" value="speichern" /><input type="button" class="button" value="zur&uuml;ck" onclick="window.location.href='/teilnehmer/bestehend'" /></td>
-                            </tr>
-                            <tr>
                                 <td colspan="3" align="center"><input type="button" class="button" value="drucken" onclick="printParticipant()" /></td>
-                            </tr> 
+                            </tr>
                         </table>
                     </div>
                     <div id="blockright">
