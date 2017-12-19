@@ -20,18 +20,26 @@ use service\Service;
                 if(document.getElementById("reise").value == ""){
                     document.getElementById("reiseError").style.display = "inline";
                     $countError = $countError+1;
+                }else{
+                    document.getElementById("reiseError").style.display = "none";
                 }
                 if(document.getElementById("rgart").value == ""){
                     document.getElementById("rgartError").style.display = "inline";
                     $countError = $countError+1;
+                }else{
+                    document.getElementById("rgartError").style.display = "none";
                 }
                 if(document.getElementById("kosten").value == ""){
                     document.getElementById("kostenError").style.display = "inline";
                     $countError = $countError+1;
+                }else{
+                    document.getElementById("kostenError").style.display = "none";
                 }
                 if(document.getElementById("beschreibung").value == ""){
                     document.getElementById("beschreibungError").style.display = "inline";
                     $countError = $countError+1;
+                }else{
+                    document.getElementById("beschreibungError").style.display = "none";
                 }
                 if($countError == 0){
                     document.getElementById("rgForm").submit();
