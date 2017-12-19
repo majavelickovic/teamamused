@@ -82,9 +82,9 @@ use service\Service;
                                     </select>
                                 </td>
                                 <td>
-                                    <span id="reiseError" class="error">
+                                    <div id="reiseError" class="error">
                                         Bitte Reise selektieren.
-                                    </span>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -106,27 +106,27 @@ use service\Service;
                                     </select>
                                 </td>
                                 <td>
-                                    <span id="rgartError" class="error">
-                                        Bitte Reise selektieren.
-                                    </span>
+                                    <div id="rgartError" class="error">
+                                        Bitte Rechnungsart selektieren.
+                                    </div>
                                 </td>
                         </tr>
                         <tr>
                             <td>Kosten</td>
                             <td><input id="kosten" type="number" name="kosten" style="width:308px;" min="0" max="999999"/></td>
                             <td>
-                                <span id="kostenError" class="error">
-                                        Bitte Reise selektieren.
-                                </span>
+                                <div id="kostenError" class="error">
+                                        Bitte Kosten eingeben.
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>Beschreibung</td>
                             <td><textarea id="beschreibung" name="beschreibung" rows="5" cols="36"></textarea></td>
                             <td>
-                                <span id="beschreibungError" class="error">
-                                        Bitte Reise selektieren.
-                                </span>
+                                <div id="beschreibungError" class="error">
+                                        Bitte Beschreibung eingeben.
+                                </div>
                             </td>
                         </tr>
                         <tr>
