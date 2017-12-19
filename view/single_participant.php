@@ -96,10 +96,10 @@ if($teilnehmer->getReise() == ""){
                                 <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("geburtsdatum").disabled=false'></a></td>
                             </tr>
                             <tr>
-                                <td colspan="2" align="center"><input type="button" class="button" value="drucken" onclick="printParticipant()" />  <input type="button" class="button" value="zur&uuml;ck" onclick="window.location.href='/teilnehmer/bestehend'" /></td>
+                                <td colspan="3" align="center"><input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalParticipant()"/><input type="submit" class="button" value="speichern" /><input type="button" class="button" value="zur&uuml;ck" onclick="window.location.href='/teilnehmer/bestehend'" /></td>
                             </tr>
                             <tr>
-                                <td colspan="2" align="center"><input type="submit" class="button" value="speichern" />  <input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalParticipant()"/></td>
+                                <td colspan="1" align="center"><input type="button" class="button" value="drucken" onclick="printParticipant()" /></td>
                             </tr> 
                         </table>
                     </div>
