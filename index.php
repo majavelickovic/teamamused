@@ -364,7 +364,7 @@
          */
         Router::route("GET", "/maxParticipantReachedForJourney", function () {
             if (LoginController::authenticate() && $_GET['reise'] > 0) {
-                controller\TeilnehmerController::checkMaxParticipant($_GET['reise']);
+                return controller\TeilnehmerController::checkMaxParticipant($_GET['reise']);
             } else {
                 controller\ErrorController::error403View();
             }
