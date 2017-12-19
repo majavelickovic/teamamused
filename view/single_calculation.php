@@ -35,6 +35,43 @@ if ($rg->getReise() == "") {
                 function printInvoice() {
                     window.print();
                 }
+                //Prüfe Eingaben in Formular
+                function checkForm(){
+                    $countError = 0;
+                    if(document.getElementById("reise").value == ""){
+                        document.getElementById("reiseError").style.display = "inline";
+                        $countError = $countError+1;
+                    }else{
+                        document.getElementById("reiseError").style.display = "none";
+                    }
+                    if(document.getElementById("rgart").value == ""){
+                        document.getElementById("rgartError").style.display = "inline";
+                        $countError = $countError+1;
+                    }else{
+                        document.getElementById("rgartError").style.display = "none";
+                    }
+                    if(document.getElementById("kosten").value == ""){
+                        document.getElementById("kostenError").style.display = "inline";
+                        $countError = $countError+1;
+                    }else{
+                        document.getElementById("kostenError").style.display = "none";
+                    }
+                    if(document.getElementById("beschreibung").value == ""){
+                        document.getElementById("beschreibungError").style.display = "inline";
+                        $countError = $countError+1;
+                    }else{
+                        document.getElementById("beschreibungError").style.display = "none";
+                    }
+                    if(document.getElementById("dokument").files[0].size > 2097152){
+                        document.getElementById("dokumentError").style.display = "inline";
+                        $countError = $countError+1;
+                    }else{
+                        document.getElementById("dokumentError").style.display = "none";
+                    }
+                    if($countError == 0){
+                        document.getElementById("rgForm").submit();
+                    }
+                }
             </script>
         </head>
         <body>		
@@ -60,6 +97,7 @@ if ($rg->getReise() == "") {
                                     <td>Rechnungs-ID</td>
                                     <td><input type="text" id="rg_id" name="rg_id" size="40px" value="<?php echo $rg_id; ?>" readonly/></td>
                                     <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>Reise</td>
@@ -78,6 +116,11 @@ if ($rg->getReise() == "") {
                                         </select>
                                     </td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("reise").disabled = false'></a></td>
+                                    <td>
+                                        <div id="reiseError" class="error" style="display: none;">
+                                            Bitte Reise selektieren.
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Rechnungsart</td>
@@ -96,16 +139,31 @@ if ($rg->getReise() == "") {
                                         </select>
                                     </td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("rgart").disabled = false'></a></td>
+                                    <td>
+                                        <div id="rgartError" class="error" style="display: none;">
+                                            Bitte Rechnungsart selektieren.
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Kosten</td>
                                     <td><input type="text" id="kosten" name="kosten" style="width:308px;" value="<?php echo $rg->getKosten(); ?>" disabled/></td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("kosten").disabled = false; document.getElementById("kosten").type = "number"; document.getElementById("kosten").min = "0"; document.getElementById("kosten").max = "999999";'></a></td>
+                                    <td>
+                                        <div id="kostenError" class="error" style="display: none;">
+                                                Bitte Kosten eingeben.
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Beschreibung</td>
                                     <td><textarea id="beschreibung" name="beschreibung" rows="5" cols="36" disabled><?php echo $rg->getBeschreibung(); ?></textarea></td>
                                     <td><a href="#"><img src='../design/pictures/edit.png' onclick='document.getElementById("beschreibung").disabled = false'></a></td>
+                                    <td>
+                                        <div id="beschreibungError" class="error" style="display: none;">
+                                                Bitte Beschreibung eingeben.
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Dokument</td>
@@ -116,9 +174,14 @@ if ($rg->getReise() == "") {
                                         <a href="#"><img src="../design/pictures/edit.png" onclick="document.getElementById('dokument').type = 'file';document.getElementById('dokument').disabled = false;document.getElementById('dokument').accept = 'application/pdf';"></a>
                                         <a href="#"><img src="../design/pictures/search.png" onclick="window.open('/showSingleCalcPDF?rg_id=<?php echo $rg_id; ?>', 'Anzeige PDF')"></a>
                                     </td>
+                                    <td>
+                                        <div id="dokumentError" class="error" style="display: none;">
+                                            PDF darf nicht grösser als 2MB sein.
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3" align="center"><input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalInvoice()"/><input type="submit" class="button" value="speichern" /><input type="button" class="button" value="zur&uuml;ck" onclick="window.location.href='/rechnung/bestehend'" /></td>
+                                    <td colspan="3" align="center"><input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalInvoice()"/><input type="button" class="button" value="speichern" onclick="checkForm();"/><input type="button" class="button" value="zur&uuml;ck" onclick="window.location.href='/rechnung/bestehend'" /></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" align="center"><input type="button" class="button" value="drucken" onclick="printInvoice()" /></td>
