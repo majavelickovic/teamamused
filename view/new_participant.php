@@ -52,7 +52,8 @@ use service\Service;
                                     alert("maximale Teilnehmeranzahl für Reise bereits erreicht. Es können keine weiteren Teilnehmer für diese Reise erfasst werden.");
                                 }else{
                                     alert(req.responseText.toString());
-                                    document.getElementById("participantForm").submit();
+                                    console.log(req.responseText.toString());
+                                    //document.getElementById("participantForm").submit();
                                 }
                             }
                         }

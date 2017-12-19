@@ -158,7 +158,7 @@ class ReiseDAO {
             if($countTeilnehmerReise >= $maxTeilnehmerReise){
                 return "true";
             }else{
-                return "false";
+                return "testmaja";
             }
         }
     }
