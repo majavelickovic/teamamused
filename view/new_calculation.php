@@ -41,7 +41,7 @@ use service\Service;
                 }else{
                     document.getElementById("beschreibungError").style.display = "none";
                 }
-                if($('#dokumentError').["0"].firstChild.files["0"].size > 2097152){
+                if(document.getElementById("dokument").files[0].size > 2097152){
                     document.getElementById("dokumentError").style.display = "inline";
                     $countError = $countError+1;
                 }else{
