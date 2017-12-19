@@ -118,7 +118,6 @@ if ($rg->getReise() == "") {
                                         <a href="#"><img src="../design/pictures/search.png" onclick="window.open('/showSingleCalcPDF?rg_id=<?php echo $rg_id; ?>', 'Anzeige PDF')"></a>
                                     </td>
                                 </tr>
-                                <tr></br></br></td>
                                 <tr>
                                     <td colspan="3" align="center"><input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalInvoice()"/><input type="submit" class="button" value="speichern" /><input type="button" class="button" value="zur&uuml;ck" onclick="window.location.href='/rechnung/bestehend'" /></td>
                                 </tr>
