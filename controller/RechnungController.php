@@ -16,11 +16,11 @@ class RechnungController {
      */
     public static function newInvoice(){
         if($_FILES["dokument"]["name"] == ""){
-            $filename = $_FILES["dokument"]["name"];
-            $filecontent = file_get_contents($_FILES["dokument"]["tmp_name"]);
-        }else{
             $filename = null;
             $filecontent = null;
+        }else{
+            $filename = $_FILES["dokument"]["name"];
+            $filecontent = file_get_contents($_FILES["dokument"]["tmp_name"]);
         }
         return Service::getInstance()->createInvoice(
                 $_POST["reise"],

@@ -306,18 +306,6 @@ class ReiseDAO {
         $statement3->execute();
     }
 
-    /**
-     * noch überarbeiten
-     */
-    public function findByXY($xy) {
-        $pdo = Database::connect();
-        $statement = $pdo->prepare('
-            SELECT * FROM reise WHERE xy = :xy ORDER BY id;');
-        $statement->bindValue(':xy', $xy);
-        $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_CLASS, "Reise");
-    }
-
     public function getNewReiseID() {
         $pdo = Database::connect();
         $statement = $pdo->query(
@@ -326,7 +314,11 @@ class ReiseDAO {
         while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
             $returnvalue = $row["reise_id"];
         }
-        return $returnvalue + 1;
+        if($returnvalue == ""){
+            return 1;
+        }else{
+            return $returnvalue + 1;
+        }
     }
 
     /**

@@ -227,18 +227,6 @@ class TeilnehmerDAO {
         $statement2->execute();
     }
 
-    /**
-     * noch überarbeiten, je nach Find-Möglichkeiten
-     */
-    public function findByXY($xy) {
-        $pdo = Database::connect();
-        $statement = $pdo->prepare(
-                "SELECT * FROM teilnehmer WHERE xy = :xy ORDER BY id;");
-        $statement->bindValue(':xy', $xy);
-        $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_CLASS, "Teilnehmer");
-    }
-
     public function getNewTeilnehmerID() {
         $pdo = Database::connect();
         $statement = $pdo->query(
@@ -247,7 +235,11 @@ class TeilnehmerDAO {
         while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
             $returnvalue = $row["teilnehmer_id"];
         }
-        return $returnvalue + 1;
+        if($returnvalue == ""){
+            return 1;
+        }else{
+            return $returnvalue + 1;
+        }
     }
 
 }

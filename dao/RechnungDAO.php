@@ -209,7 +209,11 @@ class RechnungDAO {
             while($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $returnvalue = $row["rg_id"];
             }
-            return $returnvalue+1;
+            if($returnvalue == ""){
+                return 1;
+            }else{
+                return $returnvalue+1;
+            }
 	}
 
 	/**
