@@ -159,14 +159,14 @@ if ($reise->getReise_id() == "") {
                                         echo "";
                                     }
                                     ?>
-                                </table>
+                                </table></br></br>
                             </div>
                             <table>
                                 <tr>
                                     <td colspan="3" align="center"><input type="button" class="button" value="zur&uuml;cksetzen" onclick="reloadOriginalJourney()"/><input type="submit" class="button" value="speichern" /><input type="button" class="button" value="zur&uuml;ck" onclick="window.location.href='/reise/bestehend'" </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3" align="right"><input type="button" class="button" value="drucken" onclick="printJourney()" /></td>
+                                    <td colspan="3" align="center"><input type="button" class="button" value="drucken" onclick="printJourney()" /></td>
                                 </tr>   
                             </table>
                         </div>
