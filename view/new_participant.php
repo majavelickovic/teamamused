@@ -14,14 +14,6 @@ use service\Service;
         <link rel="stylesheet" href="../design/styles.css">
         <title>Teilnehmer</title>
         <script type="text/javascript">
-                //Seite nochmals laden, wenn zurücksetzen angeklickt wurde, um die ursprüngliche Rechnung ohne Änderungen anzuzeigen
-                function reloadOriginalInvoice() {
-                    location.reload();
-                }
-                //Rechnungsseite drucken
-                function printInvoice() {
-                    window.print();
-                }
                 //Prüfe Eingaben in Formular
                 function checkForm(){
                     $countError = 0;
@@ -57,7 +49,7 @@ use service\Service;
                         req.onreadystatechange = function () {
                             if (req.readyState == 4 && req.status == 200) {
                                 if(req.responseText == true){
-                                    alert(maximale Teilnehmeranzahl für Reise bereits erreicht. Es können keine weiteren Teilnehmer für diese Reise erfasst werden.);
+                                    alert("maximale Teilnehmeranzahl für Reise bereits erreicht. Es können keine weiteren Teilnehmer für diese Reise erfasst werden.");
                                 }else{
                                     document.getElementById("participantForm").submit();
                                 }
