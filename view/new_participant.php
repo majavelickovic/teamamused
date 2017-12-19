@@ -48,9 +48,10 @@ use service\Service;
                         //Prüfe, ob maximale Teilnehmeranzahl bereits erreicht wurde
                         req.onreadystatechange = function () {
                             if (req.readyState == 4 && req.status == 200) {
-                                if(req.responseText.toString() == "true"){
+                                if(req.responseText == "true"){
                                     alert("maximale Teilnehmeranzahl für Reise bereits erreicht. Es können keine weiteren Teilnehmer für diese Reise erfasst werden.");
                                 }else{
+                                    alert(req.responseText);
                                     document.getElementById("participantForm").submit();
                                 }
                             }
