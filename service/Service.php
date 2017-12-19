@@ -158,6 +158,16 @@ class Service {
         //return null;
     }
     
+    /**
+     * Prüft, ob die maximale Teilnehmeranzahl für eine Reise erreicht wurde
+     * @param type $reise
+     * @return true or false
+     */
+    public function checkMaxParticipantForJourney($reise){
+        $reiseDAO = new dao\ReiseDAO();
+        return $reiseDAO->checkMaxParticipantForJourney($reise);
+    }
+    
     public function readRechnungen($reise_id) {
         //if ($this->verifyAuth()) {
         $reiseDAO = new dao\ReiseDAO();

@@ -129,6 +129,47 @@ class ReiseDAO {
             return " ";
         }
     }
+    
+    
+    /**
+     * Prüfe maximale Teilnehmeranzahl für Reise und gib true zurück, wenn Teilnehmerzahl erreicht
+     * @param type $reise
+     */
+    public function checkMaxParticipantForJourney($reise){
+        if ($reise != null) {
+            $pdo = Database::connect();
+                    
+            $statement1 = $pdo->prepare(
+                    "SELECT COUNT(*) FROM reise WHERE reise_id = :reise;");
+            $statement1->bindValue(':reise', $reise);
+            $statement1->execute();
+            while ($row = $statement1->fetch()) {
+            
+            }
+            
+            $statement1 = $pdo->prepare(
+                    "SELECT max_teilnehmer FROM reise WHERE reise_id = :reise;");
+            $statement1->bindValue(':reise', $reise);
+            $statement1->execute();
+            while ($row = $statement1->fetch()) {
+                $maxTeilnehmerReise = $row['max_teilnehmer'];
+            }
+            
+            $statement2 = $pdo->prepare(
+                    "SELECT COUNT(*) FROM reise_teilnehmer WHERE reise_id = :reise;");
+            $statement2->bindValue(':reise', $reise);
+            $statement2->execute();
+            while ($row2 = $statement2->fetch()) {
+                $countTeilnehmerReise = $row2['COUNT'];
+            }
+            
+            if($countTeilnehmerReise >= $maxTeilnehmerReise)
+                return true;
+            else{
+                return false;
+            }
+        }
+    }
 
     /**
      * Liest die Rechnungen für eine Reise und gibt diese aus in der Reiseansicht

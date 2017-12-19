@@ -13,6 +13,60 @@ use service\Service;
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../design/styles.css">
         <title>Teilnehmer</title>
+        <script type="text/javascript">
+                //Seite nochmals laden, wenn zurücksetzen angeklickt wurde, um die ursprüngliche Rechnung ohne Änderungen anzuzeigen
+                function reloadOriginalInvoice() {
+                    location.reload();
+                }
+                //Rechnungsseite drucken
+                function printInvoice() {
+                    window.print();
+                }
+                //Prüfe Eingaben in Formular
+                function checkForm(){
+                    $countError = 0;
+                    if(document.getElementById("reise").value == ""){
+                        document.getElementById("reiseError").style.display = "inline";
+                        $countError = $countError+1;
+                    }else{
+                        document.getElementById("reiseError").style.display = "none";
+                    }
+                    if(document.getElementById("vorname").value == ""){
+                        document.getElementById("vornameError").style.display = "inline";
+                        $countError = $countError+1;
+                    }else{
+                        document.getElementById("vornameError").style.display = "none";
+                    }
+                    if(document.getElementById("nachname").value == ""){
+                        document.getElementById("nachnameError").style.display = "inline";
+                        $countError = $countError+1;
+                    }else{
+                        document.getElementById("nachnameError").style.display = "none";
+                    }
+                    if(document.getElementById("geburtsdatum").value == ""){
+                        document.getElementById("geburtsdatumError").style.display = "inline";
+                        $countError = $countError+1;
+                    }else{
+                        document.getElementById("geburtsdatumError").style.display = "none";
+                    }
+                    if($countError == 0){
+                        var req = new XMLHttpRequest();
+                        req.open('GET', '/maxParticipantReachedForJourney?reise=' + document.getElementById("reise").value);
+
+                        //Prüfe, ob maximale Teilnehmeranzahl bereits erreicht wurde
+                        req.onreadystatechange = function () {
+                            if (req.readyState == 4 && req.status == 200) {
+                                if(req.responseText == true){
+                                    alert(maximale Teilnehmeranzahl für Reise bereits erreicht. Es können keine weiteren Teilnehmer für diese Reise erfasst werden.);
+                                }else{
+                                    document.getElementById("participantForm").submit();
+                                }
+                            }
+                        }
+                        req.send(null);
+                    }
+                }
+            </script>
     </head>
     <body>		
         <div id="whiteblock">
@@ -31,12 +85,12 @@ use service\Service;
                             <td><img src="../design/pictures/plus.png"></td><td>neuer Teilnemer hinzufügen</td>
                         </tr>
                     </table>
-                    <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/teilnehmer/neu" method="POST" enctype="multipart/form-data">
+                    <form id="participantForm" action="<?php echo $GLOBALS["ROOT_URL"]; ?>/teilnehmer/neu" method="POST" enctype="multipart/form-data">
                         <table>
                             <tr>
                                 <td>Reise</td>
                                 <td>
-                                    <select id="dropdown" name="reise">
+                                    <select id="reise" name="reise" class="dropdown">
                                         <?php
                                         if ($_POST['reise'] == "") {
                                             echo "<option selected='selected' value=''></option>";
@@ -50,21 +104,41 @@ use service\Service;
                                         ?>
                                     </select>
                                 </td>
+                                <td>
+                                    <div id="reiseError" class="error" style="display: none;">
+                                        Bitte Reise auswählen.
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Vorname</td>
-                                <td><input type="text" name="vorname" size="40px" /></td>
+                                <td><input id="vorname" type="text" name="vorname" size="40px" /></td>
+                                <td>
+                                    <div id="vornameError" class="error" style="display: none;">
+                                        Bitte Vorname eingeben.
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Nachname</td>
-                                <td><input type="text" name="nachname" size="40px" /></td>
+                                <td><input id="nachname" type="text" name="nachname" size="40px" /></td>
+                                <td>
+                                    <div id="nachnameError" class="error" style="display: none;">
+                                        Bitte Nachname eingeben.
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Geburtsdatum</td>
-                                <td><input type="date" name="geburtsdatum" /></td>
+                                <td><input id="geburtsdatum" type="date" name="geburtsdatum" /></td>
+                                <td>
+                                    <div id="geburtsdatumError" class="error" style="display: none;">
+                                        Bitte Geburtsdatum eingeben.
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
-                                <td colspan="2" align="center"><input type="submit" class="button" value="hinzuf&uuml;gen" />  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
+                                <td colspan="2" align="center"><input type="button" class="button" value="hinzuf&uuml;gen" onclick="checkForm();"/>  <input type="reset" class="button" value="zur&uuml;cksetzen" /></td>
                             </tr>
                         </table>
                     </form>

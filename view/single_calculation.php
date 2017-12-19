@@ -85,7 +85,7 @@ if ($rg->getReise() == "") {
                             <li><a href="<?php echo $GLOBALS["ROOT_URL"] . "/logout" ?>">Logout</a></li>
                         </ul>
                     </div>
-                    <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/anzeige" method="POST"  enctype="multipart/form-data">
+                    <form id="rgForm" action="<?php echo $GLOBALS["ROOT_URL"]; ?>/rechnung/anzeige" method="POST"  enctype="multipart/form-data">
                         <div id="blockleft">
                             <table>
                                 <tr>

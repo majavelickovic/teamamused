@@ -20,6 +20,11 @@ class TeilnehmerController {
                         $_POST["reise"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);
     }
 
+    public static function checkMaxParticipant($reise){
+        return Service::getInstance()->checkMaxParticipantForJourney(
+                        $reise);
+    }
+    
     public static function readParticipant() {
         return Service::getInstance()->readParticipant(
                         $_POST["reise"], $_POST["teilnehmer_id"], $_POST["vorname"], $_POST["nachname"]);
