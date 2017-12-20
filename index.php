@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./design/styles.css">
+        <link rel="stylesheet" href="/design/styles.css">
         <title>Verwaltungstool Reisen</title>
     </head>
     <body>
