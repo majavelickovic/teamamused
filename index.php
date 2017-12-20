@@ -341,11 +341,6 @@
             }
         });
 
-        // test getMaxParticipant
-        Router::route("GET", "/assets/getMaxParticipantForJourney", function () {
-            return controller\TeilnehmerController::checkMaxParticipant($_GET['reise']);
-        });
-
         /**
          * eine bestimmte Rechnung wird gelöscht
          * @author Maja Velickovic
