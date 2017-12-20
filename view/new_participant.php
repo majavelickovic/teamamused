@@ -42,20 +42,25 @@ use service\Service;
                         document.getElementById("geburtsdatumError").style.display = "none";
                     }
                     if($countError == 0){
-                        var req = new XMLHttpRequest();
-                        req.open('GET', '/assets/maxParticipantReachedForJourney?reise=' + document.getElementById("reise").value);
+//                        var req = new XMLHttpRequest();
+//                        req.open('GET', '/assets/maxParticipantReachedForJourney?reise=' + document.getElementById("reise").value);
 
-                        //Prüfe, ob maximale Teilnehmeranzahl bereits erreicht wurde
-                        req.onreadystatechange = function () {
-                            if (req.readyState == 4 && req.status == 200) {
-                                if(req.responseText.toString() == "true"){
-                                    alert("maximale Teilnehmeranzahl für Reise bereits erreicht. Es können keine weiteren Teilnehmer für diese Reise erfasst werden.");
-                                }else{
-                                    document.getElementById("participantForm").submit();
-                                }
-                            }
+//                        //Prüfe, ob maximale Teilnehmeranzahl bereits erreicht wurde
+//                        req.onreadystatechange = function () {
+//                            if (req.readyState == 4 && req.status == 200) {
+//                                if(req.responseText.toString() == "true"){
+//                                    alert("maximale Teilnehmeranzahl für Reise bereits erreicht. Es können keine weiteren Teilnehmer für diese Reise erfasst werden.");
+//                                }else{
+//                                    document.getElementById("participantForm").submit();
+//                                }
+//                            }
+//                        }
+                        if(controller\TeilnehmerController::checkMaxParticipant($_GET[document.getElementById("reise").value])){
+                            alert("maximale Teilnehmeranzahl für Reise bereits erreicht. Es können keine weiteren Teilnehmer für diese Reise erfasst werden.");
+                        } else {
+                            document.getElementById("participantForm").submit();
                         }
-                        req.send(null);
+                        //req.send(null);
                     }
                 }
             </script>
