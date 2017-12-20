@@ -36,7 +36,7 @@ class PDF extends FPDF {
   
 
   // Colored table
-  function showTableContent($header,$data)
+  function showTableContent($data)
   {
     // Colors, line width and bold font
     $this->SetFillColor(255,0,0);
@@ -79,6 +79,6 @@ $pdf->AliasNbPages();
 $pdf->AddPage('L');
 $pdf->SetFont('Arial','',14);
 $dataSchlussabrechnung = controller\RechnungController::readFinalBilling($_POST['reise']);
-$pdf->showTableContent($header,$dataSchlussabrechnung);
+$pdf->showTableContent($dataSchlussabrechnung);
 $pdf->Output();    
 ?>
