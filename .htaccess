@@ -12,4 +12,4 @@ RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
 # this redirects everything except design requests to the index.php file
 RewriteRule ^(?!.*design/)(.*) index.php [QSA,L,E=ORIGINAL_PATH:/$1]
-RewriteRule ^(?!.*assets/maxParticipantReachedForJourney*) index.php [QSA,L,E=ORIGINAL_PATH:/$1]
+#RewriteRule ^(?!.*assets/maxParticipantReachedForJourney*) index.php [QSA,L,E=ORIGINAL_PATH:/$1]
