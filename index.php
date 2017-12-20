@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="/design/styles.css">
+        <link rel="stylesheet" href="../design/styles.css">
         <title>Verwaltungstool Reisen</title>
     </head>
     <body>
@@ -341,9 +341,9 @@
             }
         });
 
-        // todo -> entfernen!
-        Router::route("GET", "/testDB", function () {
-            require_once("view/testDBConnect.php");
+        // test getMaxParticipant
+        Router::route("GET", "/assets/getMaxParticipantForJourney", function () {
+            return controller\TeilnehmerController::checkMaxParticipant($_GET['reise']);
         });
 
         /**
