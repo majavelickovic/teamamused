@@ -54,7 +54,7 @@ class PDF extends FPDF {
     $this->SetFont('');
     // Data
     $fill=0;
-    $totalsum = 0;
+    $totalsum = 0.00;
     foreach($data as $row)
     {
      $this->Cell(170,6,$row[0],'LR',0,'L',$fill);
