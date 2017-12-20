@@ -156,9 +156,9 @@ class ReiseDAO {
             }
             
             if($countTeilnehmerReise >= $maxTeilnehmerReise){
-                return true;
+                return "true";
             }else{
-                return false;
+                return "false";
             }
         }
     }
