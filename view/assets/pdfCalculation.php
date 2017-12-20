@@ -54,14 +54,19 @@ class PDF extends FPDF {
     $this->SetFont('');
     // Data
     $fill=0;
-    $totalsum = 0.00;
+    $count = 0;
     foreach($data as $row)
     {
      $this->Cell(170,6,$row[0],'LR',0,'L',$fill);
      $this->Cell(70,6,'CHF ' . number_format($row[1],2),'LR',0,'R',$fill);
-     $totalsum = $totalsum + $row[1];
+     if($count == 0){
+         $totalsum = 0-$row[1];
+     }else{
+        $totalsum = $totalsum + $row[1];
+     }
      $this->Ln();
      $fill=!$fill;
+     $count = $count + 1;
     }
     
     $this->SetFillColor(0,0,255);
