@@ -55,7 +55,7 @@ use service\Service;
 //                                }
 //                            }
 //                        }
-                        if(<?php controller\TeilnehmerController::checkMaxParticipant($_GET[document.getElementById("reise").value]) ?>){
+                        if(<?php boolval(controller\TeilnehmerController::checkMaxParticipant($_GET[document.getElementById("reise").value])) ?>){
                             alert("maximale Teilnehmeranzahl für Reise bereits erreicht. Es können keine weiteren Teilnehmer für diese Reise erfasst werden.");
                         } else {
                             document.getElementById("participantForm").submit();
