@@ -254,7 +254,7 @@ class RechnungDAO {
 
             while ($row = $statement->fetch()){
                 array_push($array, array(
-                    utf8_decode($row['b1'] . ' / ' . $row['b2']), number_format(0-($row['kosten']),2)
+                    utf8_decode($row['b1'] . ' / ' . $row['b2']), 0-($row['kosten'])
                 ));
             }
         
@@ -267,7 +267,7 @@ class RechnungDAO {
             
             while ($row2 = $statement2->fetch()){
                 array_push($array, array(
-                    utf8_decode('Teilnahmebeitrag von ' . $row2['vorname'] . ' ' . $row2['nachname']), number_format($row2['preis'],2))
+                    utf8_decode('Teilnahmebeitrag von ' . $row2['vorname'] . ' ' . $row2['nachname']), $row2['preis'])
                 );
             }
 

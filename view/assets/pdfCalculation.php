@@ -36,7 +36,7 @@ class PDF extends FPDF {
   
 
   // Colored table
-  function showTableContent($data)
+  function showTableContent($header,$data)
   {
     // Colors, line width and bold font
     $this->SetFillColor(255,0,0);
@@ -54,12 +54,12 @@ class PDF extends FPDF {
     $this->SetFont('');
     // Data
     $fill=0;
-    $totalsum = 0.00;
+    $totalsum = 0;
     foreach($data as $row)
     {
      $this->Cell(170,6,$row[0],'LR',0,'L',$fill);
      $this->Cell(70,6,'CHF ' . number_format($row[1],2),'LR',0,'R',$fill);
-     $totalsum = $totalsum + number_format($row[1],2);
+     $totalsum = $totalsum + $row[1];
      $this->Ln();
      $fill=!$fill;
     }
@@ -79,6 +79,6 @@ $pdf->AliasNbPages();
 $pdf->AddPage('L');
 $pdf->SetFont('Arial','',14);
 $dataSchlussabrechnung = controller\RechnungController::readFinalBilling($_POST['reise']);
-$pdf->showTableContent($dataSchlussabrechnung);
+$pdf->showTableContent($header,$dataSchlussabrechnung);
 $pdf->Output();    
 ?>
