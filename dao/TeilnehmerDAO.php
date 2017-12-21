@@ -154,7 +154,7 @@ class TeilnehmerDAO {
     }
 
     /**
-     * Liest ein Teilnehmer-Objekt aus der Tabelle "teilnehmer
+     * Liest einen einzelnen Teilnehmer aus der Datenbank, um diesen dem Benutzer anzuzeigen
      */
     public function readSingleParticipant($teilnehmer_id) {
         $pdo = Database::connect();
@@ -227,6 +227,9 @@ class TeilnehmerDAO {
         $statement2->execute();
     }
 
+    /**
+     * Lese die letzte Teilnehmernummer und gib +1 zurück für neue Teilnehmer-ID
+     */
     public function getNewTeilnehmerID() {
         $pdo = Database::connect();
         $statement = $pdo->query(
@@ -235,9 +238,9 @@ class TeilnehmerDAO {
         while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
             $returnvalue = $row["teilnehmer_id"];
         }
-        if($returnvalue == ""){
+        if ($returnvalue == "") {
             return 1;
-        }else{
+        } else {
             return $returnvalue + 1;
         }
     }

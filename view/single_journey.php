@@ -17,6 +17,7 @@ if ($reise->getReise_id() == "") {
 
     /*
      * View, um eine einzelne Reise anzusehen / zu bearbeiten
+     * @author Sandra Bodack
      */
     ?>
 

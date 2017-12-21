@@ -14,7 +14,6 @@ class TeilnehmerController {
      * Übernimmt die Angaben aus dem Teilnehmerformular und gibt diese an die Service-Klasse weiter
      * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen eines Teilnehmers
      */
-
     public static function newParticipant() {
         return Service::getInstance()->createParticipant(
                         $_POST["reise"], $_POST["vorname"], $_POST["nachname"], $_POST["geburtsdatum"]);

@@ -114,7 +114,6 @@ class Service {
      * Überprüft, ob es den übergebenen Benutzernamen bereits gibt
      * @author Michelle Widmer
      */
-
     public function uniqueBenutzername($benutzername) {
         $loginDAO = new dao\LoginDAO();
         if ($loginDAO->findBenutzername($benutzername)) {
@@ -127,7 +126,7 @@ class Service {
     // CRUD-Methoden für Reisen
 
     /**
-     * Erstellt eine neue Reise anhand von den Angaben aus dem Formular
+     * Erstellt eine neue Reise anhand Angaben aus dem Formular
      * @author Sandra Bodack
      */
     public function createJourney($titel, $beschreibung, $datum_start, $datum_ende, $preis, $max_teilnehmer, $startort) {
@@ -149,6 +148,7 @@ class Service {
 
     /**
      * Liest anhand der Reise-Id die entsprechende Reise aus der Datenbank
+     * @author Sandra Bodack
      */
     public function readJourney($reise_id, $titel, $preis, $startort) {
         //if ($this->verifyAuth()) {
@@ -203,6 +203,7 @@ class Service {
 
     /**
      * Löscht anhand der Reise-ID die entsprechende Reise aus der Datenbank
+     * @author Sandra Bodack
      */
     public function deleteJourney($reise_id) {
         $reiseDAO = new dao\ReiseDAO();
@@ -210,18 +211,8 @@ class Service {
     }
 
     /**
-     * TODO -> auch in ReiseDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
-     */
-    public function findAllJourney() {
-        if ($this->verifyAuth()) {
-            $reiseDAO = new dao\ReiseDAO();
-            return $reiseDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in ReiseDAO
-        }
-        return null;
-    }
-
-    /**
      * Lese Reisename anhand Reise-ID
+     * @author Sandra Bodack
      */
     public function readJourneyName($reise) {
         //if($this->verifyAuth()){
@@ -234,7 +225,7 @@ class Service {
     // CRUD-Methoden für Teilnehmer
 
     /**
-     * Erstellt einen neuen Teilnehmer anhand von den Angaben aus dem Formular
+     * Erstellt einen neuen Teilnehmer anhand Angaben aus dem Formular
      * @author Sandra Bodack
      */
     public function createParticipant($reise, $vorname, $nachname, $geburtsdatum) {
@@ -253,12 +244,17 @@ class Service {
 
     /**
      * Liest anhand der Teilnehmer-Id den entsprechenden Teilnehmer aus der Datenbank
+     * @author Sandra Bodack
      */
     public function readParticipant($reise, $teilnehmer_id, $vorname, $nachname) {
         $teilnehmerDAO = new \dao\TeilnehmerDAO();
         return $teilnehmerDAO->read($reise, $teilnehmer_id, $vorname, $nachname);
     }
 
+    /**
+     * Liest anhand der Teilnehmer-Id den entsprechenden Teilnehmer aus der Datenbank
+     * @author Sandra Bodack
+     */
     public function readSingleParticipant($teilnehmer_id) {
         $teilnehmerDAO = new \dao\TeilnehmerDAO();
         return $teilnehmerDAO->readSingleParticipant($teilnehmer_id);
@@ -272,41 +268,20 @@ class Service {
         $teilnehmerDAO = new \dao\TeilnehmerDAO();
         return $teilnehmerDAO->update($teilnehmer_id, $reise, $vorname, $nachname, $geburtsdatum);
     }
-    
-//    public function updateParticipant($reise, $teilnehmer_id, $vorname, $nachname) {
-//        $teilnehmerDAO = new \dao\TeilnehmerDAO();
-//        // Teilnehmerinhalte bestimmen      
-//        $teilnehmer = new Teilnehmer();
-//        $teilnehmer->setReise($reise);
-//        $teilnehmer->setTeilnehmer_id($teilnehmer_id); // hole Teilnehmer-ID
-//        $teilnehmer->setVorname($vorname);
-//        $teilnehmer->setNachname($nachname);
-//        return $teilnehmerDAO->update($teilnehmer);
-//    }
 
     /**
      * Löscht anhand der Teilnehmer-ID den entsprechenden Teilnehmer aus der Datenbank
+     * @author Sandra Bodack
      */
     public function deleteParticipant($teilnehmer_id) {
         $teilnehmerDAO = new \dao\TeilnehmerDAO();
         $teilnehmerDAO->delete($teilnehmer_id);
     }
 
-    /**
-     * TODO -> auch in TeilnehmerDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
-     */
-    public function findAllParticipant() {
-        if ($this->verifyAuth()) {
-            $teilnehmerDAO = new \dao\TeilnehmerDAO();
-            return $teilnehmerDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in TeilnehmerDAO
-        }
-        return null;
-    }
-
     // CRUD-Methoden für Rechnungen
 
     /**
-     * Erstellt eine neue Rechnung anhand angaben aus Formular von Benutzer
+     * Erstellt eine neue Rechnung anhand Angaben aus Formular von Benutzer
      * @author Maja Velickovic
      */
     public function createInvoice($reise, $rgart, $kosten, $beschreibung, $dokument, $pdf_object) {
@@ -390,8 +365,8 @@ class Service {
         return $rechnungsDAO->getInvoiceTypes();
     }
 
-        /**
-     * Selektabfrage, um alle Standorte auszulesen
+    /**
+     * Selektabfrage, um alle Startorte auszulesen
      * @author Sandra Bodack
      */
     public function getPlaces() {

@@ -120,6 +120,10 @@
             }
         });
 
+        /**
+         * Neue Reise wird von Benutzer erfasst
+         * @author Sandra Bodack
+         */
         Router::route("GET", "/reise/neu", function () {
             if (LoginController::authenticate()) {
                 controller\ReiseController::journeyAddView();
@@ -128,6 +132,10 @@
             }
         });
 
+        /**
+         * Reiseformular wurde von Benutzer submittet, Reise wird erstellt
+         * @author Sandra Bodack
+         */
         Router::route("POST", "/reise/neu", function () {
             if (LoginController::authenticate()) {
                 controller\ReiseController::journeyAddView();
@@ -150,6 +158,10 @@
             }
         });
 
+        /**
+         * bestehende Reisen können über ein Formular abgerufen werden
+         * @author Sandra Bodack
+         */
         Router::route("GET", "/reise/bestehend", function () {
             if (LoginController::authenticate()) {
                 controller\ReiseController::journeyShowView();
@@ -158,6 +170,10 @@
             }
         });
 
+        /**
+         * Suchformular für Reisen wurde ausgefüllt, Tabelle mit Reisen werden dem Benutzer ausgewiesen
+         * @author Sandra Bodack
+         */
         Router::route("POST", "/reise/bestehend", function () {
             if (LoginController::authenticate()) {
                 controller\ReiseController::journeyShowView();
@@ -166,6 +182,10 @@
             }
         });
 
+        /**
+         * Eine bestehende Reise wird dem Benutzer in einem Formular angezeigt
+         * @author Sandra Bodack
+         */
         Router::route("GET", "/reise/anzeige", function () {
             if (LoginController::authenticate()) {
                 controller\ReiseController::journeyShowSingleView();
@@ -174,6 +194,10 @@
             }
         });
 
+        /**
+         * Änderungen an einer behenden Reise werden gespeichert
+         * @author Sandra Bodack
+         */
         Router::route("POST", "/reise/anzeige", function () {
             if (LoginController::authenticate()) {
                 controller\ReiseController::updateJourney();
@@ -214,14 +238,14 @@
         Router::route("POST", "/rechnung/neu", function () {
             if (LoginController::authenticate()) {
                 //Datei muss mit PDF enden oder darf auch leer sein
-                if((substr($_FILES["dokument"]["name"], strlen($_FILES["dokument"]["name"])-4, strlen($_FILES["dokument"]["name"])) != ".pdf") && $_FILES["dokument"]["name"] != ""){
+                if ((substr($_FILES["dokument"]["name"], strlen($_FILES["dokument"]["name"]) - 4, strlen($_FILES["dokument"]["name"])) != ".pdf") && $_FILES["dokument"]["name"] != "") {
                     ?>
                     <script type="text/javascript">
                         alert("Nur PDF ist als Anhang erlaubt. Bitte Format vom Rechnungsanhang ändern. Rechnung konnte nicht gespeichert werden.");
                     </script>
                     <?php
-                        controller\RechnungController::invoiceAddView();
-                }else{
+                    controller\RechnungController::invoiceAddView();
+                } else {
                     controller\RechnungController::invoiceAddView();
                     $returnrg = controller\RechnungController::newInvoice();
                     if ($returnrg != false) {
@@ -238,7 +262,6 @@
                         <?php
                     }
                 }
- 
             } else {
                 controller\ErrorController::error403View();
             }
@@ -353,6 +376,10 @@
             }
         });
 
+        /**
+         * Übersichtsseite für Optionen für einen Teilnehmer werden angezeigt
+         * @author Sandra Bodack
+         */
         Router::route("GET", "/teilnehmer", function () {
             if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantChoiceView();
@@ -361,6 +388,10 @@
             }
         });
 
+        /**
+         * Neuer Teilnehmer wird von Benutzer erfasst
+         * @author Sandra Bodack
+         */
         Router::route("GET", "/teilnehmer/neu", function () {
             if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantAddView();
@@ -369,6 +400,10 @@
             }
         });
 
+        /**
+         * Teilnehmerformular wurde von Benutzer submittet, Teilnehmer wird erstellt
+         * @author Sandra Bodack
+         */
         Router::route("POST", "/teilnehmer/neu", function () {
             if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantAddView();
@@ -391,6 +426,10 @@
             }
         });
 
+        /**
+         * bestehende Teilnehmer können über ein Formular abgerufen werden
+         * @author Sandra Bodack
+         */
         Router::route("GET", "/teilnehmer/bestehend", function () {
             if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantShowView();
@@ -399,6 +438,10 @@
             }
         });
 
+        /**
+         * Suchformular für Teilnehmer wurde ausgefüllt, Tabelle mit Rechnungen werden dem Benutzer ausgewiesen
+         * @author Sandra Bodack
+         */
         Router::route("POST", "/teilnehmer/bestehend", function () {
             if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantShowView();
@@ -407,6 +450,10 @@
             }
         });
 
+        /**
+         * Ein bestehender Teilnehmer wird dem Benutzer in einem Formular angezeigt
+         * @author Sandra Bodack
+         */
         Router::route("GET", "/teilnehmer/anzeige", function () {
             if (LoginController::authenticate()) {
                 controller\TeilnehmerController::participantShowSingleView();
@@ -415,6 +462,10 @@
             }
         });
 
+        /**
+         * Änderungen an einem bestehendem Teilnehmer werden gespeichert
+         * @author Sandra Bodack
+         */
         Router::route("POST", "/teilnehmer/anzeige", function () {
             if (LoginController::authenticate()) {
                 controller\TeilnehmerController::updateParticipant();
@@ -424,6 +475,10 @@
             }
         });
 
+        /**
+         * ein bestimmter Teilnehmer wird gelöscht
+         * @author Sandra Bodack
+         */
         Router::route("GET", "/deleteParticipant", function () {
             if (LoginController::authenticate() && $_GET['del_teilnehmer_id'] > 0) {
                 controller\TeilnehmerController::deleteParticipant($_GET['del_teilnehmer_id']);

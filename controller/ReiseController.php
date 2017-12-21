@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Controller für die Reise-View
  * @author Sandra Bodack
@@ -15,7 +14,6 @@ class ReiseController {
      * Übernimmt die Angaben aus dem Reiseformular und gibt diese an die Service-Klasse weiter
      * Erhält aus der Service-Klasse einen Boolean zurück bei erfolgreichem Ändern/Hinzufügen einer Reise
      */
-
     public static function newJourney() {
         return Service::getInstance()->createJourney(
                         $_POST["titel"], $_POST["beschreibung"], $_POST["datum_start"], $_POST["datum_ende"], $_POST["preis"], $_POST["max_teilnehmer"], $_POST["startort"]);

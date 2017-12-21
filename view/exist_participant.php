@@ -3,7 +3,7 @@
 use service\Service;
 
 /*
- * View, um eine besthende Rechnung zu suchen
+ * View, um einen bestehenden Teilnehmer zu suchen
  * @author Sandra Bodack
  */
 ?>

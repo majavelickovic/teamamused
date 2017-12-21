@@ -129,16 +129,15 @@ class ReiseDAO {
             return " ";
         }
     }
-    
-    
+
     /**
      * Prüfe maximale Teilnehmeranzahl für Reise und gib true zurück, wenn Teilnehmerzahl erreicht
      * @param type $reise
      */
-    public function checkMaxParticipantForJourney($reise){
+    public function checkMaxParticipantForJourney($reise) {
         if ($reise != null) {
             $pdo = Database::connect();
-            
+
             $statement1 = $pdo->prepare(
                     "SELECT max_teilnehmer FROM reise WHERE reise_id = :reise;");
             $statement1->bindValue(':reise', $reise);
@@ -146,7 +145,7 @@ class ReiseDAO {
             while ($row = $statement1->fetch()) {
                 $maxTeilnehmerReise = $row['max_teilnehmer'];
             }
-            
+
             $statement2 = $pdo->prepare(
                     "SELECT COUNT(*) FROM reise_teilnehmer WHERE reise_id = :reise;");
             $statement2->bindValue(':reise', $reise);
@@ -154,10 +153,10 @@ class ReiseDAO {
             while ($row2 = $statement2->fetch()) {
                 $countTeilnehmerReise = $row2['COUNT'];
             }
-            
-            if($countTeilnehmerReise >= $maxTeilnehmerReise){
+
+            if ($countTeilnehmerReise >= $maxTeilnehmerReise) {
                 return "true";
-            }else{
+            } else {
                 return "false";
             }
         }
@@ -229,6 +228,9 @@ class ReiseDAO {
         }
     }
 
+    /**
+     * Liest eine einzelne Reise aus der Datenbank, um diese dem Benutzer anzuzeigen
+     */
     public function readSingleJourney($reise_id) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
@@ -339,6 +341,9 @@ class ReiseDAO {
         $statement3->execute();
     }
 
+    /**
+     * Lese die letzte Reisenummer und gib +1 zurück für neue Reise-ID
+     */
     public function getNewReiseID() {
         $pdo = Database::connect();
         $statement = $pdo->query(
@@ -347,15 +352,14 @@ class ReiseDAO {
         while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
             $returnvalue = $row["reise_id"];
         }
-        if($returnvalue == ""){
+        if ($returnvalue == "") {
             return 1;
-        }else{
+        } else {
             return $returnvalue + 1;
         }
     }
 
     /**
-     * 
      * @param type $reise
      * @return Titel einer spezifischen Reise
      * @author Maja Velickovic
@@ -372,7 +376,6 @@ class ReiseDAO {
     }
 
     /**
-     * 
      * @return Array mit allen Standorten
      * @author Sandra Bodack
      */
@@ -384,7 +387,6 @@ class ReiseDAO {
     }
 
     /**
-     * 
      * @return Array mit allen Reisetiteln
      * @author Maja Velickovic
      */
