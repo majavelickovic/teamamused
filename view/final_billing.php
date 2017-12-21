@@ -57,7 +57,7 @@ use service\Service;
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2" align="center"><input type="submit" class="button" value="drucken" />
+                                <td colspan="2" align="center"><input type="submit" class="button" value="drucken" target="_blank"/>
                             </tr>
                         </table>
                     </form>
