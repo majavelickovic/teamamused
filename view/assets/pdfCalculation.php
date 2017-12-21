@@ -58,11 +58,11 @@ class PDF extends FPDF {
     $fill=0;
     $totalsum = 0;
     
-    foreach($data-1 as $row)
+    foreach($data as $key => $item)
     {
-        $totalsum = $totalsum + $row[1]; // summiert den Betrag zum Total
-        $this->Cell(170,6,$row[0],'LR',0,'L',$fill); // Zelle der ersten Spalte
-        $this->Cell(70,6,'CHF ' . number_format($row[1],2),'LR',0,'R',$fill); // Zelle der zweiten Spalte
+        $totalsum = $totalsum + $item[1]; // summiert den Betrag zum Total
+        $this->Cell(170,6,$item[0],'LR',0,'L',$fill); // Zelle der ersten Spalte
+        $this->Cell(70,6,'CHF ' . number_format($item[1],2),'LR',0,'R',$fill); // Zelle der zweiten Spalte
         $this->Ln();
         $fill=!$fill;
     }
