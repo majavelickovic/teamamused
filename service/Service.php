@@ -114,6 +114,7 @@ class Service {
      * Überprüft, ob es den übergebenen Benutzernamen bereits gibt
      * @author Michelle Widmer
      */
+
     public function uniqueBenutzername($benutzername) {
         $loginDAO = new dao\LoginDAO();
         if ($loginDAO->findBenutzername($benutzername)) {
@@ -157,17 +158,17 @@ class Service {
         //}
         //return null;
     }
-    
+
     /**
      * Prüft, ob die maximale Teilnehmeranzahl für eine Reise erreicht wurde
      * @param type $reise
      * @return true or false
      */
-    public function checkMaxParticipantForJourney($reise){
+    public function checkMaxParticipantForJourney($reise) {
         $reiseDAO = new dao\ReiseDAO();
         return $reiseDAO->checkMaxParticipantForJourney($reise);
     }
-    
+
     public function readRechnungen($reise_id) {
         //if ($this->verifyAuth()) {
         $reiseDAO = new dao\ReiseDAO();
@@ -175,7 +176,7 @@ class Service {
         //}
         //return null;
     }
-    
+
     public function readTeilnehmer($reise_id) {
         //if ($this->verifyAuth()) {
         $reiseDAO = new dao\ReiseDAO();
@@ -188,7 +189,7 @@ class Service {
         $reiseDAO = new \dao\ReiseDAO();
         return $reiseDAO->readSingleJourney($reise_id);
     }
-    
+
     /**
      * Aktualisiert eine bestehende Reise mit neuen Daten (ausser Reise-ID)
      * @author Sandra Bodack
@@ -208,6 +209,14 @@ class Service {
     public function deleteJourney($reise_id) {
         $reiseDAO = new dao\ReiseDAO();
         $reiseDAO->delete($reise_id);
+    }
+
+    public function findAllJourney() {
+        if ($this->verifyAuth()) {
+            $reiseDAO = new dao\ReiseDAO();
+            return $reiseDAO->findByAgent($this->currentBenutzername); 
+        }
+        return null;
     }
 
     /**
@@ -373,7 +382,7 @@ class Service {
         $reiseDAO = new \dao\ReiseDAO();
         return $reiseDAO->getPlaces();
     }
-    
+
     /**
      * Selektabfrage, um alle Reisetitel auszulesen
      * @author Maja Velickovic

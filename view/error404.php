@@ -15,7 +15,7 @@ Diese Seite stellt die 404-Error-Seite dar.
                 <div id="blockleft">
                     <h1>404 Error!  <i class="em em-astonished"></i></h1>
                     <h2>Leider können wir die von dir gesuchte Seite nicht finden...</h2>
-                    <a href="<?php echo $GLOBALS["ROOT_URL"] . "/login" ?>">Versuche es mir der Login-Seite</a>
+                    <a href="<?php echo $GLOBALS["ROOT_URL"] . "/login" ?>">Versuche es mit der Login-Seite</a>
                 </div>
             </div>
         </div>
