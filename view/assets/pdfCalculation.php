@@ -58,15 +58,13 @@ class PDF extends FPDF {
     $fill=0;
     $totalsum = 0;
     
-    foreach($data as $row)
+    foreach($data-1 as $row)
     {
-        if($row[0] != ""){
-            $totalsum = $totalsum + $row[1]; // summiert den Betrag zum Total
-            $this->Cell(170,6,$row[0],'LR',0,'L',$fill); // Zelle der ersten Spalte
-            $this->Cell(70,6,'CHF ' . number_format($row[1],2),'LR',0,'R',$fill); // Zelle der zweiten Spalte
-            $this->Ln();
-            $fill=!$fill;
-        }
+        $totalsum = $totalsum + $row[1]; // summiert den Betrag zum Total
+        $this->Cell(170,6,$row[0],'LR',0,'L',$fill); // Zelle der ersten Spalte
+        $this->Cell(70,6,'CHF ' . number_format($row[1],2),'LR',0,'R',$fill); // Zelle der zweiten Spalte
+        $this->Ln();
+        $fill=!$fill;
     }
     
     $this->SetFillColor(0,0,255);
