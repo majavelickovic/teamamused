@@ -36,8 +36,10 @@ class PDF extends FPDF {
   
 
   // Colored table
-  function showTableContent($header,$data)
+  function showTableContent()
   {
+    $data = controller\RechnungController::readFinalBilling($_POST['reise']);
+      
     // Colors, line width and bold font
     $this->SetFillColor(255,0,0);
     $this->SetTextColor(255);
@@ -56,7 +58,7 @@ class PDF extends FPDF {
     $fill=0;
     $totalsum = 0;
     
-    foreach($data as $row)
+    foreach($data as &$row)
     {
      $this->Cell(170,6,$row[0],'LR',0,'L',$fill); // Zelle der ersten Spalte
      $this->Cell(70,6,'CHF ' . number_format($row[1],2),'LR',0,'R',$fill); // Zelle der zweiten Spalte
@@ -66,32 +68,12 @@ class PDF extends FPDF {
      
     }
     
-    
-//    //Versuch andere Schleife
-//    $count = count($data);
-//    for ($i=0; $i<$count; $i++) {
-//        $this->Cell(170,6,$data[$i],'LR',0,'L',$fill);
-//        $this->Cell(70,6,'CHF ' . number_format($data[i+1],2),'LR',0,'R',$fill);
-//        $totalsum = $totalsum + $data[i+1];
-//        $i = $i+1;
-//        $this->Ln();
-//        $fill=!$fill;
-//    }
-    
-    
     $this->SetFillColor(0,0,255);
     $this->SetTextColor(255);
     $this->SetDrawColor(128,0,0);
     
     $this->Cell(170,6,'Total Gewinn/Verlust',1,0,'R',$fill);
     $this->Cell(70,6,'CHF ' . number_format($totalsum,2),1,0,'R',$fill);
-    
-    
-    
-    function setLastRow(){
-        
-    }
-        
      
   }
   
@@ -101,7 +83,6 @@ $pdf=new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage('L');
 $pdf->SetFont('Arial','',14);
-$dataSchlussabrechnung = controller\RechnungController::readFinalBilling($_POST['reise']);
-$pdf->showTableContent($header,$dataSchlussabrechnung);
+$pdf->showTableContent();
 $pdf->Output();    
 ?>
