@@ -61,7 +61,7 @@ class PDF extends FPDF {
     foreach($data as &$row)
     {
      $this->Cell(170,6,$row[0],'LR',0,'L',$fill); // Zelle der ersten Spalte
-     $this->Cell(70,6,'CHF ' . number_format($row[1],2),'LR',0,'R',$fill); // Zelle der zweiten Spalte
+     $this->Cell(70,6,'CHF ' . $totalsum . number_format($row[1],2),'LR',0,'R',$fill); // Zelle der zweiten Spalte
      $totalsum = $totalsum + $row[1]; // summiert den Betrag zum Total
      $this->Ln();
      $fill=!$fill;
