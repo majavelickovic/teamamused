@@ -83,13 +83,13 @@ class PDF extends FPDF {
     $this->SetTextColor(255);
     $this->SetDrawColor(128,0,0);
     
-    $this->setLastRow();
+    $this->Cell(170,6,'Total Gewinn/Verlust',1,0,'R',$fill);
+    $this->Cell(70,6,'CHF ' . number_format($totalsum,2),1,0,'R',$fill);
     
     
     
     function setLastRow(){
-        $this->Cell(170,6,'Total Gewinn/Verlust',1,0,'R',$fill);
-        $this->Cell(70,6,'CHF ' . number_format($totalsum,2),1,0,'R',$fill);
+        
     }
         
      
