@@ -214,7 +214,7 @@ class Service {
     public function findAllJourney() {
         if ($this->verifyAuth()) {
             $reiseDAO = new dao\ReiseDAO();
-            return $reiseDAO->findByAgent($this->currentBenutzername); 
+            return $reiseDAO->findByAgent($this->currentBenutzername);
         }
         return null;
     }
@@ -285,6 +285,17 @@ class Service {
     public function deleteParticipant($teilnehmer_id) {
         $teilnehmerDAO = new \dao\TeilnehmerDAO();
         $teilnehmerDAO->delete($teilnehmer_id);
+    }
+
+    /**
+     * TODO -> auch in TeilnehmerDAO anpassen -> je nach Anzahl "find"-Methoden müssen auch hier diese entsprechend implementiert werden
+     */
+    public function findAllParticipant() {
+        if ($this->verifyAuth()) {
+            $teilnehmerDAO = new \dao\TeilnehmerDAO();
+            return $teilnehmerDAO->findByAgent($this->currentBenutzername); // Methode gibt es so nicht in TeilnehmerDAO
+        }
+        return null;
     }
 
     // CRUD-Methoden für Rechnungen
