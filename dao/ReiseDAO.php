@@ -234,9 +234,7 @@ class ReiseDAO {
     public function readSingleJourney($reise_id) {
         $pdo = Database::connect();
         $statement = $pdo->prepare(
-                "SELECT reise_teilnehmer.reise_id, reise_rechnung.reise_id, reise.reise_id, reise.titel, reise.beschreibung, datum_start, datum_ende, reise.preis, reise.max_teilnehmer, reise.startort
-                FROM reise INNER JOIN reise_teilnehmer ON reise.reise_id=reise_teilnehmer.reise_id INNER JOIN reise_rechnung ON reise.reise_id=reise_rechnung.reise_id 
-                WHERE reise.reise_id = :reise_id;");
+                "SELECT * FROM reise WHERE reise_id = :reise_id;");
         $statement->bindValue(':reise_id', $reise_id);
         $statement->execute();
         $reise = new Reise();
