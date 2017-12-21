@@ -55,6 +55,8 @@ class PDF extends FPDF {
     // Data
     $fill=0;
     $totalsum = 0;
+    
+    $count = count($data);
     foreach($data as $row)
     {
      $this->Cell(170,6,$row[0],'LR',0,'L',$fill); // Zelle der ersten Spalte
@@ -62,12 +64,14 @@ class PDF extends FPDF {
      $totalsum = $totalsum + $row[1]; // summiert den Betrag zum Total
      $this->Ln();
      $fill=!$fill;
-     
-     if(empty($row)){
-             $this->Cell(170,6,'Total Gewinn/Verlust',1,0,'R',$fill);
-    $this->Cell(70,6,'CHF ' . number_format($totalsum,2),1,0,'R',$fill);
+     $count = $count-2;
+     if($count == 0){
+        $this->Cell(170,6,'Total Gewinn/Verlust',1,0,'R',$fill);
+        $this->Cell(70,6,'CHF ' . number_format($totalsum,2),1,0,'R',$fill);
      }
+     
     }
+    
     
 //    //Versuch andere Schleife
 //    $count = count($data);
@@ -85,7 +89,11 @@ class PDF extends FPDF {
     $this->SetTextColor(255);
     $this->SetDrawColor(128,0,0);
     
-
+    function setLastRow(){
+        
+    }
+        
+     
   }
   
 }
