@@ -65,7 +65,8 @@ class PDF extends FPDF {
 //    }
     
     //Versuch Michelle
-    for ($i=0, $c=count($data); $i<$c; $i++) {
+    $count = count($data);
+    for ($i=0; $i<$count; $i++) {
         $this->Cell(170,6,$data[$i],'LR',0,'L',$fill);
         $this->Cell(70,6,'CHF ' . number_format($data[i+1],2),'LR',0,'R',$fill);
         $totalsum = $totalsum + $data[i+1];
@@ -79,6 +80,7 @@ class PDF extends FPDF {
     $this->SetTextColor(255);
     $this->SetDrawColor(128,0,0);
     
+    $this->Ln();
     $this->Cell(170,6,'Total Gewinn/Verlust',1,0,'R',$fill);
     $this->Cell(70,6,'CHF ' . number_format($totalsum,2),1,0,'R',$fill);
   }
