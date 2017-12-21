@@ -112,6 +112,10 @@
             controller\LoginController::loginView();
         });
 
+        /**
+         * Übersichtsseite für Optionen einer Reise werden angezeigt
+         * @author Sandra Bodack
+         */
         Router::route("GET", "/reise", function () {
             if (LoginController::authenticate()) {
                 controller\ReiseController::journeyChoiceView();
