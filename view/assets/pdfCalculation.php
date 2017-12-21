@@ -70,9 +70,10 @@ class PDF extends FPDF {
     $this->SetFillColor(0,0,255);
     $this->SetTextColor(255);
     $this->SetDrawColor(128,0,0);
+    $fill = 1;
     
-    $this->Cell(170,6,'Total Gewinn/Verlust',1,0,'R');
-    $this->Cell(70,6,'CHF ' . number_format($totalsum,2),1,0,'R');
+    $this->Cell(170,6,'Total Gewinn/Verlust',1,0,'R',$fill);
+    $this->Cell(70,6,'CHF ' . number_format($totalsum,2),1,0,'R',$fill);
      
   }
   
